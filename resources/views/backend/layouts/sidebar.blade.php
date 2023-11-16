@@ -48,7 +48,7 @@
                                                 </path>
                                             </svg>
                                             <span class="side-menu__label">Dashboard</span>
-                                            <span class="badge bg-success ms-auto menu-badge">1</span>
+
                                         </a>
                                     </li>
                                     <!-- End::slide -->
