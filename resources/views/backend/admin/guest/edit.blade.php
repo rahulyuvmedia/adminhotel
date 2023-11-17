@@ -7,7 +7,7 @@
                 <div class="page-title-icon">
                     <i class="bi bi-newspaper icon-gradient bg-mean-fruit"> </i>
                 </div>
-                <div>Edit Guests</div>
+                <div>Edit Guest</div>
                  
             </div>
         </div>
@@ -74,7 +74,7 @@
 
                     <input id="photo" type="file" name="image" style="display:none">
                     <div class="input-group-prepend">
-                        <a class="btn btn-dark text-white" onclick="$('input[id=photo]').click();">Browse</a>
+                        <a class="btn btn-dark text-white" onclick="$('input[id=photo]').click();">Image</a>
                     </div>
                     <input type="text" name="image" class="form-control" id="SelectedFileName" value="" readonly>
 

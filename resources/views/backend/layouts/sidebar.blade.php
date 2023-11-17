@@ -32,7 +32,7 @@
                                 <ul class="main-menu active" style="margin-left: 0px; margin-right: 0px">
                                     <!-- Start::slide__category -->
                                     <li class="slide__category">
-                                        <span class="category-name">Main</span>
+                                        <span class="category-name"></span>
                                     </li>
                                     <!-- End::slide__category -->
                                     <!-- Start::slide -->
