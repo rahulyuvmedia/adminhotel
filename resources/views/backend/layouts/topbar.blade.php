@@ -1,4 +1,6 @@
+
 <header class="app-header">
+   
     <!-- Start::main-header-container -->
     <div class="main-header-container container-fluid">
         <!-- Start::header-content-left -->
@@ -9,8 +11,7 @@
                     <a href="index.html" class="header-logo">
                         <img src="{{ asset('/assets/images/desktop-logo.png') }}" alt="logo" class="desktop-logo" />
                         <img src="{{ asset('/assets/images/toggle-logo.png') }}" alt="logo" class="toggle-logo" />
-                        <img src="{{ asset('/assets/images/desktop-white.png') }}" alt="logo"
-                            class="desktop-white" />
+                        <img src="{{ asset('/assets/images/desktop-white.png') }}" alt="logo" class="desktop-white" />
                         <img src="{{ asset('/assets/images/toggle-white.png') }}" alt="logo" class="toggle-white" />
                     </a>
                 </div>
@@ -61,30 +62,65 @@
                 </ul>
             </div>
             <!-- Start::header-element -->
-             
+
             <!-- End::header-element -->
             <!-- Start::header-element -->
             <!-- End::header-element -->
             <!-- Start::header-element -->
-             
+
             <!-- End::header-element -->
             <!-- Start::header-element -->
-             
+
             <!-- End::header-element -->
             <!-- Start::header-element -->
-             
+
             <!-- End::header-element -->
             <!-- Start::header-element -->
-            
+
             <!-- End::header-element -->
             <!-- Start::header-element -->
             <div class="header-element headerProfile-dropdown">
                 <!-- Start::header-link|dropdown-toggle -->
-                <a href="javascript:void(0);" class="header-link dropdown-toggle" id="mainHeaderProfile"
-                    data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                    <img src="{{ asset('/assets/images/6.jpg') }}" alt="img" width="37" height="37"
-                        class="rounded-circle" />
-                </a>
+                <div class="app-header">
+                <div class="app-header__content">
+                    <div class="app-header-right">
+                        <div class="header-btn-lg pr-0">
+                            <div class="widget-content p-0">
+                                <div class="widget-content-wrapper">
+                                    <div class="widget-content-left">
+                                        <div class="btn-group">
+                                            <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                class="p-0 btn">
+                                                <img class="rounded-circle"
+                                                    src="{{ asset('assets/images/users/default.png') }}" alt=""
+                                                    width="42">
+                                                <i class="fa fa-angle-down ml-2 opacity-8"></i>
+                                            </a>
+                                            <div tabindex="-1" role="menu" aria-hidden="true"
+                                                class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="{{ URL::to('/admin/profile') }}"> <i
+                                                        class="fa fa-user fa-1x fa-fw"></i> Profile</a>
+                                                <a class="dropdown-item" href="{{ URL::to('/admin/change_password') }}">
+                                                    <i class="fa fa-lock fa-1x fa-fw"></i> Change Password</a>
+                                                <a class="dropdown-item" href="{{ URL::to('/admin_login/logout') }}"> <i
+                                                        class="fa fa-sign-out-alt fa-1x fa-fw"></i> Logout</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="widget-content-left  ml-3 header-user-info">
+                                        <div class="widget-heading">
+                                            {{ Auth::user()->name }}
+                                        </div>
+                                        <div class="widget-subheading">
+                                            {{ Auth::user()->email }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
                 <!-- End::header-link|dropdown-toggle -->
                 <ul class="main-header-dropdown dropdown-menu pt-0 header-profile-dropdown dropdown-menu-end main-profile-menu"
                     aria-labelledby="mainHeaderProfile">

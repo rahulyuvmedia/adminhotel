@@ -54,3 +54,15 @@ Route::delete('backups/delete/{file_name}', 'BackupController@delete');
 
 Route::get('/barcode', 'AdminController@barcode');
 Route::get('/passport', 'AdminController@passport');
+
+
+
+
+Route::resource('guest', 'GuestController');
+
+Route::get('/guest/active/{id}', 'GuestController@active');
+Route::get('/guest/inactive/{id}', 'GuestController@inactive');
+
+
+// Route::get('/guest/active/{id}', 'GuestController@active')->name('admin.guest.active');
+// Route::get('/guest/inactive/{id}', 'GuestController@inactive')->name('admin.guest.inactive');

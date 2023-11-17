@@ -30,6 +30,9 @@
 <link rel="stylesheet" href="{{ asset('/assets/plugins/toastr/toastr.min.css') }}">
 <script src="{{ asset('/assets/plugins/toastr/toastr.min.js') }}"></script>
 
+<!-- exmaple table-->
+<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
+
 <!-- icheck  library -->
 <link rel="stylesheet" href="{{ asset('/assets/plugins/iCheck/all.css') }}">
 <script src="{{ asset('/assets/plugins/iCheck/icheck.min.js') }}"></script>
