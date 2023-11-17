@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 17, 2023 at 12:11 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.0
+-- Generation Time: Nov 17, 2023 at 06:26 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -34,7 +33,7 @@ CREATE TABLE `admins` (
   `email` varchar(255) DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '1',
+  `status` tinyint(4) NOT NULL DEFAULT 1,
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -58,9 +57,9 @@ CREATE TABLE `blogs` (
   `title` varchar(255) NOT NULL,
   `description` longtext NOT NULL,
   `category` varchar(200) DEFAULT NULL,
-  `uploaded_by` int(11) DEFAULT '1',
+  `uploaded_by` int(11) DEFAULT 1,
   `file_path` varchar(255) DEFAULT 'assets/images/blog/default.png',
-  `status` tinyint(4) DEFAULT '1',
+  `status` tinyint(4) DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -100,7 +99,7 @@ CREATE TABLE `failed_jobs` (
   `queue` text NOT NULL,
   `payload` longtext NOT NULL,
   `exception` longtext NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -112,11 +111,10 @@ CREATE TABLE `failed_jobs` (
 CREATE TABLE `guest` (
   `id` bigint(20) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `phoneNumber` varchar(255) NOT NULL,
-  `roomNumber` varchar(255) DEFAULT NULL,
-  `address` varchar(255) NOT NULL,
-  `image` varchar(255) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `mobile` varchar(255) NOT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `idproff` varchar(255) DEFAULT NULL,
   `status` enum('0','1') NOT NULL DEFAULT '1',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
@@ -126,9 +124,8 @@ CREATE TABLE `guest` (
 -- Dumping data for table `guest`
 --
 
-INSERT INTO `guest` (`id`, `name`, `email`, `phoneNumber`, `roomNumber`, `address`, `image`, `status`, `created_at`, `updated_at`) VALUES
-(4, 'Rahul soni', 'rahulyuvmedia@gmail.com', '09588871256', '12', 'Ajmer', '', '0', '2023-11-17 12:34:12', '2023-11-17 12:39:04'),
-(5, 'abc', 'abc', 'abc', 'abc', 'abc', '1700215516.jpeg', '1', '2023-11-17 15:59:39', '2023-11-17 16:05:16');
+INSERT INTO `guest` (`id`, `name`, `email`, `mobile`, `address`, `idproff`, `status`, `created_at`, `updated_at`) VALUES
+(11, 'Rahul Soni', 'rahulyuvmedia@gmail.com', '09588871256', 'Ajmer', '1700238816.jpg', '1', '2023-11-17 22:33:36', '2023-11-17 22:33:36');
 
 -- --------------------------------------------------------
 
@@ -202,7 +199,7 @@ CREATE TABLE `oauth_access_tokens` (
   `user_id` bigint(20) UNSIGNED DEFAULT NULL,
   `client_id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `scopes` text,
+  `scopes` text DEFAULT NULL,
   `revoked` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -220,8 +217,10 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('2563000da7e4575deb080e4f276bec033c5f10ca837f2302da0816777206a8c4b78d0eb3dafa0cdf', 1, 6, 'adminApiToken', '[]', 0, '2023-11-17 10:19:53', '2023-11-17 10:19:53', '2024-11-17 15:49:53'),
 ('34cfca8b577333694edb5d4a43e45503ca2478f916462fe0c4d3c64a66dfb59f222dc11b06849cf7', 2, 1, 'userApiToken', '[]', 0, '2020-07-18 11:47:50', '2020-07-18 11:47:50', '2021-07-18 17:17:50'),
 ('39ce6df5a3ac4be217baf5bb0cd07f0ae3999a8cd958dfc095152a6928634af75064cd726e53e41a', 1, 6, 'adminApiToken', '[]', 0, '2023-11-17 06:35:46', '2023-11-17 06:35:46', '2024-11-17 12:05:46'),
+('63064b28f6bdf7e61313c3a446411b366603c82adaa7b37fa20658978055c2bc192f348bf0dd81bd', 1, 6, 'adminApiToken', '[]', 0, '2023-11-17 14:49:22', '2023-11-17 14:49:22', '2024-11-17 20:19:22'),
 ('67cba7b98c79510c5fac62493938fa857b1cf00da731c40c852ec4949f04be06e0dd476a84d94f8f', 1, 4, 'adminApiToken', '[]', 0, '2020-09-27 10:50:50', '2020-09-27 10:50:50', '2021-09-27 16:20:50'),
 ('88a3bc8dcba5431e5571dfa056f12c1ad8181fa09c3878ed96b7b5a3ba992b7db274f504497d3cd8', 1, 6, 'adminApiToken', '[]', 0, '2023-11-17 04:57:33', '2023-11-17 04:57:33', '2024-11-17 10:27:33'),
+('9622efb9862c1154929f2b14667717025a111c080e80f8033c3a31a02ca7e1f03e7d46f89118fa81', 1, 6, 'adminApiToken', '[]', 0, '2023-11-17 15:20:34', '2023-11-17 15:20:34', '2024-11-17 20:50:34'),
 ('a419addf4ae7bea31145205699c7e95182f9c9957068f6e32554187ab3f7980bc5374635df10a69f', 1, 4, 'adminApiToken', '[]', 0, '2020-09-28 06:46:49', '2020-09-28 06:46:49', '2021-09-28 12:16:49'),
 ('a63a5ed742a080a9d8cf1379aa60e1ba0b0fbc087ffea1e858144bf92f87931119eedd334ace7ffb', 1, 4, 'adminApiToken', '[]', 0, '2020-10-15 05:50:50', '2020-10-15 05:50:50', '2021-10-15 11:20:50'),
 ('ab09563fd805d57dc698103035caa419b87a8872d5058901a99919a6770865ef4d1eb0030b7a0f7c', 1, 1, 'userApiToken', '[]', 0, '2020-07-18 11:43:13', '2020-07-18 11:43:13', '2021-07-18 17:13:13'),
@@ -241,7 +240,7 @@ CREATE TABLE `oauth_auth_codes` (
   `id` varchar(100) NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `client_id` bigint(20) UNSIGNED NOT NULL,
-  `scopes` text,
+  `scopes` text DEFAULT NULL,
   `revoked` tinyint(1) NOT NULL,
   `expires_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -370,6 +369,29 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `reservations`
+--
+
+CREATE TABLE `reservations` (
+  `id` bigint(20) NOT NULL,
+  `guest_id` bigint(20) NOT NULL,
+  `room_id` bigint(20) NOT NULL,
+  `checkin_date` datetime DEFAULT NULL,
+  `checkout_date` datetime DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `reservations`
+--
+
+INSERT INTO `reservations` (`id`, `guest_id`, `room_id`, `checkin_date`, `checkout_date`, `created_at`, `updated_at`) VALUES
+(8, 1, 5, NULL, NULL, '2023-11-17 22:33:36', '2023-11-17 22:33:36');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `roles`
 --
 
@@ -421,7 +443,7 @@ CREATE TABLE `rooms` (
   `roomNumber` varchar(255) NOT NULL,
   `roomType` enum('single','double','suite') NOT NULL,
   `occupancy` enum('1','2','3','4','5','6') NOT NULL,
-  `price` varchar(255) NOT NULL,
+  `price` float NOT NULL DEFAULT 0,
   `availability` enum('available','booked','outofservice','') NOT NULL,
   `facilities` text NOT NULL,
   `status` enum('0','1') NOT NULL DEFAULT '1',
@@ -434,9 +456,10 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`id`, `roomNumber`, `roomType`, `occupancy`, `price`, `availability`, `facilities`, `status`, `created_at`, `updated_at`) VALUES
-(3, 'a', 'suite', '6', 'a', 'outofservice', 'a', '1', '2023-11-17 14:58:09', '2023-11-17 16:17:01'),
-(4, 'sdfsdf', 'suite', '2', 'sdfsdf', 'available', '3213', '1', '2023-11-17 15:17:00', '2023-11-17 16:16:57'),
-(5, '12', 'double', '3', '12', 'booked', '12', '1', '2023-11-17 16:16:16', '2023-11-17 16:16:43');
+(3, 'F-1', 'suite', '6', 2, 'available', 'a', '1', '2023-11-17 14:58:09', '2023-11-17 16:17:01'),
+(4, 'F-4', 'suite', '2', 2, 'available', '3213', '1', '2023-11-17 15:17:00', '2023-11-17 16:16:57'),
+(5, 'F-2', 'double', '3', 12, 'booked', '12', '1', '2023-11-17 16:16:16', '2023-11-17 22:33:36'),
+(6, 'F-3', 'single', '2', 2223, 'available', 'Wi-Fi|Air Conditioning|Safe|Work Desk|Hairdryer|Iron and Ironing Board', '1', '2023-11-17 21:27:54', '2023-11-17 21:36:55');
 
 -- --------------------------------------------------------
 
@@ -464,7 +487,7 @@ CREATE TABLE `settings` (
   `social_google` varchar(255) DEFAULT 'https://www.google.com/',
   `social_youtube` varchar(255) DEFAULT 'https://www.youtube.com/',
   `layout` varchar(255) NOT NULL DEFAULT '1',
-  `maps` text,
+  `maps` text DEFAULT NULL,
   `running_year` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -490,7 +513,7 @@ CREATE TABLE `users` (
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `file_path` varchar(255) DEFAULT 'assets/images/users/default.png',
-  `status` tinyint(4) DEFAULT '1',
+  `status` tinyint(4) DEFAULT 1,
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -598,6 +621,12 @@ ALTER TABLE `permissions`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `reservations`
+--
+ALTER TABLE `reservations`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
@@ -656,7 +685,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `guest`
 --
 ALTER TABLE `guest`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -683,6 +712,12 @@ ALTER TABLE `permissions`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
+-- AUTO_INCREMENT for table `reservations`
+--
+ALTER TABLE `reservations`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
@@ -692,7 +727,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `settings`

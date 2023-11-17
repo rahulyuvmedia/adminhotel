@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Backend\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Guest;
+use App\Models\Rooms;
+use App\Models\Reservation;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,7 +42,9 @@ class GuestController extends Controller
      */
     public function create()
     {
-        return view('backend.admin.guest.create');
+        $rooms = Rooms::where('availability','available')->get();
+
+        return view('backend.admin.guest.create',compact('rooms'));
     }
 
     /**
@@ -49,41 +54,46 @@ class GuestController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $request->validate([
             'name' => 'required',
-            'email' => 'required',
-            'phoneNumber' => 'required',
-            'roomNumber' => 'required',
-            'address' => 'required',
-
+            'mobile' => 'required',
         ]);
         try {
+
             $model = new Guest();
-           
             $model->name = $request->name;
             $model->email = $request->email;
-            $model->phoneNumber = $request->phoneNumber;
-            $model->roomNumber = $request->roomNumber;
+            $model->mobile = $request->mobile;
             $model->address = $request->address;
          
             
-            if ($request->hasFile('image')) {
-                $extension = strtolower($request->file('image')->getClientOriginalExtension());
+            if ($request->hasFile('idproff')) {
+                $extension = strtolower($request->file('idproff')->getClientOriginalExtension());
                 if ($extension == 'jpg' || $extension == 'jpeg' || $extension == 'png' || $extension == 'svg' || $extension == 'webp') {
-                    if ($request->file('image')->isValid()) {
+                    if ($request->file('idproff')->isValid()) {
                         $destinationPath = public_path('uploads'); // upload path
-                        $extension = $request->file('image')->getClientOriginalExtension(); // getting image extension
+                        $extension = $request->file('idproff')->getClientOriginalExtension(); // getting image extension
                         $fileName = time() . '.' . $extension; // renameing image
-                        $request->file('image')->move($destinationPath, $fileName); // uploading file to given path
-                        $model->image = $fileName;
+                        $request->file('idproff')->move($destinationPath, $fileName); // uploading file to given path
+                        $model->idproff = $fileName;
                     }
                 }
             }
-                       $model->save();
+                        
+                    if($model->save()){
+                        $reservation = new Reservation();
+                        $reservation->guest_id = 1;
+                        $reservation->room_id =$request->roomNumber;
+                        if($reservation->save()){
+                            Rooms::where('id', $request->roomNumber)->update(['availability' => 'booked']);
+                        }
+
+                    }
             return redirect()->route('admin.guest.index')->with('success', 'Guest added successfully.');
         } catch (\Exception $e) {
+            print_r($e);
+            die;
             session()->flash('sticky_error', $e->getMessage());
             return back();
         }
@@ -123,8 +133,8 @@ class GuestController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required',
-            'phoneNumber' => 'required',
-            'roomNumber' => 'required',
+            'mobile' => 'required',
+        
             'address' => 'required',
 
             
@@ -135,8 +145,7 @@ class GuestController extends Controller
 
              $model->name = $request->name;
             $model->email = $request->email;
-            $model->phoneNumber = $request->phoneNumber;
-            $model->roomNumber = $request->roomNumber;
+            $model->mobile = $request->mobile;
             $model->address = $request->address;
             
             if ($request->hasFile('image')) {

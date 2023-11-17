@@ -57,9 +57,6 @@ class RoomsController extends Controller
             'roomType' => 'required',
             'occupancy' => 'required',
             'availability' => 'required',
-            'facilities' => 'required',
-            
-
         ]);
         try {
             $model = new Rooms();
@@ -69,7 +66,7 @@ class RoomsController extends Controller
             $model->roomType = $request->roomType;
             $model->occupancy = $request->occupancy;
             $model->availability = $request->availability;
-            $model->facilities = $request->facilities;
+            $model->facilities = implode('|', $request->facilities);
  
          
          
@@ -126,13 +123,12 @@ class RoomsController extends Controller
         ]);
         try {
             $model = Rooms::find($id);
-
             $model->roomNumber = $request->roomNumber;
             $model->price = $request->price;
             $model->roomType = $request->roomType;
             $model->occupancy = $request->occupancy;
             $model->availability = $request->availability;
-            $model->facilities = $request->facilities;
+            $model->facilities = implode('|', $request->facilities);
     
             
             // if ($request->hasFile('image')) {

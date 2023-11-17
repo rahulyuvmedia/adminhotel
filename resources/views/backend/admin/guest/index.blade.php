@@ -16,12 +16,12 @@
             </div>
         </div>
     </div>
-    
-    @if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
+
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <div class="row">
         <div class="col-md-12 col-sm-12">
@@ -34,8 +34,7 @@
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th>Phone Number</th>
-                                    <th>Room Number</th>
+                                    <th>Mobile</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -45,9 +44,7 @@
                                         <td class="serial-number">{{ $loop->iteration }}</td>
                                         <td>{{ $value->name }}</td>
                                         <td>{{ $value->email }}</td>
-                                        <td>{{ $value->phoneNumber }}</td>
-                                        <td>{{ $value->roomNumber }}</td>
-
+                                        <td>{{ $value->mobile }}</td>
                                         <td class="d-flex">
                                             <a href="{{ Route('admin.guest.edit', $value->id) }}"
                                                 class="btn btn-primary me-2" data-mdb-ripple-color="dark">
@@ -66,19 +63,19 @@
 
                                             @if ($value->status == 1)
                                                 <a class="fw-bold  btn btn-success"
-                                                href="{{ URL::to('admin/guest/active', $value->id) }}">Active</a>
+                                                    href="{{ URL::to('admin/guest/active', $value->id) }}">Active</a>
                                             @elseif ($value->status == 0)
                                                 <a class="fw-bold btn btn-danger"
-                                                href="{{ URL::to('admin/guest/inactive', $value->id) }}">Inactive</a>
+                                                    href="{{ URL::to('admin/guest/inactive', $value->id) }}">Inactive</a>
                                             @else
-                                            Unknown
+                                                Unknown
                                             @endif
 
 
 
 
-                                            
-                                   
+
+
                                         </td>
                                     </tr>
                                 @endforeach
@@ -103,11 +100,11 @@
                 alert("Delete operation cancelled.");
             }
         }
-    </script> 
- 
-<script>
-    $(document).ready(function () {
-        $('#example').DataTable();
-    });
-</script>
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+    </script>
 @stop

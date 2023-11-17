@@ -16,11 +16,11 @@
             </div>
         </div>
     </div>
-    @if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <div class="row">
         <div class="col-md-12 col-sm-12">
@@ -47,7 +47,7 @@
                                         <td>{{ $value->roomNumber }}</td>
                                         <td>{{ $value->roomType }}</td>
                                         <td>{{ $value->occupancy }}</td>
-                                        <td>{{ $value->price }}</td>
+                                        <td>₹{{ number_format($value->price) }}</td>
                                         <td>{{ $value->availability }}</td>
                                         <td>{{ $value->facilities }}</td>
 
@@ -69,19 +69,19 @@
 
                                             @if ($value->status == 1)
                                                 <a class="fw-bold  btn btn-success"
-                                                href="{{ URL::to('admin/rooms/active', $value->id) }}">Active</a>
+                                                    href="{{ URL::to('admin/rooms/active', $value->id) }}">Active</a>
                                             @elseif ($value->status == 0)
                                                 <a class="fw-bold btn btn-danger"
-                                                href="{{ URL::to('admin/rooms/inactive', $value->id) }}">Inactive</a>
+                                                    href="{{ URL::to('admin/rooms/inactive', $value->id) }}">Inactive</a>
                                             @else
-                                            Unknown
+                                                Unknown
                                             @endif
 
 
 
 
-                                            
-                                   
+
+
                                         </td>
                                     </tr>
                                 @endforeach
@@ -106,11 +106,11 @@
                 alert("Delete operation cancelled.");
             }
         }
-    </script> 
- 
-<script>
-    $(document).ready(function () {
-        $('#example').DataTable();
-    });
-</script>
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+    </script>
 @stop
