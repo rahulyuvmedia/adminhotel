@@ -63,6 +63,10 @@ Route::resource('guest', 'GuestController');
 Route::get('/guest/active/{id}', 'GuestController@active');
 Route::get('/guest/inactive/{id}', 'GuestController@inactive');
 
+ 
+Route::resource('rooms', 'RoomsController');
 
-// Route::get('/guest/active/{id}', 'GuestController@active')->name('admin.guest.active');
-// Route::get('/guest/inactive/{id}', 'GuestController@inactive')->name('admin.guest.inactive');
+Route::get('/rooms/active/{id}', 'RoomsController@active');
+Route::get('/rooms/inactive/{id}', 'RoomsController@inactive');
+
+ 

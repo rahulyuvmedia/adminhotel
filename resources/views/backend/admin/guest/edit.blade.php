@@ -64,6 +64,34 @@
             
 
  
+            <div class="form-group col-md-9 col-sm-12"style="width: 430px;">
+                @if ($model->image)
+                    <img class="img-thumbnail img-fluid tool-img-edit" src="{{ URL::to('/uploads/' . $model->image) }}" />
+                @endif
+                <label for="photo"> (extention must be: jpg, jpeg, png, webp)</label>
+                <div class="input-group mt-3">
+
+
+                    <input id="photo" type="file" name="image" style="display:none">
+                    <div class="input-group-prepend">
+                        <a class="btn btn-dark text-white" onclick="$('input[id=photo]').click();">Browse</a>
+                    </div>
+                    <input type="text" name="image" class="form-control" id="SelectedFileName" value="" readonly>
+
+
+                </div>
+                @error('image')
+                    <div class="has-error mt-2">{{ $message }}</div>
+                @enderror
+                <script type="text/javascript">
+                    $('input[id=photo]').change(function() {
+                        $('#SelectedFileName').val($(this).val());
+                    });
+                </script>
+                @error('image')
+                    <div class="has-error mt-2 ">{{ $message }}</div>
+                @enderror
+            </div>
 
             <div class="clearfix"></div>
             <div class="form-group col-md-12">

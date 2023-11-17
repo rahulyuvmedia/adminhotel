@@ -69,21 +69,20 @@ class GuestController extends Controller
             $model->address = $request->address;
          
             
-            // if ($request->hasFile('image')) {
-            //     $extension = strtolower($request->file('image')->getClientOriginalExtension());
-            //     if ($extension == 'jpg' || $extension == 'jpeg' || $extension == 'png' || $extension == 'svg' || $extension == 'webp') {
-            //         if ($request->file('image')->isValid()) {
-            //             $destinationPath = public_path('uploads'); // upload path
-            //             $extension = $request->file('image')->getClientOriginalExtension(); // getting image extension
-            //             $fileName = time() . '.' . $extension; // renameing image
-            //             $request->file('image')->move($destinationPath, $fileName); // uploading file to given path
-            //             $model->image = $fileName;
-            //         }
-            //     }
-            // }
-            
-            $model->save();
-            return redirect()->route('admin.guest.index');
+            if ($request->hasFile('image')) {
+                $extension = strtolower($request->file('image')->getClientOriginalExtension());
+                if ($extension == 'jpg' || $extension == 'jpeg' || $extension == 'png' || $extension == 'svg' || $extension == 'webp') {
+                    if ($request->file('image')->isValid()) {
+                        $destinationPath = public_path('uploads'); // upload path
+                        $extension = $request->file('image')->getClientOriginalExtension(); // getting image extension
+                        $fileName = time() . '.' . $extension; // renameing image
+                        $request->file('image')->move($destinationPath, $fileName); // uploading file to given path
+                        $model->image = $fileName;
+                    }
+                }
+            }
+                       $model->save();
+            return redirect()->route('admin.guest.index')->with('success', 'Guest added successfully.');
         } catch (\Exception $e) {
             session()->flash('sticky_error', $e->getMessage());
             return back();
@@ -140,21 +139,21 @@ class GuestController extends Controller
             $model->roomNumber = $request->roomNumber;
             $model->address = $request->address;
             
-            // if ($request->hasFile('image')) {
-            //     $extension = strtolower($request->file('image')->getClientOriginalExtension());
-            //     if ($extension == 'jpg' || $extension == 'jpeg' || $extension == 'png' || $extension == 'svg' || $extension == 'webp') {
-            //         if ($request->file('image')->isValid()) {
-            //             $destinationPath = public_path('uploads'); // upload path
-            //             $extension = $request->file('image')->getClientOriginalExtension(); // getting image extension
-            //             $fileName = time() . '.' . $extension; // renameing image
-            //             $request->file('image')->move($destinationPath, $fileName); // uploading file to given path
-            //             $model->image = $fileName;
-            //         }
-            //     }
-            // }
+            if ($request->hasFile('image')) {
+                $extension = strtolower($request->file('image')->getClientOriginalExtension());
+                if ($extension == 'jpg' || $extension == 'jpeg' || $extension == 'png' || $extension == 'svg' || $extension == 'webp') {
+                    if ($request->file('image')->isValid()) {
+                        $destinationPath = public_path('uploads'); // upload path
+                        $extension = $request->file('image')->getClientOriginalExtension(); // getting image extension
+                        $fileName = time() . '.' . $extension; // renameing image
+                        $request->file('image')->move($destinationPath, $fileName); // uploading file to given path
+                        $model->image = $fileName;
+                    }
+                }
+            }
             
             $model->save();
-            return redirect()->route('admin.guest.index');
+            return redirect()->route('admin.guest.index')->with('success', 'Guest updated successfully.');
         } catch (\Exception $e) {
             session()->flash('sticky_error', $e->getMessage());
             return back();
@@ -187,7 +186,7 @@ class GuestController extends Controller
     public function destroy($id)
     {
         $model = Guest::where(['id' => $id])->delete();
-        return back();
+        return back()->with('success', 'Guest deleted successfully.');
     }
 
     
