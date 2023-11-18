@@ -43,7 +43,7 @@
             
             <div class="form-group col-md-9 col-sm-12">
                 <label for=""> phoneNumber </label>
-                <input type="text" name='phoneNumber' class='form-control' value='{{ $model->phoneNumber }}' />
+                <input type="text" name='mobile' class='form-control' value='{{ $model->mobile }}' />
                 <span id="error_title" class="has-error"></span>
             </div>
             
@@ -65,22 +65,22 @@
 
  
             <div class="form-group col-md-9 col-sm-12"style="width: 430px;">
-                @if ($model->image)
-                    <img class="img-thumbnail img-fluid tool-img-edit" src="{{ URL::to('/uploads/' . $model->image) }}" />
+                @if ($model->idproff)
+                    <img class="img-thumbnail img-fluid tool-img-edit" src="{{ URL::to('/uploads/' . $model->idproff) }}" />
                 @endif
                 <label for="photo"> (extention must be: jpg, jpeg, png, webp)</label>
                 <div class="input-group mt-3">
 
 
-                    <input id="photo" type="file" name="image" style="display:none">
+                    <input id="photo" type="file" name="idproff" style="display:none">
                     <div class="input-group-prepend">
-                        <a class="btn btn-dark text-white" onclick="$('input[id=photo]').click();">Image</a>
+                        <a class="btn btn-dark text-white" onclick="$('input[id=photo]').click();">idproff</a>
                     </div>
-                    <input type="text" name="image" class="form-control" id="SelectedFileName" value="" readonly>
+                    <input type="text" name="idproff" class="form-control" id="SelectedFileName" value="" readonly>
 
 
                 </div>
-                @error('image')
+                @error('idproff')
                     <div class="has-error mt-2">{{ $message }}</div>
                 @enderror
                 <script type="text/javascript">
@@ -88,7 +88,7 @@
                         $('#SelectedFileName').val($(this).val());
                     });
                 </script>
-                @error('image')
+                @error('idproff')
                     <div class="has-error mt-2 ">{{ $message }}</div>
                 @enderror
             </div>
