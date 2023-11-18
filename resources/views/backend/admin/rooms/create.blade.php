@@ -39,7 +39,7 @@
 
 
                     <div class="clearfix"></div>
-                    <div class="form-group col-md-12 col-sm-12">
+                    <!-- <div class="form-group col-md-12 col-sm-12">
                         <label for="">Facilities</label>
                         @if (count(MyConstants::ROOM_FACILITY) > 0)
                             @foreach (MyConstants::ROOM_FACILITY as $key => $value)
@@ -49,7 +49,26 @@
                             @endforeach
                         @endif
 
+                    </div> -->
+
+                    <div class="form-group">
+                        <label for="facilities">Facilities</label>
+                        <div>
+                            @foreach ($master as $facilityJson)
+                                @php
+                                    $facility = json_decode($facilityJson, true);
+                                @endphp
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="facilities[]" id="{{ $facility['title'] }}" value="{{ $facility['title'] }}">
+                                    <label class="form-check-label" for="{{ $facility['title'] }}">
+                                        {{ $facility['title'] }}
+                                    </label>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
+
+
 
                     <div class="clearfix"></div>
 

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Rooms;
+use App\Models\Master;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,7 +41,14 @@ class RoomsController extends Controller
      */
     public function create()
     {
-        return view('backend.admin.rooms.create');
+
+
+        $master = Master::orderBy('created_at', 'asc')
+            ->where('type', '=', 'Facilities')
+            ->get();
+
+
+        return view('backend.admin.rooms.create' , compact('master'));
     }
 
     /**
@@ -97,8 +106,11 @@ class RoomsController extends Controller
      */
     public function edit($id)
     {
+        $master = Master::orderBy('created_at', 'asc')
+            ->where('type', '=', 'Facilities')
+            ->get();
         $model = Rooms::where(['id' => $id])->first();
-        return view('backend.admin.rooms.edit', compact('model'));
+        return view('backend.admin.rooms.edit', compact('model','master'));
     }
 
     /**

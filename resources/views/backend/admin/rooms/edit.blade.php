@@ -103,7 +103,7 @@
 
 
 
-                    <div class="form-group col-md-12 col-sm-12">
+                    <!-- <div class="form-group col-md-12 col-sm-12">
                         <label for="facilities">Facilities</label>
                         @if (count(MyConstants::ROOM_FACILITY) > 0)
                             @foreach (MyConstants::ROOM_FACILITY as $key => $value)
@@ -117,7 +117,24 @@
                                 <label class="mx-1" for="{{ $value }}"> {{ $value }}</label>
                             @endforeach
                         @endif
-                    </div>
+                    </div> -->
+                    <div class="form-group">
+    <label for="facilities">Facilities</label>
+    <div>
+        @foreach ($master as $facilityJson)
+            @php
+                $facility = json_decode($facilityJson, true);
+                $isChecked = in_array($facility['title'], explode('|', $model->facilities));
+            @endphp
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="facilities[]" id="{{ $facility['title'] }}" value="{{ $facility['title'] }}" {{ $isChecked ? 'checked' : '' }}>
+                <label class="form-check-label" for="{{ $facility['title'] }}">
+                    {{ $facility['title'] }}
+                </label>
+            </div>
+        @endforeach
+    </div>
+</div>
 
 
 
