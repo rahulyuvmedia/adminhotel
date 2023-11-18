@@ -1,8 +1,12 @@
 @extends('backend.layouts.master')
 @section('title', 'Dashboard')
 @section('content')
+
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12"> 
+            <div class="main-card mb-3 card">
+                <div class="card-body">
+                    <div class="table-responsive">
             <div class="box box-success">
                 <div class="box-header with-border">
                     <p class="panel-title"> Update Profile</p>
@@ -45,7 +49,9 @@
                     </div>
                 </div>
             </div>
+        </div>  </div>
         </div>
+    </div>
     </div>
     <script>
 

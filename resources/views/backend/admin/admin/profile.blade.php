@@ -35,6 +35,7 @@
                             </tr>
                             </tbody>
                         </table>
+                        <a href = "{{ URL::to('/admin/edit_profile') }} " >edit Profile </a>
                     </div>
                 </div>
             </div>
