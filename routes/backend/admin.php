@@ -56,17 +56,17 @@ Route::get('/barcode', 'AdminController@barcode');
 Route::get('/passport', 'AdminController@passport');
 
 
-
+// Rahul Soni Routing
 
 Route::resource('guest', 'GuestController');
-
 Route::get('/guest/active/{id}', 'GuestController@active');
 Route::get('/guest/inactive/{id}', 'GuestController@inactive');
 
  
 Route::resource('rooms', 'RoomsController');
-
 Route::get('/rooms/active/{id}', 'RoomsController@active');
 Route::get('/rooms/inactive/{id}', 'RoomsController@inactive');
 
- 
+
+Route::resource('master', 'MasterController');
+Route::resource('submaster', 'SubMasterController');

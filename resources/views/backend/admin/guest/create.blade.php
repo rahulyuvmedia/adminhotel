@@ -90,6 +90,20 @@
 
                     </div>
 
+                 
+                    <div class="form-group col-md-12 col-sm-12">
+                        <label for="check_in">Check-In</label>
+                        <input type="datetime-local" class="form-control" id="check_in" name="check_in" value="">
+                    </div>
+
+                    <div class="form-group col-md-12 col-sm-12">
+                        <label for="check_out">Check-Out</label>
+                        <input type="datetime-local" class="form-control" id="check_out" name="check_out" value="">
+                    </div>
+
+
+
+
                     <div class="form-group col-md-12 mb-3 mt-4">
                         <button type="submit" class="btn btn-success button-submit"><span class="fa fa-save fa-fw"></span>
                             Save

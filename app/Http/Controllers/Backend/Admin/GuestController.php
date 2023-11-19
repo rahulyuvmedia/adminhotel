@@ -85,6 +85,9 @@ class GuestController extends Controller
                         $reservation = new Reservation();
                         $reservation->guest_id = 1;
                         $reservation->room_id =$request->roomNumber;
+                        $reservation->check_in = $request->input('check_in');
+                        $reservation->check_out = $request->input('check_out');
+                        
                         if($reservation->save()){
                             Rooms::where('id', $request->roomNumber)->update(['availability' => 'booked']);
                         }
@@ -136,7 +139,8 @@ class GuestController extends Controller
             'mobile' => 'required',
         
             'address' => 'required',
-
+            'check_in' => 'nullable|date',
+            'check_out' => 'nullable|date|after:check_in',
             
             // 'description' => 'required',
         ]);
@@ -160,7 +164,7 @@ class GuestController extends Controller
                     }
                 }
             }
-            
+         
             $model->save();
             return redirect()->route('admin.guest.index')->with('success', 'Guest updated successfully.');
         } catch (\Exception $e) {
