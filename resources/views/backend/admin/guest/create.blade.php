@@ -56,7 +56,7 @@
 
                 <label for="photo">Doc. (File must be jpg, jpeg, png)</label>
                 <div class="input-group">
-                    <input id="photo" type="file" name="idproff" style="display:none">
+                    <input id="photo" type="file" name="idproff" style="display:none" onchange="displaySelectedImage(this)">
                     <div class="input-group-prepend">
                         <a class="btn btn-dark text-white" onclick="$('input[id=photo]').click();">Image</a>
                     </div>
@@ -66,6 +66,10 @@
                     @enderror
 
                 </div>
+
+                <!-- Display selected image preview -->
+                <img id="selectedImagePreview" src="" alt="Selected Image" style="display:none; max-width: 10%; margin-top: 10px;">
+
 
 
 
@@ -108,4 +112,20 @@
         </form>
     </div>
 </div>
+
+
+<script>
+    function displaySelectedImage(input) {
+        var selectedFileName = input.files[0].name;
+        document.getElementById('SelectedFileName').value = selectedFileName;
+
+        // Display image preview
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            document.getElementById('selectedImagePreview').src = e.target.result;
+            document.getElementById('selectedImagePreview').style.display = 'block';
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+</script>
 @stop

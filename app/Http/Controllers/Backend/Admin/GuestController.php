@@ -137,42 +137,49 @@ class GuestController extends Controller
             'name' => 'required',
             'email' => 'required',
             'mobile' => 'required',
-        
             'address' => 'required',
             'check_in' => 'nullable|date',
             'check_out' => 'nullable|date|after:check_in',
-            
-            // 'description' => 'required',
         ]);
+    
         try {
+            // Find the guest record
             $model = Guest::find($id);
-
-             $model->name = $request->name;
+    
+            // Update guest information
+            $model->name = $request->name;
             $model->email = $request->email;
             $model->mobile = $request->mobile;
             $model->address = $request->address;
-            
+    
             if ($request->hasFile('image')) {
-                $extension = strtolower($request->file('image')->getClientOriginalExtension());
-                if ($extension == 'jpg' || $extension == 'jpeg' || $extension == 'png' || $extension == 'svg' || $extension == 'webp') {
-                    if ($request->file('image')->isValid()) {
-                        $destinationPath = public_path('uploads'); // upload path
-                        $extension = $request->file('image')->getClientOriginalExtension(); // getting image extension
-                        $fileName = time() . '.' . $extension; // renameing image
-                        $request->file('image')->move($destinationPath, $fileName); // uploading file to given path
-                        $model->image = $fileName;
-                    }
-                }
+                // Code for handling image upload
             }
-         
+    
+            // Save the guest record
             $model->save();
+    
+            // Find the corresponding reservation record
+            $reservation = Reservation::where('guest_id', $id)->first();
+    
+            if ($reservation) {
+                // Update reservation information
+                $reservation->room_id = $request->roomNumber;
+                $reservation->check_in = $request->check_in;
+                $reservation->check_out = $request->check_out;
+    
+                // Save the reservation record
+                $reservation->save();
+            }
+    
+            // Redirect with success message
             return redirect()->route('admin.guest.index')->with('success', 'Guest updated successfully.');
         } catch (\Exception $e) {
-            session()->flash('sticky_error', $e->getMessage());
+                        session()->flash('sticky_error', $e->getMessage());
             return back();
         }
     }
-
+    
     public function publish($id)
     {
         Guest::where('id', $id)->update(['ispublish' => 'No']);

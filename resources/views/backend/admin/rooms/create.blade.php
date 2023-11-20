@@ -72,7 +72,7 @@
 
                     <div class="clearfix"></div>
 
-
+<br/>
                     <div class="form-group col-md-12 col-sm-12">
                         <select class="form-control" id="roomType" name="roomType">
                             <option value="" selected>Select room type</option>
@@ -81,7 +81,8 @@
                             <option value="suite">Suite</option>
                         </select>
                     </div>
-
+                    <div class="clearfix"></div>
+                    <br/>
 
                     <div class="form-group col-md-12 col-sm-12">
                         <select class="form-control" id="occupancy" name="occupancy">
@@ -95,8 +96,9 @@
                         </select>
                     </div>
 
+                    <br/>
 
-
+                    <div class="clearfix"></div>
                     <div class="form-group col-md-12 col-sm-12">
                         <select class="form-control" id="availability" name="availability">
                             <option value="" selected>Select availability</option>
@@ -106,7 +108,7 @@
                         </select>
                     </div>
 
-
+                    <br/>
 
 
 
