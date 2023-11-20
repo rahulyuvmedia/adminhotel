@@ -58,3 +58,14 @@
  <script>
      var CSRF_TOKEN = "{{ csrf_token() }}";
  </script>
+
+
+<!-- Add this before the DataTables script -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+<!-- DataTables example CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+
+<!-- DataTables JavaScript -->
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>

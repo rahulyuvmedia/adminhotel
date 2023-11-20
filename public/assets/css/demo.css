@@ -133,3 +133,10 @@
 .template-customizer {
     display: none !important;
 }
+
+
+
+div.dataTables_wrapper div.dataTables_paginate {
+    margin-bottom: 100px;
+}
+

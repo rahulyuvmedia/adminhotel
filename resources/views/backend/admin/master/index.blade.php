@@ -60,9 +60,11 @@
                                                 <button type="button" class="btn btn-danger ms-3 text-nowrap"
                                                     onclick="confirmDelete(this)">
 
-                                                    <i class="metismenu-icon bi bi-trash3"></i>
+                                                    <i class="bi bi-trash"></i> Delete
                                                 </button>
                                             </form>
+
+                                            
                                         </td>
                                     </tr>
                                 @endforeach

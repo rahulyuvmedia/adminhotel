@@ -40,7 +40,7 @@
                     </a>
                 </div>
                 <!-- /Logo -->
-                <h3 class="mb-1">Welcome to Vuexy! 👋</h3>
+                <h3 class="mb-1">Welcome ! 👋</h3>
                 <p class="mb-4">
                     Please sign-in to your account and start the adventure
                 </p>
@@ -91,11 +91,11 @@
                     </a>
                 </p>
 
-                <div class="divider my-4">
+                <!-- <div class="divider my-4">
                     <div class="divider-text">or</div>
-                </div>
+                </div> -->
 
-                <div class="d-flex justify-content-center">
+                <!-- <div class="d-flex justify-content-center">
                     <a href="javascript:;" class="btn btn-icon btn-label-facebook me-3">
                         <i class="tf-icons fa-brands fa-facebook-f fs-5"></i>
                     </a>
@@ -107,7 +107,7 @@
                     <a href="javascript:;" class="btn btn-icon btn-label-twitter">
                         <i class="tf-icons fa-brands fa-twitter fs-5"></i>
                     </a>
-                </div>
+                </div> -->
             </div>
         </div>
         <!-- /Login -->

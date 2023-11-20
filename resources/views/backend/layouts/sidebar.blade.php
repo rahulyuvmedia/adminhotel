@@ -4,7 +4,7 @@
              <span class="app-brand-logo demo">
                  <img src="{{ asset('/assets/img/icon.svg') }}" class="img-fluid" />
              </span>
-             <span class="app-brand-text demo menu-text fw-bold">Vuexy</span>
+             <span class="app-brand-text demo menu-text fw-bold">Yuvmedia</span>
          </a>
 
          <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">

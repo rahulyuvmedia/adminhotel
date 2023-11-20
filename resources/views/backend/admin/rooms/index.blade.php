@@ -27,7 +27,7 @@
             <div class="main-card mb-3 card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="DataTables_Table_0" class="table table-striped table-bordered datatables-basic">
+                        <table id="DataTables_Table_0" class="table table-striped table-bordered datatables-basic datatable">
                             <thead class="table-dark">
                                 <tr>
                                     <th>#</th>
@@ -110,7 +110,8 @@
 
     <script>
         $(document).ready(function() {
-            $('#example').DataTable();
+            $('.datatable').DataTable();
         });
     </script>
+
 @stop
