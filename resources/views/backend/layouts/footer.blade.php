@@ -1,71 +1,47 @@
-<footer class="footer mt-auto py-3 bg-white text-center">
-    <div class="container">
-        <span class="text-muted">
-            Copyright © <span id="year">2023</span>
-            <a href="javascript:void(0);" class="text-dark fw-semibold">Valex</a>. Designed with
-            <span class="bi bi-heart-fill text-danger"></span> by
-            <a href="javascript:void(0);">
-                <span class="fw-semibold text-primary text-decoration-underline">Spruko</span>
-            </a>
-            All rights reserved
-        </span>
-    </div>
-</footer>
+ <footer class="content-footer footer bg-footer-theme">
+     <div class="container-xxl">
+         <div class="footer-container d-flex align-items-center justify-content-between py-2 flex-md-row flex-column">
+             <div>
+                 ©
+                 <script>
+                     document.write(new Date().getFullYear());
+                 </script>
+                 , made with ❤️ by
+                 <a href="https://pixinvent.com" target="_blank" class="fw-medium">Pixinvent</a>
+             </div>
+             <div class="d-none d-lg-inline-block">
+                 <a href="https://themeforest.net/licenses/standard" class="footer-link me-4" target="_blank">License</a>
+                 <a href="https://1.envato.market/pixinvent_portfolio" target="_blank" class="footer-link me-4">More
+                     Themes</a>
 
+                 <a href="https://demos.pixinvent.com/vuexy-html-admin-template/documentation/" target="_blank"
+                     class="footer-link me-4">Documentation</a>
 
-<script src="{{ asset('/assets/js/main.js') }}"></script>
-<script src="{{ asset('/assets/js/ajax_submit.js') }}"></script>
-<script src="{{ asset('/assets/js/jquery.validate.min.js') }}"></script>
-<script src="{{ asset('/assets/js/jquery.plainoverlay.min.js') }}"></script>
+                 <a href="https://pixinvent.ticksy.com/" target="_blank"
+                     class="footer-link d-none d-sm-inline-block">Support</a>
+             </div>
+         </div>
+     </div>
+ </footer>
+ <script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
+ <script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
+ <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
+ <script src="{{ asset('assets/vendor/libs/node-waves/node-waves.js') }}"></script>
+ <script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+ <script src="{{ asset('assets/vendor/libs/hammer/hammer.js') }}"></script>
+ <script src="{{ asset('assets/vendor/libs/i18n/i18n.js') }}"></script>
+ <script src="{{ asset('assets/vendor/libs/typeahead-js/typeahead.js') }}"></script>
+ <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
 
-<!-- Sweet Alert library -->
-<link rel="stylesheet" href="{{ asset('/assets/plugins/sweet-alert/sweetalert.css') }}">
-<script src="{{ asset('/assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
+ <!-- endbuild -->
 
-<link rel="stylesheet" href="{{ asset('/assets/plugins/select2/select2.min.css') }}">
-<script src="{{ asset('/assets/plugins/select2/select2.full.min.js') }}"></script>
+ <!-- Vendors JS -->
+ <script src="{{ asset('assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
+ <script src="{{ asset('assets/vendor/libs/swiper/swiper.js') }}"></script>
+ <script src="{{ asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
 
+ <!-- Main JS -->
+ <script src="{{ asset('assets/js/main.js') }}"></script>
 
-<!-- Toastr  library -->
-<link rel="stylesheet" href="{{ asset('/assets/plugins/toastr/toastr.min.css') }}">
-<script src="{{ asset('/assets/plugins/toastr/toastr.min.js') }}"></script>
-
-<!-- exmaple table-->
-<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
-
-<!-- icheck  library -->
-<link rel="stylesheet" href="{{ asset('/assets/plugins/iCheck/all.css') }}">
-<script src="{{ asset('/assets/plugins/iCheck/icheck.min.js') }}"></script>
-
-<!-- Datepicker library -->
-<link rel="stylesheet" href="{{ asset('/assets/plugins/datepicker/datepicker3.css') }}">
-<script src="{{ asset('/assets/plugins/datepicker/bootstrap-datepicker.js') }}"></script>
-<script src="{{ asset('assets/js/jquery.printElement.min.js') }}"></script>
-
-<script>
-    $.fn.modal.Constructor.prototype.enforceFocus = function() {};
-</script>
-<script>
-    function notify_view(type, message) {
-
-        toastr.options = {
-            "closeButton": true,
-            "debug": false,
-            "newestOnTop": false,
-            "progressBar": false,
-            "positionClass": "toast-top-right",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        }
-        toastr[type](message);
-
-    }
-</script>
+ <!-- Page JS -->
+ <script src="{{ asset('assets/js/dashboards-analytics.js') }}"></script>

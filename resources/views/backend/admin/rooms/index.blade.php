@@ -27,7 +27,7 @@
             <div class="main-card mb-3 card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="example" class="table table-striped table-bordered" style="width:100%">
+                        <table id="DataTables_Table_0" class="table table-striped table-bordered datatables-basic">
                             <thead class="table-dark">
                                 <tr>
                                     <th>#</th>

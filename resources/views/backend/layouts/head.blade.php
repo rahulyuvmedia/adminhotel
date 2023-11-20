@@ -1,70 +1,60 @@
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta http-equiv="Content-Language" content="en">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title> @yield('title') | {{ config('app.name') }}</title>
-<meta name="viewport"
-    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
-<meta name="description" content="laravel, laravel-boilerplate">
-<meta name="author" content="Riyadh Ahmed">
-<meta name="msapplication-tap-highlight" content="no">
-<meta name="robots" content="index, follow">
-<meta name="csrf-token" content="{{ csrf_token() }}">
+ <meta charset="utf-8" />
+ <meta name="viewport"
+     content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-<!-- Favicons -->
-<link rel="shortcut icon" href="{{ asset('/assets/images/favicon.png') }}">
+ <title> @yield('title') | {{ config('app.name') }}</title>
+ <meta name="viewport"
+     content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+ <meta name="description" content="laravel, laravel-boilerplate">
+ <meta name="author" content="Riyadh Ahmed">
+ <meta name="msapplication-tap-highlight" content="no">
+ <meta name="robots" content="index, follow">
+ <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-<link rel="stylesheet" href="{{ asset('/assets/css/main.css') }}">
+ <!-- Favicons -->
+ <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}">
+ <!-- Fonts -->
+ <link rel="preconnect" href="https://fonts.googleapis.com" />
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+ <link
+     href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&ampdisplay=swap"
+     rel="stylesheet" />
 
-<!-- Override CSS file - add your own CSS rules -->
-<link rel="stylesheet" href="{{ asset('/assets/css/custom_admin_style.css') }}">
+ <!-- Icons -->
+ <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/fontawesome.css') }}" />
+ <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/tabler-icons.css') }}" />
+ <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/flag-icons.css') }}" />
+
+ <!-- Core CSS -->
+ <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/core.css') }}" class="template-customizer-core-css" />
+ <link rel="stylesheet" href="{{ URL::to('assets/vendor/css/rtl/theme-default.css') }}"
+     class="template-customizer-theme-css" />
+ <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
+
+ <!-- Vendors CSS -->
+ <link rel="stylesheet" href="{{ asset('assets/vendor/libs/node-waves/node-waves.css') }}" />
+ <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
+ <link rel="stylesheet" href="{{ asset('assets/vendor/libs/typeahead-js/typeahead.css') }}" />
+ <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}" />
+ <link rel="stylesheet" href="{{ asset('assets/vendor/libs/swiper/swiper.css') }}" />
+ <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
+ <link type="text/css" rel="stylesheet"
+     href="{{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
+ <link rel="stylesheet"
+     href="{{ asset('assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}" />
+
+ <!-- Page CSS -->
+ <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/cards-advance.css') }}" />
+
+ <!-- Helpers -->
+ <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
 
 
-<!-- jQuery 3.4.1 -->
-<script src="{{ asset('/assets/js/jquery-3.4.1.min.js') }}"></script>
-<!-- Bootstrap 4 -->
-<script src="{{ asset('/assets/js/bootstrap.min.js') }}"></script>
+ <!--  <script src="{{ asset('assets/vendor/js/template-customizer.js') }}"></script> -->
+
+ <script src="{{ asset('assets/js/config.js') }}"></script>
 
 
-<script>
-    var CSRF_TOKEN = "{{ csrf_token() }}";
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script src="../assets/libs/choices.js/public/assets/scripts/choices.min.js"></script>
-<!-- Main Theme Js -->
-<script src="../assets/js/main.js"></script>
-<!-- Bootstrap Css -->
-<link id="style" href="{{ asset('/assets/css/bootstrap.css') }}" rel="stylesheet" />
-<!-- Style Css -->
-<link href="{{ asset('/assets/css/styles.min.css') }}" rel="stylesheet" />
-<!-- Icons Css -->
-<link href="{{ asset('/assets/css/icons.css') }}" rel="stylesheet" />
-<!-- Node Waves Css -->
-<link href="{{ asset('/assets/css/waves.min.css') }}" rel="stylesheet" />
-<!--
-<link href="{{ asset('/assets/css/simplebar.min.css') }}" rel="stylesheet" />
- 
-<link rel="stylesheet" href="../assets/libs/flatpickr/flatpickr.min.css" />
-<link rel="stylesheet" href="../assets/libs/%40simonwep/pickr/themes/nano.min.css" />
- 
-<link rel="stylesheet" href="../assets/libs/choices.js/public/assets/styles/choices.min.css" />
- 
-<link rel="stylesheet" href="../assets/libs/jsvectormap/css/jsvectormap.min.css" />
- -->
+ <script>
+     var CSRF_TOKEN = "{{ csrf_token() }}";
+ </script>
