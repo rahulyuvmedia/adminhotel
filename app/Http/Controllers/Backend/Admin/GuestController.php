@@ -80,13 +80,13 @@ class GuestController extends Controller
                     }
                 }
             }
-                        
+                            
                     if($model->save()){
                         $reservation = new Reservation();
-                        $reservation->guest_id = 1;
+                        $reservation->guest_id = $model->id;
                         $reservation->room_id =$request->roomNumber;
-                        $reservation->check_in = $request->input('check_in');
-                        $reservation->check_out = $request->input('check_out');
+                        $reservation->checkin_date = $request->input('check_in');
+                        $reservation->checkout_date = $request->input('check_out');
                         
                         if($reservation->save()){
                             Rooms::where('id', $request->roomNumber)->update(['availability' => 'booked']);
@@ -121,6 +121,11 @@ class GuestController extends Controller
     public function edit($id)
     {
         $model = Guest::where(['id' => $id])->first();
+        
+        $reservation = Reservation::find($model->reservations->id); // Replace 1 with the actual  
+        $roomForReservation = $reservation->room;
+        $model->rooms = $roomForReservation;
+         
         return view('backend.admin.guest.edit', compact('model'));
     }
 

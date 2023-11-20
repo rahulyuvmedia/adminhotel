@@ -8,10 +8,16 @@ class Reservation extends Model
 {
     protected $table = 'reservations';
     use HasFactory;
+    
+    public function guest()
+    {
+        return $this->belongsTo(Guest::class, 'guest_id');
+    }
 
-    // public function news()
-    // {
-    //     return $this->belongsTo(news::class, 'news_id');
-    // }
+     public function room()
+    {
+        return $this->belongsTo(Rooms::class, 'room_id');
+    }
+    
 }
 

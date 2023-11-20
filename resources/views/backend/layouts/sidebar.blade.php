@@ -17,7 +17,7 @@
 
      <ul class="menu-inner py-1">
 
-         <li class="menu-item @if(request()->is('admin/dashboard')) active @endif">
+         <li class="menu-item @if (request()->is('admin/dashboard')) active @endif">
              <a href="{{ URL::to('/admin/dashboard') }}" class="menu-link">
                  <i class="menu-icon tf-icons ti ti-smart-home"></i>
                  <div data-i18n="Dashboard">Dashboard</div>
@@ -36,20 +36,20 @@
          <li class="menu-header small text-uppercase">
              <span class="menu-header-text" data-i18n="Guest Management">Guest Management</span>
          </li>
-         <li class="menu-item @if(request()->is('admin/guest')) active @endif">
+         <li class="menu-item @if (request()->is('admin/guest')) active @endif">
              <a href="{{ URL::to('/admin/guest') }}" class="menu-link">
                  <i class="menu-icon tf-icons ti ti-mail"></i>
                  <div data-i18n="Guest List">Guest List</div>
              </a>
          </li>
-         <li class="menu-item @if(request()->is('admin/rooms')) active @endif">
+         <li class="menu-item @if (request()->is('admin/rooms')) active @endif">
              <a href="{{ URL::to('/admin/rooms') }}" class="menu-link">
                  <i class="menu-icon tf-icons ti ti-messages"></i>
                  <div data-i18n="Room">Room</div>
              </a>
          </li>
 
-         <li class="menu-item @if(request()->is('admin/master')) active @endif">
+         <li class="menu-item @if (request()->is('admin/master')) active @endif">
              <a href="{{ URL::to('/admin/master') }}" class="menu-link">
                  <i class="menu-icon tf-icons ti ti-messages"></i>
                  <div data-i18n="Master">Master</div>
@@ -57,10 +57,18 @@
          </li>
 
 
-         <li class="menu-item @if(request()->is('admin/submaster')) active @endif">
+         <li class="menu-item @if (request()->is('admin/submaster')) active @endif">
              <a href="{{ URL::to('/admin/submaster') }}" class="menu-link">
                  <i class="menu-icon tf-icons ti ti-messages"></i>
                  <div data-i18n="Sub Master">Sub Master</div>
+             </a>
+         </li>
+
+
+         <li class="menu-item @if (request()->is('admin/users')) active @endif">
+             <a href="{{ URL::to('/admin/users') }}" class="menu-link">
+                 <i class="menu-icon tf-icons ti ti-messages"></i>
+                 <div data-i18n="Create Admin">Create Admin</div>
              </a>
          </li>
      </ul>

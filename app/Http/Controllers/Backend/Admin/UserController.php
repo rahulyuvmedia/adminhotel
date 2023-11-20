@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend\Admin;
 
 use App\Models\Role;
-use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -21,7 +21,8 @@ class UserController extends Controller
     */
    public function index()
    {
-      return view('backend.admin.user.index');
+       $adminuser = Admin::all();
+      return view('backend.admin.user.index',compact('adminuser'));
    }
 
    public function getAll()
@@ -63,18 +64,22 @@ class UserController extends Controller
     */
    public function create(Request $request)
    {
-      if ($request->ajax()) {
+       
          $haspermision = auth()->user()->can('user-create');
          if ($haspermision) {
             $roles = Role::all();
-            $view = View::make('backend.admin.user.create', compact('roles'))->render();
-            return response()->json(['html' => $view]);
+            
+
+
+             return view('backend.admin.user.create', compact('roles'));
+
+
+             
+            
          } else {
             abort(403, 'Sorry, you are not authorized to access the page');
          }
-      } else {
-         return response()->json(['status' => 'false', 'message' => "Access only ajax request"]);
-      }
+       
    }
 
    /**
@@ -86,13 +91,13 @@ class UserController extends Controller
     */
    public function store(Request $request)
    {
-      if ($request->ajax()) {
+      
          // Setup the validator
          $rules = [
            'name' => 'required',
            'email' => 'required|email|unique:users,email',
            'password' => 'required|same:confirm-password',
-           'photo' => 'image|max:2024|mimes:jpeg,jpg,png'
+            
          ];
 
          $validator = Validator::make($request->all(), $rules);
@@ -105,37 +110,38 @@ class UserController extends Controller
 
             $file_path = "assets/images/users/default.png";
 
-            if ($request->hasFile('photo')) {
-               if ($request->file('photo')->isValid()) {
-                  $destinationPath = public_path('assets/images/users/');
-                  $extension = $request->file('photo')->getClientOriginalExtension();
-                  $fileName = time() . '.' . $extension;
-                  $file_path = 'assets/images/users/' . $fileName;
-                  $request->file('photo')->move($destinationPath, $fileName);
-               } else {
-                  return response()->json([
-                    'type' => 'error',
-                    'message' => "<div class='alert alert-warning'>Please! File is not valid</div>"
-                  ]);
-               }
-            }
+            // if ($request->hasFile('photo')) {
+            //    if ($request->file('photo')->isValid()) {
+            //       $destinationPath = public_path('assets/images/users/');
+            //       $extension = $request->file('photo')->getClientOriginalExtension();
+            //       $fileName = time() . '.' . $extension;
+            //       $file_path = 'assets/images/users/' . $fileName;
+            //       $request->file('photo')->move($destinationPath, $fileName);
+            //    } else {
+            //       return response()->json([
+            //         'type' => 'error',
+            //         'message' => "<div class='alert alert-warning'>Please! File is not valid</div>"
+            //       ]);
+            //    }
+            // }
 
 
             DB::beginTransaction();
             try {
 
-               $user = new User();
+               $user = new Admin();
                $user->name = $request->input('name');
                $user->email = $request->input('email');
                $user->password = Hash::make($request->password);
-               $user->file_path = $file_path;
+               
+               
                $user->save();
 
                // generate role
-               $roles = $request->input('roles');
-               if (isset($roles)) {
-                  $user->assignRole($roles);
-               }
+               // $roles = $request->input('roles');
+               // if (isset($roles)) {
+               //    $user->assignRole($roles);
+               // }
 
                DB::commit();
                return response()->json(['type' => 'success', 'message' => "Successfully Created"]);
@@ -146,9 +152,7 @@ class UserController extends Controller
             }
 
          }
-      } else {
-         return response()->json(['status' => 'false', 'message' => "Access only ajax request"]);
-      }
+       
    }
 
    /**

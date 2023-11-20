@@ -10,8 +10,7 @@
                 <div>Laravel Api Example Using Passport</div>
                 <div class="d-inline-block ml-2">
                     @can('user-create')
-                        <button class="btn btn-success" onclick="create()"><i
-                                class="glyphicon glyphicon-plus"></i>
+                        <button class="btn btn-success" onclick="create()"><i class="glyphicon glyphicon-plus"></i>
                             New User
                         </button>
                     @endcan
@@ -24,15 +23,14 @@
             <div class="main-card mb-3 card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="manage_all"
-                               class="align-middle mb-0 table table-borderless table-striped table-hover">
+                        <table id="manage_all" class="align-middle mb-0 table table-borderless table-striped table-hover">
                             <thead>
-                            <tr>
-                                <th>Photo</th>
-                                <th>User Name</th>
-                                <th>Email</th>
-                                <th>Status</th>
-                            </tr>
+                                <tr>
+                                    <th>Photo</th>
+                                    <th>User Name</th>
+                                    <th>Email</th>
+                                    <th>Status</th>
+                                </tr>
                             </thead>
                         </table>
                     </div>
@@ -49,7 +47,7 @@
         }
     </style>
     <script>
-        $(function () {
+        $(function() {
 
             var access_token = "{{ Cookie::get('access_token') }}";
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -63,15 +61,26 @@
                     headers: {
                         "X-CSRF-TOKEN": CSRF_TOKEN,
                         "Authorization": "Bearer " + access_token
-                        {{--"Authorization": "Bearer {{ Auth::user()->createToken('Admin')->accessToken }}",--}}
+                        {{-- "Authorization": "Bearer {{ Auth::user()->createToken('Admin')->accessToken }}", --}}
                     },
                     "dataType": 'json'
                 },
-                columns: [
-                    {data: 'file_path', name: 'file_path'},
-                    {data: 'name', name: 'name'},
-                    {data: 'email', name: 'email'},
-                    {data: 'status', name: 'status'}
+                columns: [{
+                        data: 'file_path',
+                        name: 'file_path'
+                    },
+                    {
+                        data: 'name',
+                        name: 'name'
+                    },
+                    {
+                        data: 'email',
+                        name: 'email'
+                    },
+                    {
+                        data: 'status',
+                        name: 'status'
+                    }
                 ],
                 "autoWidth": false,
 
@@ -84,7 +93,6 @@
         });
     </script>
     <script type="text/javascript">
-
         function reload_table() {
             table.ajax.reload(null, false); //reload datatable ajax
         }
@@ -98,11 +106,11 @@
             $.ajax({
                 type: 'GET',
                 url: 'users/create',
-                success: function (data) {
+                success: function(data) {
                     $("#modal_data").html(data.html);
                     $('#myModal').modal('show'); // show bootstrap modal
                 },
-                error: function (result) {
+                error: function(result) {
                     $("#modal_data").html("Sorry Cannot Load Data");
                 }
             });
@@ -110,7 +118,7 @@
         }
 
 
-        $("#manage_all").on("click", ".edit", function () {
+        $("#manage_all").on("click", ".edit", function() {
 
             $("#modal_data").empty();
             $('.modal-title').text('Edit User'); // Set Title to Bootstrap modal title
@@ -120,17 +128,17 @@
             $.ajax({
                 url: 'users/' + id + '/edit',
                 type: 'get',
-                success: function (data) {
+                success: function(data) {
                     $("#modal_data").html(data.html);
                     $('#myModal').modal('show'); // show bootstrap modal
                 },
-                error: function (result) {
+                error: function(result) {
                     $("#modal_data").html("Sorry Cannot Load Data");
                 }
             });
         });
 
-        $("#manage_all").on("click", ".view", function () {
+        $("#manage_all").on("click", ".view", function() {
 
             $("#modal_data").empty();
             $('.modal-title').text('View User'); // Set Title to Bootstrap modal title
@@ -140,21 +148,19 @@
             $.ajax({
                 url: 'users/' + id,
                 type: 'get',
-                success: function (data) {
+                success: function(data) {
                     $("#modal_data").html(data.html);
                     $('#myModal').modal('show'); // show bootstrap modal
                 },
-                error: function (result) {
+                error: function(result) {
                     $("#modal_data").html("Sorry Cannot Load Data");
                 }
             });
         });
-
     </script>
     <script type="text/javascript">
-
-        $(document).ready(function () {
-            $("#manage_all").on("click", ".delete", function () {
+        $(document).ready(function() {
+            $("#manage_all").on("click", ".delete", function() {
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 var id = $(this).attr('id');
                 swal({
@@ -167,13 +173,15 @@
                     confirmButtonClass: "btn-danger",
                     confirmButtonText: "Delete",
                     cancelButtonText: "Cancel"
-                }, function () {
+                }, function() {
                     $.ajax({
                         url: 'users/' + id,
-                        data: {"_token": CSRF_TOKEN},
+                        data: {
+                            "_token": CSRF_TOKEN
+                        },
                         type: 'DELETE',
                         dataType: 'json',
-                        success: function (data) {
+                        success: function(data) {
 
                             if (data.type === 'success') {
 
@@ -186,13 +194,12 @@
 
                             }
                         },
-                        error: function (xhr, ajaxOptions, thrownError) {
+                        error: function(xhr, ajaxOptions, thrownError) {
                             swal("Error deleting!", "Try again", "error");
                         }
                     });
                 });
             });
         });
-
     </script>
 @stop

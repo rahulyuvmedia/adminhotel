@@ -9,9 +9,9 @@ class Guest extends Model
     protected $table = 'guest';
     use HasFactory;
 
-    // public function news()
-    // {
-    //     return $this->belongsTo(news::class, 'news_id');
-    // }
+    public function reservations()
+    {
+        return $this->hasOne(Reservation::class, 'guest_id');
+    }
 }
 

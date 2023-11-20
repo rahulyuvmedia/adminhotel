@@ -16,9 +16,10 @@
 
             <div class="mb-xl-0">
                 @can('user-create')
-                    <button class="btn btn-primary" onclick="create()"><i class="glyphicon glyphicon-plus"></i>
+                    <a class="btn btn-primary" href="{{ URL::to('admin/users/create') }}"><i
+                            class="glyphicon glyphicon-plus"></i>
                         New User
-                    </button>
+                    </a>
                 @endcan
 
 
@@ -46,6 +47,13 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
+                            <tbody>
+                                @foreach ($adminuser as $user)
+                                    <tr>
+                                        <td>{{ $user->email }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -60,83 +68,6 @@
             }
         }
     </style>
-    <script>
-        $(function() {
-
-            table = $('#manage_all').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: {
-                    "url": '{!! route('admin.allUser.users') !!}',
-                    "type": "GET",
-                    headers: {
-                        "X-CSRF-TOKEN": CSRF_TOKEN,
-                    },
-                    "dataType": 'json'
-                },
-                columns: [{
-                        data: 'DT_RowIndex',
-                        name: 'DT_RowIndex'
-                    },
-                    {
-                        data: 'file_path',
-                        name: 'file_path'
-                    },
-                    {
-                        data: 'name',
-                        name: 'name'
-                    },
-                    {
-                        data: 'email',
-                        name: 'email'
-                    },
-                    {
-                        data: 'role',
-                        name: 'role'
-                    },
-                    {
-                        data: 'status',
-                        name: 'status'
-                    },
-                    {
-                        data: 'action',
-                        name: 'action'
-                    }
-                ],
-                "autoWidth": false,
-            });
-            $('.dataTables_filter input[type="search"]').attr('placeholder', 'Type here to search...').css({
-                'width': '220px',
-                'height': '30px'
-            });
-
-        });
-    </script>
-    <script type="text/javascript">
-        function create() {
-            ajax_submit_create('users');
-        }
-
-        $(document).ready(function() {
-            // View Form
-            $("#manage_all").on("click", ".view", function() {
-                var id = $(this).attr('id');
-                ajax_submit_view('users', id)
-            });
-
-            // Edit Form
-            $("#manage_all").on("click", ".edit", function() {
-                var id = $(this).attr('id');
-                ajax_submit_edit('users', id)
-            });
 
 
-            // Delete
-            $("#manage_all").on("click", ".delete", function() {
-                var id = $(this).attr('id');
-                ajax_submit_delete('users', id)
-            });
-
-        });
-    </script>
 @stop
