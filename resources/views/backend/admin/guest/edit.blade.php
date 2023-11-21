@@ -95,8 +95,7 @@
                         @enderror
                     </div>
 
-                    <div class="clearfix"></div>
-                    {{ $model->reservations->checkin_date }}
+                   
                     <!-- Your form code... -->
                     <div class="form-group">
                         <label for="check_in">Check-in:</label>

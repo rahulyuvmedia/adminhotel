@@ -149,7 +149,7 @@ class GuestController extends Controller
             'mobile' => 'required',
             'address' => 'required',
             'check_in' => 'nullable|date',
-            'check_out' => 'nullable|date|after:check_in',
+            'check_out' => 'nullable|date',
         ]);
     
         try {
@@ -162,8 +162,18 @@ class GuestController extends Controller
             $model->mobile = $request->mobile;
             $model->address = $request->address;
     
-            if ($request->hasFile('image')) {
-                // Code for handling image upload
+               
+            if ($request->hasFile('idproff')) {
+                $extension = strtolower($request->file('idproff')->getClientOriginalExtension());
+                if ($extension == 'jpg' || $extension == 'jpeg' || $extension == 'png' || $extension == 'svg' || $extension == 'webp') {
+                    if ($request->file('idproff')->isValid()) {
+                        $destinationPath = public_path('uploads'); // upload path
+                        $extension = $request->file('idproff')->getClientOriginalExtension(); // getting image extension
+                        $fileName = time() . '.' . $extension; // renameing image
+                        $request->file('idproff')->move($destinationPath, $fileName); // uploading file to given path
+                        $model->idproff = $fileName;
+                    }
+                }
             }
     
             // Save the guest record
@@ -183,7 +193,7 @@ class GuestController extends Controller
             }
     
             // Redirect with success message
-            return redirect()->route('admin.guest.index')->with('success', 'Guest updated successfully.');
+            return redirect()->route('admin.guest.index')->with('success', 'Guest updated successfully.')->fragment('your-anchor');
         } catch (\Exception $e) {
                         session()->flash('sticky_error', $e->getMessage());
             return back();
