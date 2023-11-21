@@ -58,9 +58,9 @@
                     <div class="mb-3 form-password-toggle">
                         <div class="d-flex justify-content-between">
                             <label class="form-label" for="password">Password</label>
-                            <a href="auth-forgot-password-cover.html">
+                            <!-- <a href="auth-forgot-password-cover.html">
                                 <small>Forgot Password?</small>
-                            </a>
+                            </a> -->
                         </div>
                         <div class="input-group input-group-merge">
                             <input type="password" id="password" class="form-control" name="password"
@@ -83,13 +83,13 @@
 
 
                 </form>
-
+<!-- 
                 <p class="text-center">
                     <span>New on our platform?</span>
                     <a href="auth-register-cover.html">
                         <span>Create an account</span>
                     </a>
-                </p>
+                </p> -->
 
                 <!-- <div class="divider my-4">
                     <div class="divider-text">or</div>

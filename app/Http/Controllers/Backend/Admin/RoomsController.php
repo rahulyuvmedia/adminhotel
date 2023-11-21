@@ -66,6 +66,7 @@ class RoomsController extends Controller
             'roomType' => 'required',
             'occupancy' => 'required',
             'availability' => 'required',
+            'facilities' => 'required|array',
         ]);
         try {
             $model = new Rooms();

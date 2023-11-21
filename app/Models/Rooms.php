@@ -14,6 +14,8 @@ class Rooms extends Model
     {
         return $this->hasMany(Reservation::class, 'room_id');
     }
-    
+    protected $casts = [
+        'facilities' => 'json',
+    ];
 }
 

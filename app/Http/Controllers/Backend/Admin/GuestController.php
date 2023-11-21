@@ -57,7 +57,12 @@ class GuestController extends Controller
     public function store(Request $request){
         $request->validate([
             'name' => 'required',
+            'email' => 'required',
+            'address' => 'required',
             'mobile' => 'required',
+            'check_out' => 'required',
+            'check_in' => 'required',
+            'roomNumber' => 'required|exists:rooms,id',
         ]);
         try {
 

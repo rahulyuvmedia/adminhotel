@@ -1,22 +1,21 @@
 @extends('backend.layouts.master')
-@section('title', 'guest')
+@section('title', 'Guests')
 @section('content')
-<h4 class="py-3 mb-4">
-    <span class="text-muted fw-light">DataTables /</span> Basic
-</h4>
-<div class="app-page-title mt-5">
+<div class="app-page-title">
     <div class="page-title-wrapper">
         <div class="page-title-heading">
             <div class="page-title-icon">
-                <i class="bi bi-newspaper icon-gradient bg-mean-fruit"> </i>
+                <i class="bi bi-newspaper icon-gradient bg-mean-fruit"></i>
             </div>
             <div>All Guests</div>
-            <div class="d-inline-block ml-2 pb-3">
-                <a href="{{ URL::to('admin/guest/create') }}" class="btn btn-success">
-                    <i class="bi bi-plus-lg"></i> Add Guest
-                </a>
-            </div>
         </div>
+        <br/>
+        <div class="page-title-actions">
+            <a href="{{ route('admin.guest.create') }}" class="btn btn-success">
+                <i class="bi bi-plus-lg"></i> Add Guest
+            </a>
+        </div>
+        <br/>
     </div>
 </div>
 
@@ -31,9 +30,7 @@
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="DataTables_Table_0"
-                        class="table table-striped example  table-bordered datatables-basic datatable">
-
+                    <table id="guestsTable" class="table table-striped table-bordered table-hover">
                         <thead class="table-dark">
                             <tr>
                                 <th>#</th>
@@ -85,25 +82,27 @@
         </div>
     </div>
 </div>
- 
-
-
-
 
 <script>
-function confirmDelete(button) {
-    if (confirm("Are you sure you want to delete this item?")) {
-        var form = button.parentElement; // Get the parent element of the button, which is the form
-        form.submit();
-    } else {
-        alert("Delete operation cancelled.");
+    function confirmDelete(button) {
+        if (confirm("Are you sure you want to delete this item?")) {
+            var form = button.parentElement; // Get the parent element of the button, which is the form
+            form.submit();
+        } else {
+            alert("Delete operation cancelled.");
+        }
     }
-}
-</script>
-<script>
-$(document).ready(function() {
-    $('.example').DataTable();
-});
+
+    $(document).ready(function() {
+        $('#guestsTable').DataTable({
+            "pagingType": "full_numbers", // Add pagination numbers
+            "lengthMenu": [15, 30, 45, 60], // Set number of records per page options
+            "language": {
+                "emptyTable": "No guests found",
+                "zeroRecords": "No matching guests found"
+            }
+        });
+    });
 </script>
 
 @stop
