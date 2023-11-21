@@ -31,43 +31,83 @@
 
 
     <div class="row">
-        <div class="col-md-12 col-sm-12">
-            <div class="main-card mb-3 card">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table id="manage_all" class="align-middle mb-0 table table-borderless table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Photo</th>
-                                    <th>User Name</th>
-                                    <th>Email</th>
-                                    <th>Roles</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($adminuser as $user)
-                                    <tr>
-                                        <td>{{ $user->email }}</td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+    <div class="col-md-12 col-sm-12">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="guestsTable" class="table table-striped table-bordered table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Number</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($adminuser as $value)
+                            <tr>
+                                <td class="serial-number">{{ $loop->iteration }}</td>
+                                <td>{{ $value->name }}</td>
+                                <td>{{ $value->email }}</td>
+                                <td>{{ $value->mobile }}</td>
+                                <td class="d-flex">
+                                    <a href="{{ Route('user.edit', $value->id) }}" class="btn btn-primary me-2"
+                                        data-mdb-ripple-color="dark">
+                                        <i class="bi bi-pencil-fill"></i> Edit
+                                    </a>
+
+                                    <form action="{{ route('admin.guest.destroy', $value->id) }}" method="POST"
+                                        id="deleteForm" class='me-2'>
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="button" class="btn btn-danger" onclick="confirmDelete(this)">
+                                            <i class="bi bi-trash"></i> Delete
+                                        </button>
+                                    </form>
+
+
+                                    @if ($value->status == 1)
+                                    <a class="fw-bold  btn btn-success"
+                                        href="{{ URL::to('admin/users/active', $value->id) }}">Active</a>
+                                    @elseif ($value->status == 0)
+                                    <a class="fw-bold btn btn-danger"
+                                        href="{{ URL::to('admin/users/inactive', $value->id) }}">Inactive</a>
+                                    @else
+                                    Unknown
+                                    @endif
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
-    <style>
-        @media screen and (min-width: 768px) {
-            #myModal .modal-dialog {
-                width: 85%;
-                border-radius: 5px;
-            }
-        }
-    </style>
+</div>
 
+<script>
+    function confirmDelete(button) {
+        if (confirm("Are you sure you want to delete this item?")) {
+            var form = button.parentElement; // Get the parent element of the button, which is the form
+            form.submit();
+        } else {
+            alert("Delete operation cancelled.");
+        }
+    }
+
+    $(document).ready(function() {
+        $('#guestsTable').DataTable({
+            "pagingType": "full_numbers", // Add pagination numbers
+            "lengthMenu": [15, 30, 45, 60], // Set number of records per page options
+            "language": {
+                "emptyTable": "No guests found",
+                "zeroRecords": "No matching guests found"
+            }
+        });
+    });
+</script>
 
 @stop

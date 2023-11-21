@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Log;
 
 use View;
 use DB;
@@ -89,71 +90,60 @@ class UserController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-   public function store(Request $request)
-   {
-      
-         // Setup the validator
-         $rules = [
-           'name' => 'required',
-           'email' => 'required|email|unique:users,email',
-           'password' => 'required|same:confirm-password',
-            
-         ];
+    public function store(Request $request)
+    {
+        // Uncomment the following line for debugging purposes
+        // dd($request);
 
-         $validator = Validator::make($request->all(), $rules);
-         if ($validator->fails()) {
-            return response()->json([
-              'type' => 'error',
-              'errors' => $validator->getMessageBag()->toArray()
-            ]);
-         } else {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required|confirmed',
+            'business_name' => 'required',
+            'mobile' => 'required',
+            'address' => 'required',
+        ]);
 
-            $file_path = "assets/images/users/default.png";
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        }
 
-            // if ($request->hasFile('photo')) {
-            //    if ($request->file('photo')->isValid()) {
-            //       $destinationPath = public_path('assets/images/users/');
-            //       $extension = $request->file('photo')->getClientOriginalExtension();
-            //       $fileName = time() . '.' . $extension;
-            //       $file_path = 'assets/images/users/' . $fileName;
-            //       $request->file('photo')->move($destinationPath, $fileName);
-            //    } else {
-            //       return response()->json([
-            //         'type' => 'error',
-            //         'message' => "<div class='alert alert-warning'>Please! File is not valid</div>"
-            //       ]);
-            //    }
-            // }
+        $file_path = "assets/images/users/default.png";
 
+        DB::beginTransaction();
+        try {
+            $user = new Admin();
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+            $user->address = $request->input('address');
+            $user->mobile = $request->input('mobile');
+            $user->password = Hash::make($request->password);
+            $user->business_name = $request->input('business_name');
+             
+            if ($request->hasFile('idproff')) {
+               $extension = strtolower($request->file('idproff')->getClientOriginalExtension());
+               if ($extension == 'jpg' || $extension == 'jpeg' || $extension == 'png' || $extension == 'svg' || $extension == 'webp') {
+                   if ($request->file('idproff')->isValid()) {
+                       $destinationPath = public_path('uploads'); // upload path
+                       $extension = $request->file('idproff')->getClientOriginalExtension(); // getting image extension
+                       $fileName = time() . '.' . $extension; // renameing image
+                       $request->file('idproff')->move($destinationPath, $fileName); // uploading file to given path
+                       $user->idproff = $fileName;
+                   }
+               }
+           }
+            $user->save();
 
-            DB::beginTransaction();
-            try {
-
-               $user = new Admin();
-               $user->name = $request->input('name');
-               $user->email = $request->input('email');
-               $user->password = Hash::make($request->password);
-               
-               
-               $user->save();
-
-               // generate role
-               // $roles = $request->input('roles');
-               // if (isset($roles)) {
-               //    $user->assignRole($roles);
-               // }
-
-               DB::commit();
-               return response()->json(['type' => 'success', 'message' => "Successfully Created"]);
-
-            } catch (\Exception $e) {
-               DB::rollback();
-               return response()->json(['type' => 'error', 'message' => $e->getMessage()]);
-            }
-
-         }
-       
-   }
+            DB::commit();
+            return redirect()->route('admin.user.index');
+        } catch (\Exception $e) {
+            Log::error('Error creating user: ' . $e->getMessage());
+            return back()->with('error', 'Error: ' . $e->getMessage());
+        }
+    }
+ 
 
    /**
     * Display the specified resource.
