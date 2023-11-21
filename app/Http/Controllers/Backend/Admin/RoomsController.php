@@ -20,7 +20,8 @@ class RoomsController extends Controller
      public function index(Request $request)
      {
          $keyword = $request->input('keyword');
-         $model = Rooms::orderBy('created_at', 'desc')->get();
+         $model = Rooms::where(['hotel_id'=>Auth::id()])->orderBy('created_at', 'desc')->get();
+     
  
          return view('backend.admin.rooms.index', compact('model', 'keyword'));
      }
@@ -77,6 +78,7 @@ class RoomsController extends Controller
             $model->occupancy = $request->occupancy;
             $model->availability = $request->availability;
             $model->facilities = implode('|', $request->facilities);
+            $model->hotel_id = Auth::id();
  
          
          

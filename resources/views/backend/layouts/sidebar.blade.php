@@ -49,27 +49,30 @@
              </a>
          </li>
 
-         <li class="menu-item @if (request()->is('admin/master')) active @endif">
-             <a href="{{ URL::to('/admin/master') }}" class="menu-link">
-                 <i class="menu-icon tf-icons ti ti-messages"></i>
-                 <div data-i18n="Master">Master</div>
-             </a>
-         </li>
+
+         @if (Auth::user()->role === 'SUPERADMIN')
+             <li class="menu-item @if (request()->is('admin/master')) active @endif">
+                 <a href="{{ URL::to('/admin/master') }}" class="menu-link">
+                     <i class="menu-icon tf-icons ti ti-messages"></i>
+                     <div data-i18n="Master">Master</div>
+                 </a>
+             </li>
 
 
-         <li class="menu-item @if (request()->is('admin/submaster')) active @endif">
-             <a href="{{ URL::to('/admin/submaster') }}" class="menu-link">
-                 <i class="menu-icon tf-icons ti ti-messages"></i>
-                 <div data-i18n="Sub Master">Sub Master</div>
-             </a>
-         </li>
+             <li class="menu-item @if (request()->is('admin/submaster')) active @endif">
+                 <a href="{{ URL::to('/admin/submaster') }}" class="menu-link">
+                     <i class="menu-icon tf-icons ti ti-messages"></i>
+                     <div data-i18n="Sub Master">Sub Master</div>
+                 </a>
+             </li>
 
 
-         <li class="menu-item @if (request()->is('admin/users')) active @endif">
-             <a href="{{ URL::to('/admin/users') }}" class="menu-link">
-                 <i class="menu-icon tf-icons ti ti-messages"></i>
-                 <div data-i18n="Create Admin">Create Admin</div>
-             </a>
-         </li>
+             <li class="menu-item @if (request()->is('admin/users')) active @endif">
+                 <a href="{{ URL::to('/admin/users') }}" class="menu-link">
+                     <i class="menu-icon tf-icons ti ti-messages"></i>
+                     <div data-i18n="Create Admin">Create Admin</div>
+                 </a>
+             </li>
+         @endif
      </ul>
  </aside>

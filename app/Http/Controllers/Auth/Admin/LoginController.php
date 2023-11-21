@@ -41,19 +41,26 @@ class LoginController extends Controller
     {
         return view('auth.admin.login');
     }
+    
+    public function registration()
+   {
+      return view('auth.admin.registration');
+   }
 
     public function loginAdmin(Request $request)
-    {
+    { 
         // Validate the form data
         $this->validate($request, [
             'email' => 'required',
             'password' => 'required'
         ]);
+  
         // Attempt to log the user in
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password, 'status' => 1], $request->remember)) {
 
             // if successful, then create laravel passport token and redirect to their intended location
             $user = Auth::guard('admin')->user();
+           
             $token = $user->createToken('adminApiToken')->accessToken;
             Cookie::queue('access_token', $token, 4500);
             return redirect()->route('admin.dashboard');

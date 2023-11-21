@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2023 at 06:59 PM
+-- Generation Time: Nov 21, 2023 at 06:47 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -30,22 +30,28 @@ SET time_zone = "+00:00";
 CREATE TABLE `admins` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
+  `business_name` varchar(255) NOT NULL,
+  `mobile` varchar(255) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
+  `idproff` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `role` enum('SUPERADMIN','ADMIN','USER') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `admins`
 --
 
-INSERT INTO `admins` (`id`, `name`, `email`, `email_verified_at`, `password`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Rahul Soni ', 'rahulsoni@admin.com', NULL, '$2y$10$cNYbVTzeKxL5Rg5/rnRADeGeAo3ENAOr5aVf1mPxze/0SXoRNLDCq', 1, NULL, '2020-07-07 18:30:00', '2023-11-17 06:36:25'),
-(2, 'Rahul Soni', 'rahu33lsoni@admin.com', NULL, '$2y$10$ssHwtr5KDto3tH3mU7X13.UvD2/8JmwY8/gfI9Z8DxspMknk.J9/y', 1, NULL, '2023-11-20 15:50:23', '2023-11-20 15:50:23');
+INSERT INTO `admins` (`id`, `name`, `business_name`, `mobile`, `email`, `email_verified_at`, `password`, `idproff`, `address`, `status`, `remember_token`, `created_at`, `updated_at`, `role`) VALUES
+(1, 'Rahul Soni ', '', '', 'rahulsoni@admin.com', NULL, '$2y$10$cNYbVTzeKxL5Rg5/rnRADeGeAo3ENAOr5aVf1mPxze/0SXoRNLDCq', '', '', 1, NULL, '2020-07-07 18:30:00', '2023-11-17 06:36:25', 'SUPERADMIN'),
+(2, 'Rahul Soni', '', '', 'rahu33lsoni@admin.com', NULL, '$2y$10$ssHwtr5KDto3tH3mU7X13.UvD2/8JmwY8/gfI9Z8DxspMknk.J9/y', '', '', 1, NULL, '2023-11-20 15:50:23', '2023-11-20 15:50:23', 'ADMIN'),
+(3, 'Testing', 'test', '01267897067', 'adstestyuv@gmail.com', NULL, '$2y$10$4.JdU2.LzOcAysKe77VbMeD5x7Boj67pN/Bp55jQ8fXmH5lyNOso6', '1700579078.svg', 'Ajmer', 1, NULL, '2023-11-21 15:34:38', '2023-11-21 15:34:38', 'ADMIN');
 
 -- --------------------------------------------------------
 
@@ -111,6 +117,7 @@ CREATE TABLE `failed_jobs` (
 
 CREATE TABLE `guest` (
   `id` bigint(20) NOT NULL,
+  `hotel_id` bigint(20) NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   `mobile` varchar(255) NOT NULL,
@@ -125,10 +132,11 @@ CREATE TABLE `guest` (
 -- Dumping data for table `guest`
 --
 
-INSERT INTO `guest` (`id`, `name`, `email`, `mobile`, `address`, `idproff`, `status`, `created_at`, `updated_at`) VALUES
-(14, 'test', 'rahulyuvmedia@gmail.com', '09588871256', 'Ajmer', '1700490235.jpg', '1', '2023-11-20 20:23:55', '2023-11-20 20:23:55'),
-(15, 'Rahul soni', 'rahulyuvmedia@gmail.com', '09588871256', 'Ajmer', '1700490311.jpg', '1', '2023-11-20 20:25:11', '2023-11-20 20:25:11'),
-(16, 'chandra prakash', 'adstestyuv@gmail.com', '01267897067', 'Ajmer', '1700495204.jpg', '1', '2023-11-20 21:46:44', '2023-11-20 21:46:44');
+INSERT INTO `guest` (`id`, `hotel_id`, `name`, `email`, `mobile`, `address`, `idproff`, `status`, `created_at`, `updated_at`) VALUES
+(14, 0, 'test', 'rahulyuvmedia@gmail.com', '09588871256', 'Ajmer', '1700490235.jpg', '1', '2023-11-20 20:23:55', '2023-11-20 20:23:55'),
+(15, 0, 'Rahul soni', 'rahulyuvmedia@gmail.com', '09588871256', 'Ajmer', '1700490311.jpg', '1', '2023-11-20 20:25:11', '2023-11-20 20:25:11'),
+(16, 0, 'chandra prakash', 'adstestyuv@gmail.com', '01267897067', 'Ajmer', '1700495204.jpg', '1', '2023-11-20 21:46:44', '2023-11-20 21:46:44'),
+(17, 3, 'newGuest', 'rahulyuvmedia@gmail.comnewGuest', '09588871256', 'Ajmer', NULL, '1', '2023-11-21 21:09:34', '2023-11-21 21:09:34');
 
 -- --------------------------------------------------------
 
@@ -246,10 +254,13 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('02826cf14cbe647c57f213a10461f84caf66feabb180900f43208d6bddcede55b9c92a8cac12bbf7', 1, 6, 'adminApiToken', '[]', 0, '2023-11-17 04:57:47', '2023-11-17 04:57:47', '2024-11-17 10:27:47'),
 ('05c863060cabdeb27afd6dc83e0d75dab796cceacedbfbc24e71c6c26e82e44bbdf5eb22594eaecc', 1, 6, 'adminApiToken', '[]', 0, '2023-11-17 10:10:18', '2023-11-17 10:10:18', '2024-11-17 15:40:18'),
 ('133dda0a97ab01712477729cfab1a18d1e37c11fd290dc7b618c9ace70aa7b52090fe5824ec8add0', 1, 6, 'adminApiToken', '[]', 0, '2023-11-20 15:52:28', '2023-11-20 15:52:28', '2024-11-20 21:22:28'),
+('2215aff36e9611a64056049cbd0733f2113773aaed2ec643984fb4391afa6aeb4ff6b3b5167899a4', 1, 6, 'adminApiToken', '[]', 0, '2023-11-21 15:31:16', '2023-11-21 15:31:16', '2024-11-21 21:01:16'),
 ('2563000da7e4575deb080e4f276bec033c5f10ca837f2302da0816777206a8c4b78d0eb3dafa0cdf', 1, 6, 'adminApiToken', '[]', 0, '2023-11-17 10:19:53', '2023-11-17 10:19:53', '2024-11-17 15:49:53'),
 ('34c47befbc4cc9edf0c041ee48e40dc9ff0728f0d32865800b9726f598abc2aad68b69b553319dea', 1, 6, 'adminApiToken', '[]', 0, '2023-11-19 13:36:16', '2023-11-19 13:36:16', '2024-11-19 19:06:16'),
 ('34cfca8b577333694edb5d4a43e45503ca2478f916462fe0c4d3c64a66dfb59f222dc11b06849cf7', 2, 1, 'userApiToken', '[]', 0, '2020-07-18 11:47:50', '2020-07-18 11:47:50', '2021-07-18 17:17:50'),
 ('39ce6df5a3ac4be217baf5bb0cd07f0ae3999a8cd958dfc095152a6928634af75064cd726e53e41a', 1, 6, 'adminApiToken', '[]', 0, '2023-11-17 06:35:46', '2023-11-17 06:35:46', '2024-11-17 12:05:46'),
+('3e5a35c4db8c6a4ecef2460c4723416b569c16bd139fa7042f443424a41aaccba1f6910e644e74ea', 1, 6, 'adminApiToken', '[]', 0, '2023-11-21 15:50:06', '2023-11-21 15:50:06', '2024-11-21 21:20:06'),
+('4d074426f496490d32bf0e94c4f40ecba194fed52dbf382721652393c6033ab2c0c067d30ee5a17e', 1, 6, 'adminApiToken', '[]', 0, '2023-11-21 16:45:21', '2023-11-21 16:45:21', '2024-11-21 22:15:21'),
 ('4f156544d3ba401853bc4edc5ddcfb4052f67eb4a2710754b5fa57a270945f6cd303e3d3f768927f', 1, 6, 'adminApiToken', '[]', 0, '2023-11-20 15:32:06', '2023-11-20 15:32:06', '2024-11-20 21:02:06'),
 ('63064b28f6bdf7e61313c3a446411b366603c82adaa7b37fa20658978055c2bc192f348bf0dd81bd', 1, 6, 'adminApiToken', '[]', 0, '2023-11-17 14:49:22', '2023-11-17 14:49:22', '2024-11-17 20:19:22'),
 ('67cba7b98c79510c5fac62493938fa857b1cf00da731c40c852ec4949f04be06e0dd476a84d94f8f', 1, 4, 'adminApiToken', '[]', 0, '2020-09-27 10:50:50', '2020-09-27 10:50:50', '2021-09-27 16:20:50'),
@@ -265,7 +276,9 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('d9f29ed0d6be329356ca4be84dcae7fa56eeb89df4efbf9fcbe1dfdc882d9befe5abdc2dd9373383', 1, 4, 'Admin', '[]', 0, '2020-09-27 11:42:30', '2020-09-27 11:42:30', '2021-09-27 17:12:30'),
 ('dcf24d9385de348f6322373538b210a7596b880aa7def6aeec7a63e917cd6b8a003a035c9e9e4947', 1, 4, 'adminApiToken', '[]', 0, '2020-09-27 11:50:34', '2020-09-27 11:50:34', '2021-09-27 17:20:34'),
 ('dd4095d78985cda7f6c4fb65a50f38bbdd6aae17b829087737c6ba088a20db373f197702dc9b20a8', 2, 6, 'adminApiToken', '[]', 0, '2023-11-20 15:50:53', '2023-11-20 15:50:53', '2024-11-20 21:20:53'),
-('e429c657d0d9ee70cf3596289286ec998089bca65b48a28f1fcd73c93e388261943a0c4012c778c5', 1, 6, 'adminApiToken', '[]', 0, '2023-11-20 14:44:36', '2023-11-20 14:44:36', '2024-11-20 20:14:36');
+('e429c657d0d9ee70cf3596289286ec998089bca65b48a28f1fcd73c93e388261943a0c4012c778c5', 1, 6, 'adminApiToken', '[]', 0, '2023-11-20 14:44:36', '2023-11-20 14:44:36', '2024-11-20 20:14:36'),
+('e910ee607903ea750a456792d7c14a15abb64d3cf1b8476689843b379a8d323330e7dbc529057af4', 3, 6, 'adminApiToken', '[]', 0, '2023-11-21 15:36:22', '2023-11-21 15:36:22', '2024-11-21 21:06:22'),
+('f4a0917c6ee74b3c6d8effcacbd289d1841ccdda34c8f39ae4ff8997bd67951e7c0d9d9a532e543d', 2, 6, 'adminApiToken', '[]', 0, '2023-11-21 17:02:03', '2023-11-21 17:02:03', '2024-11-21 22:32:03');
 
 -- --------------------------------------------------------
 
@@ -425,7 +438,8 @@ CREATE TABLE `reservations` (
 
 INSERT INTO `reservations` (`id`, `guest_id`, `room_id`, `checkin_date`, `checkout_date`, `created_at`, `updated_at`) VALUES
 (9, 15, 4, '2023-11-29 19:55:00', '2023-12-21 19:55:00', '2023-11-20 20:25:12', '2023-11-20 20:25:12'),
-(10, 16, 6, '2023-11-25 21:16:00', '2023-12-14 21:16:00', '2023-11-20 21:46:44', '2023-11-20 21:46:44');
+(10, 16, 6, '2023-11-25 21:16:00', '2023-12-14 21:16:00', '2023-11-20 21:46:44', '2023-11-20 21:46:44'),
+(11, 17, 7, '2023-11-21 20:39:00', '2023-11-22 20:39:00', '2023-11-21 21:09:34', '2023-11-21 21:09:34');
 
 -- --------------------------------------------------------
 
@@ -486,19 +500,21 @@ CREATE TABLE `rooms` (
   `facilities` text NOT NULL,
   `status` enum('0','1') NOT NULL DEFAULT '1',
   `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
+  `updated_at` datetime NOT NULL,
+  `hotel_id` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `rooms`
 --
 
-INSERT INTO `rooms` (`id`, `roomNumber`, `roomType`, `occupancy`, `price`, `availability`, `facilities`, `status`, `created_at`, `updated_at`) VALUES
-(3, 'F-1', 'suite', '6', 2, 'available', 'a', '1', '2023-11-17 14:58:09', '2023-11-17 16:17:01'),
-(4, 'F-4', 'suite', '2', 2, 'booked', '3213', '1', '2023-11-17 15:17:00', '2023-11-20 20:25:12'),
-(5, 'F-2', 'double', '3', 12, 'booked', '12', '1', '2023-11-17 16:16:16', '2023-11-17 22:33:36'),
-(6, 'F-3', 'single', '2', 2223, 'booked', 'Wi-Fi|Air Conditioning|Safe|Work Desk|Hairdryer|Iron and Ironing Board', '1', '2023-11-17 21:27:54', '2023-11-20 21:46:44'),
-(7, 'test', 'single', '1', 11, 'available', 'A.C|Refrigerator', '1', '2023-11-20 21:27:14', '2023-11-20 21:27:40');
+INSERT INTO `rooms` (`id`, `roomNumber`, `roomType`, `occupancy`, `price`, `availability`, `facilities`, `status`, `created_at`, `updated_at`, `hotel_id`) VALUES
+(3, 'F-1', 'suite', '6', 2, 'available', 'a', '1', '2023-11-17 14:58:09', '2023-11-17 16:17:01', NULL),
+(4, 'F-4', 'suite', '2', 2, 'booked', '3213', '1', '2023-11-17 15:17:00', '2023-11-20 20:25:12', NULL),
+(5, 'F-2', 'double', '3', 12, 'booked', '12', '1', '2023-11-17 16:16:16', '2023-11-17 22:33:36', NULL),
+(6, 'F-3', 'single', '2', 2223, 'booked', 'Wi-Fi|Air Conditioning|Safe|Work Desk|Hairdryer|Iron and Ironing Board', '1', '2023-11-17 21:27:54', '2023-11-20 21:46:44', NULL),
+(7, 'test', 'single', '1', 11, 'booked', 'A.C|Refrigerator', '1', '2023-11-20 21:27:14', '2023-11-21 21:09:34', NULL),
+(8, 'newroom', 'double', '1', 11, 'available', '\"A.C|Refrigerator\"', '1', '2023-11-21 21:11:55', '2023-11-21 21:11:55', 3);
 
 -- --------------------------------------------------------
 
@@ -713,7 +729,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `blogs`
@@ -731,7 +747,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `guest`
 --
 ALTER TABLE `guest`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `master`
@@ -767,7 +783,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -779,7 +795,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `settings`

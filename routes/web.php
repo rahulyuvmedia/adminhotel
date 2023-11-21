@@ -19,6 +19,8 @@ Route::prefix('admin_login')->group(function () {
     Route::post('login', 'Auth\Admin\LoginController@loginAdmin')->name('admin.auth.loginAdmin');
     Route::post('logout', 'Auth\Admin\LoginController@logout')->name('admin.auth.logout');
     Route::get('logout', 'Auth\Admin\LoginController@logout');
+    Route::get('registration', 'Auth\Admin\LoginController@registration');
+
 });
 
 // Admin Dashborad
@@ -37,8 +39,9 @@ Route::prefix('user_login')->group(function () {
     Route::post('login', 'Auth\User\LoginController@loginUser')->name('user.auth.loginUser');
     Route::post('logout', 'Auth\User\LoginController@logout')->name('user.auth.logout');
     Route::get('logout', 'Auth\User\LoginController@logout');
+    
 });
-
+  Route::post('register', [RegisterController::class, 'register'])->name('register.post');
 // User Dashborad
 Route::group([
     'namespace' => 'Backend\User',

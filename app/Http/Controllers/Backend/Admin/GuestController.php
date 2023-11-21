@@ -21,7 +21,7 @@ class GuestController extends Controller
      public function index(Request $request)
      {
          $keyword = $request->input('keyword');
-         $model = Guest::orderBy('created_at', 'desc')->get();
+         $model = Guest::where(['hotel_id'=>Auth::id()])->orderBy('created_at', 'desc')->get();
  
          return view('backend.admin.guest.index', compact('model', 'keyword'));
      }
@@ -42,7 +42,7 @@ class GuestController extends Controller
      */
     public function create()
     {
-        $rooms = Rooms::where('availability','available')->get();
+        $rooms = Rooms::where(['availability'=>'available','hotel_id'=>Auth::id()])->get();
 
         return view('backend.admin.guest.create',compact('rooms'));
     }
@@ -71,7 +71,7 @@ class GuestController extends Controller
             $model->email = $request->email;
             $model->mobile = $request->mobile;
             $model->address = $request->address;
-         
+            $model->hotel_id = Auth::id();
             
             if ($request->hasFile('idproff')) {
                 $extension = strtolower($request->file('idproff')->getClientOriginalExtension());

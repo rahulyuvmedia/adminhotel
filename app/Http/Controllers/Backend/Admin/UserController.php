@@ -22,6 +22,7 @@ class UserController extends Controller
     */
    public function index()
    {
+      
        $adminuser = Admin::all();
       return view('backend.admin.user.index',compact('adminuser'));
    }
@@ -65,6 +66,7 @@ class UserController extends Controller
     */
    public function create(Request $request)
    {
+        
        
          $haspermision = auth()->user()->can('user-create');
          if ($haspermision) {
@@ -92,8 +94,9 @@ class UserController extends Controller
     */
     public function store(Request $request)
     {
+        
         // Uncomment the following line for debugging purposes
-        // dd($request);
+          dd($request);
 
         $validator = Validator::make($request->all(), [
             'name' => 'required',
@@ -237,6 +240,7 @@ class UserController extends Controller
                $user->name = $request->input('name');
                $user->email = $request->input('email');
                $user->status = $request->input('status');
+               $user->status = "ADMIN";
                $user->password = Hash::make($request->password);
                $user->file_path = $file_path;
                $user->save();
