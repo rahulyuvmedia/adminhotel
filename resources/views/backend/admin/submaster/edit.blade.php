@@ -20,11 +20,11 @@
                 @csrf
                 @method('PATCH')
 
-                <div id="status"></div>
-                <div class="form-row">
-                    <div class="clearfix"></div>
+              
+                <div class="row">
+                    
 
-                    <div class="form-group col-md-12 col-sm-12">
+                    <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
                         <label for="">Sub Master Type<span style="color:red">*</span></label>
                         <select class="form-select form-control" id="type" name="type" aria-label="category-form-select">
                             <option selected disabled>Select Category Type</option>
@@ -37,7 +37,7 @@
                         @enderror
                     </div>
 
-                    <div class="form-group col-md-12 col-sm-12">
+                    <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
                         <label for="">Sub Master Title<span style="color:red">*</span></label>
                         <input type="text" class="form-control" id="title" name="title" value="{{ $submaster->title }}"
                             placeholder="" />
@@ -46,7 +46,7 @@
                         @enderror
                     </div>
 
-                    <div class="form-group col-md-12 col-sm-12">
+                    <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
                         <label for="">Sub Master Value<span style="color:red">*</span></label>
                         <input type="text" class="form-control" id="value" name="value" value="{{ $submaster->value }}"
                             placeholder="" />
@@ -55,7 +55,7 @@
                         @enderror
                     </div>
 
-                    <div class="form-group col-md-12 col-sm-12">
+                    <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
                         <label class="form-label" for="formFile">Upload Logo<span style="color:red">*</span></label>
                         <div class="input-group mb-3 bg-white rounded-2 border border-1 shadow-sm border-secondary">
                             <input name="logo" id="logo" type="file" onchange="readURL(this);" class="form-control">
@@ -70,7 +70,7 @@
                         </div>
                     </div>
 
-                    <div class="clearfix"></div>
+                    
                     <div class="form-group col-md-12">
                         <button type="submit" class="btn btn-success button-submit" data-loading-text="Loading..."><span
                                 class="fa fa-save fa-fw"></span> Update

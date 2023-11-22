@@ -12,13 +12,14 @@ use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 use View;
 use DB;
+use App\Models\User; 
 
 class AdminController extends Controller
 {
 
     public function index()
     {
-        return view('backend.admin.admin.index');
+        return view('user.index');
     }
 
     public function allAdmin()
@@ -59,22 +60,28 @@ class AdminController extends Controller
         return view('backend.admin.admin.profile', compact('user'));
     }
 
-    public function edit()
+    public function edit($id)
     {
-        $user = Auth::user();
+        // $user = Auth::find($id);
+        $user = Admin::find($id);
+
         return view('backend.admin.admin.edit_profile', compact('user'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request ,$id)
     {
-        if ($request->ajax()) {
+       
 
-            $user = Admin::findOrFail(Auth::user()->id);
+        $user = Admin::find($id);
 
             $rules = [
                 'name' => 'required',
                 'email' => 'required|email|unique:admins,email,' . $user->id,
-            ];
+                'address' => 'required',
+                'mobile' => 'required',
+                
+                'business_name' => 'required',
+                       ];
 
             $validator = Validator::make($request->all(), $rules);
             if ($validator->fails()) {
@@ -83,16 +90,32 @@ class AdminController extends Controller
                     'errors' => $validator->getMessageBag()->toArray()
                 ]);
             } else {
-
                 $user->name = $request->input('name');
                 $user->email = $request->input('email');
+                $user->address = $request->input('address');
+                $user->mobile = $request->input('mobile');
+                 
+                $user->business_name = $request->input('business_name');
+        
+                if ($request->hasFile('idproff')) {
+                    $extension = strtolower($request->file('idproff')->getClientOriginalExtension());
+                    if (in_array($extension, ['jpg', 'jpeg', 'png', 'svg', 'webp'])) {
+                        if ($request->file('idproff')->isValid()) {
+                            $destinationPath = public_path('uploads');
+                            $extension = $request->file('idproff')->getClientOriginalExtension();
+                            $fileName = time() . '.' . $extension;
+                            $request->file('idproff')->move($destinationPath, $fileName);
+                            $user->idproff = $fileName;
+                        }
+                    }
+                }
                 $user->save(); //
-                return response()->json(['type' => 'success', 'message' => "Successfully Updated"]);
+                     // Redirect to the '/profile' URL with a success message
+                     return redirect()->back()->with('success', 'Successfully Updated');
 
+    
             }
-        } else {
-            return response()->json(['status' => 'false', 'message' => "Access only ajax request"]);
-        }
+         
     }
 
     public function change_password()
@@ -135,4 +158,9 @@ class AdminController extends Controller
     {
         return view('backend.admin.example.passport');
     }
+
+   
+
+     
+
 }

@@ -193,10 +193,10 @@ class GuestController extends Controller
             }
     
             // Redirect with success message
-            return redirect()->route('admin.guest.index')->with('success', 'Guest updated successfully.')->fragment('your-anchor');
+            return redirect()->back()->with('success', 'Successfully Updated');
         } catch (\Exception $e) {
                         session()->flash('sticky_error', $e->getMessage());
-            return back();
+                        return redirect()->back()->with('error', $e->getMessage());
         }
     }
     

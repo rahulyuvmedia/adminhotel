@@ -1,6 +1,8 @@
-<form id='edit' action="" enctype="multipart/form-data" method="post" accept-charset="utf-8" class="needs-validation"
+<form id='edit'   action="{{ route('update', ['id' => $user->id]) }}" enctype="multipart/form-data" method="POST" accept-charset="utf-8" class="needs-validation"
       novalidate>
-    {{method_field('PATCH')}}
+      @csrf
+      @method('PATCH')
+    
     <div class="form-row">
         <div id="status"></div>
         <div class="form-group col-md-4 col-sm-12">
@@ -114,9 +116,9 @@
                 }, function () {
 
                     $.ajax({
-                        url: 'users/' + '{{ $user->id }}',
-                        type: 'POST',
-                        data: myData,
+    url: '{{ route('admin.update') }}',
+    type: 'PATCH',
+    data: myData,
                         dataType: 'json',
                         cache: false,
                         processData: false,

@@ -7,7 +7,7 @@
                 <div class="page-title-icon">
                     <i class="pe-7s-users icon-gradient bg-mean-fruit"> </i>
                 </div>
-                <div>User's Profile <a href="/user/edit_profile" class="btn btn-success">Edit Profile</a></div>
+                <div>User's Profile <a href="{{ URL::to('/admin/edit_profile') }}" class="btn btn-success">Edit Profile</a></div>
             </div>
         </div>
     </div>

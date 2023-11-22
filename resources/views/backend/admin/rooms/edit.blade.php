@@ -10,10 +10,10 @@
                 <form id='edit' action="{{ Route('admin.rooms.update', $model->id) }}" enctype="multipart/form-data"
                     method="post" accept-charset="utf-8" class="needs-validation">
                     @csrf
-                    <div id="status"></div> {{ method_field('PATCH') }}
-                    <div class="form-row">
+                    {{ method_field('PATCH') }}
+                    <div class="row">
 
-                        <div class="form-group col-md-12 col-sm-12">
+                        <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
                             <label for="roomNumber">Room Number</label>
                             <input type="text" class="form-control" id="roomNumber" name="roomNumber"
                                 value="{{ old('roomNumber', $model->roomNumber) }}" placeholder="" required>
@@ -22,7 +22,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group col-md-12 col-sm-12">
+                        <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
                             <label for="price">Price</label>
                             <input type="text" class="form-control" id="price" name="price"
                                 value="{{ old('price', $model->price) }}" placeholder="" required>
@@ -31,8 +31,8 @@
                             @enderror
                         </div>
 
-                        <div class="clearfix"></div>
-                        <div class="form-group col-md-12 col-sm-12">
+                      
+                        <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
                             <label for="roomType">Room Type</label>
                             <select class="form-control" id="roomType" name="roomType">
 
@@ -51,8 +51,8 @@
                             @enderror
                         </div>
 
-                        <div class="clearfix"></div>
-                        <div class="form-group col-md-12 col-sm-12">
+                      
+                        <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
                             <label for="occupancy">Occupancy</label>
                             <select class="form-control" id="occupancy" name="occupancy">
 
@@ -74,9 +74,8 @@
                             @enderror
                         </div>
 
-
-                        <div class="clearfix"></div>
-                        <div class="form-group col-md-12 col-sm-12">
+ 
+                        <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
                             <label for="availability">availability</label>
                             <select class="form-control" id="availability" name="availability">
 
@@ -100,7 +99,7 @@
 
 
 
-                        <!-- <div class="form-group col-md-12 col-sm-12">
+                        <!-- <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
                             <label for="facilities">Facilities</label>
                             @if (count(MyConstants::ROOM_FACILITY) > 0)
                                 @foreach (MyConstants::ROOM_FACILITY as $key => $value)
@@ -115,7 +114,7 @@
                             @endforeach
                             @endif
                                  </div> -->
-                        <div class="form-group">
+                       <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
                             <label for="facilities">Facilities</label>
                             <div>
                                 @foreach ($master as $facilityJson)

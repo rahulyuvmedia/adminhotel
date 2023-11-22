@@ -4,8 +4,8 @@ Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
 // Admin
 Route::get('/profile', 'AdminController@profile')->name('profile');
-Route::get('/edit_profile', 'AdminController@edit')->name('edit');
-Route::patch('/edit_profile', 'AdminController@update')->name('update');
+Route::get('/edit_profile/{id}', 'AdminController@edit')->name('edit');
+Route::patch('/edit_profile/{id?}', 'AdminController@update')->name('update');
 Route::get('/change_password', 'AdminController@change_password')->name('password_change');
 Route::patch('/change_password', 'AdminController@update_password')->name('change_password');
 
@@ -17,6 +17,8 @@ Route::resource('blogs', 'BlogController');
 Route::get('/allBlogs', 'BlogController@getAll')->name('allBlogs');
 
 /* ===== Blog End =========== */
+Route::get('/users', 'AdminController@index')->name('admin.user.index');
+ 
 
 
 /* ===== Access Management Start =========== */
@@ -70,5 +72,7 @@ Route::get('/rooms/inactive/{id}', 'RoomsController@inactive');
 
 Route::resource('master', 'MasterController');
 Route::resource('submaster', 'SubMasterController');
+
+
 Route::get('/user/active/{id}', 'UserController@active');
 Route::get('/user/inactive/{id}', 'UserController@inactive');

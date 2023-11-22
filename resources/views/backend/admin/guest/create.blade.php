@@ -4,6 +4,7 @@
     <div class="card mb-4">
         <h5 class="card-header">Create Guest</h5>
         <div class="card-body">
+            
             <form id='create' action="{{ Route('admin.guest.store') }}" enctype="multipart/form-data" method="post"
                 accept-charset="utf-8" class="needs-validation">
                 @csrf

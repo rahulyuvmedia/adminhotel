@@ -96,8 +96,7 @@ class UserController extends Controller
     {
         
         // Uncomment the following line for debugging purposes
-          dd($request);
-
+       
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required',
@@ -202,8 +201,7 @@ class UserController extends Controller
    {
       if ($request->ajax()) {
 
-         User::findOrFail($user->id);
-
+          
          $rules = [
            'name' => 'required',
            'email' => 'required|email|unique:users,email,' . $user->id,
@@ -288,4 +286,22 @@ class UserController extends Controller
          return response()->json(['status' => 'false', 'message' => "Access only ajax request"]);
       }
    }
+
+
+      
+   public function active($id)
+   {
+       
+       Admin::where('id', $id)->update(['status' => '0']);
+      return redirect()->back();
+   }
+
+
+   public function inactive($id)
+   {
+   //   dd('Active method called with ID: ' . $id);
+   Admin::where('id', $id)->update(['status' => '1']);
+      return redirect()->back();
+   }
+
 }

@@ -436,7 +436,7 @@
                              <span class="align-middle">My Profile</span>
                          </a>
                      </li>
-                     <li>
+                                          <li>
                          <a class="dropdown-item" href="pages-account-settings-account.html">
                              <i class="ti ti-settings me-2 ti-sm"></i>
                              <span class="align-middle">Settings</span>
@@ -476,10 +476,18 @@
                              <span class="align-middle">Log Out</span>
                          </a>
                      </li>
+                     <!-- <li>
+                         <a class="dropdown-item" href="{{ URL::to('/admin/change_password') }}">
+                             <i class="ti ti-logout me-2 ti-sm"></i>
+                             <span class="align-middle"> Change Password</span>
+                         </a>
+                     </li> -->
                  </ul>
+                 
              </li>
              <!--/ User -->
          </ul>
+         
      </div>
 
      <!-- Search Small Screens -->
