@@ -44,8 +44,8 @@
                                     <tr>
                                         <td class="serial-number">{{ $loop->iteration }}</td>
 
-                                        <td class="fw-bold text-nowrap ">{{ $value->title }}</td>
-                                        <td class="fw-bold">{{ $value->value }}</td>
+                                        <td class=" text-nowrap ">{{ $value->title }}</td>
+                                        <td class="">{{ $value->value }}</td>
                                         <td class="d-flex">
                                             <a href="{{ Route('admin.master.edit', $value->id) }}"class="btn fw-bold btn-primary text-nowrap"
                                                 data-mdb-ripple-color="dark">

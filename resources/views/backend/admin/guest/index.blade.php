@@ -53,14 +53,14 @@
                                         <i class="bi bi-pencil-fill"></i> Edit
                                     </a>
 
-                                    <form action="{{ route('admin.guest.destroy', $value->id) }}" method="POST"
+                                    <!-- <form action="{{ route('admin.guest.destroy', $value->id) }}" method="POST"
                                         id="deleteForm" class='me-2'>
                                         @method('DELETE')
                                         @csrf
                                         <button type="button" class="btn btn-danger" onclick="confirmDelete(this)">
                                             <i class="bi bi-trash"></i> Delete
                                         </button>
-                                    </form>
+                                    </form> -->
 
 
                                     @if ($value->status == 1)
