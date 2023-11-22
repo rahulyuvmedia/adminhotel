@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\Rule;
 
 use View;
 use DB;
@@ -94,10 +95,11 @@ class UserController extends Controller
     */
     public function store(Request $request)
     {
-        
+        dd($request);
         // Uncomment the following line for debugging purposes
        
-        $validator = Validator::make($request->all(), [
+      //   $validator = Validator::make($request->all(), [
+         $request->validate([
             'name' => 'required',
             'email' => 'required',
             'password' => 'required|confirmed',
@@ -140,10 +142,11 @@ class UserController extends Controller
 
             DB::commit();
             return redirect()->route('admin.user.index');
-        } catch (\Exception $e) {
-            Log::error('Error creating user: ' . $e->getMessage());
-            return back()->with('error', 'Error: ' . $e->getMessage());
-        }
+        }  catch (\Exception $e) {
+         Log::error('Error creating user: ' . $e->getMessage());
+         DB::rollBack(); // Rollback changes in case of an exception
+         return back()->with('error', 'Error: ' . $e->getMessage());
+     }
     }
  
 

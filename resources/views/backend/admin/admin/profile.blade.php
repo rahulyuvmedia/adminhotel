@@ -1,6 +1,12 @@
 @extends('backend.layouts.master')
 @section('title', 'Dashboard')
 @section('content')
+
+<?php 
+use Carbon\Carbon;
+
+?>
+
 <style>
     
     .card {
@@ -157,7 +163,8 @@
                 <a href="{{ URL::to('/admin/edit_profile') }}" class="btn btn-dark">Edit Profile</a>
             </div>
             <div class="px-2 rounded mt-4 date">
-                <span class="join">Joined May, 2021</span>
+                <span class="join">{{ Carbon::parse($user->created_at)->format('d/m/yy') }}
+</span>
             </div>
         </div>
     </div>
