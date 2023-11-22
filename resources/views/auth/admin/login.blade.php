@@ -59,8 +59,8 @@
                         <div class="d-flex justify-content-between">
                             <label class="form-label" for="password">Password</label>
                             <!-- <a href="auth-forgot-password-cover.html">
-                                                                <small>Forgot Password?</small>
-                                                            </a> -->
+                                                                    <small>Forgot Password?</small>
+                                                                </a> -->
                         </div>
                         <div class="input-group input-group-merge">
                             <input type="password" id="password" class="form-control" name="password"
@@ -92,22 +92,22 @@
                 </p>
 
                 <!-- <div class="divider my-4">
-                                                    <div class="divider-text">or</div>
-                                                </div> -->
+                                                        <div class="divider-text">or</div>
+                                                    </div> -->
 
                 <!-- <div class="d-flex justify-content-center">
-                                                    <a href="javascript:;" class="btn btn-icon btn-label-facebook me-3">
-                                                        <i class="tf-icons fa-brands fa-facebook-f fs-5"></i>
-                                                    </a>
+                                                        <a href="javascript:;" class="btn btn-icon btn-label-facebook me-3">
+                                                            <i class="tf-icons fa-brands fa-facebook-f fs-5"></i>
+                                                        </a>
 
-                                                    <a href="javascript:;" class="btn btn-icon btn-label-google-plus me-3">
-                                                        <i class="tf-icons fa-brands fa-google fs-5"></i>
-                                                    </a>
+                                                        <a href="javascript:;" class="btn btn-icon btn-label-google-plus me-3">
+                                                            <i class="tf-icons fa-brands fa-google fs-5"></i>
+                                                        </a>
 
-                                                    <a href="javascript:;" class="btn btn-icon btn-label-twitter">
-                                                        <i class="tf-icons fa-brands fa-twitter fs-5"></i>
-                                                    </a>
-                                                </div> -->
+                                                        <a href="javascript:;" class="btn btn-icon btn-label-twitter">
+                                                            <i class="tf-icons fa-brands fa-twitter fs-5"></i>
+                                                        </a>
+                                                    </div> -->
             </div>
         </div>
         <!-- /Login -->

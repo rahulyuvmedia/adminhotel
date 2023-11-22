@@ -7,7 +7,8 @@
                 <div class="page-title-icon">
                     <i class="pe-7s-users icon-gradient bg-mean-fruit"> </i>
                 </div>
-                <div>User's Profile <a href="{{ URL::to('/admin/edit_profile') }}" class="btn btn-success">Edit Profile</a></div>
+                <div>User's Profile <a href="{{ URL::to('/admin/edit_profile/' . $user->id) }}" class="btn btn-success">Edit
+                        Profile</a></div>
             </div>
         </div>
     </div>
@@ -17,26 +18,26 @@
                 <div class="card-body">
                     <table id="manage_all" class="align-middle mb-0 table table-borderless table-striped table-hover">
                         <tbody>
-                        <tr>
-                            <td class="subject"> Photo</td>
-                            <td> :</td>
-                            <td><img src="{{ asset($user->file_path) }}" class="img-thumbnail" width="100px"/></td>
-                        </tr>
-                        <tr>
-                            <td class="subject"> Name</td>
-                            <td> :</td>
-                            <td> {{ $user->name }} </td>
-                        </tr>
-                        <tr>
-                            <td class="subject"> Email</td>
-                            <td> :</td>
-                            <td> {{ $user->email }} </td>
-                        </tr>
-                        <tr>
-                            <td class="subject"> Status</td>
-                            <td> :</td>
-                            <td> @php $status = $user->status ? '<span class="label label-success">Active</span>' : '<span class="label label-danger">Inactive</span>' ;  @endphp {!! $status !!}   </td>
-                        </tr>
+                            <tr>
+                                <td class="subject"> Photo</td>
+                                <td> :</td>
+                                <td><img src="{{ asset($user->file_path) }}" class="img-thumbnail" width="100px" /></td>
+                            </tr>
+                            <tr>
+                                <td class="subject"> Name</td>
+                                <td> :</td>
+                                <td> {{ $user->name }} </td>
+                            </tr>
+                            <tr>
+                                <td class="subject"> Email</td>
+                                <td> :</td>
+                                <td> {{ $user->email }} </td>
+                            </tr>
+                            <tr>
+                                <td class="subject"> Status</td>
+                                <td> :</td>
+                                <td> @php $status = $user->status ? '<span class="label label-success">Active</span>' : '<span class="label label-danger">Inactive</span>' ;  @endphp {!! $status !!} </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

@@ -7,17 +7,17 @@
                      document.write(new Date().getFullYear());
                  </script>
                  , made with ❤️ by
-                 <a href="https://http://yuvmedia.in" target="_blank" class="fw-medium">Yuvmedia</a>
+                 <a href="https://yuvmedia.in" target="_blank" class="fw-medium">Yuvmedia</a>
              </div>
              <!-- <div class="d-none d-lg-inline-block">
-                 <a href="https://themeforest.net/licenses/standard" class="footer-link me-4" target="_blank">License</a>
-                 <a href="https://1.envato.market/pixinvent_portfolio" target="_blank" class="footer-link me-4">More
+                 <a href="#" class="footer-link me-4" target="_blank">License</a>
+                 <a href="#" target="_blank" class="footer-link me-4">More
                      Themes</a>
 
-                 <a href="https://demos.pixinvent.com/vuexy-html-admin-template/documentation/" target="_blank"
+                 <a href="#" target="_blank"
                      class="footer-link me-4">Documentation</a>
 
-                 <a href="https://pixinvent.ticksy.com/" target="_blank"
+                 <a href="#" target="_blank"
                      class="footer-link d-none d-sm-inline-block">Support</a>
              </div> -->
          </div>
@@ -40,8 +40,12 @@
  <script src="{{ asset('assets/vendor/libs/swiper/swiper.js') }}"></script>
  <script src="{{ asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
 
+ <script src="{{ asset('assets/js/dashboards-analytics.js') }}"></script>
+
  <!-- Main JS -->
  <script src="{{ asset('assets/js/main.js') }}"></script>
 
  <!-- Page JS -->
- <script src="{{ asset('assets/js/dashboards-analytics.js') }}"></script>
+
+
+ <script src="{{ asset('assets/js/pages-account-settings-account.js') }}"></script>

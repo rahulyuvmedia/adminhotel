@@ -8,7 +8,8 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Http\Request;
+use App\Models\Admin;
 class RegisterController extends Controller
 {
     /*
@@ -47,7 +48,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator(Request $data)
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
@@ -62,8 +63,34 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
+
+
+    public function register(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+        try {
+            Admin::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+        return redirect()->route('admin.auth.login');
+    } catch (\Exception $e) {
+        
+         
+        return redirect()->back()->with('error', 'An error occurred during registration.');
+    }
+}
+
+
+
     protected function create(array $data)
     {
+
+        dd($data);
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
