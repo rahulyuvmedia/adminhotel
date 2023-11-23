@@ -134,9 +134,25 @@
     display: none !important;
 }
 
-
-
 div.dataTables_wrapper div.dataTables_paginate {
     margin-bottom: 100px;
 }
 
+.avail-red {
+    color: #fff;
+    background: darkred;
+    cursor: none;
+    pointer-events: none;
+}
+
+.avail-green {
+    color: #fff;
+    background: rgb(63, 139, 0);
+}
+
+.avail-grey {
+    color: #fff;
+    background: rgb(56, 56, 56);
+    cursor: none;
+    pointer-events: none;
+}
