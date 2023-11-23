@@ -45,7 +45,7 @@
             <p class="mb-4">Make your app management easy and fun!</p>
 
             <form action="{{ route('user.auth.registration') }}" enctype="multipart/form-data" method="post"
-                accept-charset="utf-8" class="needs-validation" novalidate>
+                accept-charset="utf-8" class="needs-validation" novalidate id="signup">
                 @csrf
                 <div class="row">
 
@@ -62,12 +62,24 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for=""> Email </label>
-                        <input type="text" class="form-control" id="email" name="email"
-                            placeholder="Enter your email address" required>
+                        <label for="">Email</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="email" name="email"
+                                placeholder="Enter your email address" required>
+                            <button type="button" name="submit-otp" value="Send OTP" id="sendOTPButton"
+                                class="btn btn-secondary">Send OTP</button>
+
+                        </div>
                         @error('email')
                         <div class="has-error mt-2" style="color: red">{{$message}}</div>
                         @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Otp</label>
+
+                        <input type="tel" class="form-control" id="verificationCode" placeholder="" value=""
+                            name="verificationCode" pattern="[0-9]{6}" maxlength="6" minlength="6" />
+                        <input type="hidden" id="generatedOTP" placeholder="OTP" value="" name="generatedOTP" />
                     </div>
                     <div class="mb-3 form-password-toggle">
                         <label>Password:</label>
@@ -117,5 +129,98 @@
         </div>
     </div>
 </div>
+<!-- "<script>
+    $(document).ready(function() {
+        // Add the CSRF token to all AJAX requests
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
+        $('#signup').on('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Serialize the form data
+            var formData = $(this).serialize();
+
+            // Submit the form data via AJAX
+            $.ajax({
+                url: $(this).attr('action'),
+                method: 'POST',
+                data: formData,
+                dataType: 'json', // Expect JSON response
+                success: function(response) {
+                    if (response.success) {
+                        // Form submitted successfully
+                        alert('Form submitted successfully');
+
+                        // Check if a redirect URL is provided
+                        if (response.redirect) {
+                            // Redirect the user to the specified URL
+                            window.location.href = response.redirect;
+                        } else {
+                            // Optionally, reset the form
+                            $('#signup')[0].reset();
+                            $('#popup-message').text(
+                                'Please correct the following errors:');
+                            $('#error_description_type').text(response.errors.type);
+                            $('#error_description_email').text(response.errors.email);
+                            $('#error_description_verificationCode').text(response.errors
+                                .verificationCode);
+                            $('#error_description_accept').text(response.errors.accept);
+                        }
+                    } else {
+                        // Display validation errors
+                        $('#popup-message').text('Please correct the following errors:');
+                        $('#error_description').html(response.errors.join('<br>'));
+                    }
+                },
+                error: function(xhr) {
+                    // Handle AJAX errors
+                    console.log(xhr.responseText);
+                    // Display the error message to the user
+                    alert('An error occurred while processing your request.');
+                }
+            });
+        });
+
+        $('#sendOTPButton').on('click', function(event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            // Assuming your email field has an ID of 'email'
+            var userEmail = $('#email').val();
+
+            // Generate a random 6-digit OTP
+            var randomOTP = Math.floor(100000 + Math.random() * 900000);
+
+            // Send an AJAX request to your Laravel backend to handle OTP sending logic
+            $.ajax({
+                url: '/send-otp-email', // Replace with your Laravel route for sending OTP emails
+                method: 'POST',
+                data: { email: userEmail, otp: randomOTP },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        // Email sent successfully
+                        alert('OTP sent to email');
+
+                        // Set the generated OTP in the input field 
+                        $('#generatedOTP').val(randomOTP);
+                        // Enable the input field
+                        $('#verificationCode').removeAttr('readonly');
+                    } else {
+                        // Handle errors if needed
+                        alert('Failed to send OTP. Please try again.');
+                    }
+                },
+                error: function(xhr) {
+                    // Handle AJAX errors
+                    console.log(xhr.responseText);
+                    alert('An error occurred while processing your request.');
+                }
+            });
+        });
+    });
+</script>" -->
 @endsection
