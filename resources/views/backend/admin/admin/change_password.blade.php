@@ -15,11 +15,14 @@
         <div class="col-md-9 col-sm-12">
             <div class="main-card mb-3 card">
                 <div class="card-body">
-                    <form id='edit' action="" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+             
+                    <form id='edit' action="{{ route('update_password') }}" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                         <div id="status"></div>
-                        {{method_field('PATCH')}}
+                        @csrf
+                       
                         <div class="form-group col-md-6 col-sm-12">
                             <label for=""> New Password </label>
+                            
                             <input type="password" class="form-control" id="password" name="password" value=""
                                    placeholder="Type New Password" required>
                             <span id="error_name" class="has-error"></span>

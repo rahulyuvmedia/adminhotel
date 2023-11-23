@@ -6,8 +6,8 @@ Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::get('/profile', 'AdminController@profile')->name('profile');
 Route::get('/edit_profile/{id?}', 'AdminController@edit')->name('edit');
 Route::patch('/edit_profile/{id?}', 'AdminController@update')->name('update');
-Route::get('/change_password', 'AdminController@change_password')->name('password_change');
-Route::patch('/change_password', 'AdminController@update_password')->name('change_password');
+Route::get('/change_password', 'AdminController@change_password')->name('change_password');
+Route::post('/change_password/update_password', 'AdminController@update_password')->name('update_password');
 
 
 /* ===== Blog Start =========== */

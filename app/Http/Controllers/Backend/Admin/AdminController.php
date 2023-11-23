@@ -124,30 +124,31 @@ class AdminController extends Controller
     }
 
     public function update_password(Request $request)
-    {
-        if ($request->ajax()) {
+{
+    
+        $user = Admin::findOrFail(Auth::user()->id);
 
-            $user = Admin::findOrFail(Auth::user()->id);
+        
+        $rules = [
+            'password' => 'required|min:8',
+        ];
 
-            $rules = [
-                'password' => 'required'
-            ];
+        $validator = Validator::make($request->all(), $rules);
 
-            $validator = Validator::make($request->all(), $rules);
-            if ($validator->fails()) {
-                return response()->json([
-                    'type' => 'error',
-                    'errors' => $validator->getMessageBag()->toArray()
-                ]);
-            } else {
-                $user->password = Hash::make($request->input('password'));
-                $user->save(); //
-                return response()->json(['type' => 'success', 'message' => "Successfully Updated"]);
-            }
-        } else {
-            return response()->json(['status' => 'false', 'message' => "Access only ajax request"]);
+        if ($validator->fails()) {
+            return response()->json([
+                'type' => 'error',
+                'errors' => $validator->getMessageBag()->toArray()
+            ]);
         }
-    }
+
+        $user->password = Hash::make($request->input('password'));
+        $user->save();
+
+        return response()->json(['type' => 'success', 'message' => 'Password successfully updated']);
+     
+}
+
 
     public function barcode()
     {
