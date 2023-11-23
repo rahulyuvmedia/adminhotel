@@ -95,24 +95,52 @@ class UserController extends Controller
     */
     public function store(Request $request)
     {
-        dd($request);
+      //   dd($request);
         // Uncomment the following line for debugging purposes
        
-      //   $validator = Validator::make($request->all(), [
-         $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required|confirmed',
-            'business_name' => 'required',
-            'mobile' => 'required',
-            'address' => 'required',
-        ]);
+         // $validator = Validator::make($request->all(), [
+            $request->validate([
+               'name' => 'required',
+               'email' => 'required|email|unique:users,email',
+               'password' => 'required|confirmed',
+               'business_name' => 'required',
+               'mobile' => 'required',
+               'address' => 'required',
+           ], [
+               'name.required' => 'The name field is required.',
+               'email.required' => 'The email field is required.',
+               'email.email' => 'Please enter a valid email address.',
+               'email.unique' => 'This email address is already taken.',
+               'password.required' => 'The password field is required.',
+               'password.confirmed' => 'The password confirmation does not match.',
+               'business_name.required' => 'The business name field is required.',
+               'mobile.required' => 'The mobile field is required.',
+               'address.required' => 'The address field is required.',
+           ]);
+           
 
-        if ($validator->fails()) {
-            return back()
-                ->withErrors($validator)
-                ->withInput();
-        }
+
+   //      $request->validate([
+   //       'name' => 'required',
+   //       'email' => 'required|email|unique:users,email',
+   //       'password' => 'required',
+   //       'password_confirmation' => 'required|same:password',
+   //   ], [
+   //       'email.required' => 'The email address is required.',
+   //       'email.email' => 'Please enter a valid email address.',
+   //       'email.unique' => 'This email address is already taken.',
+   //       'password_confirmation.required' => 'The confirmation password is required.',
+   //       'password_confirmation.same' => 'The confirmation password must match the password.',
+   //   ]);
+
+
+
+
+      //   if ($validator->fails()) {
+      //       return back()
+      //           ->withErrors($validator)
+      //           ->withInput();
+      //   }
 
         $file_path = "assets/images/users/default.png";
 
@@ -141,7 +169,9 @@ class UserController extends Controller
             $user->save();
 
             DB::commit();
-            return redirect()->route('admin.user.index');
+            return back()->with('success', 'User created successfully');
+
+  
         }  catch (\Exception $e) {
          Log::error('Error creating user: ' . $e->getMessage());
          DB::rollBack(); // Rollback changes in case of an exception

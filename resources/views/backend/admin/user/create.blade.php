@@ -1,8 +1,23 @@
 @extends('backend.layouts.master')
 @section('content')
 <div class="col-12">
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
+
     <div class="card mb-4">
         <h5 class="card-header">Create Guest</h5>
+ 
+
         <div class="card-body">
             <form action="{{ route('admin.users.store') }}" enctype="multipart/form-data" method="post"
                 accept-charset="utf-8" class="needs-validation" novalidate>
@@ -19,7 +34,7 @@
 
 
                         @error('name')
-                        <div class="has-error mt-2" style="color: red"> Guest name required.</div>
+                        <div class="has-error mt-2" style="color: red">{{$message}}</div>
                         @enderror
                     </div>
 
@@ -36,7 +51,7 @@
 
                         </div>
                         @error('business_name')
-                        <div class="has-error mt-2" style="color: red"> Business name required.</div>
+                        <div class="has-error mt-2" style="color: red"> {{$message}}</div>
                         @enderror
                     </div>
 
@@ -49,7 +64,7 @@
 
 
                         @error('mobile')
-                        <div class="has-error mt-2" style="color: red">Mobile number required.</div>
+                        <div class="has-error mt-2" style="color: red">{{$message}}</div>
                         @enderror
                     </div>
 
@@ -62,7 +77,7 @@
                         <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email address" required>
 
                         @error('email')
-                        <div class="has-error mt-2" style="color: red">Email is required.</div>
+                        <div class="has-error mt-2" style="color: red">{{$message}}</div>
                         @enderror
 
                     </div>
@@ -74,7 +89,7 @@
                         <input type="text" class="form-control" id="address" name="address" placeholder="Enter your address" required>
                         <span id="error_address" class="has-error"></span>
                         @error('address')
-                        <div class="has-error mt-2" style="color: red">Address required.</div>
+                        <div class="has-error mt-2" style="color: red">{{$message}}</div>
                         @enderror
                     </div>
 
@@ -100,7 +115,7 @@
                         <img id="selectedImagePreview" src="" alt="Selected Image"
                             style="display:none; max-width: 10%; margin-top: 10px;">
                         @error('name')
-                        <div class="has-error mt-2" style="color: red">Guest idproff required.</div>
+                        <div class="has-error mt-2" style="color: red">{{$message}}</div>
                         @enderror
 
                     </div>
@@ -108,20 +123,41 @@
 
 
 
-                    <div class="form-group col-md-6 col-sm-12">
+                    
+                     <div class="col-xl-6 col-md-6 col-sm-12 mb-4 form-password-toggle">
                         <label>Password:</label>
-                        <input type="password" name="password" placeholder="Password" class="form-control" required>
+                        <!-- <input type="password" name="password" placeholder="Password" class="form-control" required> -->
+
+
+                        <div class="input-group input-group-merge">
+                            <input type="password" id="password" class="form-control" name="password"
+                                placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                aria-describedby="password" />
+                            <span class="input-group-text cursor-pointer"><i class="ti ti-eye-off"></i></span>
+
+                        </div>
+                        @error('password')
+                        <div class="has-error mt-2" style="color: red">{{$message}}</div>
+                        @enderror
+
                         <span id="error_password" class="has-error"></span>
                     </div>
-                    <div class="form-group col-md-6 col-sm-12">
+                     <div class="col-xl-6 col-md-6 col-sm-12 mb-4 form-password-toggle">
                         <label>Confirm Password:</label>
-                        <input type="password" name="password_confirmation" placeholder="Confirm Password"
-                            class="form-control" required>
+                        <div class="input-group input-group-merge">
+                            <input type="password" name="password_confirmation" placeholder="Confirm Password"
+                                class="form-control" required>
+                            <span class="input-group-text cursor-pointer"><i class="ti ti-eye-off"></i></span>
+                        </div>
+                        @error('password_confirmation')
+                        <div class="has-error mt-2" style="color: red">{{ $message }}</div>
+                        @enderror
+
                         <span id="error_confirm-password" class="has-error"></span>
                     </div>
 
 
-                </div>
+                 
                 <br />
 
                 <div class="col-md-12 mb-3">

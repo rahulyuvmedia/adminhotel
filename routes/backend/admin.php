@@ -24,6 +24,8 @@ Route::post('/users', 'AdminController@store')->name('admin.users.store');
 
 /* ===== Access Management Start =========== */
 Route::resource('users', 'UserController');
+
+Route::get('/users', 'UserController@index')->name('admin.user.index');
 Route::get('/allUser', 'UserController@getAll')->name('allUser.users');
 Route::get('/export', 'UserController@export')->name('export');
 
