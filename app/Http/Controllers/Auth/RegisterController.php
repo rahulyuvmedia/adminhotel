@@ -66,18 +66,38 @@ class RegisterController extends Controller
 
 
     public function register(Request $request){
+        // $request->validate([
+        //     'name' => 'required',
+        //     'email' => 'required|email',
+        //     'password' => 'required',
+        // ]);
+
+
+
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required',
+            'password_confirmation' => 'required|same:password',
+        ], [
+            'email.required' => 'The email address is required.',
+            'email.email' => 'Please enter a valid email address.',
+            'email.unique' => 'This email address is already taken.',
+            'password_confirmation.required' => 'The confirmation password is required.',
+            'password_confirmation.same' => 'The confirmation password must match the password.',
         ]);
+
+        
+
+
         try {
             Admin::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);
-        return redirect()->route('admin.auth.login');
+        // return redirect()->route('admin.auth.login');
+        return redirect()->route('admin.auth.login')->with('success', 'Registration successful. Please log in.');
     } catch (\Exception $e) {
         
          
