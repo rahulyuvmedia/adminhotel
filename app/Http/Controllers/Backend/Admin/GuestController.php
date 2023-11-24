@@ -42,7 +42,7 @@ class GuestController extends Controller
      */
     public function create()
     {
-        $rooms = Rooms::where(['availability'=>'available','hotel_id'=>Auth::id()])->get();
+        $rooms = Rooms::where(['availability'=>'available','hotel_id'=>Auth::id()])->where('status','=','1')->get();
 
         return view('backend.admin.guest.create',compact('rooms'));
     }
@@ -90,8 +90,8 @@ class GuestController extends Controller
                         $reservation = new Reservation();
                         $reservation->guest_id = $model->id;
                         $reservation->room_id =$request->roomNumber;
-                        $reservation->checkin_date = $request->input('check_in');
-                        $reservation->checkout_date = $request->input('check_out');
+                        $reservation->check_in = $request->input('check_in');
+                        $reservation->check_out = $request->input('check_out');
                         
                         if($reservation->save()){
                             Rooms::where('id', $request->roomNumber)->update(['availability' => 'booked']);
@@ -183,6 +183,12 @@ class GuestController extends Controller
             $reservation = Reservation::where('guest_id', $id)->first();
     
             if ($reservation) {
+                $room = Rooms::find($request->roomNumber);
+                if (!$room) {
+                    // Handle the case where the room ID doesn't exist
+                    return redirect()->back()->with('error', 'Invalid Room ID');
+                }
+                
                 // Update reservation information
                 $reservation->room_id = $request->roomNumber;
                 $reservation->check_in = $request->check_in;
@@ -242,7 +248,7 @@ class GuestController extends Controller
     {
     //   dd('Active method called with ID: ' . $id);
     Guest::where('id', $id)->update(['status' => '1']);
-        return redirect()->route('admin.guest.index');
+        return redirect()->route('admin.guest.index')->with('success', 'Guest marked as active.');
     }
 
  

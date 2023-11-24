@@ -2,15 +2,15 @@
 @section('content')
 
 @if(session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
+<div class="alert alert-danger">
+    {{ session('error') }}
+</div>
 @endif
 
 @if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
 @endif
 <div class="app-page-title mt-5">
     <div class="page-title-wrapper">
@@ -58,10 +58,14 @@
                     <span id="error_title" class="has-error"></span>
                 </div>
 
-
                 <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
                     <label for=""> Room Number </label>
-                    <input type="text" name='roomNumber' class='form-control' value='{{ $model->rooms->roomNumber }}' />
+                    @isset($model->rooms)
+                    <input type="text" name='roomNumber' class='form-control' value='{{ $model->rooms->roomNumber }}'
+                        readonly />
+                    @else
+                    <input type="text" name='roomNumber' class='form-control' value='No Room Assigned' readonly />
+                    @endisset
                     <span id="error_title" class="has-error"></span>
                 </div>
 
@@ -110,7 +114,7 @@
                 <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
                     <label for="check_in">Check-in:</label>
                     <input type="datetime-local" id="check_in" name="check_in"
-                        value="{{ $model->reservations->checkin_date }}" class="form-control">
+                        value="{{ $model->reservations->check_in }}" class="form-control">
                     @error('check_in')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -119,7 +123,7 @@
                 <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
                     <label for="check_out">Check-out:</label>
                     <input type="datetime-local" id="check_out" name="check_out"
-                        value="{{ $model->reservations->checkout_date }}" class="form-control">
+                        value="{{ $model->reservations->check_out }}" class="form-control">
                     @error('check_out')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror

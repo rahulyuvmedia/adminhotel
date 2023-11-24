@@ -209,7 +209,7 @@ class RoomsController extends Controller
     {
     //   dd('Active method called with ID: ' . $id);
     Rooms::where('id', $id)->update(['status' => '1']);
-        return redirect()->route('admin.rooms.index');
+        return redirect()->route('admin.rooms.index')->with('success', 'Guest marked as active.');
     }
 
  

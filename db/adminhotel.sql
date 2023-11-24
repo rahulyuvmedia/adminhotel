@@ -449,8 +449,8 @@ CREATE TABLE `reservations` (
   `id` bigint(20) NOT NULL,
   `guest_id` bigint(20) NOT NULL,
   `room_id` bigint(20) NOT NULL,
-  `checkin_date` datetime DEFAULT NULL,
-  `checkout_date` datetime DEFAULT NULL,
+  `check_in` datetime DEFAULT NULL,
+  `check_out` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -459,7 +459,7 @@ CREATE TABLE `reservations` (
 -- Dumping data for table `reservations`
 --
 
-INSERT INTO `reservations` (`id`, `guest_id`, `room_id`, `checkin_date`, `checkout_date`, `created_at`, `updated_at`) VALUES
+INSERT INTO `reservations` (`id`, `guest_id`, `room_id`, `check_in`, `check_out`, `created_at`, `updated_at`) VALUES
 (9, 15, 4, '2023-11-29 19:55:00', '2023-12-21 19:55:00', '2023-11-20 20:25:12', '2023-11-20 20:25:12'),
 (10, 16, 6, '2023-11-25 21:16:00', '2023-12-14 21:16:00', '2023-11-20 21:46:44', '2023-11-20 21:46:44'),
 (11, 17, 7, '2023-11-21 20:39:00', '2023-11-22 20:39:00', '2023-11-21 21:09:34', '2023-11-21 21:09:34'),

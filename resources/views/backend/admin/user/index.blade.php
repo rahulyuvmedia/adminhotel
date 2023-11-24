@@ -83,14 +83,14 @@
                                     @endif -->
 
                                     @if ($value->status == 1)
-    <a class="fw-bold  btn btn-success"
-        href="{{ URL::to('admin/user/active', $value->id) }}">Active</a>
-@elseif ($value->status == 0)
-    <a class="fw-bold btn btn-danger"
-        href="{{ URL::to('admin/user/inactive', $value->id) }}">Inactive</a>
-@else
-    Unknown
-@endif
+                                    <a class="fw-bold  btn btn-danger"
+                                        href="{{ URL::to('admin/user/active', $value->id) }}">Inactive</a>
+                                    @elseif ($value->status == 0)
+                                    <a class="fw-bold btn btn-success"
+                                        href="{{ URL::to('admin/user/inactive', $value->id) }}">Active</a>
+                                    @else
+                                    Unknown
+                                    @endif
 
 
 

@@ -46,11 +46,11 @@
                                     <td>
                                         <div class="d-flex flex-column">
                                             <p class="mb-0 fw-medium">
-                                                {{ \Carbon\Carbon::parse($value->checkin_date)->formatLocalized('%A') }}
+                                                {{ \Carbon\Carbon::parse($value->check_in)->formatLocalized('%A') }}
 
                                             </p>
                                             <small
-                                                class="text-muted text-nowrap">{{ \Carbon\Carbon::parse($value->checkin_date)->format('d/m/Y h:i:s A') }}
+                                                class="text-muted text-nowrap">{{ \Carbon\Carbon::parse($value->check_in)->format('d/m/Y h:i:s A') }}
                                             </small>
                                         </div>
                                     </td>
