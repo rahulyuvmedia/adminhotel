@@ -149,7 +149,21 @@
         <div class="card p-4">
             <div class="image d-flex flex-column justify-content-center align-items-center">
                 <button class="btn btn-secondary">
-                    <img src="{{ URL::to('/uploads/' . $user->idproff) }}" height="100" width="100" />
+
+                <?php
+                        $userImage = '/uploads/' . $user->idproff;
+                        $defaultImage = '/uploads/default.jpg';
+                        if (file_exists(public_path($userImage))) {
+                            $imagePath = $userImage;
+                        } else {
+                            $imagePath = $defaultImage;
+                        }
+                        
+                        ?>
+                        <img src="{{ URL::to($imagePath) }}" alt="user-avatar" class="d-block w-px-100 h-px-100 rounded"
+                            id="uploadedAvatar" />
+
+                  
                 </button>
                 <span class="name mt-3">{{ $user->name }}</span>
                 <span class="email">{{ $user->email }}</span>
