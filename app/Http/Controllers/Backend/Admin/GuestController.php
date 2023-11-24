@@ -22,7 +22,6 @@ class GuestController extends Controller
      {
          $keyword = $request->input('keyword');
          $model = Guest::where(['hotel_id'=>Auth::id()])->orderBy('created_at', 'desc')->get();
- 
          return view('backend.admin.guest.index', compact('model', 'keyword'));
      }
 
@@ -43,7 +42,6 @@ class GuestController extends Controller
     public function create()
     {
         $rooms = Rooms::where(['availability'=>'available','hotel_id'=>Auth::id()])->where('status','=','1')->get();
-
         return view('backend.admin.guest.create',compact('rooms'));
     }
 
@@ -155,14 +153,11 @@ class GuestController extends Controller
         try {
             // Find the guest record
             $model = Guest::find($id);
-    
             // Update guest information
             $model->name = $request->name;
             $model->email = $request->email;
             $model->mobile = $request->mobile;
             $model->address = $request->address;
-    
-               
             if ($request->hasFile('idproff')) {
                 $extension = strtolower($request->file('idproff')->getClientOriginalExtension());
                 if ($extension == 'jpg' || $extension == 'jpeg' || $extension == 'png' || $extension == 'svg' || $extension == 'webp') {
@@ -178,31 +173,12 @@ class GuestController extends Controller
     
             // Save the guest record
             $model->save();
-    
             // Find the corresponding reservation record
-            $reservation = Reservation::where('guest_id', $id)->first();
-    
-            if ($reservation) {
-                $room = Rooms::find($request->roomNumber);
-                if (!$room) {
-                    // Handle the case where the room ID doesn't exist
-                    return redirect()->back()->with('error', 'Invalid Room ID');
-                }
-                
-                // Update reservation information
-                $reservation->room_id = $request->roomNumber;
-                $reservation->check_in = $request->check_in;
-                $reservation->check_out = $request->check_out;
-    
-                // Save the reservation record
-                $reservation->save();
-            }
-    
-            // Redirect with success message
+            $reservation = Reservation::where('guest_id', $id)->update(['check_in'=>$request->check_in,"check_out"=>$request->check_out]);
             return redirect()->back()->with('success', 'Successfully Updated');
         } catch (\Exception $e) {
-                        session()->flash('sticky_error', $e->getMessage());
-                        return redirect()->back()->with('error', $e->getMessage());
+            session()->flash('sticky_error', $e->getMessage());
+            return redirect()->back()->with('error', $e->getMessage());
         }
     }
     

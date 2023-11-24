@@ -56,7 +56,7 @@
                                     </td>
                                     <td><span class="badge bg-label-success">{{ $value->room_id }}</span></td>
                                     <td>
-                                        <p class="mb-0 fw-medium">{{ $value->room_id }}</p>
+
                                     </td>
                                 </tr>
                             @endforeach
@@ -86,62 +86,61 @@
                     </div>
                 </div>
                 <div class="container">
-                   <div class='row'>
-                   <div class="btn-group d-flex flex-wrap" role="group" aria-label="First group">
-                        @foreach ($rooms as $room)
-                            <?php
-                            $availableClass = 'btn btn-outline-secondary m-2 ';
-                            if ($room->availability === 'available') {
-                                $availableClass .= 'avail-green';
-                            } elseif ($room->availability === 'booked') {
-                                $availableClass .= 'avail-red';
-                            } else {
-                                $availableClass .= 'avail-grey';
-                            }
-                            
-                            ?>
-                            <button type="button" class="{{ $availableClass }}"
-                            style="  border: .5px solid#ccc;  border-radius: 8px; color: {{ $room->availability === 'available' ? '#28a745' : ($room->availability === 'booked' ? '#dc3545' : '#6c757d') }};"
-                                onClick="redirectToPage({{ $room->id }})">
-                                @if ($room->availability === 'available')
-                                <i class="fas fa-door-open" style="color: inherit;"></i> {{ $room->roomNumber }}
+                    <div class='row'>
+                        <div class="btn-group d-flex flex-wrap" role="group" aria-label="First group">
+                            @foreach ($rooms as $room)
+                                <?php
+                                $availableClass = 'btn btn-outline-secondary m-2 ';
+                                if ($room->availability === 'available') {
+                                    $availableClass .= 'avail-green';
+                                } elseif ($room->availability === 'booked') {
+                                    $availableClass .= 'avail-red';
+                                } else {
+                                    $availableClass .= 'avail-grey';
+                                }
+                                
+                                ?>
+                                <button type="button" class="{{ $availableClass }}"
+                                    style="  border: .5px solid#ccc;  border-radius: 8px; color: {{ $room->availability === 'available' ? '#28a745' : ($room->availability === 'booked' ? '#dc3545' : '#6c757d') }};"
+                                    onClick="redirectToPage({{ $room->id }})">
+                                    @if ($room->availability === 'available')
+                                        <i class="fas fa-door-open" style="color: inherit;"></i> {{ $room->roomNumber }}
                                     @elseif ($room->availability === 'booked')
-                                    <i class="fas fa-door-closed" style="color: inherit;"></i> {{ $room->roomNumber }}
+                                        <i class="fas fa-door-closed" style="color: inherit;"></i> {{ $room->roomNumber }}
                                     @else
-                                    
-                                    <i class="fa-solid fa-lock" style="color: inherit;"></i> {{ $room->roomNumber }}
-                                @endif
-                            </button>
-                        @endforeach
-                    </div>
+                                        <i class="fa-solid fa-lock" style="color: inherit;"></i> {{ $room->roomNumber }}
+                                    @endif
+                                </button>
+                            @endforeach
+                        </div>
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <script>
-        function redirectToPage(id) {
-            window.location.href = "{{ URL::to('/admin/guest/create?room=') }}" + id;
-        }
-
-        function refreshPage() {
-            location.reload();
-        }
-    </script>
-
-    <script>
-        function shareContent() {
-            if (navigator.share) {
-                navigator.share({
-                        title: 'Your Share Title',
-                        text: 'Your Share Text',
-                        url: 'https://your-share-url.com'
-                    })
-                    .then(() => console.log('Shared successfully'))
-                    .catch((error) => console.error('Error sharing:', error));
-            } else {
-                alert('Web Share API is not supported in this browser.');
+        <script>
+            function redirectToPage(id) {
+                window.location.href = "{{ URL::to('/admin/guest/create?room=') }}" + id;
             }
-        }
-    </script>
-@endsection
+
+            function refreshPage() {
+                location.reload();
+            }
+        </script>
+
+        <script>
+            function shareContent() {
+                if (navigator.share) {
+                    navigator.share({
+                            title: 'Your Share Title',
+                            text: 'Your Share Text',
+                            url: 'https://your-share-url.com'
+                        })
+                        .then(() => console.log('Shared successfully'))
+                        .catch((error) => console.error('Error sharing:', error));
+                } else {
+                    alert('Web Share API is not supported in this browser.');
+                }
+            }
+        </script>
+    @endsection
