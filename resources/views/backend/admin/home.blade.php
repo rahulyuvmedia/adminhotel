@@ -2,7 +2,7 @@
 @section('title', 'Dashboard')
 @section('content')
     <div class="row">
-        <div class="col-lg-6 mb-4 mb-lg-0">
+        <div class="col-lg-6 mb-4 mb-lg-">
             <div class="card h-100">
                 <div class="card-header d-flex justify-content-between">
                     <h5 class="card-title m-0 me-2">Upcoming Booking</h5>
@@ -66,7 +66,7 @@
             </div>
         </div>
 
-        <div class="col-lg-6 mb-4 mb-lg-0">
+        <div class="col-lg-6 mb-4 mb-lg-">
             <div class="card h-100">
                 <div class="card-header d-flex justify-content-between">
                     <h5 class="card-title m-0 me-2">Rooms Details</h5>
@@ -86,7 +86,8 @@
                     </div>
                 </div>
                 <div class="container">
-                    <div class="btn-group d-flex flex-wrap" role="group" aria-label="First group">
+                   <div class='row'>
+                   <div class="btn-group d-flex flex-wrap" role="group" aria-label="First group">
                         @foreach ($rooms as $room)
                             <?php
                             $availableClass = 'btn btn-outline-secondary m-2 ';
@@ -100,11 +101,15 @@
                             
                             ?>
                             <button type="button" class="{{ $availableClass }}"
+                            style="  border: .5px solid#ccc;  border-radius: 8px; color: {{ $room->availability === 'available' ? '#28a745' : ($room->availability === 'booked' ? '#dc3545' : '#6c757d') }};"
                                 onClick="redirectToPage({{ $room->id }})">
                                 @if ($room->availability === 'available')
-                                    <i class="ti ti-bed"></i> {{ $room->roomNumber }}
-                                @else
-                                    <i class="ti ti-bed-off"></i> {{ $room->roomNumber }}
+                                <i class="fas fa-door-open" style="color: inherit;"></i> {{ $room->roomNumber }}
+                                    @elseif ($room->availability === 'booked')
+                                    <i class="fas fa-door-closed" style="color: inherit;"></i> {{ $room->roomNumber }}
+                                    @else
+                                    
+                                    <i class="fa-solid fa-lock" style="color: inherit;"></i> {{ $room->roomNumber }}
                                 @endif
                             </button>
                         @endforeach

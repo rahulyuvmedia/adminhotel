@@ -28,7 +28,7 @@
 
 
 
- 
+
                     <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
                         <label class="form-label" for="price">Price <span style="color:red">*</span></label>
                         <div class="input-group input-group-merge">
@@ -44,9 +44,9 @@
 
 
 
-                
 
-                
+
+
 
 
 
@@ -101,7 +101,7 @@
                         @enderror
                     </div>
 
-     
+
                     <!-- <div class="form-group col-md-12 col-sm-12">
                         <label for="">Facilities</label>
                         @if (count(MyConstants::ROOM_FACILITY) > 0)
@@ -115,31 +115,33 @@
                     </div> -->
 
 
-                
+
                     <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
-                    <label for="facilities">Facilities</label>
-                    <div>
-                        @foreach ($master as $facilityJson)
-                        @php
-                        $facility = json_decode($facilityJson, true);
-                        @endphp
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="facilities[]"
-                                id="{{ $facility['title'] }}" value="{{ $facility['title'] }}">
-                            <label class="form-check-label" for="{{ $facility['title'] }}">
-                                {{ $facility['title'] }}
-                            </label>
+                        <label for="facilities">Facilities</label>
+                        <div class='d-flex flex-wrap'>
+                            @foreach ($master as $facilityJson)
+                            @php
+                            $facility = json_decode($facilityJson, true);
+                            @endphp
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="facilities[]"
+                                    id="{{ $facility['title'] }}" value="{{ $facility['title'] }}">
+                                <label class="form-check-label" for="{{ $facility['title'] }}">
+                                    {{ $facility['title'] }}
+                                </label>
+                            </div>
+                            @endforeach
                         </div>
-                        @endforeach
                     </div>
-                </div>
+
+                   
 
 
 
 
                     <div class="clearfix"></div>
                     <div class="form-group col-md-12 mb-3">
-                        <button type="submit" class="btn btn-success button-submit" data-loading-text="Loading..."><span
+                        <button type="submit" class="btn btn-success " data-loading-text="Loading..."><span
                                 class="fa fa-save fa-fw"></span> Save
                         </button>
                     </div>

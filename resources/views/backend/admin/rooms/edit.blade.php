@@ -1,10 +1,11 @@
 @extends('backend.layouts.master')
 @section('content')
 
-<div class="card">
+
+<div class="col-12">
+    <div class="card mb-4">
     <h5 class="card-header">Edit Rooms </h5>
-    <div class="card-body">
-        <div class="main-card mb-3 card">
+         
             <div class="card-body">
 
                 <form id='edit' action="{{ Route('admin.rooms.update', $model->id) }}" enctype="multipart/form-data"
@@ -116,7 +117,7 @@
                                  </div> -->
                        <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
                             <label for="facilities">Facilities</label>
-                            <div>
+                            <div class="d-flex flex-wrap">
                                 @foreach ($master as $facilityJson)
                                 @php
                                 $facility = json_decode($facilityJson, true);
@@ -139,14 +140,14 @@
 
                         <div class="clearfix"></div>
                         <div class="form-group col-md-12">
-                            <button type="submit" class="btn btn-success button-submit"
+                            <button type="submit" class="btn btn-success "
                                 data-loading-text="Loading..."><span class="fa fa-save fa-fw"></span> Save
                             </button>
                         </div>
                     </div>
                 </form>
             </div>
-        </div>
+       
     </div>
 </div>
 
