@@ -417,7 +417,7 @@ $user = Auth::user();
 
                      <?php
                         $userImage = '/uploads/' . $user->idproff;
-                        $defaultImage = '/uploads/default.jpg';
+                        $defaultImage = '/assets/images/default.jpg';
                         if (file_exists(public_path($userImage))) {
                             $imagePath = $userImage;
                         } else {

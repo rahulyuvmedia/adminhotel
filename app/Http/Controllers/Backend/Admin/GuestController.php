@@ -121,16 +121,22 @@ class GuestController extends Controller
      * @param  \App\Models\Guest  $guest
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        $model = Guest::where(['id' => $id])->first();
-        
-        $reservation = Reservation::find($model->reservations->id); // Replace 1 with the actual  
-        $roomForReservation = $reservation->room;
-        $model->rooms = $roomForReservation;
-         
-        return view('backend.admin.guest.edit', compact('model'));
+ public function edit($id)
+{
+    $model = Guest::where(['id' => $id])->first();
+
+    // Check if $model is not null
+    if (!$model) {
+        // Handle the case where Guest with the given ID is not found
+        abort(404);
     }
+
+    $reservation = Reservation::find($model->reservations->id);
+    $roomForReservation = $reservation->room;
+    $model->rooms = $roomForReservation;
+
+    return view('backend.admin.guest.edit', compact('model'));
+}
 
     /**
      * Update the specified resource in storage.
