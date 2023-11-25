@@ -56,6 +56,8 @@ class GuestController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required',
+            'member' => 'required',
+
             'address' => 'required',
             'mobile' => 'required',
             'check_out' => 'required',
@@ -67,6 +69,8 @@ class GuestController extends Controller
             $model = new Guest();
             $model->name = $request->name;
             $model->email = $request->email;
+            $model->member = $request->member;
+
             $model->mobile = $request->mobile;
             $model->address = $request->address;
             $model->hotel_id = Auth::id();
@@ -150,6 +154,7 @@ class GuestController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required',
+            'member' => 'required',
             'mobile' => 'required',
             'address' => 'required',
             'check_in' => 'nullable|date',
@@ -162,6 +167,7 @@ class GuestController extends Controller
             // Update guest information
             $model->name = $request->name;
             $model->email = $request->email;
+            $model->member = $request->member;
             $model->mobile = $request->mobile;
             $model->address = $request->address;
             if ($request->hasFile('idproff')) {

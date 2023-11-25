@@ -54,6 +54,10 @@
                                 <td>Check-out:</td>
                                 <td>{{ $model->reservations->check_out }}</td>
                             </tr>
+                            <tr>
+                                <td>Total Member:</td>
+                                <td>{{ $model->member }}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

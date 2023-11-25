@@ -34,6 +34,13 @@ class DashboardController extends Controller
     {
         $reservation = Reservation::findOrFail($reservationId);
 
+
+        // Reservation::where('guest_id', $reservation->guest_id)
+        // ->where('check_out', '>', now())
+        // ->update(['status' => 'completed']);
+
+
+        
         $reservation->status = 'cancel';
         $reservation->save();
 

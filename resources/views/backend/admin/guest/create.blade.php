@@ -30,6 +30,9 @@
                                 <div class="has-error mt-2" style="color: red"> Guest name required.</div>
                             @enderror
                         </div>
+
+
+                        
                         <!-- Phone Number -->
                         <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
                             <label class="form-label" for="mobile">Phone Number <span style="color:red">*</span> </label>
@@ -119,7 +122,20 @@
                             @enderror
                         </div>
 
+
+
                         <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
+                            <label class="form-label" for="member">Member <span style="color:red">*</span></label>
+                            <input type="text" id="member" name='member' class="form-control member"
+                                placeholder="Enter your member" />
+                            @error('member')
+                                <div class="has-error mt-2" style="color: red">Member required.</div>
+                            @enderror
+                        </div>
+
+
+
+                        <div class="col-xl-12 col-md-12 col-sm-12 mb-4">
                             <button type="submit" class="btn btn-success button-submit">
                                 <span class="fa fa-save fa-fw"></span> Save
                             </button>

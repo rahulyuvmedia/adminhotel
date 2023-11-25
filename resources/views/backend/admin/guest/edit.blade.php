@@ -130,7 +130,11 @@
                 </div>
 
 
-                <!-- Your remaining form fields... -->
+                <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
+                    <label for="">Member </label>
+                    <input type="text" name='member' class='form-control' value='{{ $model->member }}' />
+                    <span id="error_title" class="has-error"></span>
+                </div>
 
 
 
