@@ -120,7 +120,9 @@ function confirmDelete(button) {
 
 $(document).ready(function() {
     $('#guestsTable').DataTable({
-        "pagingType": "full_numbers", // Add pagination numbers
+        "pagingType": "full_numbers",
+        buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],// Add pagination numbers
+        
         "lengthMenu": [15, 30, 45, 60], // Set number of records per page options
         "language": {
             "emptyTable": "No guests found",

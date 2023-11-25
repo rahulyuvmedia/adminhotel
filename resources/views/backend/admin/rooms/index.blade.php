@@ -108,10 +108,19 @@
         }
     </script>
 
-    <script>
-        $(document).ready(function() {
-            $('.datatable').DataTable();
+<script>
+    $(document).ready(function() {
+        $('.datatable').DataTable({
+            dom: 'lBfrtip', // Include 'l' for the length menu
+            buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+            lengthMenu: [
+                [10, 25, 50, -1],
+                [10, 25, 50, 'All']
+            ], // Length options and labels
+            pageLength: 10 // Set the initial number of rows displayed
         });
-    </script>
+    });
+</script>
+
 
 @stop
