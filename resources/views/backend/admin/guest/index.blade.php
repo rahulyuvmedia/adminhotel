@@ -38,10 +38,12 @@
                                 <th>Email</th>
                                 <th>Number</th>
                                 <th>Action</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($model as $value)
+                            @if ($value->status == 1)
                             <tr>
                                 <td class="serial-number">{{ $loop->iteration }}</td>
                                 <td>{{ $value->name }}</td>
@@ -65,15 +67,19 @@
 
                                     @if ($value->status == 1)
                                     <a class="fw-bold  btn btn-success"
-                                        href="{{ URL::to('admin/guest/active', $value->id) }}">Active</a>
+                                    onclick="confirmInactive({{ $value->id }})"    href="{{ URL::to('admin/guest/active', $value->id) }}">Active</a>
+
+                                    
                                     @elseif ($value->status == 0)
                                     <a class="fw-bold btn btn-danger"
-                                        href="{{ URL::to('admin/guest/inactive', $value->id) }}">Inactive</a>
+                                     href="{{ URL::to('admin/guest/inactive', $value->id) }}">Inactive</a>
                                     @else
+                                    
                                     Unknown
                                     @endif
                                 </td>
                             </tr>
+                            @endif
                             @endforeach
                         </tbody>
                     </table>
@@ -104,5 +110,15 @@
         });
     });
 </script>
-
+<script>
+    function confirmInactive(guestId) {
+        var confirmed = confirm("Are you sure you want to set this guest as inactive?");
+        if (confirmed) {
+            // User clicked "OK", navigate to the 'Inactive' URL
+            window.location.href = "{{ URL::to('admin/guest/inactive') }}/" + guestId;
+        } else {
+            // User clicked "Cancel", do nothing
+        }
+    }
+</script>
 @stop

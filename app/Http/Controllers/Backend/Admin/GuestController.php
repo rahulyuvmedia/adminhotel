@@ -21,7 +21,7 @@ class GuestController extends Controller
      public function index(Request $request)
      {
          $keyword = $request->input('keyword');
-         $model = Guest::where(['hotel_id'=>Auth::id()])->orderBy('created_at', 'desc')->get();
+         $model = Guest::with('rooms')->where(['hotel_id' => Auth::id()])->orderBy('created_at', 'desc')->get();
          return view('backend.admin.guest.index', compact('model', 'keyword'));
      }
 
@@ -123,7 +123,7 @@ class GuestController extends Controller
      */
  public function edit($id)
 {
-    $model = Guest::where(['id' => $id])->first();
+    $model = Guest::with(['reservations.room'])->find($id);
 
     // Check if $model is not null
     if (!$model) {
@@ -221,6 +221,24 @@ class GuestController extends Controller
     public function active($id)
     {
         
+        $guest = Guest::findOrFail($id);
+
+        // Update guest status
+        $guest->status = '0';
+        $guest->save();
+
+        $rooms = Rooms::where('hotel_id', $guest->hotel_id)->get();
+        foreach ($rooms as $room) {
+            $room->availability = 'available';
+            $room->save();
+        }
+
+        $reservations = Reservation::where('guest_id', $guest->id)->get();
+        foreach ($reservations as $reservation) {
+            $reservation->status = 'cancel';
+            $reservation->save();
+        }
+        
         Guest::where('id', $id)->update(['status' => '0']);
         return redirect()->route('admin.guest.index');
     }
@@ -228,9 +246,11 @@ class GuestController extends Controller
 
     public function inactive($id)
     {
-    //   dd('Active method called with ID: ' . $id);
+        $guest = Guest::findOrFail($id);
+    
     Guest::where('id', $id)->update(['status' => '1']);
-        return redirect()->route('admin.guest.index')->with('success', 'Guest marked as active.');
+        return redirect()->route('admin.guest.index')
+        ->with('success', 'Guest marked as active.');
     }
 
  

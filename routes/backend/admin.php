@@ -1,6 +1,10 @@
 <?php
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+// routes/web.php
+
+// Route::post('/cancelReservation/{reservation}', 'Backend\Admin\DashboardController@cancelReservation')
+//     ->name('cancelReservation');
 
 // Admin
 Route::get('/profile', 'AdminController@profile')->name('profile');
