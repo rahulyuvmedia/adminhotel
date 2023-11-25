@@ -71,6 +71,7 @@ Route::resource('guest', 'GuestController');
 Route::get('/guest/active/{id}', 'GuestController@active');
 Route::get('/guest/inactive/{id}', 'GuestController@inactive');
 
+Route::resource('guestHistory', 'GuestHistoryController');
  
 Route::resource('rooms', 'RoomsController');
 Route::get('/rooms/active/{id}', 'RoomsController@active');

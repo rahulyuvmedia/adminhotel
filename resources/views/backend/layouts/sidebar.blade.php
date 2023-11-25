@@ -42,6 +42,17 @@
                  <div data-i18n="Guest List">Guest List</div>
              </a>
          </li>
+
+
+         <li class="menu-item @if (request()->is('admin/guestHistory')) active @endif">
+             <a href="{{ URL::to('/admin/guestHistory') }}" class="menu-link">
+                 <i class="menu-icon tf-icons ti ti-mail"></i>
+                 <div data-i18n="Guest History">Guest History</div>
+             </a>
+         </li>
+
+
+
          <li class="menu-item @if (request()->is('admin/rooms')) active @endif">
              <a href="{{ URL::to('/admin/rooms') }}" class="menu-link">
                  <i class="menu-icon tf-icons ti ti-messages"></i>
