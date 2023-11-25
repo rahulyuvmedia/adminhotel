@@ -66,22 +66,15 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tableexport@5.2.0/dist/js/tableexport.bundle.min.js"></script>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var guestsTable = $('#guestsTable').DataTable({
-            "pagingType": "full_numbers", 
-            "language": {
-                "emptyTable": "No guests found",
-                "zeroRecords": "No matching guests found"
-            },
-            "columnDefs": [
-                { "orderable": false, "targets": 0 } // Disable ordering on the first column
-            ]
-        });
-
-        // Initialize TableExport
-        new TableExport(guestsTable, {
-            formats: ['xls', 'csv', 'txt'],
-            exportButtons: false // Disabling built-in export buttons
+    $(document).ready(function() {
+        $('.datatable').DataTable({
+            dom: 'lBfrtip', // Include 'l' for the length menu
+            buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+            lengthMenu: [
+                [10, 25, 50, -1],
+                [10, 25, 50, 'All']
+            ], // Length options and labels
+            pageLength: 10 // Set the initial number of rows displayed
         });
     });
 </script>
