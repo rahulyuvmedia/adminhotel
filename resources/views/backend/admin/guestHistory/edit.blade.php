@@ -58,6 +58,10 @@
                                 <td>Total Member:</td>
                                 <td>{{ $model->member }}</td>
                             </tr>
+                            <tr>
+                                <td>Total Child:</td>
+                                <td>{{ $model->child  }}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
