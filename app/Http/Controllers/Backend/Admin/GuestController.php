@@ -53,11 +53,13 @@ class GuestController extends Controller
      */
 
     public function store(Request $request){
+
+        // dd($request);
         $request->validate([
             'name' => 'required',
             'email' => 'required',
             'member' => 'required',
-
+            'child'=> 'required',
             'address' => 'required',
             'mobile' => 'required',
             'check_out' => 'required',
@@ -70,6 +72,7 @@ class GuestController extends Controller
             $model->name = $request->name;
             $model->email = $request->email;
             $model->member = $request->member;
+            $model->child = $request->child;
 
             $model->mobile = $request->mobile;
             $model->address = $request->address;
@@ -155,6 +158,7 @@ class GuestController extends Controller
             'name' => 'required',
             'email' => 'required',
             'member' => 'required',
+            'child'=> 'required',
             'mobile' => 'required',
             'address' => 'required',
             'check_in' => 'nullable|date',
@@ -168,6 +172,8 @@ class GuestController extends Controller
             $model->name = $request->name;
             $model->email = $request->email;
             $model->member = $request->member;
+            $model->child = $request->child;
+
             $model->mobile = $request->mobile;
             $model->address = $request->address;
             if ($request->hasFile('idproff')) {

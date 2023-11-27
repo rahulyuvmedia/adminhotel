@@ -132,6 +132,16 @@
                         @enderror
                     </div>
 
+                    <!-- Child Input -->
+                    <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
+                        <label class="form-label" for="child">Child  <span
+                                style="color:red">*</span></label>
+                        <input type="text" id="child" name='child' class="form-control child-member"
+                            placeholder="Enter child member" />
+                        @error('child')
+                        <div class="has-error mt-2" style="color: red">Child member required.</div>
+                        @enderror
+                    </div>
 
 
                     <div class="col-xl-12 col-md-12 col-sm-12 mb-4">
