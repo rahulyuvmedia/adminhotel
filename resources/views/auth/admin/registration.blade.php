@@ -77,10 +77,8 @@
                     <div class="mb-3">
                         <label for="">Otp</label>
 
-                        <input type="tel" class="form-control" id="verificationCode" placeholder="" value=""
-                            name="verificationCode" pattern="[0-9]{6}" maxlength="6" minlength="6" />
-                        <input type="hidden" id="generatedOTP" placeholder="OTP" value="" name="generatedOTP" />
-                    </div>
+                        <input type="tel" class="form-control" id="otp" placeholder="Enter OTP" required value=""
+                            name="otp" pattern="[0-9]{6}" maxlength="6" minlength="6" />  </div>
                     <div class="mb-3 form-password-toggle">
                         <label>Password:</label>
                         <!-- <input type="password" name="password" placeholder="Password" class="form-control" required> -->

@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Models\Admin;
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 class RegisterController extends Controller
 {
     /*
@@ -105,16 +108,57 @@ class RegisterController extends Controller
     }
 }
 
+private function sendOtpEmail($email, $otp)
+{
+    $mail = new PHPMailer(true);
 
+    try {
+        // Server settings for Gmail
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.gmail.com';
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'your-email@gmail.com'; // Your Gmail address
+        $mail->Password   = 'your-app-password'; // Your Gmail app password
+        $mail->SMTPSecure = 'tls';
+        $mail->Port       = 587;
 
-    protected function create(array $data)
-    {
+        // Recipients
+        $mail->setFrom('your-email@gmail.com', 'Your Name');
+        $mail->addAddress($email);
 
-        dd($data);
-        return User::create([
+        // Content
+        $mail->isHTML(true);
+        $mail->Subject = 'OTP for Registration';
+        $mail->Body    = 'Your OTP is: ' . $otp;
+
+        $mail->send();
+    } catch (Exception $e) {
+        
+    }
+}
+
+   
+protected function create(array $data)
+{
+    try {
+        // Generate OTP
+        $otp = rand(100000, 999999);
+
+        // Save OTP to the user record
+        $user = Admin::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'otp' => $otp,
         ]);
+
+        // Send OTP via email
+        $this->sendOtpEmail($user->email, $otp);
+
+        return redirect()->route('admin.auth.login')->with('success', 'Registration successful. Please check your email for OTP.');
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'An error occurred during registration.');
     }
+}
+
 }

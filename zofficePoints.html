@@ -1,12 +1,95 @@
 <b><h1>22/11/23</h1></b>
 <hr>
 <br/>
-1. Edit profile is not working - adminContoller 
+1. After check_out Rooms available, guest status = 0, reservation=completed. 
 <br/>
-2. check in check out not editable.
+2. Send Otp in mail.
 <br/>
-3. when Guest delete then Room Available.
+3. Change password is not woerking 
 <br/>
-4. outside registration form is not working 
+4.  
 <br/>
-5. change_password is not working 
+5.  
+
+
+
+<?php
+
+namespace App\Http\Controllers\Backend\Admin;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\Request;
+use App\Models\Rooms;
+use App\Models\Guest;
+use Carbon\Carbon;
+use View;
+use DB;
+use App\Models\Reservation;
+ 
+
+class DashboardController extends Controller
+{
+    //
+    public function index()
+    {
+        $upcomingReseration = DB::table('guest')
+    ->join('reservations', 'guest.id', '=', 'reservations.guest_id')
+    ->where('reservations.check_in', '>', now())
+    ->where('guest.hotel_id', '=', Auth()->user()->id)
+    ->select('guest.*', 'reservations.*')
+    ->where('guest.status','=','1')
+    ->get();
+    $rooms = Rooms::where('hotel_id', Auth()->user()->id)->where('rooms.status','=','1')->get();
+        return View::make('backend.admin.home',compact('upcomingReseration','rooms'));
+    }
+
+
+    public function cancelReservation($reservationId)
+{
+    // Find the reservation by ID
+    $reservation = Reservation::findOrFail($reservationId);
+
+    // Check if the reservation exists
+    if (!$reservation) {
+        return Redirect::back()->with('error', 'Reservation not found.');
+    }
+
+    // Parse the check_out string into a Carbon instance
+    $checkOutDateTime = Carbon::parse($reservation->check_out);
+
+    // Debug: Print the current time and reservation check_out time
+    dd(now()->format('Y-m-d H:i:s'), $checkOutDateTime->format('Y-m-d H:i:s'));
+
+    // Compare check_out with current time
+    if ($checkOutDateTime->setTimezone('Asia/Kolkata')->isPast()) {
+        // Update reservations where check_out is less than current time
+        $updateResult = Reservation::where('guest_id', $reservation->guest_id)
+            ->where('check_out', '<', now()->setTimezone('Asia/Kolkata'))
+            ->update(['status' => 'completed']);
+
+        // Debug: Print the result of the update query
+        dd($updateResult);
+
+        // Update reservations again (optional, if needed)
+        Reservation::where('guest_id', $reservation->guest_id)
+            ->where('check_out', '<', now()->setTimezone('Asia/Kolkata'))
+            ->update(['status' => 'completed']);
+
+        // Debug: Print the values of check_out and current time
+        // dd($checkOutDateTime->format('Y-m-d H:i:s'), now()->format('Y-m-d H:i:s'));
+
+        // Update the status of the reservation to 'cancel'
+        $reservation->status = 'cancel';
+        $reservation->save();
+
+        // Redirect back with success message
+        return Redirect::back()->with('success', 'Reservation canceled successfully.');
+    } else {
+        // Check-out time is not in the past, handle accordingly (e.g., display a message)
+        return Redirect::back()->with('error', 'Reservation cannot be canceled as check-out time is in the future.');
+    }
+}
+
+    
+} 
