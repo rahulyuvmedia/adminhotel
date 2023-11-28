@@ -9,7 +9,8 @@
     
     echo $roomNumber;
 ?>
-<h5 class="mb-4">Create Guest</h5>
+<h5 class="mb-4">Create Guest  <button type="button" id="addForm" class="btn btn-primary">+</button>
+</h5>
 <div class="ant-col ant-col-17" style="padding-left: 8px; padding-right: 8px;">
     <div class="card mb-4">
 
@@ -55,8 +56,11 @@
 
                         <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
                             <label class="form-label" for="member">Adult <span style="color:red">*</span></label>
-                            <input type="text" id="member" name='member' class="form-control "
-                                placeholder="Enter your member" />
+                            <select id="member" name="member" class="form-control">
+                                <option value="">Select Number of Adults</option>
+                                @for ($i = 1; $i <= 15; $i++) <option value="{{ $i }}">{{ $i }}</option>
+                                    @endfor
+                            </select>
                             @error('member')
                             <div class="has-error mt-2" style="color: red">Member required.</div>
                             @enderror
@@ -64,10 +68,13 @@
 
                         <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
                             <label class="form-label" for="child">Child <span style="color:red">*</span></label>
-                            <input type="text" id="child" name='child' class="form-control child-member"
-                                placeholder="Enter child member" />
+                            <select id="child" name="child" class="form-control">
+                                <option value="">Select Number of Child</option>
+                                @for ($i = 1; $i <= 15; $i++) <option value="{{ $i }}">{{ $i }}</option>
+                                    @endfor
+                            </select>
                             @error('child')
-                            <div class="has-error mt-2" style="color: red">Child member required.</div>
+                            <div class="has-error mt-2" style="color: red">Child required.</div>
                             @enderror
                         </div>
                     </div>
@@ -137,7 +144,7 @@
 
                             <!-- Display selected image preview -->
                             <img id="selectedImagePreview" src="" alt="Selected Image"
-                                style="display:none; max-width: 100%; margin-top: 10px;">
+                                style="display:none; max-width: 50%; margin-top: 10px;">
                             @error('idproff')
                             <div class="has-error mt-2" style="color: red">Guest id proof required.</div>
                             @enderror
@@ -153,10 +160,52 @@
 
                 </div>
             </form>
+
         </div>
     </div>
 </div>
 
+<!-- JavaScript to clone the form and append it when the button is clicked -->
+<script>
+   document.getElementById('addForm').addEventListener('click', function () {
+    // Clone the form
+    var originalForm = document.getElementById('create');
+    var clonedForm = originalForm.cloneNode(true);
+
+    // Clear values in the cloned form
+    clonedForm.reset();
+
+    // Find all input elements in the original form
+    var originalInputs = originalForm.querySelectorAll('input, select, textarea');
+
+    // Find all input elements in the cloned form
+    var clonedInputs = clonedForm.querySelectorAll('input, select, textarea');
+
+    // Generate a unique index for the cloned form
+    var cloneIndex = Date.now();
+
+    // Copy values from original to cloned form
+    for (var i = 0; i < originalInputs.length; i++) {
+        if (originalInputs[i].type !== 'submit') {
+            // Update the name attribute to include the unique index
+            var originalName = originalInputs[i].name;
+            clonedInputs[i].name = originalName + '_' + cloneIndex;
+
+            // Copy the value
+            clonedInputs[i].value = originalInputs[i].value;
+
+            // If it's a select element, copy the selected option
+            if (originalInputs[i].tagName === 'SELECT') {
+                clonedInputs[i].value = originalInputs[i].value;
+            }
+        }
+    }
+
+    // Append the cloned form after the original form
+    originalForm.parentNode.insertBefore(clonedForm, originalForm.nextSibling);
+});
+
+</script>
 <script>
 function displaySelectedImage(input) {
     var selectedFileName = input.files[0].name;

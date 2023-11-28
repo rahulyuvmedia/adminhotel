@@ -61,11 +61,14 @@ class RoomsController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
+    // Rest of the code
         $request->validate([
             'roomNumber' => 'required',
             'price' => 'required',
             'roomType' => 'required',
             'occupancy' => 'required',
+            'floor' => 'required',
             'availability' => 'required',
             'facilities' => 'required|array',
         ]);
@@ -74,6 +77,8 @@ class RoomsController extends Controller
            
             $model->roomNumber = $request->roomNumber;
             $model->price = $request->price;
+            $model->floor = $request->floor;
+
             $model->roomType = $request->roomType;
             $model->occupancy = $request->occupancy;
             $model->availability = $request->availability;
@@ -82,6 +87,7 @@ class RoomsController extends Controller
  
          
          
+          
             
             $model->save();
             return redirect()->route('admin.rooms.index')->with('success', 'Room added successfully.');
@@ -128,6 +134,7 @@ class RoomsController extends Controller
         $request->validate([
             'roomNumber' => 'required',
             'price' => 'required',
+            'floor' => 'required',
             'roomType' => 'required',
             'occupancy' => 'required',
             'availability' => 'required',
@@ -140,6 +147,7 @@ class RoomsController extends Controller
             $model = Rooms::find($id);
             $model->roomNumber = $request->roomNumber;
             $model->price = $request->price;
+            $model->floor = $request->floor;
             $model->roomType = $request->roomType;
             $model->occupancy = $request->occupancy;
             $model->availability = $request->availability;

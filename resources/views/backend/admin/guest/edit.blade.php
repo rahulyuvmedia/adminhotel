@@ -53,21 +53,50 @@
                     @enderror
                 </div>
 
+
+
+
+
+
+
+
+
                 <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
-                    <label for="member">Adult</label>
-                    <input type="text" name='member' class='form-control' value='{{ $model->member }}' />
+                    <label class="form-label" for="member">Adult <span style="color:red">*</span></label>
+                    <select id="member" name="member" class="form-control">
+                        @for ($i = 1; $i <= 15; $i++) <option value="{{ $i }}" @if ($i==$model->member) selected
+                            @endif>{{ $i }}</option>
+                            @endfor
+                    </select>
                     @error('member')
-                    <div class="text-danger">{{ $message }}</div>
+                    <div class="has-error mt-2" style="color: red">Adult required.</div>
                     @enderror
                 </div>
 
+
+
+ 
+
+
                 <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
-                    <label for="child">Child</label>
-                    <input type="text" name='child' class='form-control' value='{{ $model->child }}' />
+                    <label class="form-label" for="child">Child <span style="color:red">*</span></label>
+                    <select id="child" name="child" class="form-control">
+                        @for ($i = 1; $i <= 15; $i++) <option value="{{ $i }}" @if ($i==$model->child) selected
+                            @endif>{{ $i }}</option>
+                            @endfor
+                    </select>
                     @error('child')
-                    <div class="text-danger">{{ $message }}</div>
+                    <div class="has-error mt-2" style="color: red">Child required.</div>
                     @enderror
                 </div>
+
+
+
+
+
+
+
+
             </div>
             <hr>
             <p class=" p-1">GUEST INFORMATION</p>
@@ -136,14 +165,14 @@
 
 
                 <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
-                <button type="submit" class="btn btn-success button-submit" data-loading-text="Loading..."><span
-                        class="fa fa-save fa-fw"></span> Save
-                </button>
+                    <button type="submit" class="btn btn-success button-submit" data-loading-text="Loading..."><span
+                            class="fa fa-save fa-fw"></span> Save
+                    </button>
+                </div>
             </div>
-            </div>
-          
+
         </form>
     </div>
- 
+
 </div>
 @stop

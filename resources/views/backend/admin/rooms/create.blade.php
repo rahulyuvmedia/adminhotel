@@ -105,25 +105,43 @@
 
 
 
-                    <div class="d-flex flex-wrap justify-content-between align-items-center  p-4">
 
+                    <div class="d-flex flex-wrap justify-content-between align-items-center mt-4  ">
 
-                        <label for="facilities">Facilities</label>
-                        <div class='d-flex flex-wrap'>
-                            @foreach ($master as $facilityJson)
-                            @php
-                            $facility = json_decode($facilityJson, true);
-                            @endphp
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="facilities[]"
-                                    id="{{ $facility['title'] }}" value="{{ $facility['title'] }}">
-                                <label class="form-check-label" for="{{ $facility['title'] }}">
-                                    {{ $facility['title'] }}
-                                </label>
-                            </div>
-                            @endforeach
+                        <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                            <label class="form-label" for="floor">Floor <span style="color:red">*</span></label>
+                            <select id="floor" name="floor" class="form-control">
+                                <option value="">Select Number of Floor</option>
+                                @for ($i = 1; $i <= 15; $i++) <option value="{{ $i }}">{{ $i }}</option>
+                                    @endfor
+                            </select>
+                            @error('floor')
+                            <div class="has-error mt-2" style="color: red">Floor required.</div>
+                            @enderror
                         </div>
 
+
+
+
+                        <div class="col-lg-9 col-md-3 col-sm-12 mb-4">
+
+                            <label for="facilities">Facilities</label>
+                            <div class='d-flex flex-wrap'>
+                                @foreach ($master as $facilityJson)
+                                @php
+                                $facility = json_decode($facilityJson, true);
+                                @endphp
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="facilities[]"
+                                        id="{{ $facility['title'] }}" value="{{ $facility['title'] }}">
+                                    <label class="form-check-label" for="{{ $facility['title'] }}">
+                                        {{ $facility['title'] }}
+                                    </label>
+                                </div>
+                                @endforeach
+                            </div>
+
+                        </div>
 
 
                     </div>
