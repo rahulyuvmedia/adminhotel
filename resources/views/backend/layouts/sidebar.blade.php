@@ -51,6 +51,15 @@
              </a>
          </li>
 
+         <li class="menu-item @if (request()->is('admin/policeInquiry')) active @endif">
+             <a href="{{ URL::to('/admin/policeInquiry') }}" class="menu-link">
+                 <i class="menu-icon tf-icons ti ti-mail"></i>
+                 <div data-i18n="Police Inquiry">Police Inquiry</div>
+             </a>
+         </li>
+
+
+
 
 
          <li class="menu-item @if (request()->is('admin/rooms')) active @endif">
