@@ -107,6 +107,9 @@
                             <option value="outofservice"
                                 {{ old('availability', $model->availability) == 'outofservice' ? 'selected' : '' }}>
                                 outofservice</option>
+                            <option value="maintenance"
+                                {{ old('availability', $model->availability) == 'maintenance' ? 'selected' : '' }}>
+                                maintenance</option>
                         </select>
                         @error('availability')
                         <div class="has-error mt-2">{{ $message }}</div>

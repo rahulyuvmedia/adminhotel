@@ -102,6 +102,7 @@
                             <option value="available">available</option>
                             <option value="booked">booked</option>
                             <option value="outofservice">outofservice</option>
+                            <option value="maintenance">maintenance</option>
                         </select>
                         @error('availability')
                         <div class="has-error mt-2" style="color: red">Availabilityrequired.</div>
