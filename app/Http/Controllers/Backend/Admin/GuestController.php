@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Guest;
 use App\Models\Rooms;
 use App\Models\Reservation;
+use App\Models\Master;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,7 +43,11 @@ class GuestController extends Controller
     public function create()
     {
         $rooms = Rooms::where(['availability'=>'available','hotel_id'=>Auth::id()])->where('status','=','1')->get();
-        return view('backend.admin.guest.create',compact('rooms'));
+        
+        $model = Master::orderBy('created_at', 'asc')
+            ->where('type', '=', 'BookingSource')
+            ->get();
+        return view('backend.admin.guest.create',compact('model','rooms'));
     }
 
     /**
@@ -59,6 +64,7 @@ class GuestController extends Controller
             'name' => 'required',
             'email' => 'required',
             'member' => 'required',
+            'bookingSource' => 'required',
             'child'=> 'required',
             'address' => 'required',
             'mobile' => 'required',
@@ -72,6 +78,7 @@ class GuestController extends Controller
             $model->name = $request->name;
             $model->email = $request->email;
             $model->member = $request->member;
+            $model->bookingSource = $request->bookingSource;
             $model->child = $request->child;
 
             $model->mobile = $request->mobile;
@@ -131,7 +138,9 @@ class GuestController extends Controller
  public function edit($id)
 {
     $model = Guest::with(['reservations.room'])->find($id);
-
+    $modeldata = Master::orderBy('created_at', 'asc')
+    ->where('type', '=', 'BookingSource')
+    ->get();
     // Check if $model is not null
     if (!$model) {
         // Handle the case where Guest with the given ID is not found
@@ -142,7 +151,7 @@ class GuestController extends Controller
     $roomForReservation = $reservation->room;
     $model->rooms = $roomForReservation;
 
-    return view('backend.admin.guest.edit', compact('model'));
+    return view('backend.admin.guest.edit', compact('model','modeldata'));
 }
 
     /**
@@ -154,10 +163,12 @@ class GuestController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd( $request);
         $request->validate([
             'name' => 'required',
             'email' => 'required',
             'member' => 'required',
+            'bookingSource' => 'required',
             'child'=> 'required',
             'mobile' => 'required',
             'address' => 'required',
@@ -172,6 +183,7 @@ class GuestController extends Controller
             $model->name = $request->name;
             $model->email = $request->email;
             $model->member = $request->member;
+            $model->bookingSource = $request->bookingSource;
             $model->child = $request->child;
 
             $model->mobile = $request->mobile;

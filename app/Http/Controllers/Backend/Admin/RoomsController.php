@@ -48,8 +48,13 @@ class RoomsController extends Controller
             ->where('type', '=', 'Facilities')
             ->get();
 
+            $roomType = Master::orderBy('created_at', 'asc')
+            ->where('type', '=', 'roomType')
+            ->get();
 
-        return view('backend.admin.rooms.create' , compact('master'));
+
+
+        return view('backend.admin.rooms.create' , compact('master','roomType'));
     }
 
     /**
@@ -119,7 +124,11 @@ class RoomsController extends Controller
             ->where('type', '=', 'Facilities')
             ->get();
         $model = Rooms::where(['id' => $id])->first();
-        return view('backend.admin.rooms.edit', compact('model','master'));
+        $roomType = Master::orderBy('created_at', 'asc')
+        ->where('type', '=', 'roomType')
+        ->get();
+
+        return view('backend.admin.rooms.edit', compact('model','master','roomType'));
     }
 
     /**
@@ -131,6 +140,7 @@ class RoomsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request);
         $request->validate([
             'roomNumber' => 'required',
             'price' => 'required',

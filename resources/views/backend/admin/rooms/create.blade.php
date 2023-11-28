@@ -27,6 +27,9 @@
                     </div>
 
 
+                    
+
+
 
 
                     <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
@@ -56,14 +59,18 @@
                                 style="color:red">*</span></label>
                         <select class="form-control" id="roomType" name="roomType">
                             <option value="" selected>Select room type</option>
-                            <option value="single">Single</option>
-                            <option value="double">Double</option>
-                            <option value="suite">Suite</option>
+
+                            @foreach($roomType as $type)
+                            <option value="{{ $type->title }}">{{ $type->title }}</option>
+                            @endforeach
+
                         </select>
                         @error('roomType')
                         <div class="has-error mt-2" style="color: red">RoomType required.</div>
                         @enderror
                     </div>
+
+
 
 
                     <div class="col-lg-2 col-md-3 col-sm-12 mb-4">

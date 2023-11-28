@@ -9,7 +9,7 @@
     
     echo $roomNumber;
 ?>
-<h5 class="mb-4">Create Guest  <button type="button" id="addForm" class="btn btn-primary">+</button>
+<h5 class="mb-4">Create Guest <button type="button" id="addForm" class="btn btn-primary">+</button>
 </h5>
 <div class="ant-col ant-col-17" style="padding-left: 8px; padding-right: 8px;">
     <div class="card mb-4">
@@ -54,6 +54,10 @@
                             @enderror
                         </div>
 
+
+
+
+
                         <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
                             <label class="form-label" for="member">Adult <span style="color:red">*</span></label>
                             <select id="member" name="member" class="form-control">
@@ -80,6 +84,10 @@
                     </div>
                     <hr>
                     <p class=" p-1">GUEST INFORMATION</p>
+
+
+
+
                     <!-- Guest Information Section -->
                     <div class="d-flex flex-wrap justify-content-between align-items-center  p-4">
 
@@ -149,16 +157,41 @@
                             <div class="has-error mt-2" style="color: red">Guest id proof required.</div>
                             @enderror
 
+
+
                         </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
-                            <button type="submit" class="btn btn-success button-submit">
-                                <span class="fa fa-save fa-fw"></span> Save
-                            </button>
-                        </div>
+
+
                     </div>
 
 
+                    <div class="d-flex flex-wrap justify-content-between align-items-center  p-4">
+                        <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                            <label class="form-label" for="bookingSource"> Booking Source type <span
+                                    style="color:red">*</span>
+                            </label>
+                            <select class="form-control" id="bookingSource" name="bookingSource">
+                                <option value="" selected>Select Booking Source type</option>
+
+                                @foreach($model as $type)
+                                <option value="{{ $type->title }}">{{ $type->title }}</option>
+                                @endforeach
+
+                            </select>
+                            @error('bookingSource')
+                            <div class="has-error mt-2" style="color: red">booking Sourcere quired.</div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 mb-4  p-4">
+                        <button type="submit" class="btn btn-success button-submit">
+                            <span class="fa fa-save fa-fw"></span> Save
+                        </button>
+                    </div>
                 </div>
+
+
             </form>
 
         </div>
@@ -167,7 +200,7 @@
 
 <!-- JavaScript to clone the form and append it when the button is clicked -->
 <script>
-   document.getElementById('addForm').addEventListener('click', function () {
+document.getElementById('addForm').addEventListener('click', function() {
     // Clone the form
     var originalForm = document.getElementById('create');
     var clonedForm = originalForm.cloneNode(true);
@@ -204,7 +237,6 @@
     // Append the cloned form after the original form
     originalForm.parentNode.insertBefore(clonedForm, originalForm.nextSibling);
 });
-
 </script>
 <script>
 function displaySelectedImage(input) {

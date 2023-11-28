@@ -75,7 +75,7 @@
 
 
 
- 
+
 
 
                 <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
@@ -133,12 +133,8 @@
                     <div class="has-error mt-2" style="color: red">Guest address required.</div>
                     @enderror
                 </div>
-
-
-
-
                 <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
-                    <label for="idproff">Id Proof</label>
+                    <label for="idproff">Id Proff</label>
                     <div class="input-group mt-3">
                         <input id="photo" type="file" name="idproff" style="display:none">
                         <div class="input-group-prepend">
@@ -161,16 +157,32 @@
                     <div class="has-error mt-2">Guest id proof required.</div>
                     @enderror
                 </div>
+            </div>
+            <div class="d-flex flex-wrap justify-content-between align-items-center p-4">
+                <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <label class="form-label" for="bookingSource">Booking Source type<span
+                            style="color:red">*</span></label>
+                    <select class="form-control" id="bookingSource" name="bookingSource">
+                        @foreach ($modeldata as $data)
+                        <option value="{{ $data->title }}"
+                            {{ old('bookingSource', $model->bookingSource) == $data->title ? 'selected' : '' }}>
+                            {{ $data->title }}
+                        </option>
+                        @endforeach
+                    </select>
 
-
-
-                <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
-                    <button type="submit" class="btn btn-success button-submit" data-loading-text="Loading..."><span
-                            class="fa fa-save fa-fw"></span> Save
-                    </button>
+                    @error('bookingSource')
+                    <div class="has-error mt-2" style="color: red">{{$message}}</div>
+                    @enderror
                 </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
+                <button type="submit" class="btn btn-success button-submit" data-loading-text="Loading..."><span
+                        class="fa fa-save fa-fw"></span> Save
+                </button>
+            </div>
             </div>
 
+           
         </form>
     </div>
 

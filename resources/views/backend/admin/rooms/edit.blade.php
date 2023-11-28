@@ -51,6 +51,23 @@
                         @enderror
                     </div>
 
+                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                        <label class="form-label" for="roomType">Select room type <span
+                                style="color:red">*</span></label>
+                        <select class="form-control" id="roomType" name="roomType">
+                            @foreach ($roomType as $data)
+                            <option value="{{ $data->title }}"
+                                {{ old('roomType', $model->$roomType) == $data->title ? 'selected' : '' }}>
+                                {{ $data->title }}
+                            </option>
+                            @endforeach
+                        </select>
+
+                        @error('roomType')
+                        <div class="has-error mt-2" style="color: red">Room Type is required.</div>
+                        @enderror
+                    </div>
+
 
                     <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
                         <label for="occupancy">Occupancy</label>
