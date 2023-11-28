@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
-@section('content')
 
+@section('content')
 @if(session('error'))
 <div class="alert alert-danger">
     {{ session('error') }}
@@ -12,144 +12,138 @@
     {{ session('success') }}
 </div>
 @endif
-<div class="app-page-title mt-5">
-    <div class="page-title-wrapper">
-        <div class="page-title-heading">
-            <div class="page-title-icon">
-                <i class="bi bi-newspaper icon-gradient bg-mean-fruit"> </i>
-            </div>
-            <div>Edit Guest</div>
 
-        </div>
-    </div>
-</div>
-<div class="main-card mb-3 card">
-    <div class="card-body">
+<h5 class="mb-4">Edit Guest</h5>
 
+<div class="ant-col ant-col-17" style="padding-left: 8px; padding-right: 8px;">
+    <div class="card mb-4">
         <form id='edit' action="{{ Route('admin.guest.update', $model->id) }}" enctype="multipart/form-data"
             method="post" accept-charset="utf-8" class="needs-validation">
             @csrf
-            <div id="status"></div> {{ method_field('PATCH') }}
-            <div class="row">
+            {{ method_field('PATCH') }}
+
+            <div class="d-flex flex-wrap justify-content-between align-items-center  p-4">
 
 
 
 
-                <div class="clearfix"></div>
+                <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <label for="check_in">Check-in</label>
+                    <input type="datetime-local" id="check_in" name="check_in"
+                        value="{{ $model->reservations->check_in }}" class="form-control">
+                    @error('check_in')
+                    <div class="has-error mt-2" style="color: red">Guest check-in required.</div>
+                    @enderror
+                </div>
 
+                <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <label for="check_out">Check-out</label>
+                    <input type="datetime-local" id="check_out" name="check_out"
+                        value="{{ $model->reservations->check_out }}" class="form-control">
+                    @error('check_out')
+                    <div class="has-error mt-2" style="color: red">Guest check-out required.</div>
+                    @enderror
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <label for="roomNumber">Room Number</label>
+                    <input type="text" name='roomNumber' class='form-control'
+                        value='{{ isset($model->rooms) ? $model->rooms->roomNumber : 'No Room Assigned' }}' readonly />
+                    @error('roomNumber')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
 
+                <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <label for="member">Adult</label>
+                    <input type="text" name='member' class='form-control' value='{{ $model->member }}' />
+                    @error('member')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
 
-                <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
-                    <label for=""> Name </label>
+                <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <label for="child">Child</label>
+                    <input type="text" name='child' class='form-control' value='{{ $model->child }}' />
+                    @error('child')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            <hr>
+            <p class=" p-1">GUEST INFORMATION</p>
+            <div class="d-flex flex-wrap justify-content-between align-items-center  p-4">
+
+                <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <label for="name">Name</label>
                     <input type="text" name='name' class='form-control' value='{{ $model->name }}' />
-                    <span id="error_title" class="has-error"></span>
+                    @error('name')
+                    <div class="has-error mt-2" style="color: red">Guest name required.</div>
+                    @enderror
                 </div>
-
-
-                <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
-                    <label for=""> email </label>
-                    <input type="text" name='email' class='form-control' value='{{ $model->email }}' />
-                    <span id="error_title" class="has-error"></span>
-                </div>
-
-                <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
-                    <label for=""> phoneNumber </label>
+                <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <label for="mobile">Phone Number</label>
                     <input type="text" name='mobile' class='form-control' value='{{ $model->mobile }}' />
-                    <span id="error_title" class="has-error"></span>
-                </div>
-
-                <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
-                    <label for=""> Room Number </label>
-                    @isset($model->rooms)
-                    <input type="text" name='roomNumber' class='form-control' value='{{ $model->rooms->roomNumber }}'
-                        readonly />
-                    @else
-                    <input type="text" name='roomNumber' class='form-control' value='No Room Assigned' readonly />
-                    @endisset
-                    <span id="error_title" class="has-error"></span>
+                    @error('mobile')
+                    <div class="has-error mt-2" style="color: red">Guest mobile required.</div>
+                    @enderror
                 </div>
 
 
-                <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
-                    <label for=""> address </label>
+                <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <label for="email">Email</label>
+                    <input type="text" name='email' class='form-control' value='{{ $model->email }}' />
+                    @error('email')
+                    <div class="has-error mt-2" style="color: red">Guest email required.</div>
+                    @enderror
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <label for="address">Address</label>
                     <input type="text" name='address' class='form-control' value='{{ $model->address }}' />
-                    <span id="error_title" class="has-error"></span>
+                    @error('address')
+                    <div class="has-error mt-2" style="color: red">Guest address required.</div>
+                    @enderror
                 </div>
 
 
-                <br />
 
-                <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
 
+                <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <label for="idproff">Id Proof</label>
                     <div class="input-group mt-3">
-
-
                         <input id="photo" type="file" name="idproff" style="display:none">
                         <div class="input-group-prepend">
-                            <a class="btn btn-dark text-white" onclick="$('input[id=photo]').click();">idproff</a>
+                            <a class="btn btn-dark text-white" onclick="$('input[id=photo]').click();">Id Proof</a>
                         </div>
                         <input type="text" name="idproff" class="form-control" id="SelectedFileName" value="" readonly>
-
-
                     </div>
                     @if ($model->idproff)
                     <img class="img-thumbnail img-fluid tool-img-edit"
-                        src="{{ URL::to('/uploads/' . $model->idproff) }}" style="max-width: 10%; margin-top: 10px;" />
+                        src="{{ URL::to('/uploads/' . $model->idproff) }}" style="max-width: 15%; margin-top: 15px;"
+                        alt="Id Proof Image">
                     @endif
-                    @error('idproff')
-                    <div class="has-error mt-2">{{ $message }}</div>
-                    @enderror
+
                     <script type="text/javascript">
                     $('input[id=photo]').change(function() {
                         $('#SelectedFileName').val($(this).val());
                     });
                     </script>
                     @error('idproff')
-                    <div class="has-error mt-2 ">{{ $message }}</div>
+                    <div class="has-error mt-2">Guest id proof required.</div>
                     @enderror
                 </div>
 
 
-                <!-- Your form code... -->
-                <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
-                    <label for="check_in">Check-in:</label>
-                    <input type="datetime-local" id="check_in" name="check_in"
-                        value="{{ $model->reservations->check_in }}" class="form-control">
-                    @error('check_in')
-                    <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
 
-                <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
-                    <label for="check_out">Check-out:</label>
-                    <input type="datetime-local" id="check_out" name="check_out"
-                        value="{{ $model->reservations->check_out }}" class="form-control">
-                    @error('check_out')
-                    <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-
-
-                <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
-                    <label for="">Member </label>
-                    <input type="text" name='member' class='form-control' value='{{ $model->member }}' />
-                    <span id="error_title" class="has-error"></span>
-                </div>
-                <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
-                    <label for="">Child </label>
-                    <input type="text" name='child' class='form-control' value='{{ $model->child }}' />
-                    <span id="error_title" class="has-error"></span>
-                </div>
-
-
-                <div class="form-group col-md-12">
-                    <button type="submit" class="btn btn-success button-submit" data-loading-text="Loading..."><span
-                            class="fa fa-save fa-fw"></span> Save
-                    </button>
-                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
+                <button type="submit" class="btn btn-success button-submit" data-loading-text="Loading..."><span
+                        class="fa fa-save fa-fw"></span> Save
+                </button>
             </div>
+            </div>
+          
         </form>
     </div>
+ 
 </div>
-
 @stop

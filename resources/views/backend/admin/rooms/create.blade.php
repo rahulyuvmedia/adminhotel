@@ -1,19 +1,19 @@
 @extends('backend.layouts.master')
 @section('content')
 
+<h5 class="card-header">Add Rooms </h5>
 
-<div class="col-12">
+<div class="ant-col ant-col-17" style="padding-left: 8px; padding-right: 8px;">
     <div class="card mb-4">
 
-        <h5 class="card-header">Add Rooms </h5>
-        <div class="card-body">
+        <div class="">
             <form id='create' action="{{ Route('admin.rooms.store') }}" enctype="multipart/form-data" method="post"
                 accept-charset="utf-8" class="needs-validation">
                 @csrf
 
-                <div class="row">
+                <div class="d-flex flex-wrap justify-content-between align-items-center  p-4">
 
-                    <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
+                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
                         <label class="form-label" for="roomNumber">Room Number <span style="color:red">*</span></label>
                         <div class="input-group input-group-merge">
                             <input type="text" id="roomNumber" name="roomNumber" class="form-control credit-card-mask"
@@ -29,7 +29,7 @@
 
 
 
-                    <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
+                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
                         <label class="form-label" for="price">Price <span style="color:red">*</span></label>
                         <div class="input-group input-group-merge">
                             <input type="text" id="price" name="price" class="form-control credit-card-mask"
@@ -51,7 +51,7 @@
 
 
 
-                    <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
+                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
                         <label class="form-label" for="roomType">Select room type <span
                                 style="color:red">*</span></label>
                         <select class="form-control" id="roomType" name="roomType">
@@ -66,7 +66,7 @@
                     </div>
 
 
-                    <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
+                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
                         <label class="form-label" for="occupancy">Select room Occupancy <span
                                 style="color:red">*</span></label>
                         <select class="form-control" id="occupancy" name="occupancy">
@@ -86,7 +86,7 @@
 
 
 
-                    <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
+                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
                         <label class="form-label" for="availability">Select availability <span
                                 style="color:red">*</span></label>
                         <select class="form-control" id="availability" name="availability">
@@ -102,21 +102,12 @@
                     </div>
 
 
-                    <!-- <div class="form-group col-md-12 col-sm-12">
-                        <label for="">Facilities</label>
-                        @if (count(MyConstants::ROOM_FACILITY) > 0)
-                            @foreach (MyConstants::ROOM_FACILITY as $key => $value)
-                                <input name="facilities[]" id="{{ $value }}" type="checkbox"
-                                    value="{{ $value }}" />
-                                <label class="mx-1" for="{{ $value }}"> {{ $value }}</label>
-                            @endforeach
-                        @endif
-
-                    </div> -->
 
 
 
-                    <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center  p-4">
+
+
                         <label for="facilities">Facilities</label>
                         <div class='d-flex flex-wrap'>
                             @foreach ($master as $facilityJson)
@@ -132,9 +123,11 @@
                             </div>
                             @endforeach
                         </div>
+
+
+
                     </div>
 
-                   
 
 
 

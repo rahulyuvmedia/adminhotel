@@ -1,20 +1,20 @@
 @extends('backend.layouts.master')
 @section('content')
 
+<h5 class="card-header">Edit Rooms </h5>
 
-<div class="col-12">
+<div class="ant-col ant-col-17" style="padding-left: 8px; padding-right: 8px;">
     <div class="card mb-4">
-    <h5 class="card-header">Edit Rooms </h5>
-         
-            <div class="card-body">
+
+        <div class="">
 
                 <form id='edit' action="{{ Route('admin.rooms.update', $model->id) }}" enctype="multipart/form-data"
                     method="post" accept-charset="utf-8" class="needs-validation">
                     @csrf
                     {{ method_field('PATCH') }}
-                    <div class="row">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center  p-4">
 
-                        <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
+                        <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
                             <label for="roomNumber">Room Number</label>
                             <input type="text" class="form-control" id="roomNumber" name="roomNumber"
                                 value="{{ old('roomNumber', $model->roomNumber) }}" placeholder="" required>
@@ -23,7 +23,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
+                        <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
                             <label for="price">Price</label>
                             <input type="text" class="form-control" id="price" name="price"
                                 value="{{ old('price', $model->price) }}" placeholder="" required>
@@ -33,7 +33,7 @@
                         </div>
 
                       
-                        <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
+                        <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
                             <label for="roomType">Room Type</label>
                             <select class="form-control" id="roomType" name="roomType">
 
@@ -53,7 +53,7 @@
                         </div>
 
                       
-                        <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
+                        <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
                             <label for="occupancy">Occupancy</label>
                             <select class="form-control" id="occupancy" name="occupancy">
 
@@ -76,7 +76,7 @@
                         </div>
 
  
-                        <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
+                        <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
                             <label for="availability">availability</label>
                             <select class="form-control" id="availability" name="availability">
 
@@ -100,7 +100,7 @@
 
 
 
-                        <!-- <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
+                        <!-- <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
                             <label for="facilities">Facilities</label>
                             @if (count(MyConstants::ROOM_FACILITY) > 0)
                                 @foreach (MyConstants::ROOM_FACILITY as $key => $value)
@@ -115,7 +115,8 @@
                             @endforeach
                             @endif
                                  </div> -->
-                       <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
+                     
+                    <div class="d-flex flex-wrap justify-content-between align-items-center  p-4">
                             <label for="facilities">Facilities</label>
                             <div class="d-flex flex-wrap">
                                 @foreach ($master as $facilityJson)
