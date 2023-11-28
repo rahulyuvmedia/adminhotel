@@ -17,60 +17,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
                         offCanvasEl.show();
                 });
         }, 200),
-        (fv = FormValidation.formValidation(t, {
-            fields: {
-                basicFullname: {
-                    validators: {
-                        notEmpty: { message: "The name is required" },
-                    },
-                },
-                basicPost: {
-                    validators: {
-                        notEmpty: { message: "Post field is required" },
-                    },
-                },
-                basicEmail: {
-                    validators: {
-                        notEmpty: { message: "The Email is required" },
-                        emailAddress: {
-                            message: "The value is not a valid email address",
-                        },
-                    },
-                },
-                basicDate: {
-                    validators: {
-                        notEmpty: { message: "Joining Date is required" },
-                        date: {
-                            format: "MM/DD/YYYY",
-                            message: "The value is not a valid date",
-                        },
-                    },
-                },
-                basicSalary: {
-                    validators: {
-                        notEmpty: { message: "Basic Salary is required" },
-                    },
-                },
-            },
-            plugins: {
-                trigger: new FormValidation.plugins.Trigger(),
-                bootstrap5: new FormValidation.plugins.Bootstrap5({
-                    eleValidClass: "",
-                    rowSelector: ".col-sm-12",
-                }),
-                submitButton: new FormValidation.plugins.SubmitButton(),
-                autoFocus: new FormValidation.plugins.AutoFocus(),
-            },
-            init: (e) => {
-                e.on("plugins.message.placed", function (e) {
-                    e.element.parentElement.classList.contains("input-group") &&
-                        e.element.parentElement.insertAdjacentElement(
-                            "afterend",
-                            e.messageElement
-                        );
-                });
-            },
-        })),
         flatpickr(t.querySelector('[name="basicDate"]'), {
             enableTime: !1,
             dateFormat: "m/d/Y",
@@ -449,10 +395,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
                                     },
                                 ],
                             },
-                            {
-                                text: '<i class="ti ti-plus me-sm-1"></i> <span class="d-none d-sm-inline-block">Add New Record</span>',
-                                className: "create-new btn btn-primary",
-                            },
+                            // {
+                            //     text: '<i class="ti ti-plus me-sm-1"></i> <span class="d-none d-sm-inline-block">Add New Room</span>',
+                            //     className: "create-new btn btn-primary",
+                            // },
                         ],
                         responsive: {
                             details: {
