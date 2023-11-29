@@ -10,7 +10,7 @@
                 <div>All master</div>
                 <div class="d-inline-block ml-3 pb-3">
 
-                    <a href="{{ URL::to('admin/master/create') }}" class="btn btn-success">
+                    <a href="{{ URL::to('admin/master/create') }}"style="background-color:#7367f0 ; color:white" class="btn">
                         <i class="bi bi-plus-lg"></i>
                         Add Master
                     </a>

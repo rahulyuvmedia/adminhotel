@@ -498,12 +498,12 @@ $user = Auth::user();
                              <span class="align-middle">Log Out</span>
                          </a>
                      </li>
-                     <li>
+                     <!-- <li>
                          <a class="dropdown-item" href="{{ URL::to('/admin/change_password') }}">
                              <i class="ti ti-logout me-2 ti-sm"></i>
                              <span class="align-middle"> Change Password</span>
                          </a>
-                     </li>
+                     </li> -->
                  </ul>
 
              </li>

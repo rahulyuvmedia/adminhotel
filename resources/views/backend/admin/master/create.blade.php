@@ -66,7 +66,7 @@
  
                     <div class="clearfix"></div>
                     <div class="form-group col-md-12">
-                        <button type="submit" class="btn btn-success button-submit" data-loading-text="Loading..."><span
+                        <button type="submit" class="btn  button-submit" style="background-color:#7367f0 ; color:white" data-loading-text="Loading..."><span
                                 class="fa fa-save fa-fw"></span> Save
                         </button>
                     </div>

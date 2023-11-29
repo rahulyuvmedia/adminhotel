@@ -11,7 +11,7 @@
         </div>
         <br/>
         <div class="page-title-actions">
-            <a href="{{ route('admin.guest.create') }}" class="btn btn-success">
+            <a href="{{ route('admin.guest.create') }}" class="btn" style='background-color:#7367f0;color:white'>
                 <i class="bi bi-plus-lg"></i> Add Guest
             </a>
         </div>

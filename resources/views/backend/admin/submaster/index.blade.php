@@ -10,7 +10,7 @@
             <div>All Sub-Master</div>
             <div class="d-inline-block ml-3 pb-3">
 
-                <a href="{{ URL::to('admin/submaster/create') }}" class="btn btn-success">
+                <a href="{{ URL::to('admin/submaster/create') }}" class="btn "style="background-color:#7367f0 ; color:white">
                     <i class="bi bi-plus-lg"></i>
                     Add Sub Master
                 </a>

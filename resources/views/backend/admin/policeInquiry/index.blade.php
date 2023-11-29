@@ -13,7 +13,7 @@
         </div>
         <br />
         <div class="page-title-actions">
-            <a href="{{ route('admin.policeInquiry.create') }}" class="btn btn-success">
+            <a href="{{ route('admin.policeInquiry.create') }}" class="btn "style="background-color:#7367f0 ; color:white">
                 <i class="bi bi-plus-lg"></i> Add Guest
             </a>
         </div>
@@ -36,9 +36,12 @@
                         <thead class="table-dark">
                             <tr>
                                 <th>#</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Number</th>
+                                <th>State</th>
+                                <th>City </th>
+                                <th>Passport No</th>
+                                <th>Visa No</th>
+                                <th>Contact No</th>
+
                                 <th>Action</th>
 
                             </tr>
@@ -48,9 +51,12 @@
 
                             <tr>
                                 <td class="serial-number">{{ $loop->iteration }}</td>
-                                <td>{{ $value->address }}</td>
-                                <td>{{ $value->email }}</td>
-                                <td>{{ $value->mobile }}</td>
+                                <td>{{ $value->state }}</td>
+                                <td>{{ $value->city  }}</td>
+                                <td>{{ $value->passportNo }}</td>
+                                <td>{{ $value->visaNo }}</td>
+                                <td>{{ $value->mobileNo }}</td>
+
                                 <td class="d-flex">
                                     <a href="{{ Route('admin.policeInquiry.edit', $value->id) }}"
                                         class="btn btn-primary me-2" data-mdb-ripple-color="dark">
@@ -66,7 +72,7 @@
                                         </button>
                                     </form> -->
 
-
+<!-- 
                                     @if ($value->status == 1)
                                     <a class="fw-bold  btn btn-success" onclick="confirmInactive({{ $value->id }})"
                                         href="{{ URL::to('admin/guest/active', $value->id) }}">Active</a>
@@ -77,7 +83,7 @@
                                         href="{{ URL::to('admin/guest/inactive', $value->id) }}">Inactive</a>
                                     @else
 
-                                    Unknown
+                                    Unknown -->
                                     @endif
                                 </td>
                             </tr>
