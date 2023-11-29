@@ -9,10 +9,19 @@
     
     echo $roomNumber;
 ?>
-<h5 class="mb-4">Create Guest <button type="button" id="addForm" class="btn btn-primary">+</button>
-</h5>
-<div class="ant-col ant-col-17" style="padding-left: 8px; padding-right: 8px;">
-    <div class="card mb-4">
+<style>
+.ant-btn-background-ghost.ant-btn-primary {
+    color: #7367f0;
+    background: transparent;
+    border-color: #7367f0;
+    text-shadow: none;
+}
+</style>
+<!-- <h5 class="mb-1">Create Guest
+     <button type="button" id="addForm" class="btn btn-primary">+</button>
+</h5> -->
+<div class="ant-col ant-col-17">
+    <div class="card mb-1">
 
         <div class="">
             <form id='create' action="{{ Route('admin.guest.store') }}" enctype="multipart/form-data" method="post"
@@ -20,8 +29,8 @@
                 @csrf
                 <div class="">
                     <!-- Reservation Section -->
-                    <div class="d-flex flex-wrap justify-content-between align-items-center  p-4">
-                        <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center  p-3">
+                        <div class="col-lg-2 col-md-3 col-sm-12 mb-1">
                             <label class="form-label" for="check_in">Check-In <span style="color:red">*</span></label>
                             <input type="datetime-local" class="form-control" id="check_in" name="check_in" />
                             @error('check_in')
@@ -29,7 +38,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                        <div class="col-lg-2 col-md-3 col-sm-12 mb-1">
                             <label class="form-label" for="check_out">Check-Out <span style="color:red">*</span></label>
                             <input type="datetime-local" class="form-control" id="check_out" name="check_out" />
                             @error('check_out')
@@ -37,7 +46,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                        <div class="col-lg-2 col-md-3 col-sm-12 mb-1">
                             <label class="form-label" for="roomNumber">Room Number <span
                                     style="color:red">*</span></label>
                             <select class="form-control" id="roomNumber" name="roomNumber">
@@ -58,7 +67,7 @@
 
 
 
-                        <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                        <div class="col-lg-2 col-md-3 col-sm-12 mb-1">
                             <label class="form-label" for="member">Adult <span style="color:red">*</span></label>
                             <select id="member" name="member" class="form-control">
                                 <option value="">Select Number of Adults</option>
@@ -70,7 +79,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                        <div class="col-lg-2 col-md-3 col-sm-12 mb-1">
                             <label class="form-label" for="child">Child <span style="color:red">*</span></label>
                             <select id="child" name="child" class="form-control">
                                 <option value="">Select Number of Child</option>
@@ -83,16 +92,16 @@
                         </div>
                     </div>
                     <hr>
-                    <p class=" p-1">GUEST INFORMATION</p>
+                    <p class="">GUEST INFORMATION</p>
 
 
 
 
                     <!-- Guest Information Section -->
-                    <div class="d-flex flex-wrap justify-content-between align-items-center  p-4">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center  p-3">
 
 
-                        <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                        <div class="col-lg-2 col-md-3 col-sm-12 mb-1">
                             <label class="form-label" for="name">Guest Name <span style="color:red">*</span></label>
                             <div class="input-group input-group-merge">
                                 <input type="text" id="name" name="name" class="form-control credit-card-mask"
@@ -105,7 +114,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                        <div class="col-lg-2 col-md-3 col-sm-12 mb-1">
                             <label class="form-label" for="mobile">Phone Number <span style="color:red">*</span></label>
                             <div class="input-group">
                                 <span class="input-group-text">IN (+91)</span>
@@ -117,7 +126,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                        <div class="col-lg-2 col-md-3 col-sm-12 mb-1">
                             <label class="form-label" for="email">Email <span style="color:red">*</span></label>
                             <input type="text" id="email" name='email' class="form-control email"
                                 placeholder="Enter your email" />
@@ -126,7 +135,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                        <div class="col-lg-2 col-md-3 col-sm-12 mb-1">
                             <label class="form-label" for="time-mask">Address <span style="color:red">*</span></label>
                             <input type="text" id="address" class="form-control address" name='address'
                                 placeholder="Enter your address" />
@@ -135,7 +144,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                        <div class="col-lg-2 col-md-3 col-sm-12 mb-1">
                             <label class="form-label" for="idproff">Id proof <span style="color:red">*</span></label>
                             <div class="input-group">
                                 <input id="photo" type="file" name="idproff" style="display:none"
@@ -165,8 +174,8 @@
                     </div>
 
 
-                    <div class="d-flex flex-wrap justify-content-between align-items-center  p-4">
-                        <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center  p-3">
+                        <div class="col-lg-2 col-md-3 col-sm-12 mb-1">
                             <label class="form-label" for="bookingSource"> Booking Source type <span
                                     style="color:red">*</span>
                             </label>
@@ -183,9 +192,21 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 mb-1  p-3">
 
-                    <div class="col-lg-12 col-md-12 col-sm-12 mb-4  p-4">
-                        <button type="submit" class="btn btn-success button-submit">
+
+                        <a href=""
+                            class="btn btn-primary btn-outline-primary" 
+                            data-mdb-ripple-color="dark">
+                            <i class="bi bi-pencil-fill"></i> C Form
+                        </a>
+
+
+
+
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 mb-1  p-3">
+                        <button type="submit" class="btn button-submit" style="background-color:#7367f0 ; color:white">
                             <span class="fa fa-save fa-fw"></span> Save
                         </button>
                     </div>
