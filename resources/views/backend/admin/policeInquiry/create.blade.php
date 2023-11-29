@@ -10,7 +10,7 @@
     echo $roomNumber;
 ?>
 
-<h5 class="mb-4">Create Guest <button type="button" id="addForm" class="btn btn-primary">+</button></h5>
+<h5 class="mb-4">Create Guest  </h5>
 <div class="ant-col ant-col-17" style="padding-left: 8px; padding-right: 8px;">
     <div class="card mb-4">
         <div class="">
@@ -23,11 +23,11 @@
 
                 <!-- Guest Information Section -->
 
-                <div class="d-flex flex-wrap justify-content-between align-items-center p-4">
+                <div class="d-flex flex-wrap align-items-center p-4">
                     <!-- Include existing guest information fields here -->
 
                     <!-- Additional Fields -->
-                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <div class="col-lg-2 col-md-3 col-sm-6 mb-4 p-2">
                         <label class="form-label" for="address">Address <span style="color:red">*</span></label>
                         <input type="text" id="address" class="form-control address" name="address"
                             placeholder="Enter your address" />
@@ -36,7 +36,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <div class="col-lg-2 col-md-3 col-sm-6 mb-4 p-2">
                         <label class="form-label" for="state">State <span style="color:red">*</span></label>
                         <input type="text" id="state" class="form-control state" name="state"
                             placeholder="Enter your state" />
@@ -45,7 +45,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <div class="col-lg-2 col-md-3 col-sm-6 mb-4 p-2">
                         <label class="form-label" for="city">City <span style="color:red">*</span></label>
                         <input type="text" id="city" class="form-control city" name="city"
                             placeholder="Enter your city" />
@@ -54,7 +54,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <div class="col-lg-2 col-md-3 col-sm-6 mb-4 p-2">
                         <label class="form-label" for="zipCode">Zip Code <span style="color:red">*</span></label>
                         <input type="text" id="zipCode" class="form-control zipCode" name="zipCode"
                             placeholder="Enter your zip code" />
@@ -63,7 +63,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <div class="col-lg-2 col-md-3 col-sm-6 mb-4 p-2">
                         <label class="form-label" for="arrivedFrom">Arrived From <span
                                 style="color:red">*</span></label>
                         <input type="text" id="arrivedFrom" class="form-control arrivedFrom" name="arrivedFrom"
@@ -72,15 +72,8 @@
                         <div class="has-error mt-2" style="color: red">Arrived From field is required.</div>
                         @enderror
                     </div>
-                </div>
 
-                <div class="d-flex flex-wrap justify-content-between align-items-center p-4">
-
-
-
-
-
-                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <div class="col-lg-2 col-md-3 col-sm-6 mb-4 p-2">
                         <label class="form-label" for="arrivalDate">Arrival Date <span
                                 style="color:red">*</span></label>
                         <input type="datetime-local" id="arrivalDate" class="form-control arrivalDate"
@@ -90,7 +83,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <div class="col-lg-2 col-md-3 col-sm-6 mb-4 p-2">
                         <label class="form-label" for="passportNo">Passport No <span style="color:red">*</span></label>
                         <input type="text" id="passportNo" class="form-control passportNo" name="passportNo"
                             placeholder="Enter passport number" />
@@ -99,7 +92,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <div class="col-lg-2 col-md-3 col-sm-6 mb-4 p-2">
                         <label class="form-label" for="placeOfIssue">Place of Issue <span
                                 style="color:red">*</span></label>
                         <input type="text" id="placeOfIssue" class="form-control placeOfIssue" name="placeOfIssue"
@@ -109,7 +102,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <div class="col-lg-2 col-md-3 col-sm-6 mb-4 p-2">
                         <label class="form-label" for="issueDate">Issue Date <span style="color:red">*</span></label>
                         <input type="datetime-local" id="issueDate" class="form-control issueDate" name="issueDate" />
                         @error('issueDate')
@@ -117,7 +110,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <div class="col-lg-2 col-md-3 col-sm-6 mb-4 p-2">
                         <label class="form-label" for="expiryDate">Expiry Date <span style="color:red">*</span></label>
                         <input type="datetime-local" id="expiryDate" class="form-control expiryDate"
                             name="expiryDate" />
@@ -125,12 +118,9 @@
                         <div class="has-error mt-2" style="color: red">Expiry Date field is required.</div>
                         @enderror
                     </div>
-                </div>
-
-                <div class="d-flex flex-wrap justify-content-between align-items-center p-4">
 
 
-                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <div class="col-lg-2 col-md-3 col-sm-6 mb-4 p-2">
                         <label class="form-label" for="visaNo">Visa No <span style="color:red">*</span></label>
                         <input type="text" id="visaNo" class="form-control visaNo" name="visaNo"
                             placeholder="Enter visa number" />
@@ -139,7 +129,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <div class="col-lg-2 col-md-3 col-sm-6 mb-4 p-2">
                         <label class="form-label" for="visaType">Visa Type <span style="color:red">*</span></label>
                         <input type="text" id="visaType" class="form-control visaType" name="visaType"
                             placeholder="Enter visa type" />
@@ -148,8 +138,8 @@
                         @enderror
                     </div>
 
-                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
-                        <label class="form-label" for="visaPlaceOfIssue">Place of Issue <span
+                    <div class="col-lg-2 col-md-3 col-sm-6 mb-4 p-2">
+                        <label class="form-label" for="visaPlaceOfIssue">Visa Place of Issue <span
                                 style="color:red">*</span></label>
                         <input type="text" id="visaPlaceOfIssue" class="form-control visaPlaceOfIssue"
                             name="visaPlaceOfIssue" placeholder="Enter place of issue" />
@@ -158,7 +148,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <div class="col-lg-2 col-md-3 col-sm-6 mb-4 p-2">
                         <label class="form-label" for="visaIssueDate">Issue Date <span
                                 style="color:red">*</span></label>
                         <input type="datetime-local" id="visaIssueDate" class="form-control visaIssueDate"
@@ -168,7 +158,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <div class="col-lg-2 col-md-3 col-sm-6 mb-4 p-2">
                         <label class="form-label" for="visaExpiryDate">Expiry Date <span
                                 style="color:red">*</span></label>
                         <input type="datetime-local" id="visaExpiryDate" class="form-control visaExpiryDate"
@@ -177,27 +167,12 @@
                         <div class="has-error mt-2" style="color: red">Expiry Date field is required.</div>
                         @enderror
                     </div>
-                </div>
-
-                <div class="d-flex flex-wrap justify-content-between align-items-center p-4">
 
 
-                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
-                        <label class="form-label" for="employed">Employed <span style="color:red">*</span></label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="employed" id="employedYes" value="yes">
-                            <label class="form-check-label" for="employedYes">Yes</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="employed" id="employedNo" value="no">
-                            <label class="form-check-label" for="employedNo">No</label>
-                        </div>
-                        @error('employed')
-                        <div class="has-error mt-2" style="color: red">Employed field is required.</div>
-                        @enderror
-                    </div>
 
-                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+
+
+                    <div class="col-lg-2 col-md-3 col-sm-6 mb-4 p-2">
                         <label class="form-label" for="guardianName">Guardian Name <span
                                 style="color:red">*</span></label>
                         <input type="text" id="guardianName" class="form-control guardianName" name="guardianName"
@@ -207,7 +182,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <div class="col-lg-2 col-md-3 col-sm-6 mb-4 p-2">
                         <label class="form-label" for="age">Age <span style="color:red">*</span></label>
                         <input type="number" id="age" class="form-control age" name="age" placeholder="Enter age" />
                         @error('age')
@@ -215,7 +190,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <div class="col-lg-2 col-md-3 col-sm-6 mb-4 p-2">
                         <label class="form-label" for="purposeOfVisit">Purpose of Visit <span
                                 style="color:red">*</span></label>
                         <input type="text" id="purposeOfVisit" class="form-control purposeOfVisit" name="purposeOfVisit"
@@ -225,7 +200,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <div class="col-lg-2 col-md-3 col-sm-6 mb-4 p-2">
                         <label class="form-label" for="destinationPlace">Destination Place <span
                                 style="color:red">*</span></label>
                         <input type="text" id="destinationPlace" class="form-control destinationPlace"
@@ -234,12 +209,9 @@
                         <div class="has-error mt-2" style="color: red">Destination Place field is required.</div>
                         @enderror
                     </div>
-                </div>
-
-                <div class="d-flex flex-wrap justify-content-between align-items-center p-4">
 
 
-                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <div class="col-lg-2 col-md-3 col-sm-6 mb-4 p-2">
                         <label class="form-label" for="destinationState">Destination State <span
                                 style="color:red">*</span></label>
                         <input type="text" id="destinationState" class="form-control destinationState"
@@ -249,7 +221,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <div class="col-lg-2 col-md-3 col-sm-6 mb-4 p-2">
                         <label class="form-label" for="destinationCity">Destination City <span
                                 style="color:red">*</span></label>
                         <input type="text" id="destinationCity" class="form-control destinationCity"
@@ -259,7 +231,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <div class="col-lg-2 col-md-3 col-sm-6 mb-4 p-2">
                         <label class="form-label" for="contactNo">Contact No <span style="color:red">*</span></label>
                         <input type="text" id="contactNo" class="form-control contactNo" name="contactNo"
                             placeholder="Enter contact number" />
@@ -267,7 +239,7 @@
                         <div class="has-error mt-2" style="color: red">Contact No field is required.</div>
                         @enderror
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <div class="col-lg-2 col-md-3 col-sm-6 mb-4 p-2">
                         <label class="form-label" for="residentContact">Resident Contact <span
                                 style="color:red">*</span></label>
                         <input type="number" id="residentContact" class="form-control" name="residentContact"
@@ -277,20 +249,32 @@
                         @enderror
                     </div>
 
-                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
-                        <label class="form-label" for="mobileNo">Mobile Number <span style="color:red">*</span></label>
+                    <div class="col-lg-2 col-md-3 col-sm-6 mb-4 p-2">
+                        <label class="form-label" for="Mobile Number">Mobile Number <span style="color:red">*</span></label>
                         <input type="number" id="mobileNo" class="form-control mobile" name="mobileNo"
                             placeholder="Enter mobile number" />
                         @error('mobileNo')
                         <div class="has-error mt-2" style="color: red">Mobile Number field is required.</div>
                         @enderror
                     </div>
-                </div>
-
-                <div class="d-flex flex-wrap justify-content-between align-items-center p-4">
-
-
-                    <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
+                    <div class="col-lg-2 col-md-3 col-sm-6 mb-4 p-2 ">
+                        <label class="form-label" for="employed">Employed <span style="color:red">*</span></label>
+                        <div class='d-flex '>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="employed" id="employedYes"
+                                    value="yes">
+                                <label class="form-check-label" for="employedYes">Yes</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="employed" id="employedNo" value="no">
+                                <label class="form-check-label" for="employedNo">No</label>
+                            </div>
+                        </div>
+                        @error('employed')
+                        <div class="has-error mt-2" style="color: red">Employed field is required.</div>
+                        @enderror
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-6 mb-4 p-2">
                         <label class="form-label" for="description">Description</label>
                         <textarea id="description" class="form-control" name="description"
                             placeholder="Enter description"></textarea>
@@ -300,10 +284,16 @@
                     </div>
 
 
-                    <button type="submit" class="btn btn-success button-submit" data-loading-text="Loading..."><span
-                            class="fa fa-save fa-fw"></span> Save
+
+                </div>
+
+                <div class="" style='margin-left:2%;margin-bottom:2%'>
+
+                    <button type="submit" class="btn button-submit" style='background-color:#7367f0; color:white'
+                        data-loading-text="Loading..."><span class="fa fa-save fa-fw"></span> Save
                     </button>
                 </div>
+
 
 
             </form>
@@ -311,45 +301,7 @@
     </div>
 </div>
 
-<script>
-document.getElementById('addForm').addEventListener('click', function() {
-    // Clone the form
-    var originalForm = document.getElementById('create');
-    var clonedForm = originalForm.cloneNode(true);
-
-    // Clear values in the cloned form
-    clonedForm.reset();
-
-    // Find all input elements in the original form
-    var originalInputs = originalForm.querySelectorAll('input, select, textarea');
-
-    // Find all input elements in the cloned form
-    var clonedInputs = clonedForm.querySelectorAll('input, select, textarea');
-
-    // Generate a unique index for the cloned form
-    var cloneIndex = Date.now();
-
-    // Copy values from original to cloned form
-    for (var i = 0; i < originalInputs.length; i++) {
-        if (originalInputs[i].type !== 'submit') {
-            // Update the name attribute to include the unique index
-            var originalName = originalInputs[i].name;
-            clonedInputs[i].name = originalName + '_' + cloneIndex;
-
-            // Copy the value
-            clonedInputs[i].value = originalInputs[i].value;
-
-            // If it's a select element, copy the selected option
-            if (originalInputs[i].tagName === 'SELECT') {
-                clonedInputs[i].value = originalInputs[i].value;
-            }
-        }
-    }
-
-    // Append the cloned form after the original form
-    originalForm.parentNode.insertBefore(clonedForm, originalForm.nextSibling);
-});
-</script>
+ 
 <script>
 function displaySelectedImage(input) {
     var selectedFileName = input.files[0].name;

@@ -1,123 +1,122 @@
 @extends('backend.layouts.master')
+
 @section('content')
+<div class="container-fluid">
     <h4 class="py-3 mb-4">
         <span class="text-muted fw-light">Rooms/</span> Add Rooms
     </h4>
 
-
     <div class="row">
-        <div class="card mb-4">
-            <div class="bs-stepper-content card-body">
-                <form id='create' action="{{ Route('admin.rooms.store') }}" enctype="multipart/form-data" method="post"
-                    accept-charset="utf-8" class="needs-validation">
-                    @csrf
+        <div class="col-md-12 mx-auto">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <form id="create" action="{{ route('admin.rooms.store') }}" enctype="multipart/form-data"
+                        method="post" accept-charset="utf-8" class="needs-validation">
+                        @csrf
 
-                    <div class="row g-3">
-
-                        <div class="col-sm-6">
-                            <label class="form-label" for="roomNumber">Room Number <span style="color:red">*</span></label>
-                            <div class="input-group input-group-merge">
-                                <input type="text" id="roomNumber" name="roomNumber"
-                                    class="form-control credit-card-mask" placeholder="Enter your room Number"
-                                    aria-describedby="name2" />
-                                <span class="input-group-text cursor-pointer p-1" id="name2"><span
-                                        class="card-type"></span></span>
-                            </div>
-                            @error('roomNumber')
+                        <div class="row g-3">
+                            <!-- Room Number -->
+                            <div class="col-sm-6">
+                                <label class="form-label" for="roomNumber">Room Number <span
+                                        style="color:red">*</span></label>
+                                <div class="input-group input-group-merge">
+                                    <input type="text" id="roomNumber" name="roomNumber" class="form-control"
+                                        placeholder="Enter your room Number" aria-describedby="name2" />
+                                    <span class="input-group-text cursor-pointer p-1" id="name2"><span
+                                            class="card-type"></span></span>
+                                </div>
+                                @error('roomNumber')
                                 <div class="has-error mt-2" style="color: red"> Guest room Number required.</div>
-                            @enderror
-                        </div>
-                        <div class="col-sm-6">
-                            <label class="form-label" for="price">Price <span style="color:red">*</span></label>
-                            <div class="input-group input-group-merge">
-                                <input type="text" id="price" name="price" class="form-control credit-card-mask"
-                                    placeholder="Enter your room price" aria-describedby="name2" />
-                                <span class="input-group-text cursor-pointer p-1" id="name2"><span
-                                        class="card-type"></span></span>
+                                @enderror
                             </div>
-                            @error('price')
+
+                            <!-- Price -->
+                            <div class="col-sm-6">
+                                <label class="form-label" for="price">Price <span style="color:red">*</span></label>
+                                <div class="input-group input-group-merge">
+                                    <input type="text" id="price" name="price" class="form-control"
+                                        placeholder="Enter your room price" aria-describedby="name2" />
+                                    <span class="input-group-text cursor-pointer p-1" id="name2"><span
+                                            class="card-type"></span></span>
+                                </div>
+                                @error('price')
                                 <div class="has-error mt-2" style="color: red"> Guest Price required.</div>
-                            @enderror
-                        </div>
-                        <div class="col-sm-6">
-                            <label class="form-label" for="roomType">Select room type <span
-                                    style="color:red">*</span></label>
-                            <select class="form-control" id="roomType" name="roomType">
-                                <option value="" selected>Select room type</option>
+                                @enderror
+                            </div>
 
-                                @foreach ($roomType as $type)
+                            <!-- Room Type -->
+                            <div class="col-sm-6">
+                                <label class="form-label" for="roomType">Select room type <span
+                                        style="color:red">*</span></label>
+                                <select class="form-select" id="roomType" name="roomType">
+                                    <option value="" selected>Select room type</option>
+                                    @foreach ($roomType as $type)
                                     <option value="{{ $type->title }}">{{ $type->title }}</option>
-                                @endforeach
-
-                            </select>
-                            @error('roomType')
+                                    @endforeach
+                                </select>
+                                @error('roomType')
                                 <div class="has-error mt-2" style="color: red">RoomType required.</div>
-                            @enderror
-                        </div>
-                        <div class="col-sm-6">
-                            <label class="form-label" for="occupancy">Select room Occupancy <span
-                                    style="color:red">*</span></label>
-                            <select class="form-control" id="occupancy" name="occupancy">
+                                @enderror
+                            </div>
 
-                                <option value="" selected>Select Occupancy</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                            </select>
-                            @error('occupancy')
+                            <!-- Occupancy -->
+                            <div class="col-sm-6">
+                                <label class="form-label" for="occupancy">Select room Occupancy <span
+                                        style="color:red">*</span></label>
+                                <select class="form-select" id="occupancy" name="occupancy">
+                                    <option value="" selected>Select Occupancy</option>
+                                    @for ($i = 1; $i <= 6; $i++) <option value="{{ $i }}">{{ $i }}</option>
+                                        @endfor
+                                </select>
+                                @error('occupancy')
                                 <div class="has-error mt-2" style="color: red">Occupancy required.</div>
-                            @enderror
-                        </div>
-                        <div class="col-sm-6">
-                            <label class="form-label" for="availability">Select availability <span
-                                    style="color:red">*</span></label>
-                            <select class="form-control" id="availability" name="availability">
+                                @enderror
+                            </div>
 
-                                <option value="" selected>Select availability</option>
-                                <option value="available">available</option>
-                                <option value="booked">booked</option>
-                                <option value="outofservice">outofservice</option>
-                                <option value="maintenance">maintenance</option>
-                            </select>
-                            @error('availability')
-                                <div class="has-error mt-2" style="color: red">Availabilityrequired.</div>
-                            @enderror
-                        </div>
-                        <div class="col-sm-6">
+                            <!-- Availability -->
+                            <div class="col-sm-6">
+                                <label class="form-label" for="availability">Select availability <span
+                                        style="color:red">*</span></label>
+                                <select class="form-select" id="availability" name="availability">
+                                    <option value="" selected>Select availability</option>
+                                    <option value="available">available</option>
+                                    <option value="booked">booked</option>
+                                    <option value="outofservice">outofservice</option>
+                                    <option value="maintenance">maintenance</option>
+                                </select>
+                                @error('availability')
+                                <div class="has-error mt-2" style="color: red">Availability required.</div>
+                                @enderror
+                            </div>
 
-
-                            <label class="form-label" for="floor">Floor <span style="color:red">*</span></label>
-                            <select id="floor" name="floor" class="form-control">
-                                <option value="">Select Number of Floor</option>
-                                @for ($i = 1; $i <= 15; $i++)
-                                    <option value="{{ $i }}">{{ $i }}</option>
-                                @endfor
-                            </select>
-                            @error('floor')
+                            <!-- Floor -->
+                            <div class="col-sm-6">
+                                <label class="form-label" for="floor">Floor <span style="color:red">*</span></label>
+                                <select id="floor" name="floor" class="form-select">
+                                    <option value="">Select Number of Floor</option>
+                                    @for ($i = 1; $i <= 8; $i++) <option value="{{ $i }}">{{ $i }}</option>
+                                        @endfor
+                                </select>
+                                @error('floor')
                                 <div class="has-error mt-2" style="color: red">Floor required.</div>
-                            @enderror
-
-
-
-
-
-
-
+                                @enderror
+                            </div>
                         </div>
-                    </div>
-                    <div class="row gy-3 my-2">
-                        @foreach ($master as $facilityJson)
+
+                        <!-- Facilities -->
+                        <div class="row gy-3 my-2">
+                            <label for="facilities" class="form-label">Facilities<span
+                                    style="color:red">*</span></label>
+                            @foreach ($master as $facilityJson)
                             @php
-                                $facility = json_decode($facilityJson, true);
+                            $facility = json_decode($facilityJson, true);
                             @endphp
                             <div class="col-md-2">
                                 <div class="form-check custom-option custom-option-icon">
-                                    <label class="form-check-label custom-option-content" for="{{ $facility['title'] }}">
+                                    <label class="form-check-label custom-option-content"
+                                        for="{{ $facility['title'] }}">
                                         <span class="custom-option-body">
-                                            <i class="ti ti-send"></i>
+                                            <i class="{{ $facility['value'] }}"></i>
                                             <span class="custom-option-title">
                                                 {{ $facility['title'] }}
                                             </span>
@@ -127,22 +126,18 @@
                                     </label>
                                 </div>
                             </div>
-                        @endforeach
-                    </div>
+                            @endforeach
+                        </div>
 
-
-
-
-
-
-                    <div class="form-group col-md-12 mb-3">
-                        <button type="submit" class="btn btn-success " data-loading-text="Loading..."><span
-                                class="fa fa-save fa-fw"></span> Save
-                        </button>
-                    </div>
-
-                </form>
+                        <div class="form-group mt-3">
+                            <button type="submit" class="btn " style="background-color:#7367f0;color:white">
+                                <i class="fa fa-save fa-fw"></i> Save
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-@stop
+</div>
+@endsection

@@ -1,6 +1,8 @@
 @extends('backend.layouts.master')
 @section('title', 'Guests')
 @section('content')
+
+ 
 <div class="app-page-title">
     <div class="page-title-wrapper">
         <div class="page-title-heading">
@@ -9,13 +11,13 @@
             </div>
             <div>All Guests</div>
         </div>
-        <br/>
+        <br />
         <div class="page-title-actions">
             <a href="{{ route('admin.policeInquiry.create') }}" class="btn btn-success">
                 <i class="bi bi-plus-lg"></i> Add Guest
             </a>
         </div>
-        <br/>
+        <br />
     </div>
 </div>
 
@@ -38,20 +40,20 @@
                                 <th>Email</th>
                                 <th>Number</th>
                                 <th>Action</th>
-                                
+
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($model as $value)
-                         
+
                             <tr>
                                 <td class="serial-number">{{ $loop->iteration }}</td>
                                 <td>{{ $value->address }}</td>
                                 <td>{{ $value->email }}</td>
                                 <td>{{ $value->mobile }}</td>
                                 <td class="d-flex">
-                                    <a href="{{ Route('admin.policeInquiry.edit', $value->id) }}" class="btn btn-primary me-2"
-                                        data-mdb-ripple-color="dark">
+                                    <a href="{{ Route('admin.policeInquiry.edit', $value->id) }}"
+                                        class="btn btn-primary me-2" data-mdb-ripple-color="dark">
                                         <i class="bi bi-pencil-fill"></i> Edit
                                     </a>
 
@@ -66,20 +68,20 @@
 
 
                                     @if ($value->status == 1)
-                                    <a class="fw-bold  btn btn-success"
-                                    onclick="confirmInactive({{ $value->id }})"    href="{{ URL::to('admin/guest/active', $value->id) }}">Active</a>
+                                    <a class="fw-bold  btn btn-success" onclick="confirmInactive({{ $value->id }})"
+                                        href="{{ URL::to('admin/guest/active', $value->id) }}">Active</a>
 
-                                    
+
                                     @elseif ($value->status == 0)
                                     <a class="fw-bold btn btn-danger"
-                                     href="{{ URL::to('admin/guest/inactive', $value->id) }}">Inactive</a>
+                                        href="{{ URL::to('admin/guest/inactive', $value->id) }}">Inactive</a>
                                     @else
-                                    
+
                                     Unknown
                                     @endif
                                 </td>
                             </tr>
-                           
+
                             @endforeach
                         </tbody>
                     </table>
@@ -90,37 +92,37 @@
 </div>
 
 <script>
-    function confirmDelete(button) {
-        if (confirm("Are you sure you want to delete this item?")) {
-            var form = button.parentElement; // Get the parent element of the button, which is the form
-            form.submit();
-        } else {
-            alert("Delete operation cancelled.");
-        }
+function confirmDelete(button) {
+    if (confirm("Are you sure you want to delete this item?")) {
+        var form = button.parentElement; // Get the parent element of the button, which is the form
+        form.submit();
+    } else {
+        alert("Delete operation cancelled.");
     }
+}
 
-    $(document).ready(function() {
-        $('#guestsTable').DataTable({
-            "pagingType": "full_numbers", 
-            dom: 'lBfrtip', // Include 'l' for the length menu
-        buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],// Add pagination numbers
-            "lengthMenu": [15, 30, 45, 60], // Set number of records per page options
-            "language": {
-                "emptyTable": "No guests found",
-                "zeroRecords": "No matching guests found"
-            }
-        });
+$(document).ready(function() {
+    $('#guestsTable').DataTable({
+        "pagingType": "full_numbers",
+        dom: 'lBfrtip', // Include 'l' for the length menu
+        buttons: ['copy', 'csv', 'excel', 'pdf', 'print'], // Add pagination numbers
+        "lengthMenu": [15, 30, 45, 60], // Set number of records per page options
+        "language": {
+            "emptyTable": "No guests found",
+            "zeroRecords": "No matching guests found"
+        }
     });
+});
 </script>
 <script>
-    function confirmInactive(guestId) {
-        var confirmed = confirm("Are you sure you want to set this guest as inactive?");
-        if (confirmed) {
-            // User clicked "OK", navigate to the 'Inactive' URL
-            window.location.href = "{{ URL::to('admin/guest/inactive') }}/" + guestId;
-        } else {
-            // User clicked "Cancel", do nothing
-        }
+function confirmInactive(guestId) {
+    var confirmed = confirm("Are you sure you want to set this guest as inactive?");
+    if (confirmed) {
+        // User clicked "OK", navigate to the 'Inactive' URL
+        window.location.href = "{{ URL::to('admin/guest/inactive') }}/" + guestId;
+    } else {
+        // User clicked "Cancel", do nothing
     }
+}
 </script>
 @stop

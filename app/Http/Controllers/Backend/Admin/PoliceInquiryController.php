@@ -82,7 +82,7 @@ class PoliceInquiryController extends Controller
             'employed' => 'required|in:yes,no',
             'guardianName' => 'required',
             'age' => 'required',
-            'purposeOfVisit' => 'required',
+            'purposeOfvisit' => 'required',
             'destinationPlace' => 'required',
             'destinationState' => 'required',
             'destinationCity' => 'required',
@@ -112,7 +112,7 @@ class PoliceInquiryController extends Controller
                 'employed' => $request->input('employed'),
                 'guardianName' => $request->input('guardianName'),
                 'age' => $request->input('age'),
-                'purposeOfVisit' => $request->input('purposeOfVisit'),
+                'purposeOfvisit' => $request->input('purposeOfvisit'),
                 'destinationPlace' => $request->input('destinationPlace'),
                 'destinationState' => $request->input('destinationState'),
                 'destinationCity' => $request->input('destinationCity'),
@@ -174,7 +174,9 @@ class PoliceInquiryController extends Controller
      */
     public function update(Request $request, $id)
 {
-    // Validate the incoming request data
+
+    // dd($request);
+        // Validate the incoming request data
     $request->validate([
         'address' => 'required',
         'state' => 'required',
@@ -194,7 +196,8 @@ class PoliceInquiryController extends Controller
         'employed' => 'required|in:yes,no',
         'guardianName' => 'required',
         'age' => 'required',
-        'purposeOfVisit' => 'required',
+        'purposeOfvisit' => 'required',
+        
         'destinationPlace' => 'required',
         'destinationState' => 'required',
         'destinationCity' => 'required',
@@ -205,44 +208,44 @@ class PoliceInquiryController extends Controller
     ]);
 
     try {
-        // Find the Policeinquiry model instance by ID
-        $policeinquiry = Policeinquiry::findOrFail($id);
+        
+        $model = Policeinquiry::find($id);
+ 
+        $model->address = $request->address;
+        $model->state = $request->state;
+        $model->city = $request->city;
+        $model->zipCode = $request->zipCode;
+        $model->arrivedFrom = $request->arrivedFrom;
+        $model->arrivalDate = $request->arrivalDate;
+        $model->passportNo = $request->passportNo;
+        $model->placeOfIssue = $request->placeOfIssue;
+        $model->issueDate = $request->issueDate;
+        $model->expiryDate = $request->expiryDate;
+        $model->visaNo = $request->visaNo;
+        $model->visaType = $request->visaType;
+        $model->visaPlaceOfIssue = $request->visaPlaceOfIssue;
+        $model->visaIssueDate = $request->visaIssueDate;
+        $model->visaExpiryDate = $request->visaExpiryDate;
+        $model->employed = $request->employed;
+        $model->guardianName = $request->guardianName;
+        $model->age = $request->age;
+        $model->purposeOfvisit = $request->purposeOfvisit;
 
-        // Update the fields with the new values from the request
-        $policeinquiry->update([
-            'address' => $request->input('address'),
-            'state' => $request->input('state'),
-            'city' => $request->input('city'),
-            'zipCode' => $request->input('zipCode'),
-            'arrivedFrom' => $request->input('arrivedFrom'),
-            'arrivalDate' => $request->input('arrivalDate'),
-            'passportNo' => $request->input('passportNo'),
-            'placeOfIssue' => $request->input('placeOfIssue'),
-            'issueDate' => $request->input('issueDate'),
-            'expiryDate' => $request->input('expiryDate'),
-            'visaNo' => $request->input('visaNo'),
-            'visaType' => $request->input('visaType'),
-            'visaPlaceOfIssue' => $request->input('visaPlaceOfIssue'),
-            'visaIssueDate' => $request->input('visaIssueDate'),
-            'visaExpiryDate' => $request->input('visaExpiryDate'),
-            'employed' => $request->input('employed'),
-            'guardianName' => $request->input('guardianName'),
-            'age' => $request->input('age'),
-            'purposeOfVisit' => $request->input('purposeOfVisit'),
-            'destinationPlace' => $request->input('destinationPlace'),
-            'destinationState' => $request->input('destinationState'),
-            'destinationCity' => $request->input('destinationCity'),
-            'contactNo' => $request->input('contactNo'),
-            'residentContact' => $request->input('residentContact'),
-            'mobileNo' => $request->input('mobileNo'),
-            'description' => $request->input('description'),
-        ]);
-
-        // Redirect to the index route with a success message
+        $model->destinationPlace = $request->destinationPlace;
+        $model->destinationState = $request->destinationState;
+        $model->destinationCity = $request->destinationCity;
+        $model->contactNo = $request->contactNo;
+        $model->residentContact = $request->residentContact;
+        $model->mobileNo = $request->mobileNo;
+        $model->description = $request->description;
+        // dd($request->purposeOfvisit);
+        $model->save(); 
         return redirect()->route('admin.policeInquiry.index')->with('success', 'Guest updated successfully.');
-    } catch (\Exception $e) {
-        // Handle exceptions, flash an error message, and redirect back with input
-        session()->flash('sticky_error', $e->getMessage());
+        // return back()->with('success', 'Guest updated successfully.');
+        // return redirect()->back()->with('success', 'Successfully Updated');
+
+    }  catch (\Exception $e) {
+        session()->flash('error', $e->getMessage());
         return back()->withInput();
     }
 }
