@@ -12,11 +12,8 @@
              <i class="ti ti-x d-block d-xl-none ti-sm align-middle"></i>
          </a>
      </div>
-
      <div class="menu-inner-shadow"></div>
-
      <ul class="menu-inner py-1">
-
          <li class="menu-item @if (request()->is('admin/dashboard')) active @endif">
              <a href="{{ URL::to('/admin/dashboard') }}" class="menu-link">
                  <i class="menu-icon tf-icons ti ti-smart-home"></i>
@@ -24,15 +21,6 @@
              </a>
          </li>
 
-
-
-
-
-
-
-
-
-         <!-- Apps & Pages -->
          <li class="menu-header small text-uppercase">
              <span class="menu-header-text" data-i18n="Guest Management">Guest Management</span>
          </li>
@@ -42,7 +30,6 @@
                  <div data-i18n="Guest List">Guest List</div>
              </a>
          </li>
-
 
          <li class="menu-item @if (request()->is('admin/guestHistory')) active @endif">
              <a href="{{ URL::to('/admin/guestHistory') }}" class="menu-link">
@@ -57,42 +44,39 @@
                  <div data-i18n="Police Inquiry">Police Inquiry</div>
              </a>
          </li>
-
-
-
-
-
+         <li class="menu-header small text-uppercase">
+             <span class="menu-header-text" data-i18n="Room Management">Room Management</span>
+         </li>
          <li class="menu-item @if (request()->is('admin/rooms')) active @endif">
              <a href="{{ URL::to('/admin/rooms') }}" class="menu-link">
                  <i class="menu-icon tf-icons ti ti-messages"></i>
                  <div data-i18n="Room">Room</div>
              </a>
          </li>
-
-
+         <li class="menu-header small text-uppercase">
+             <span class="menu-header-text" data-i18n="Admin Setting">Admin Setting</span>
+         </li>
          @if (Auth::user()->role === 'SUPERADMIN')
-             <li class="menu-item @if (request()->is('admin/master')) active @endif">
-                 <a href="{{ URL::to('/admin/master') }}" class="menu-link">
-                     <i class="menu-icon tf-icons ti ti-messages"></i>
-                     <div data-i18n="Master">Master</div>
-                 </a>
-             </li>
+         <li class="menu-item @if (request()->is('admin/master')) active @endif">
+             <a href="{{ URL::to('/admin/master') }}" class="menu-link">
+                 <i class="menu-icon tf-icons ti ti-messages"></i>
+                 <div data-i18n="Master">Master</div>
+             </a>
+         </li>
 
+         <li class="menu-item @if (request()->is('admin/submaster')) active @endif">
+             <a href="{{ URL::to('/admin/submaster') }}" class="menu-link">
+                 <i class="menu-icon tf-icons ti ti-messages"></i>
+                 <div data-i18n="Sub Master">Sub Master</div>
+             </a>
+         </li>
 
-             <li class="menu-item @if (request()->is('admin/submaster')) active @endif">
-                 <a href="{{ URL::to('/admin/submaster') }}" class="menu-link">
-                     <i class="menu-icon tf-icons ti ti-messages"></i>
-                     <div data-i18n="Sub Master">Sub Master</div>
-                 </a>
-             </li>
-
-
-             <li class="menu-item @if (request()->is('admin/users')) active @endif">
-                 <a href="{{ URL::to('/admin/users') }}" class="menu-link">
-                     <i class="menu-icon tf-icons ti ti-messages"></i>
-                     <div data-i18n="Create Admin">Create Admin</div>
-                 </a>
-             </li>
+         <li class="menu-item @if (request()->is('admin/users')) active @endif">
+             <a href="{{ URL::to('/admin/users') }}" class="menu-link">
+                 <i class="menu-icon tf-icons ti ti-messages"></i>
+                 <div data-i18n="Create Admin">Create Admin</div>
+             </a>
+         </li>
          @endif
      </ul>
  </aside>
