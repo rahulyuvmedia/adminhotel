@@ -2,87 +2,19 @@
 @section('title', 'Dashboard')
 @section('content')
 
-<?php
-    use Carbon\Carbon;
-    
-    ?>
-<style>
-.card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 700px;
-    margin: auto;
-    text-align: center;
-    font-family: arial;
-}
+    <h4 class="py-3 mb-4">
+        <span class="text-muted fw-light">My Profile /</span> View Profile
+    </h4>
 
-.title {
-    color: grey;
-    font-size: 18px;
-}
+    <div class="row">
+        <div class="col-md-12">
 
-button {
-    border: none;
-    outline: 0;
-    display: inline-block;
-    padding: 8px;
-    color: white;
-    background-color: #000;
-    text-align: center;
-    cursor: pointer;
-    width: 100%;
-    font-size: 18px;
-}
-
-/* a {
-    text-decoration: none;
-    font-size: 22px;
-    color: black;
-} */
-
-button:hover,
-a:hover {
-    opacity: 0.7;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.card {
-    /* Existing styles... */
-    animation: fadeIn 0.8s ease-out;
-    /* Add animation to the card */
-}
-
-/* Additional styles for hover effect */
-.card:hover {
-    transform: scale(1.05);
-    transition: transform 0.3s ease-in-out;
-}
-</style>
-
-<div class="app-page-title">
-    <div class="page-title-wrapper">
-        <div class="page-title-heading">
-            <div class="page-title-icon">
-                <i class="pe-7s-users icon-gradient bg-mean-fruit"> </i>
-            </div>
-            <div>Admin's Profile</div>
-        </div>
-    </div>
-</div>
-
-
-<div class="card">
-    <?php
+            <div class="card mb-4">
+                <h5 class="card-header">Profile Details</h5>
+                <!-- Account -->
+                <div class="card-body">
+                    <div class="d-flex align-items-start align-items-sm-center gap-4">
+                        <?php
                         $userImage = '/uploads/' . $user->idproff;
                         $defaultImage = '/uploads/default.jpg';
                         if (file_exists(public_path($userImage))) {
@@ -90,22 +22,53 @@ a:hover {
                         } else {
                             $imagePath = $defaultImage;
                         }
-                        
                         ?>
-    <img src="{{ URL::to($imagePath) }}" alt="John" style="width:100%">
-    <h1>{{ $user->name }}</h1>
-    <p class="title">{{ $user->email }}</p>
-    <p>{{ $user->mobile }}</p>
-    <div style="margin: 24px 0;">
-        <span class="join">{{ Carbon::parse($user->created_at)->format('d/m/yy') }}
+                        <img src="{{ URL::to($imagePath) }}" alt="user-avatar"
+                            class="d-block w-px-100 h-px-100 rounded" id="uploadedAvatar" />
+                    </div>
+                </div>
+                <hr class="my-0">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="mb-3 col-md-6">
+                            <label for="name" class="form-label"> Name</label>
+                            <input class="form-control" type="text" id="name" name="name" value="{{ $user->name }}"
+                                disabled />
+                        </div>
 
-        </span>
+                        <div class="mb-3 col-md-6">
+                            <label for="business_name" class="form-label">Business Name</label>
+                            <input class="form-control" type="text" id="business_name" name="business_name"
+                                value="{{ $user->business_name }}" disabled />
+                        </div>
+
+                        <div class="mb-3 col-md-6">
+                            <label for="mobile" class="form-label">Mobile Number</label>
+                            <input class="form-control" type="text" id="mobile" name="mobile" value="{{ $user->mobile }}"
+                                disabled />
+                        </div>
+
+                        <div class="mb-3 col-md-6">
+                            <label for="address" class="form-label">Address</label>
+                            <input class="form-control" type="text" id="address" name="address" value="{{ $user->address }}"
+                                disabled />
+                        </div>
+
+                        <div class="mb-3 col-md-6">
+                            <label for="email" class="form-label">Email</label>
+                            <input class="form-control" type="text" id="email" name="email" value="{{ $user->email }}"
+                                disabled />
+                        </div>
+                        <div class="mt-2">
+                        <button type="button" onclick="window.location='{{ URL::to('/admin/dashboard') }}'" class="btn btn-primary me-2">
+    ← Go Homepage
+</button>
+      </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
-    <a href="{{ URL::to('/admin/edit_profile/' . $user->id) }}"><button>Edit Profile</button></a>
-    <!-- <a href="{{ URL::to('/admin/edit_profile/' . $user->id) }}" class="btn btn-dark">Edit Profile</a> -->
-</div>
-
-
-
 
 @endsection

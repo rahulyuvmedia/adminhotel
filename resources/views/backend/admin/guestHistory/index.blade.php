@@ -50,7 +50,8 @@
                                 <td>{{ $value->name }}</td>
                                 <td>{{ $value->email }}</td>
                                 <td>{{ $value->mobile }}</td>
-                                <td>  {{ $value->reservations->status }}</td>
+                                <td> {{ optional($value->reservations)->status }}</td>
+
                                 <td class="d-flex">
                                     <a href="{{ Route('admin.guestHistory.edit', $value->id) }}" class="btn btn-primary me-2"
                                         data-mdb-ripple-color="dark">
