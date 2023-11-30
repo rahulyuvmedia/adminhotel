@@ -9,7 +9,7 @@
 <style>
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 600px;
+    max-width: 700px;
     margin: auto;
     text-align: center;
     font-family: arial;
@@ -43,11 +43,13 @@ button:hover,
 a:hover {
     opacity: 0.7;
 }
+
 @keyframes fadeIn {
     from {
         opacity: 0;
         transform: translateY(-20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -56,7 +58,8 @@ a:hover {
 
 .card {
     /* Existing styles... */
-    animation: fadeIn 0.8s ease-out; /* Add animation to the card */
+    animation: fadeIn 0.8s ease-out;
+    /* Add animation to the card */
 }
 
 /* Additional styles for hover effect */

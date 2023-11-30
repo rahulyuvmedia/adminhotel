@@ -7,20 +7,24 @@
         $roomNumber = $_GET['room'];
     }
     
-    echo $roomNumber;
+    // echo $roomNumber;
 ?>
-<style>
-.ant-btn-background-ghost.ant-btn-primary {
-    color: #7367f0;
-    background: transparent;
-    border-color: #7367f0;
-    text-shadow: none;
-}
-</style>
+
 <!-- <h5 class="">Create Guest
      <button type="button" id="addForm" class="btn btn-primary">+</button>
 </h5> -->
-
+<style>
+    .download-button {
+        
+        color: #3498db;
+        padding: 2px 20px;
+        font-size: 11px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+ 
+</style>
 
 <div class='d-flex'>
 
@@ -58,11 +62,13 @@
                             <div class="col-lg-2 col-md-3 col-sm-12 ">
                                 <label class="form-label" for="roomNumber">Room Number <span
                                         style="color:red">*</span></label>
-                                <select class="form-select" id="roomNumber" name="roomNumber">
+                                <select class="form-select" id="roomNumber" name="roomNumber"
+                                    onchange="updateRoomPrice()">
                                     <option>Select Room</option>
                                     @if (count($rooms) > 0)
                                     @foreach ($rooms as $key => $value)
-                                    <option value="{{ $value->id }}" @if ($value->id == $roomNumber) selected @endif>
+                                    <option value="{{ $value->id }}" data-price="{{ $value->price }}" @if ($value->id ==
+                                        $roomNumber) selected @endif>
                                         {{ $value->roomNumber }}</option>
                                     @endforeach
                                     @endif
@@ -71,7 +77,6 @@
                                 <div class="has-error mt-2" style="color: red">Guest room number required.</div>
                                 @enderror
                             </div>
-
 
 
 
@@ -193,7 +198,7 @@
                                         style="color:red">*</span>
                                 </label>
                                 <select class="form-select" id="bookingSource" name="bookingSource">
-                                    <option value="" selected>  Source type</option>
+                                    <option value="" selected> Source type</option>
 
                                     @foreach($model as $type)
                                     <option value="{{ $type->title }}">{{ $type->title }}</option>
@@ -235,29 +240,136 @@
     <div class="col-lg-4" style="padding-left: 8px; padding-right: 8px;">
         <div class="card">
 
-            <h6 class='p-2'> Billing Summary</h6>
-            <hr>
-            <div class="d-flex" style="text-align: center;">
-                <div class="col-lg-6">
-
-                    Check-in
-                    <div>17/06/2022</div>
-                </div>
-
-
-
-                <div class="col-lg-6">
-
-                    Check-in
-                    <div>18/06/2022</div>
-                </div>
+            <div class="d-flex ">
+                <h6 class='p-2'>Billing Summary</h6>
+    
+                <button onclick="downloadPDF()" class='download-button'> PDF</button>
             </div>
+            <hr>
+
+            <div class="d-flex" style="text-align: center;">
+
+                <div class="col-lg-5" id="checkInDisplay">
+                    <div class="card-body">
+                        <h6 class="card-title">Check-in</h6>
+                        <div class="form-label"></div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="card-body">
+                        <h6 class="card-title"> →</h6>
+                        <div class="form-label"></div>
+                    </div>
+                </div>
+                <div class="col-lg-5" id="checkOutDisplay">
+                    <div class="card-body">
+                        <h6 class="card-title">Check-Out</h6>
+                        <div class="form-label"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card-body" style="background-color:#f2f6f9">
+                <div class="d-flex">
+                    <div class="form-group col-lg-6">
+                        <label class="form-label">Room Charges</label>
+                    </div>
+                    <div class="form-group col-lg-6" style="text-align: -webkit-right;">
+                        <div class="form-label" id="roomPriceDisplay">-</div>
+                    </div>
+                </div>
+
+
+
+                <div class="d-flex">
+                    <div class="form-group col-lg-6">
+                        <label class="form-label">Taxes</label>
+
+                    </div>
+                    <div class="form-group col-lg-6" style="text-align: -webkit-right;">
+                        <div class="form-label">0.00</div>
+
+                    </div>
+                </div>
+
+                <div class="d-flex">
+                    <div class="form-group col-lg-6">
+                        <label class="form-label">Due Amount</label>
+
+                    </div>
+                    <div class="form-group col-lg-6" style="text-align: -webkit-right;">
+                        <div class="form-label">0.00</div>
+
+                    </div>
+                </div>
+               
+
+
+            </div>
+            <div class="d-flex card-body" >
+                    <div class="form-group col-lg-6">
+                        <label class="form-check">
+                            <input type="checkbox" class="form-check-input form-label">
+                            <label class="form-label">Payment</label>
+                        </label>
+                    </div>
+
+                </div>
+
         </div>
     </div>
+
 </div>
 
+<script>
+function updateRoomPrice() {
+    var roomSelect = document.getElementById('roomNumber');
+    var selectedOption = roomSelect.options[roomSelect.selectedIndex];
 
-<!-- JavaScript to clone the form and append it when the button is clicked -->
+    var roomPricePerDay = parseFloat(selectedOption.getAttribute('data-price'));
+    var checkInTime = new Date(document.getElementById('check_in').value);
+    var checkOutTime = new Date(document.getElementById('check_out').value);
+
+    // Calculate the duration of stay in hours
+    var durationInHours = (checkOutTime - checkInTime) / (60 * 60 * 1000);
+
+    // Calculate the total room charges
+    var totalRoomCharges = roomPricePerDay * (durationInHours / 24);
+
+    var priceDisplay = document.getElementById('roomPriceDisplay');
+
+    if (priceDisplay) {
+        priceDisplay.textContent = totalRoomCharges.toFixed(2); // Display with two decimal places
+    }
+}
+</script>
+
+
+<script>
+document.getElementById('check_in').addEventListener('change', function() {
+    var selectedCheckInTime = this.value;
+
+    var formattedDate = new Date(selectedCheckInTime).toLocaleDateString(
+        'en-GB');
+
+    document.getElementById('checkInDisplay').querySelector('div').textContent = formattedDate;
+});
+
+
+document.getElementById('check_out').addEventListener('change', function() {
+    var selectedCheckOutTime = this.value;
+
+    var formattedDate = new Date(selectedCheckOutTime).toLocaleDateString(
+        'en-GB');
+
+    document.getElementById('checkOutDisplay').querySelector('div').textContent = formattedDate;
+});
+</script>
+
+
+
+
 <script>
 document.getElementById('addForm').addEventListener('click', function() {
     // Clone the form
@@ -330,4 +442,21 @@ function formatDate(date) {
     return `${year}-${month}-${day}T${hours}:${minutes}`;
 }
 </script>
+
+
+
+<script>
+function downloadPDF() {
+    // Target the entire HTML document
+    var element = document.documentElement;
+
+    // Generate PDF
+    html2pdf(element);
+}
+</script>
+
+
+
+<script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+
 @stop
