@@ -1,6 +1,60 @@
 @extends('backend.layouts.master')
 
 @section('content')
+
+
+<style>
+.icon-container {
+    position: relative;
+}
+
+.icon {
+    transition: transform 0.3s ease;
+}
+
+.icon-moved {
+    animation: bounce 10.5s ease;
+
+}
+
+@keyframes bounce {
+
+    0%,
+    10%,
+    30%,
+    50%,
+    70%,
+    90%,
+    100% {
+        transform: translateY(0);
+    }
+
+    10% {
+        transform: translateY(-25px);
+    }
+
+    20%,
+    40% {
+        transform: translateY(-20px);
+    }
+
+    60% {
+        transform: translateY(-15px);
+    }
+
+    80% {
+        transform: translateY(-10px);
+    }
+
+    96% {
+        transform: translateY(-5px);
+    }
+}
+</style>
+
+
+
+
 <div class="container-fluid">
     <h4 class="py-3 mb-4">
         <span class="text-muted fw-light">Rooms/</span> Add Rooms
@@ -112,17 +166,18 @@
                             $facility = json_decode($facilityJson, true);
                             @endphp
                             <div class="col-md-2">
-                                <div class="form-check custom-option custom-option-icon">
+                                <div class="form-check custom-option custom-option-icon icon-container">
                                     <label class="form-check-label custom-option-content"
                                         for="{{ $facility['title'] }}">
                                         <span class="custom-option-body">
-                                            <i class="{{ $facility['value'] }}"></i>
+                                            <i class="icon {{ $facility['value'] }}"></i>
                                             <span class="custom-option-title">
                                                 {{ $facility['title'] }}
                                             </span>
                                         </span>
                                         <input class="form-check-input" type="checkbox" name="facilities[]"
-                                            id="{{ $facility['title'] }}" value="{{ $facility['title'] }}">
+                                            id="{{ $facility['title'] }}" value="{{ $facility['title'] }}"
+                                            onchange="handleCheckboxChange(this)">
                                     </label>
                                 </div>
                             </div>
@@ -140,4 +195,17 @@
         </div>
     </div>
 </div>
+
+<script>
+function handleCheckboxChange(checkbox) {
+    const icon = checkbox.parentElement.querySelector('.icon');
+    if (checkbox.checked) {
+        icon.classList.add('icon-moved');
+        // You can add other movement logic here
+    } else {
+        icon.classList.remove('icon-moved');
+        // You can add other movement logic here
+    }
+}
+</script>
 @endsection
