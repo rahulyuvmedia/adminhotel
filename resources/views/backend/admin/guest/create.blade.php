@@ -217,17 +217,7 @@
 
                             </div>
                         </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12   p-3">
-
-
-                            <a href="" class="btn btn-primary btn-outline-primary" data-mdb-ripple-color="dark">
-                                <i class="bi bi-pencil-fill"></i> C Form
-                            </a>
-
-
-
-
-                        </div>
+                       
                         <div class="col-lg-12 col-md-12 col-sm-12   p-3">
                             <button type="submit" class="btn button-submit"
                                 style="background-color:#7367f0 ; color:white">

@@ -9,19 +9,24 @@
             </div>
             <div>All Guests</div>
         </div>
-        <br/>
+        <br />
         <div class="page-title-actions">
             <a href="{{ route('admin.guest.create') }}" class="btn" style='background-color:#7367f0;color:white'>
                 <i class="bi bi-plus-lg"></i> Add Guest
             </a>
         </div>
-        <br/>
+        <br />
     </div>
 </div>
 
 @if (session('success'))
 <div class="alert alert-success">
     {{ session('success') }}
+</div>
+@endif
+@if (session('error'))
+<div class="alert alert-danger">
+    {{ session('error') }}
 </div>
 @endif
 
@@ -38,7 +43,7 @@
                                 <th>Email</th>
                                 <th>Number</th>
                                 <th>Action</th>
-                                
+
                             </tr>
                         </thead>
                         <tbody>
@@ -54,29 +59,28 @@
                                         data-mdb-ripple-color="dark">
                                         <i class="bi bi-pencil-fill"></i> Edit
                                     </a>
-
-                                    <!-- <form action="{{ route('admin.guest.destroy', $value->id) }}" method="POST"
-                                        id="deleteForm" class='me-2'>
-                                        @method('DELETE')
-                                        @csrf
-                                        <button type="button" class="btn btn-danger" onclick="confirmDelete(this)">
-                                            <i class="bi bi-trash"></i> Delete
-                                        </button>
-                                    </form> -->
-
-
                                     @if ($value->status == 1)
-                                    <a class="fw-bold  btn btn-success"
-                                    onclick="confirmInactive({{ $value->id }})"    href="{{ URL::to('admin/guest/active', $value->id) }}">Active</a>
-
-                                    
+                                    <a class="fw-bold  btn btn-success" onclick="confirmInactive({{ $value->id }})"
+                                        href="{{ URL::to('admin/guest/active', $value->id) }}">Active</a>
                                     @elseif ($value->status == 0)
                                     <a class="fw-bold btn btn-danger"
-                                     href="{{ URL::to('admin/guest/inactive', $value->id) }}">Inactive</a>
+                                        href="{{ URL::to('admin/guest/inactive', $value->id) }}">Inactive</a>
                                     @else
-                                    
                                     Unknown
                                     @endif
+
+                                    <a href="{{ route('admin.policeInquiry.create', ['id' => $value->id]) }}"
+                                        class="fw-bold btn btn-primary btn-outline-primary me-2"
+                                        data-mdb-ripple-color="dark">
+                                        <i class="bi bi-pencil-fill"></i> C Form for
+                                    </a>
+
+
+
+
+
+
+
                                 </td>
                             </tr>
                             @endif
@@ -90,38 +94,37 @@
 </div>
 
 <script>
-    function confirmDelete(button) {
-        if (confirm("Are you sure you want to delete this item?")) {
-            var form = button.parentElement;
-            form.submit();
-        } else {
-            alert("Delete operation cancelled.");
-        }
+function confirmDelete(button) {
+    if (confirm("Are you sure you want to delete this item?")) {
+        var form = button.parentElement;
+        form.submit();
+    } else {
+        alert("Delete operation cancelled.");
     }
+}
 
-    $(document).ready(function() {
-        $('#guestsTable').DataTable({
-            "pagingType": "full_numbers", 
-            dom: 'lBfrtip',
+$(document).ready(function() {
+    $('#guestsTable').DataTable({
+        "pagingType": "full_numbers",
+        dom: 'lBfrtip',
         buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
-            "lengthMenu": [15, 30, 45, 60], 
-            "language": {
-                "emptyTable": "No guests found",
-                "zeroRecords": "No matching guests found"
-            }
-        });
+        "lengthMenu": [15, 30, 45, 60],
+        "language": {
+            "emptyTable": "No guests found",
+            "zeroRecords": "No matching guests found"
+        }
     });
+});
 </script>
 <script>
-    function confirmInactive(guestId) {
-        var confirmed = confirm("Are you sure you want to set this guest as inactive?");
-        if (confirmed) {
-            
-            window.location.href = "{{ URL::to('admin/guest/inactive') }}/" + guestId;
-        } else {
-            
-        }
+function confirmInactive(guestId) {
+    var confirmed = confirm("Are you sure you want to set this guest as inactive?");
+    if (confirmed) {
+
+        window.location.href = "{{ URL::to('admin/guest/inactive') }}/" + guestId;
+    } else {
+
     }
+}
 </script>
 @stop
- 

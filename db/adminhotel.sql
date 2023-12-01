@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2023 at 01:37 PM
+-- Generation Time: Dec 01, 2023 at 01:52 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -120,6 +120,7 @@ CREATE TABLE `guest` (
   `name` varchar(255) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   `mobile` varchar(255) NOT NULL,
+  `aadharNo` varchar(255) NOT NULL,
   `address` varchar(255) DEFAULT NULL,
   `member` varchar(255) NOT NULL,
   `child` varchar(255) DEFAULT NULL,
@@ -134,8 +135,11 @@ CREATE TABLE `guest` (
 -- Dumping data for table `guest`
 --
 
-INSERT INTO `guest` (`id`, `hotel_id`, `name`, `email`, `mobile`, `address`, `member`, `child`, `bookingSource`, `idproff`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Rahul soni', 'rahulyuvmedia@gmail.com', '09588871256', 'Ajmer', '2', '2', 'Booking.com', '1701336948.jpg', '1', '2023-11-30 15:35:48', '2023-11-30 15:35:48');
+INSERT INTO `guest` (`id`, `hotel_id`, `name`, `email`, `mobile`, `aadharNo`, `address`, `member`, `child`, `bookingSource`, `idproff`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Guest 1', 'guest1@gmail.com', '09588871256', '11111', 'Ajmer', '2', '2', 'Direct Website Booking', '1701336948.jpg', '1', '2023-11-30 15:35:48', '2023-12-01 10:55:49'),
+(2, 1, 'Guest 2', 'guest2@gmail.com', '08588871256', '22222', 'Ajmer', '2', '7', 'Booking.com', '1701404657.jpg', '1', '2023-12-01 10:24:17', '2023-12-01 10:24:17'),
+(3, 1, 'Guest 3', 'Guest3@gmail.com', '07588871256', '333333', 'Ajmer', '4', '7', 'Booking.com', '1701407277.jpg', '0', '2023-12-01 11:07:57', '2023-12-01 15:28:35'),
+(4, 1, 'Rahul soni', 'rahulyuvmedia@gmail.com', '09588871256', '0000', 'Ajmer', '3', '3', 'Booking.com', '1701412942.jpg', '1', '2023-12-01 12:42:22', '2023-12-01 12:42:22');
 
 -- --------------------------------------------------------
 
@@ -279,6 +283,7 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('027ae400a8e608d36a65b1fcc48c85aec9f532a63339286a94fc5e06b1bc8b42e531232518a8118e', 1, 4, 'adminApiToken', '[]', 0, '2020-10-14 09:04:15', '2020-10-14 09:04:15', '2021-10-14 14:34:15'),
 ('02826cf14cbe647c57f213a10461f84caf66feabb180900f43208d6bddcede55b9c92a8cac12bbf7', 1, 6, 'adminApiToken', '[]', 0, '2023-11-17 04:57:47', '2023-11-17 04:57:47', '2024-11-17 10:27:47'),
 ('05c863060cabdeb27afd6dc83e0d75dab796cceacedbfbc24e71c6c26e82e44bbdf5eb22594eaecc', 1, 6, 'adminApiToken', '[]', 0, '2023-11-17 10:10:18', '2023-11-17 10:10:18', '2024-11-17 15:40:18'),
+('0f54828a226c11a7e5dc780cb16354d2e33207fbb30bb4b142d6a853805317a2ccac857762826e0e', 1, 6, 'adminApiToken', '[]', 0, '2023-12-01 04:36:09', '2023-12-01 04:36:09', '2024-12-01 10:06:09'),
 ('133dda0a97ab01712477729cfab1a18d1e37c11fd290dc7b618c9ace70aa7b52090fe5824ec8add0', 1, 6, 'adminApiToken', '[]', 0, '2023-11-20 15:52:28', '2023-11-20 15:52:28', '2024-11-20 21:22:28'),
 ('194408cff65d2a48bd80d856218566b179ba33a9bd89a5e58fb5685789bfe766ab39c29d88d97975', 1, 6, 'adminApiToken', '[]', 0, '2023-11-30 07:51:32', '2023-11-30 07:51:32', '2024-11-30 13:21:32'),
 ('2215aff36e9611a64056049cbd0733f2113773aaed2ec643984fb4391afa6aeb4ff6b3b5167899a4', 1, 6, 'adminApiToken', '[]', 0, '2023-11-21 15:31:16', '2023-11-21 15:31:16', '2024-11-21 21:01:16'),
@@ -497,7 +502,7 @@ CREATE TABLE `policeinquiry` (
   `id` bigint(20) NOT NULL,
   `guest_id` bigint(20) NOT NULL,
   `address` varchar(255) NOT NULL,
-  `state` varchar(255) NOT NULL,
+  `state` enum('0','1','','') NOT NULL DEFAULT '0',
   `city` varchar(255) NOT NULL,
   `zipCode` varchar(255) NOT NULL,
   `arrivedFrom` varchar(255) NOT NULL,
@@ -511,7 +516,7 @@ CREATE TABLE `policeinquiry` (
   `visaPlaceOfIssue` varchar(255) NOT NULL,
   `visaIssueDate` varchar(255) NOT NULL,
   `visaExpiryDate` varchar(255) NOT NULL,
-  `employed` enum('yes','no','','') NOT NULL,
+  `employed` enum('yes','no','','') DEFAULT NULL,
   `guardianName` varchar(255) NOT NULL,
   `age` varchar(255) NOT NULL,
   `purposeOfvisit` varchar(255) DEFAULT NULL,
@@ -532,7 +537,7 @@ CREATE TABLE `policeinquiry` (
 --
 
 INSERT INTO `policeinquiry` (`id`, `guest_id`, `address`, `state`, `city`, `zipCode`, `arrivedFrom`, `arrivalDate`, `passportNo`, `placeOfIssue`, `issueDate`, `expiryDate`, `visaNo`, `visaType`, `visaPlaceOfIssue`, `visaIssueDate`, `visaExpiryDate`, `employed`, `guardianName`, `age`, `purposeOfvisit`, `destinationPlace`, `destinationState`, `destinationCity`, `contactNo`, `residentContact`, `mobileNo`, `description`, `status`, `created_at`, `updated_at`) VALUES
-(1, 0, 'Ajmer', 'Rajasthan', 'Ajmer', '342001', 'This is Arrived From', '2023-11-09T12:25', 'This is Passport No', 'This is Place of Issue', '2023-11-24T12:23', '2023-11-28T12:23', 'This is Visa No', 'This is Visa Type', 'ThisVisa Place of Issue', '2023-11-29T14:23', '2023-11-17T12:23', 'yes', 'This is Guardian Name', '34', 'This is Purpose of Visit', 'This is Next Destination Place', 'This is Next Destination State', 'This is Next Destination City', '9884775648', '7742359120', '8575844568', 'This is Description', '0', '2023-11-29 12:56:39', '2023-11-30 18:34:04');
+(1, 0, 'Ajmer', '', 'Ajmer', '342001', 'This is Arrived From', '2023-11-09T12:25', 'This is Passport No', 'This is Place of Issue', '2023-11-24T12:23', '2023-11-28T12:23', 'This is Visa No', 'This is Visa Type', 'ThisVisa Place of Issue', '2023-11-29T14:23', '2023-11-17T12:23', 'yes', 'This is Guardian Name', '34', 'This is Purpose of Visit', 'This is Next Destination Place', 'This is Next Destination State', 'This is Next Destination City', '9884775648', '7742359120', '8575844568', 'This is Description', '0', '2023-11-29 12:56:39', '2023-11-30 18:34:04');
 
 -- --------------------------------------------------------
 
@@ -556,9 +561,12 @@ CREATE TABLE `reservations` (
 --
 
 INSERT INTO `reservations` (`id`, `guest_id`, `room_id`, `check_in`, `check_out`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 30, '2023-11-28 15:17:00', '2023-12-09 15:16:00', 'cancel', '2023-11-28 15:46:15', '2023-11-29 16:51:39'),
+(1, 1, 30, '2023-11-28 15:17:00', '2023-12-09 15:16:00', 'cancel', '2023-11-28 15:46:15', '2023-12-01 10:55:49'),
 (2, 2, 32, '2023-12-03 14:30:00', '2023-12-03 14:30:00', 'cancel', '2023-11-30 15:00:30', '2023-11-30 15:17:46'),
-(3, 1, 37, '2023-12-02 15:05:00', '2023-12-03 15:05:00', 'pending', '2023-11-30 15:35:48', '2023-11-30 15:35:48');
+(3, 1, 37, '2023-11-28 15:17:00', '2023-12-09 15:16:00', 'pending', '2023-11-30 15:35:48', '2023-12-01 10:55:49'),
+(4, 2, 31, '2023-12-16 09:53:00', '2023-12-22 09:53:00', 'pending', '2023-12-01 10:24:17', '2023-12-01 10:24:17'),
+(5, 3, 32, '2023-12-09 10:37:00', '2023-12-09 10:37:00', 'cancel', '2023-12-01 11:07:57', '2023-12-01 15:28:35'),
+(6, 4, 30, '2023-12-08 12:12:00', '2023-12-09 12:12:00', 'pending', '2023-12-01 12:42:22', '2023-12-01 12:42:22');
 
 -- --------------------------------------------------------
 
@@ -631,16 +639,16 @@ CREATE TABLE `rooms` (
 INSERT INTO `rooms` (`id`, `roomNumber`, `roomType`, `occupancy`, `price`, `availability`, `facilities`, `floor`, `status`, `created_at`, `updated_at`, `hotel_id`) VALUES
 (28, 'F-2', 'single', '1', 1000, 'available', '\"A.C\"', '1', '1', '2023-11-24 10:34:12', '2023-11-29 11:10:09', 1),
 (29, 'F-3', 'single', '1', 2000, 'available', '\"Refrigerator|Conference|Garden|Beach\"', NULL, '1', '2023-11-24 10:34:12', '2023-11-28 15:43:52', 1),
-(30, 'F-4', 'single', '1', 3000, 'available', '\"A.C|Refrigerator|Casino|Garden\"', NULL, '1', '2023-11-24 10:34:12', '2023-11-29 16:51:39', 1),
-(31, 'F-5', 'single', '1', 4000, 'available', '\"A.C|Refrigerator|Casino|Garden\"', NULL, '1', '2023-11-24 10:34:12', '2023-11-27 13:10:21', 1),
-(32, 'F-6', 'single', '1', 5000, 'available', '\"A.C|Refrigerator|Casino|Garden\"', NULL, '1', '2023-11-24 10:34:12', '2023-11-30 15:17:46', 1),
+(30, 'F-4', 'single', '1', 3000, 'available', '\"A.C|Refrigerator|Casino|Garden\"', NULL, '1', '2023-11-24 10:34:12', '2023-12-01 15:28:35', 1),
+(31, 'F-5', 'single', '1', 4000, 'available', '\"A.C|Refrigerator|Casino|Garden\"', NULL, '1', '2023-11-24 10:34:12', '2023-12-01 15:28:35', 1),
+(32, 'F-6', 'single', '1', 5000, 'available', '\"A.C|Refrigerator|Casino|Garden\"', NULL, '1', '2023-11-24 10:34:12', '2023-12-01 15:28:35', 1),
 (33, 'F-7', 'single', '1', 6000, 'available', '\"A.C|Refrigerator|Garden|Casino|Garden\"', NULL, '1', '2023-11-24 10:34:12', '2023-11-28 12:44:01', 1),
 (34, 'F-8', 'single', '1', 7000, 'available', '\"A.C|Refrigerator|Garden|Casino|Garden\"', NULL, '1', '2023-11-24 10:34:12', '2023-11-28 12:29:52', 1),
 (35, 'F-1', 'double', '3', 8000, 'available', '\"Garden|Garden\"', '14', '1', '2023-11-28 13:24:30', '2023-11-28 13:25:43', 1),
 (36, 'F-9', 'single', '2', 9000, 'available', '\"Refrigerator\"', '2', '1', '2023-11-28 13:26:06', '2023-11-29 16:51:39', 1),
-(37, 'F-10', 'single', '2', 10000, 'booked', '\"Garden|Garden\"', '2', '1', '2023-11-28 14:08:26', '2023-11-30 15:35:48', 1),
-(38, 'Ofc-room', 'single', '4', 11000, 'maintenance', '\"Car\"', '2', '1', '2023-11-29 10:33:17', '2023-11-30 15:28:10', 1),
-(39, 'Move', 'single', '3', 1000000, 'maintenance', '\"A.C|Refrigerator|Gym|Pool|Lounge|Bar|Conference|Shuttle|Garden|Beach|Parking|Studio|Sauna|Casino|Patio|Cinema|Spa|Car\"', '5', '1', '2023-11-30 17:09:23', '2023-11-30 17:27:16', 1);
+(37, 'F-10', 'single', '2', 10000, 'available', '\"Garden|Garden\"', '2', '1', '2023-11-28 14:08:26', '2023-12-01 15:28:35', 1),
+(38, 'Ofc-room', 'single', '4', 11000, 'available', '\"Car\"', '2', '1', '2023-11-29 10:33:17', '2023-12-01 15:28:35', 1),
+(39, 'Move', 'single', '3', 1000000, 'available', '\"A.C|Refrigerator|Gym|Pool|Lounge|Bar|Conference|Shuttle|Garden|Beach|Parking|Studio|Sauna|Casino|Patio|Cinema|Spa|Car\"', '5', '1', '2023-11-30 17:09:23', '2023-12-01 15:28:35', 1);
 
 -- --------------------------------------------------------
 
@@ -879,7 +887,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `guest`
 --
 ALTER TABLE `guest`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `master`
@@ -921,7 +929,7 @@ ALTER TABLE `policeinquiry`
 -- AUTO_INCREMENT for table `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `roles`

@@ -20,6 +20,16 @@
 
 }
 </style>
+@if(session('sticky_error'))
+    <div class="alert alert-danger">
+        {{ session('sticky_error') }}
+    </div>
+@endif
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 
 
 <h5>
@@ -27,7 +37,7 @@
 <div class="ant-col ant-col-17" style="">
     <div class="card">
         <div class="">
-            <form id='create' action="{{ Route('admin.policeInquiry.store') }}" enctype="multipart/form-data"
+            <form id='create' action="{{ route('admin.policeInquiry.store') }}" enctype="multipart/form-data"
                 method="post" accept-charset="utf-8" class="needs-validation">
                 @csrf
 
@@ -45,7 +55,8 @@
                         </div>
                     </div>
 
-
+                    <!-- <input type="hidden" name="guest_id" id="guest_id" value="{{$id}}"> -->
+                    <input type="hidden" name="guest_id" value="{{ $id }}">
 
                     <div class="col-lg-2 col-md-3 col-sm-6 p-1">
 
@@ -54,10 +65,10 @@
                         <input  type="text" id="address" class="form-control address" name="address"
                             placeholder="Enter your address" />
                         @error('address')
-                        <div class="has-error mt-2" style="color: red">Guest address required.</div>
+                        <div class="has-error mt-2" style="color: red"> {{ $message }}</div>
                         @enderror
                     </div>
-
+                 
                     <div class="col-lg-2 col-md-3 col-sm-6 p-1">
                         <label class="form-label" for="state">State <span style="color:red">*</span></label>
                         <input  type="text" id="state" class="form-control state" name="state"

@@ -28,41 +28,39 @@ class PoliceInquiryController extends Controller
          return view('backend.admin.policeInquiry.index', compact('model', 'keyword'));
      }
 
+  
 
-    // public function index()
-    // {
 
-    //     $model = Guest::orderby('created_at', 'desc')->get();
+  
 
-    //     return view('backend.admin.guest.index', compact('model'));
-    // }
+public function create(Request $request)
+{
+    // dd($request);
+    $id = $request->input('id');
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $rooms = Rooms::where(['availability'=>'available','hotel_id'=>Auth::id()])->where('status','=','1')->get();
+    $rooms = Rooms::where(['availability' => 'available', 'hotel_id' => Auth::id()])->where('status', '=', '1')->get();
+     
+
+    if ($rooms->isNotEmpty() && $rooms->first()->guest) { 
         
-        $model = Master::orderBy('created_at', 'asc')
-            ->where('type', '=', 'BookingSource')
-            ->get();
-        return view('backend.admin.policeInquiry.create',compact('model','rooms'));
+        $id = $rooms->first()->guest->id;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    $model = Master::orderBy('created_at', 'asc')
+        ->where('type', '=', 'BookingSource')
+        ->get();
 
-    public function store(Request $request){
+    return view('backend.admin.policeInquiry.create', compact('model', 'rooms', 'id'));
+}
+ 
 
-        //   dd($request);
+    public function store(Request $request ){
+
+    //   dd($request);
+
         $request->validate([
+            
+            // 'guest_id' => 'required',
             // Add your validation rules here based on your requirements
             'address' => 'required',
             'state' => 'required',
@@ -92,8 +90,16 @@ class PoliceInquiryController extends Controller
             'description' => 'nullable',
         ]);
         try {
+             
+            $guestId = $request->input('guest_id');
 
+            
             $policeinquiry = new Policeinquiry([
+         
+                'guest_id' => $guestId,
+                
+
+
                 'address' => $request->input('address'),
                 'state' => $request->input('state'),
                 'city' => $request->input('city'),
@@ -120,9 +126,11 @@ class PoliceInquiryController extends Controller
                 'residentContact' => $request->input('residentContact'),
                 'mobileNo' => $request->input('mobileNo'),
                 'description' => $request->input('description'),
+                
             ]);
-    
-            
+   
+          
+            \Log::info('Data to be stored:', $request->all());
             $policeinquiry->save();
 
 
@@ -130,28 +138,19 @@ class PoliceInquiryController extends Controller
             return redirect()->route('admin.policeInquiry.index')->with('success', 'policeInquiry added successfully.');
 
         } catch (\Exception $e) {
-            dd($e);
+            \Log::error('Error saving data: ' . $e->getMessage());
             session()->flash('sticky_error', $e->getMessage());
             return back();
         }
-    }
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Guest  $guest
-     * @return \Illuminate\Http\Response
-     */
+    } 
+
+
     public function show(Guest $guest)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Guest  $guest
-     * @return \Illuminate\Http\Response
-     */
+   
     public function edit($id)
     {
         $policeinquiry = Policeinquiry::findOrFail($id);
@@ -161,17 +160,9 @@ class PoliceInquiryController extends Controller
     
         return view('backend.admin.policeInquiry.edit', compact('policeinquiry', 'modeldata'));
     }
-    
+     
 
 
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Guest  $guest
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
 {
 
@@ -209,7 +200,7 @@ class PoliceInquiryController extends Controller
 
     try {
         
-        $model = Policeinquiry::find($id);
+        $model = Policeinquiry::find($guest_id);
  
         $model->address = $request->address;
         $model->state = $request->state;
@@ -267,13 +258,7 @@ class PoliceInquiryController extends Controller
             die();
         }
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Guest  $guest
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy($id)
     {
         $model = Guest::where(['id' => $id])->delete();
