@@ -67,6 +67,7 @@ class GuestController extends Controller
             'bookingSource' => 'required',
             'child'=> 'required',
             'address' => 'required',
+            'aadharNo' => 'required',
             'mobile' => 'required',
             'check_out' => 'required',
             'check_in' => 'required',
@@ -83,6 +84,7 @@ class GuestController extends Controller
 
             $model->mobile = $request->mobile;
             $model->address = $request->address;
+            $model->aadharNo = $request->aadharNo;
             $model->hotel_id = Auth::id();
             
             if ($request->hasFile('idproff')) {
@@ -172,6 +174,8 @@ class GuestController extends Controller
             'child'=> 'required',
             'mobile' => 'required',
             'address' => 'required',
+            'aadharNo' => 'required',
+
             'check_in' => 'nullable|date',
             'check_out' => 'nullable|date',
         ]);
@@ -185,9 +189,9 @@ class GuestController extends Controller
             $model->member = $request->member;
             $model->bookingSource = $request->bookingSource;
             $model->child = $request->child;
-
             $model->mobile = $request->mobile;
             $model->address = $request->address;
+            $model->aadharNo = $request->aadharNo;
             if ($request->hasFile('idproff')) {
                 $extension = strtolower($request->file('idproff')->getClientOriginalExtension());
                 if ($extension == 'jpg' || $extension == 'jpeg' || $extension == 'png' || $extension == 'svg' || $extension == 'webp') {

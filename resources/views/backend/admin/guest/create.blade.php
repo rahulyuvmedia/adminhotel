@@ -8,18 +8,17 @@
     }
      
 ?>
- 
+
 <style>
-    .download-button {
-        
-        color: #3498db;
-        padding: 2px 20px;
-        font-size: 11px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
- 
+.download-button {
+
+    color: #3498db;
+    padding: 2px 20px;
+    font-size: 11px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 </style>
 
 <div class='d-flex'>
@@ -34,7 +33,7 @@
                 <form id='create' action="{{ Route('admin.guest.store') }}" enctype="multipart/form-data" method="post"
                     accept-charset="utf-8" class="needs-validation">
                     @csrf
-                    <div class=""> 
+                    <div class="">
                         <div class="d-flex flex-wrap justify-content-between align-items-center  p-3">
                             <div class="col-lg-2 col-md-3 col-sm-12 ">
                                 <label class="form-label" for="check_in">Check-In <span
@@ -155,39 +154,25 @@
                                 @enderror
                             </div>
 
+
+
                             <div class="col-lg-2 col-md-3 col-sm-12 ">
-                                <label class="form-label" for="idproff">Id proof <span
+                                <label class="form-label" for="time-mask">Aadhar Number <span
                                         style="color:red">*</span></label>
-                                <div class="input-group">
-                                    <input id="photo" type="file" name="idproff" style="display:none"
-                                        onchange="displaySelectedImage(this)">
-                                    <div class="input-group-prepend">
-                                        <a class="btn btn-dark text-white"
-                                            onclick="$('input[id=photo]').click();">Image</a>
-                                    </div>
-                                    <input type="text" name="idproff" class="form-control" id="SelectedFileName"
-                                        value="" readonly>
-                                    @error('idproff')
-                                    <div class="has-error mt-2">Guest id proof required.</div>
-                                    @enderror
-                                </div>
-
-                                <!-- Display selected image preview -->
-                                <img id="selectedImagePreview" src="" alt="Selected Image"
-                                    style="display:none; max-width: 50%; margin-top: 10px;">
-                                @error('idproff')
-                                <div class="has-error mt-2" style="color: red">Guest id proof required.</div>
+                                <input type="text" id="aadharNo" class="form-control aadharNo" name='aadharNo'
+                                    placeholder="Enter aadhar Num" />
+                                @error('aadharNo')
+                                <div class="has-error mt-2" style="color: red">Guest aadhar Number required.</div>
                                 @enderror
-
-
-
                             </div>
+
 
 
                         </div>
 
 
                         <div class="d-flex flex-wrap justify-content-between align-items-center  p-3">
+
                             <div class="col-lg-2 col-md-3 col-sm-12 ">
                                 <label class="form-label" for="bookingSource"> Booking Source type <span
                                         style="color:red">*</span>
@@ -203,6 +188,33 @@
                                 @error('bookingSource')
                                 <div class="has-error mt-2" style="color: red">booking Sourcere quired.</div>
                                 @enderror
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-12 ">
+                                <label class="form-label" for="idproff">Id proof <span
+                                        style="color:red">*</span></label>
+                                <div class="input-group">
+                                    <input id="photo" type="file" name="idproff" style="display:none"
+                                        onchange="displaySelectedImage(this)">
+                                    <div class="input-group-prepend">
+                                        <a class="btn btn-dark text-white"
+                                            onclick="$('input[id=photo]').click();">Image</a>
+                                    </div>
+                                    <input type="hidden" name="idproff" class="form-control" id="SelectedFileName"
+                                        value="" readonly style='border-color:white'>
+                                    @error('idproff')
+                                    <div class="has-error mt-2">Guest id proof required.</div>
+                                    @enderror
+                                </div>
+
+                                <!-- Display selected image preview -->
+                                <img id="selectedImagePreview" src="" alt="Selected Image"
+                                    style="display:none; max-width: 50%; margin-top: 10px;">
+                                @error('idproff')
+                                <div class="has-error mt-2" style="color: red">Guest id proof required.</div>
+                                @enderror
+
+
+
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12   p-3">
@@ -237,7 +249,7 @@
 
             <div class="d-flex ">
                 <h6 class='p-2'>Billing Summary</h6>
-    
+
                 <button onclick="downloadPDF()" class='download-button'> PDF</button>
             </div>
             <hr>
@@ -298,19 +310,19 @@
 
                     </div>
                 </div>
-               
+
 
 
             </div>
-            <div class="d-flex card-body" >
-                    <div class="form-group col-lg-6">
-                        <label class="form-check">
-                            <input type="checkbox" class="form-check-input form-label">
-                            <label class="form-label">Payment</label>
-                        </label>
-                    </div>
-
+            <div class="d-flex card-body">
+                <div class="form-group col-lg-6">
+                    <label class="form-check">
+                        <input type="checkbox" class="form-check-input form-label">
+                        <label class="form-label">Payment</label>
+                    </label>
                 </div>
+
+            </div>
 
         </div>
     </div>
