@@ -13,12 +13,12 @@
                 <div class="page-title-icon">
                     <i class="bi bi-newspaper icon-gradient bg-mean-fruit"></i>
                 </div>
-                <div>All Guests</div>
+                <div>All Rooms</div>
             </div>
             <br />
             <div class="page-title-actions">
                 <a href="{{ route('admin.rooms.create') }}" class="btn "style="background-color:#7367f0 ; color:white">
-                    <i class="bi bi-plus-lg"></i> Add Guest
+                    <i class="bi bi-plus-lg"></i> Add Room
                 </a>
             </div>
             <br />

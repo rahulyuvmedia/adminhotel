@@ -79,7 +79,7 @@
 <script>
     $(document).ready(function() {
         $('.datatable').DataTable({
-            dom: 'lBfrtip', // Include 'l' for the length menu
+            dom: 'lBfrtip',
             buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
             lengthMenu: [
                 [10, 25, 50, -1],

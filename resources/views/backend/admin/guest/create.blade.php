@@ -6,13 +6,9 @@
     if (isset($_GET['room'])) {
         $roomNumber = $_GET['room'];
     }
-    
-    // echo $roomNumber;
+     
 ?>
-
-<!-- <h5 class="">Create Guest
-     <button type="button" id="addForm" class="btn btn-primary">+</button>
-</h5> -->
+ 
 <style>
     .download-button {
         
@@ -38,8 +34,7 @@
                 <form id='create' action="{{ Route('admin.guest.store') }}" enctype="multipart/form-data" method="post"
                     accept-charset="utf-8" class="needs-validation">
                     @csrf
-                    <div class="">
-                        <!-- Reservation Section -->
+                    <div class=""> 
                         <div class="d-flex flex-wrap justify-content-between align-items-center  p-3">
                             <div class="col-lg-2 col-md-3 col-sm-12 ">
                                 <label class="form-label" for="check_in">Check-In <span

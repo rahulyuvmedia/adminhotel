@@ -113,7 +113,7 @@
 <script>
 function confirmDelete(button) {
     if (confirm("Are you sure you want to delete this item?")) {
-        var form = button.parentElement; // Get the parent element of the button, which is the form
+        var form = button.parentElement;
         form.submit();
     } else {
         alert("Delete operation cancelled.");
@@ -124,7 +124,7 @@ function confirmDelete(button) {
 <script>
 $(document).ready(function() {
     $('#example').DataTable({
-        dom: 'lBfrtip', // Include 'l' for the length menu
+        dom: 'lBfrtip',
         buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
         "lengthMenu": [
             [10, 25, 50, -1],

@@ -74,7 +74,7 @@
 <script>
     function confirmDelete(button) {
         if (confirm("Are you sure you want to delete this item?")) {
-            var form = button.parentElement; // Get the parent element of the button, which is the form
+            var form = button.parentElement;
             form.submit();
         } else {
             alert("Delete operation cancelled.");
@@ -83,10 +83,10 @@
 
     $(document).ready(function() {
         $('#guestsTable').DataTable({
-            "pagingType": "full_numbers", // Add pagination numbers
-            dom: 'lBfrtip', // Include 'l' for the length menu
-        buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],// Add pagination numbers
-            "lengthMenu": [15, 30, 45, 60], // Set number of records per page options
+            "pagingType": "full_numbers", 
+            dom: 'lBfrtip',
+        buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+            "lengthMenu": [15, 30, 45, 60], 
             "language": {
                 "emptyTable": "No guests found",
                 "zeroRecords": "No matching guests found"
@@ -98,10 +98,10 @@
     function confirmInactive(guestId) {
         var confirmed = confirm("Are you sure you want to set this guest as inactive?");
         if (confirmed) {
-            // User clicked "OK", navigate to the 'Inactive' URL
+            
             window.location.href = "{{ URL::to('admin/guest/inactive') }}/" + guestId;
         } else {
-            // User clicked "Cancel", do nothing
+            
         }
     }
 </script>

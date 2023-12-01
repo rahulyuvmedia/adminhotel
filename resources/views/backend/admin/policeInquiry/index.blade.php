@@ -9,12 +9,12 @@
             <div class="page-title-icon">
                 <i class="bi bi-newspaper icon-gradient bg-mean-fruit"></i>
             </div>
-            <div>All Guests</div>
+            <div>All Inquiry</div>
         </div>
         <br />
         <div class="page-title-actions">
             <a href="{{ route('admin.policeInquiry.create') }}" class="btn "style="background-color:#7367f0 ; color:white">
-                <i class="bi bi-plus-lg"></i> Add Guest
+                <i class="bi bi-plus-lg"></i> Add Inquiry
             </a>
         </div>
         <br />
@@ -100,7 +100,7 @@
 <script>
 function confirmDelete(button) {
     if (confirm("Are you sure you want to delete this item?")) {
-        var form = button.parentElement; // Get the parent element of the button, which is the form
+        var form = button.parentElement;
         form.submit();
     } else {
         alert("Delete operation cancelled.");
@@ -110,9 +110,9 @@ function confirmDelete(button) {
 $(document).ready(function() {
     $('#guestsTable').DataTable({
         "pagingType": "full_numbers",
-        dom: 'lBfrtip', // Include 'l' for the length menu
-        buttons: ['copy', 'csv', 'excel', 'pdf', 'print'], // Add pagination numbers
-        "lengthMenu": [15, 30, 45, 60], // Set number of records per page options
+        dom: 'lBfrtip',
+        buttons: ['copy', 'csv', 'excel', 'pdf', 'print'], 
+        "lengthMenu": [15, 30, 45, 60], 
         "language": {
             "emptyTable": "No guests found",
             "zeroRecords": "No matching guests found"
@@ -124,10 +124,10 @@ $(document).ready(function() {
 function confirmInactive(guestId) {
     var confirmed = confirm("Are you sure you want to set this guest as inactive?");
     if (confirmed) {
-        // User clicked "OK", navigate to the 'Inactive' URL
+        
         window.location.href = "{{ URL::to('admin/guest/inactive') }}/" + guestId;
     } else {
-        // User clicked "Cancel", do nothing
+        
     }
 }
 </script>

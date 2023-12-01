@@ -1,14 +1,11 @@
 @extends('backend.layouts.master')
 @section('content')
-
-         
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Edit Master Record</h5>
                     <form id="edit" action="{{ route('admin.master.update', $master->id) }}" enctype="multipart/form-data"
                         method="post" accept-charset="utf-8" class="needs-validation">
-                        @csrf
-                        
+                        @csrf                        
                         {{ method_field('PATCH') }}
                         <div class="row">
                        <div class="col-xl-6 col-md-6 col-sm-12 mb-4">
@@ -35,6 +32,4 @@
                     </form>
                 </div>
             </div>
-     
-    
 @stop
