@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 01, 2023 at 01:52 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.0
+-- Generation Time: Dec 01, 2023 at 05:46 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -63,9 +62,9 @@ CREATE TABLE `blogs` (
   `title` varchar(255) NOT NULL,
   `description` longtext NOT NULL,
   `category` varchar(200) DEFAULT NULL,
-  `uploaded_by` int(11) DEFAULT '1',
+  `uploaded_by` int(11) DEFAULT 1,
   `file_path` varchar(255) DEFAULT 'assets/images/blog/default.png',
-  `status` tinyint(4) DEFAULT '1',
+  `status` tinyint(4) DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -105,7 +104,7 @@ CREATE TABLE `failed_jobs` (
   `queue` text NOT NULL,
   `payload` longtext NOT NULL,
   `exception` longtext NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -268,7 +267,7 @@ CREATE TABLE `oauth_access_tokens` (
   `user_id` bigint(20) UNSIGNED DEFAULT NULL,
   `client_id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `scopes` text,
+  `scopes` text DEFAULT NULL,
   `revoked` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -366,7 +365,7 @@ CREATE TABLE `oauth_auth_codes` (
   `id` varchar(100) NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `client_id` bigint(20) UNSIGNED NOT NULL,
-  `scopes` text,
+  `scopes` text DEFAULT NULL,
   `revoked` tinyint(1) NOT NULL,
   `expires_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -500,34 +499,34 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at
 
 CREATE TABLE `policeinquiry` (
   `id` bigint(20) NOT NULL,
-  `guest_id` bigint(20) NOT NULL,
-  `address` varchar(255) NOT NULL,
-  `state` enum('0','1','','') NOT NULL DEFAULT '0',
-  `city` varchar(255) NOT NULL,
-  `zipCode` varchar(255) NOT NULL,
-  `arrivedFrom` varchar(255) NOT NULL,
-  `arrivalDate` varchar(255) NOT NULL,
-  `passportNo` varchar(255) NOT NULL,
-  `placeOfIssue` varchar(255) NOT NULL,
-  `issueDate` varchar(255) NOT NULL,
-  `expiryDate` varchar(255) NOT NULL,
-  `visaNo` varchar(255) NOT NULL,
-  `visaType` varchar(255) NOT NULL,
-  `visaPlaceOfIssue` varchar(255) NOT NULL,
-  `visaIssueDate` varchar(255) NOT NULL,
-  `visaExpiryDate` varchar(255) NOT NULL,
+  `guest_id` bigint(20) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `state` enum('0','1','','') DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `zipCode` varchar(255) DEFAULT NULL,
+  `arrivedFrom` varchar(255) DEFAULT NULL,
+  `arrivalDate` varchar(255) DEFAULT NULL,
+  `passportNo` varchar(255) DEFAULT NULL,
+  `placeOfIssue` varchar(255) DEFAULT NULL,
+  `issueDate` varchar(255) DEFAULT NULL,
+  `expiryDate` varchar(255) DEFAULT NULL,
+  `visaNo` varchar(255) DEFAULT NULL,
+  `visaType` varchar(255) DEFAULT NULL,
+  `visaPlaceOfIssue` varchar(255) DEFAULT NULL,
+  `visaIssueDate` varchar(255) DEFAULT NULL,
+  `visaExpiryDate` varchar(255) DEFAULT NULL,
   `employed` enum('yes','no','','') DEFAULT NULL,
-  `guardianName` varchar(255) NOT NULL,
-  `age` varchar(255) NOT NULL,
+  `guardianName` varchar(255) DEFAULT NULL,
+  `age` varchar(255) DEFAULT NULL,
   `purposeOfvisit` varchar(255) DEFAULT NULL,
-  `destinationPlace` varchar(255) NOT NULL,
-  `destinationState` varchar(255) NOT NULL,
-  `destinationCity` varchar(255) NOT NULL,
-  `contactNo` varchar(255) NOT NULL,
-  `residentContact` varchar(255) NOT NULL,
-  `mobileNo` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `status` enum('0','1','','') NOT NULL,
+  `destinationPlace` varchar(255) DEFAULT NULL,
+  `destinationState` varchar(255) DEFAULT NULL,
+  `destinationCity` varchar(255) DEFAULT NULL,
+  `contactNo` varchar(255) DEFAULT NULL,
+  `residentContact` varchar(255) DEFAULT NULL,
+  `mobileNo` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `status` enum('0','1','','') DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -537,7 +536,8 @@ CREATE TABLE `policeinquiry` (
 --
 
 INSERT INTO `policeinquiry` (`id`, `guest_id`, `address`, `state`, `city`, `zipCode`, `arrivedFrom`, `arrivalDate`, `passportNo`, `placeOfIssue`, `issueDate`, `expiryDate`, `visaNo`, `visaType`, `visaPlaceOfIssue`, `visaIssueDate`, `visaExpiryDate`, `employed`, `guardianName`, `age`, `purposeOfvisit`, `destinationPlace`, `destinationState`, `destinationCity`, `contactNo`, `residentContact`, `mobileNo`, `description`, `status`, `created_at`, `updated_at`) VALUES
-(1, 0, 'Ajmer', '', 'Ajmer', '342001', 'This is Arrived From', '2023-11-09T12:25', 'This is Passport No', 'This is Place of Issue', '2023-11-24T12:23', '2023-11-28T12:23', 'This is Visa No', 'This is Visa Type', 'ThisVisa Place of Issue', '2023-11-29T14:23', '2023-11-17T12:23', 'yes', 'This is Guardian Name', '34', 'This is Purpose of Visit', 'This is Next Destination Place', 'This is Next Destination State', 'This is Next Destination City', '9884775648', '7742359120', '8575844568', 'This is Description', '0', '2023-11-29 12:56:39', '2023-11-30 18:34:04');
+(1, 0, 'Ajmer', '', 'Ajmer', '342001', 'This is Arrived From', '2023-11-09T12:25', 'This is Passport No', 'This is Place of Issue', '2023-11-24T12:23', '2023-11-28T12:23', 'This is Visa No', 'This is Visa Type', 'ThisVisa Place of Issue', '2023-11-29T14:23', '2023-11-17T12:23', 'yes', 'This is Guardian Name', '34', 'This is Purpose of Visit', 'This is Next Destination Place', 'This is Next Destination State', 'This is Next Destination City', '9884775648', '7742359120', '8575844568', 'This is Description', '0', '2023-11-29 12:56:39', '2023-11-30 18:34:04'),
+(5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-12-01 22:44:18', '2023-12-01 22:44:18');
 
 -- --------------------------------------------------------
 
@@ -622,7 +622,7 @@ CREATE TABLE `rooms` (
   `roomNumber` varchar(255) NOT NULL,
   `roomType` enum('single','double','suite') NOT NULL,
   `occupancy` enum('1','2','3','4','5','6') NOT NULL,
-  `price` float NOT NULL DEFAULT '0',
+  `price` float NOT NULL DEFAULT 0,
   `availability` enum('available','booked','outofservice','maintenance') NOT NULL,
   `facilities` text NOT NULL,
   `floor` varchar(255) DEFAULT NULL,
@@ -676,7 +676,7 @@ CREATE TABLE `settings` (
   `social_google` varchar(255) DEFAULT 'https://www.google.com/',
   `social_youtube` varchar(255) DEFAULT 'https://www.youtube.com/',
   `layout` varchar(255) NOT NULL DEFAULT '1',
-  `maps` text,
+  `maps` text DEFAULT NULL,
   `running_year` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -702,7 +702,7 @@ CREATE TABLE `users` (
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `file_path` varchar(255) DEFAULT 'assets/images/users/default.png',
-  `status` tinyint(4) DEFAULT '1',
+  `status` tinyint(4) DEFAULT 1,
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -923,7 +923,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `policeinquiry`
 --
 ALTER TABLE `policeinquiry`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `reservations`

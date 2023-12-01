@@ -56,39 +56,40 @@ public function create(Request $request)
 
     public function store(Request $request ){
 
-    //   dd($request);
+    //  dd($request);
 
         $request->validate([
-            
+
             // 'guest_id' => 'required',
             // Add your validation rules here based on your requirements
-            'address' => 'required',
-            'state' => 'required',
-            'city' => 'required',
-            'zipCode' => 'required',
-            'arrivedFrom' => 'required',
-            'arrivalDate' => 'required',
-            'passportNo' => 'required',
-            'placeOfIssue' => 'required',
-            'issueDate' => 'required',
-            'expiryDate' => 'required',
-            'visaNo' => 'required',
-            'visaType' => 'required',
-            'visaPlaceOfIssue' => 'required',
-            'visaIssueDate' => 'required',
-            'visaExpiryDate' => 'required',
-            'employed' => 'required|in:yes,no',
-            'guardianName' => 'required',
-            'age' => 'required',
-            'purposeOfvisit' => 'required',
-            'destinationPlace' => 'required',
-            'destinationState' => 'required',
-            'destinationCity' => 'required',
-            'contactNo' => 'required',
-            'residentContact' => 'required',
-            'mobileNo' => 'required',
-            'description' => 'nullable',
+            // 'address' => 'required',
+            // 'state' => 'required',
+            // 'city' => 'required',
+            // 'zipCode' => 'required',
+            // 'arrivedFrom' => 'required',
+            // 'arrivalDate' => 'required',
+            // 'passportNo' => 'required',
+            // 'placeOfIssue' => 'required',
+            // 'issueDate' => 'required',
+            // 'expiryDate' => 'required',
+            // 'visaNo' => 'required',
+            // 'visaType' => 'required',
+            // 'visaPlaceOfIssue' => 'required',
+            // 'visaIssueDate' => 'required',
+            // 'visaExpiryDate' => 'required',
+            // 'employed' => 'required|in:yes,no',
+            // 'guardianName' => 'required',
+            // 'age' => 'required',
+            // 'purposeOfvisit' => 'required',
+            // 'destinationPlace' => 'required',
+            // 'destinationState' => 'required',
+            // 'destinationCity' => 'required',
+            // 'contactNo' => 'required',
+            // 'residentContact' => 'required',
+            // 'mobileNo' => 'required',
+            // 'description' => 'nullable',
         ]);
+       
         try {
              
             $guestId = $request->input('guest_id');
@@ -100,47 +101,49 @@ public function create(Request $request)
                 
 
 
-                'address' => $request->input('address'),
-                'state' => $request->input('state'),
-                'city' => $request->input('city'),
-                'zipCode' => $request->input('zipCode'),
-                'arrivedFrom' => $request->input('arrivedFrom'),
-                'arrivalDate' => $request->input('arrivalDate'),
-                'passportNo' => $request->input('passportNo'),
-                'placeOfIssue' => $request->input('placeOfIssue'),
-                'issueDate' => $request->input('issueDate'),
-                'expiryDate' => $request->input('expiryDate'),
-                'visaNo' => $request->input('visaNo'),
-                'visaType' => $request->input('visaType'),
-                'visaPlaceOfIssue' => $request->input('visaPlaceOfIssue'),
-                'visaIssueDate' => $request->input('visaIssueDate'),
-                'visaExpiryDate' => $request->input('visaExpiryDate'),
-                'employed' => $request->input('employed'),
-                'guardianName' => $request->input('guardianName'),
-                'age' => $request->input('age'),
-                'purposeOfvisit' => $request->input('purposeOfvisit'),
-                'destinationPlace' => $request->input('destinationPlace'),
-                'destinationState' => $request->input('destinationState'),
-                'destinationCity' => $request->input('destinationCity'),
-                'contactNo' => $request->input('contactNo'),
-                'residentContact' => $request->input('residentContact'),
-                'mobileNo' => $request->input('mobileNo'),
-                'description' => $request->input('description'),
+                // 'address' => $request->input('address'),
+                // 'state' => $request->input('state'),
+                // 'city' => $request->input('city'),
+                // 'zipCode' => $request->input('zipCode'),
+                // 'arrivedFrom' => $request->input('arrivedFrom'),
+                // 'arrivalDate' => $request->input('arrivalDate'),
+                // 'passportNo' => $request->input('passportNo'),
+                // 'placeOfIssue' => $request->input('placeOfIssue'),
+                // 'issueDate' => $request->input('issueDate'),
+                // 'expiryDate' => $request->input('expiryDate'),
+                // 'visaNo' => $request->input('visaNo'),
+                // 'visaType' => $request->input('visaType'),
+                // 'visaPlaceOfIssue' => $request->input('visaPlaceOfIssue'),
+                // 'visaIssueDate' => $request->input('visaIssueDate'),
+                // 'visaExpiryDate' => $request->input('visaExpiryDate'),
+                // 'employed' => $request->input('employed'),
+                // 'guardianName' => $request->input('guardianName'),
+                // 'age' => $request->input('age'),
+                // 'purposeOfvisit' => $request->input('purposeOfvisit'),
+                // 'destinationPlace' => $request->input('destinationPlace'),
+                // 'destinationState' => $request->input('destinationState'),
+                // 'destinationCity' => $request->input('destinationCity'),
+                // 'contactNo' => $request->input('contactNo'),
+                // 'residentContact' => $request->input('residentContact'),
+                // 'mobileNo' => $request->input('mobileNo'),
+                // 'description' => $request->input('description'),
                 
             ]);
-   
+//    dd($policeinquiry);
           
             \Log::info('Data to be stored:', $request->all());
             $policeinquiry->save();
-
+// dd('1');
 
 
             return redirect()->route('admin.policeInquiry.index')->with('success', 'policeInquiry added successfully.');
 
         } catch (\Exception $e) {
+            print_r( $e);
+            die();
             \Log::error('Error saving data: ' . $e->getMessage());
             session()->flash('sticky_error', $e->getMessage());
-            return back();
+            // return back();
         }
     } 
 
