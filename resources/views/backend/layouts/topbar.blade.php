@@ -59,7 +59,7 @@ $user = Auth::user();
              <!--/ Language -->
 
              <!-- Style Switcher -->
-             <!-- <li class="nav-item dropdown-style-switcher dropdown me-2 me-xl-0">
+           <li class="nav-item dropdown-style-switcher dropdown me-2 me-xl-0">
                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                      <i class="ti ti-md"></i>
                  </a>
@@ -80,7 +80,7 @@ $user = Auth::user();
                          </a>
                      </li>
                  </ul>
-             </li> -->
+             </li>  
              <!-- / Style Switcher-->
 
              <!-- Quick links  -->

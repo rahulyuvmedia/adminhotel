@@ -27,9 +27,12 @@
 
  <!-- Core CSS -->
  <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/core.css') }}" class="template-customizer-core-css" />
- <link rel="stylesheet" href="{{ URL::to('assets/vendor/css/rtl/theme-default.css') }}"
-     class="template-customizer-theme-css" />
+ <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/core-dark.css') }}" class="template-customizer-core-dark-css" />
+ <link rel="stylesheet" href="{{ URL::to('assets/vendor/css/rtl/theme-default.css') }}" class="template-customizer-theme-css" />
+ <link rel="stylesheet" href="{{ URL::to('assets/vendor/css/rtl/theme-default-dark.css') }}" class="template-customizer-theme-css" />
+ 
  <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
+
 
  <!-- Vendors CSS -->
  <link rel="stylesheet" href="{{ asset('assets/vendor/libs/node-waves/node-waves.css') }}" />
@@ -50,7 +53,7 @@
  <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
 
 
- <!--  <script src="{{ asset('assets/vendor/js/template-customizer.js') }}"></script> -->
+  <script src="{{ asset('assets/vendor/js/template-customizer.js') }}"></script>
 
  <script src="{{ asset('assets/js/config.js') }}"></script>
 
