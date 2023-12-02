@@ -136,7 +136,7 @@ public function create(Request $request)
 // dd('1');
 
 
-            return redirect()->route('admin.policeInquiry.index')->with('success', 'policeInquiry added successfully.');
+            return redirect()->route('admin.guest.index')->with('success', 'policeInquiry added successfully.');
 
         } catch (\Exception $e) {
             print_r( $e);
