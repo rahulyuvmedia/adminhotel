@@ -6,6 +6,7 @@ use App\Models\Guest;
 use App\Models\Rooms;
 use App\Models\Reservation;
 use App\Models\Master;
+use App\Models\Policeinquiry;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,9 +22,9 @@ class GuestController extends Controller
 
      public function index(Request $request)
      {
-      
+         $keyword = $request->input('keyword');
          $model = Guest::with('rooms')->where(['hotel_id' => Auth::id()])->orderBy('created_at', 'desc')->get();
-         return view('backend.admin.guest.index', compact('model' ));
+         return view('backend.admin.guest.index', compact('model', 'keyword'));
      }
 
 

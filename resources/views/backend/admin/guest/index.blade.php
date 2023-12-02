@@ -69,11 +69,23 @@
                                     Unknown
                                     @endif
 
+                                    @php
+
+                                    $formExists = \App\Models\PoliceInquiry::where('guest_id', $value->id)->exists();
+                                    @endphp
+
+                                    @if($formExists)
+
+                                  
+                                    @else
+
                                     <a href="{{ route('admin.policeInquiry.create', ['id' => $value->id]) }}"
                                         class="fw-bold btn btn-primary btn-outline-primary me-2"
-                                        data-mdb-ripple-color="dark">
-                                        <i class="bi bi-pencil-fill"></i> C Form for
+                                        data-mdb-ripple-color="dark"style="margin-left: 8px;">
+                                        <i class="bi bi-pencil-fill"></i> C Form
                                     </a>
+                                    @endif
+
 
 
 
@@ -107,7 +119,56 @@ $(document).ready(function() {
     $('#guestsTable').DataTable({
         "pagingType": "full_numbers",
         dom: 'lBfrtip',
-        buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+        buttons: [
+            {
+                extend: 'copy',
+                text: 'Copy',
+                className: 'btn btn-light', // Change to btn-light for a light background color
+                exportOptions: {
+                    columns: ':visible'
+                },
+                customize: function (win) {
+                    $(win.document.body)
+                        .find('button')
+                        .removeClass('btn-secondary')
+                        .addClass('btn-light')
+                        .css('margin-right', '5px');
+                }
+            },
+            {
+                extend: 'csv',
+                text: 'CSV',
+                className: 'btn btn-light ', // Add btn-custom for common styling
+                exportOptions: {
+                    columns: ':visible'
+                },
+                customize: function (win) {
+                    $(win.document.body)
+                        .find('button')
+                        .removeClass('btn-secondary')
+                        .addClass('btn-custom')
+                        .css('margin-right', '5px');
+                }
+            },
+            {
+                extend: 'excel',
+                text: 'Excel',
+                className: 'btn btn-light',
+                style: 'margin-right: 5px;'
+            },
+            {
+                extend: 'pdf',
+                text: 'PDF',
+                className: 'btn btn-light' ,
+                style: 'margin-right: 5px;'
+            },
+            {
+                extend: 'print',
+                text: 'Print',
+                className: 'btn btn-light',
+                style: 'margin-right: 5px;'
+            }
+        ],
         "lengthMenu": [15, 30, 45, 60],
         "language": {
             "emptyTable": "No guests found",

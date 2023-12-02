@@ -26,7 +26,7 @@
 }
 </style>
 
-<h5 class="mb-1">Edit Guest</h5>
+<h5 class="mb-1">Edit PoliceInquiry</h5>
 
 <div class="ant-col ant-col-17" >
     <div class="card ">
