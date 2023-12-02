@@ -2,7 +2,7 @@
 @section('title', 'Guests')
 @section('content')
 
- 
+
 <div class="app-page-title">
     <div class="page-title-wrapper">
         <div class="page-title-heading">
@@ -13,7 +13,8 @@
         </div>
         <br />
         <div class="page-title-actions">
-            <a href="{{ route('admin.policeInquiry.create') }}" class="btn "style="background-color:#7367f0 ; color:white">
+            <a href="{{ route('admin.policeInquiry.create') }}" class="btn "
+                style="background-color:#7367f0 ; color:white">
                 <i class="bi bi-plus-lg"></i> Add Inquiry
             </a>
         </div>
@@ -72,7 +73,7 @@
                                         </button>
                                     </form> -->
 
-<!-- 
+                                    <!-- 
                                     @if ($value->status == 1)
                                     <a class="fw-bold  btn btn-success" onclick="confirmInactive({{ $value->id }})"
                                         href="{{ URL::to('admin/guest/active', $value->id) }}">Active</a>
@@ -84,7 +85,7 @@
                                     @else
 
                                     Unknown -->
-                                    @endif
+                                    <!-- @endif -->
                                 </td>
                             </tr>
 
@@ -111,8 +112,8 @@ $(document).ready(function() {
     $('#guestsTable').DataTable({
         "pagingType": "full_numbers",
         dom: 'lBfrtip',
-        buttons: ['copy', 'csv', 'excel', 'pdf', 'print'], 
-        "lengthMenu": [15, 30, 45, 60], 
+        buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+        "lengthMenu": [15, 30, 45, 60],
         "language": {
             "emptyTable": "No guests found",
             "zeroRecords": "No matching guests found"
@@ -124,10 +125,10 @@ $(document).ready(function() {
 function confirmInactive(guestId) {
     var confirmed = confirm("Are you sure you want to set this guest as inactive?");
     if (confirmed) {
-        
+
         window.location.href = "{{ URL::to('admin/guest/inactive') }}/" + guestId;
     } else {
-        
+
     }
 }
 </script>

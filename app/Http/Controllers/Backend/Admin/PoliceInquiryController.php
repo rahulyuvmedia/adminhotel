@@ -24,7 +24,7 @@ class PoliceInquiryController extends Controller
      public function index(Request $request)
      {
          $keyword = $request->input('keyword');
-         $model = PoliceInquiry::orderBy('created_at', 'desc')->get();
+         $model = PoliceInquiry:: orderBy('created_at', 'desc')->get();
          return view('backend.admin.policeInquiry.index', compact('model', 'keyword'));
      }
 
@@ -101,32 +101,32 @@ public function create(Request $request)
                 
 
 
-                // 'address' => $request->input('address'),
-                // 'state' => $request->input('state'),
-                // 'city' => $request->input('city'),
-                // 'zipCode' => $request->input('zipCode'),
-                // 'arrivedFrom' => $request->input('arrivedFrom'),
-                // 'arrivalDate' => $request->input('arrivalDate'),
-                // 'passportNo' => $request->input('passportNo'),
-                // 'placeOfIssue' => $request->input('placeOfIssue'),
-                // 'issueDate' => $request->input('issueDate'),
-                // 'expiryDate' => $request->input('expiryDate'),
-                // 'visaNo' => $request->input('visaNo'),
-                // 'visaType' => $request->input('visaType'),
-                // 'visaPlaceOfIssue' => $request->input('visaPlaceOfIssue'),
-                // 'visaIssueDate' => $request->input('visaIssueDate'),
-                // 'visaExpiryDate' => $request->input('visaExpiryDate'),
-                // 'employed' => $request->input('employed'),
-                // 'guardianName' => $request->input('guardianName'),
-                // 'age' => $request->input('age'),
-                // 'purposeOfvisit' => $request->input('purposeOfvisit'),
-                // 'destinationPlace' => $request->input('destinationPlace'),
-                // 'destinationState' => $request->input('destinationState'),
-                // 'destinationCity' => $request->input('destinationCity'),
-                // 'contactNo' => $request->input('contactNo'),
-                // 'residentContact' => $request->input('residentContact'),
-                // 'mobileNo' => $request->input('mobileNo'),
-                // 'description' => $request->input('description'),
+                 'address' => $request->input('address'),
+                  'state' => $request->input('state'),
+                 'city' => $request->input('city'),
+                  'zipCode' => $request->input('zipCode'),
+                  'arrivedFrom' => $request->input('arrivedFrom'),
+                'arrivalDate' => $request->input('arrivalDate'),
+                'passportNo' => $request->input('passportNo'),
+                  'placeOfIssue' => $request->input('placeOfIssue'),
+                'issueDate' => $request->input('issueDate'),
+                'expiryDate' => $request->input('expiryDate'),
+                'visaNo' => $request->input('visaNo'),
+                'visaType' => $request->input('visaType'),
+                'visaPlaceOfIssue' => $request->input('visaPlaceOfIssue'),
+                'visaIssueDate' => $request->input('visaIssueDate'),
+                'visaExpiryDate' => $request->input('visaExpiryDate'),
+                'employed' => $request->input('employed'),
+                'guardianName' => $request->input('guardianName'),
+                'age' => $request->input('age'),
+                'purposeOfvisit' => $request->input('purposeOfvisit'),
+                'destinationPlace' => $request->input('destinationPlace'),
+                'destinationState' => $request->input('destinationState'),
+                'destinationCity' => $request->input('destinationCity'),
+                'contactNo' => $request->input('contactNo'),
+                'residentContact' => $request->input('residentContact'),
+                'mobileNo' => $request->input('mobileNo'),
+                'description' => $request->input('description'),
                 
             ]);
 //    dd($policeinquiry);
@@ -156,12 +156,13 @@ public function create(Request $request)
    
     public function edit($id)
     {
+        $id = $request->input('id');
         $policeinquiry = Policeinquiry::findOrFail($id);
         $modeldata = Master::orderBy('created_at', 'asc')
             ->where('type', '=', 'BookingSource')
             ->get();
     
-        return view('backend.admin.policeInquiry.edit', compact('policeinquiry', 'modeldata'));
+        return view('backend.admin.policeInquiry.edit', compact('policeinquiry', 'modeldata', 'id'));
     }
      
 

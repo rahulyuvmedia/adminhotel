@@ -29,7 +29,7 @@ class Policeinquiry extends Model
         'employed',
         'guardianName',
         'age',
-        'purposeOfVisit',
+        'purposeOfvisit',
         'destinationPlace',
         'destinationState',
         'destinationCity',

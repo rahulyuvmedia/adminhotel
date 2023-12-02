@@ -250,11 +250,11 @@
                         </div>
 
                         <div class="col-lg-2 col-md-3 col-sm-6 p-1">
-                            <label class="form-label" for="purposeOfVisit">Purpose of Visit <span
+                            <label class="form-label" for="purposeOfvisit">Purpose of Visit <span
                                     style="color:red">*</span></label>
-                            <input type="text" id="purposeOfVisit" class="form-control purposeOfVisit"
-                                name="purposeOfVisit" placeholder="Enter purpose of visit" />
-                            @error('purposeOfVisit')
+                            <input type="text" id="purposeOfvisit" class="form-control purposeOfvisit"
+                                name="purposeOfvisit" placeholder="Enter purpose of visit" />
+                            @error('purposeOfvisit')
                                 <div class="has-error mt-2" style="color: red">Purpose of Visit field is required.</div>
                             @enderror
                         </div>

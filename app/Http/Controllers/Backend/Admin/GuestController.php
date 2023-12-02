@@ -21,9 +21,9 @@ class GuestController extends Controller
 
      public function index(Request $request)
      {
-         $keyword = $request->input('keyword');
+      
          $model = Guest::with('rooms')->where(['hotel_id' => Auth::id()])->orderBy('created_at', 'desc')->get();
-         return view('backend.admin.guest.index', compact('model', 'keyword'));
+         return view('backend.admin.guest.index', compact('model' ));
      }
 
 
@@ -139,6 +139,7 @@ class GuestController extends Controller
      */
  public function edit($id)
 {
+    $policeinquiry = Policeinquiry::findOrFail($id);
     $model = Guest::with(['reservations.room'])->find($id);
     $modeldata = Master::orderBy('created_at', 'asc')
     ->where('type', '=', 'BookingSource')
@@ -153,7 +154,7 @@ class GuestController extends Controller
     $roomForReservation = $reservation->room;
     $model->rooms = $roomForReservation;
 
-    return view('backend.admin.guest.edit', compact('model','modeldata'));
+    return view('backend.admin.guest.edit', compact('model','modeldata','policeinquiry'));
 }
 
     /**
