@@ -154,9 +154,9 @@ public function create(Request $request)
     }
 
    
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        $id = $request->input('id');
+ 
         $policeinquiry = Policeinquiry::findOrFail($id);
         $modeldata = Master::orderBy('created_at', 'asc')
             ->where('type', '=', 'BookingSource')
@@ -204,7 +204,7 @@ public function create(Request $request)
 
     try {
         
-        $model = Policeinquiry::find($guest_id);
+        $model = Policeinquiry::find($id);
  
         $model->address = $request->address;
         $model->state = $request->state;
