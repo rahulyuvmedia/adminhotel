@@ -176,6 +176,18 @@ public function create(Request $request)
      
 
 
+    public function view(Request $request, $id)
+    {
+        $policeinquiry = Policeinquiry::findOrFail($id);
+        $modeldata = Master::orderBy('created_at', 'asc')
+            ->where('type', '=', 'BookingSource')
+            ->get();
+    
+        return view('backend.admin.policeInquiry.view', compact('policeinquiry', 'modeldata', 'id'));
+    }
+    
+
+
     public function update(Request $request, $id)
 {
 

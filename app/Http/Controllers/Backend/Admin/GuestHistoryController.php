@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Guest;
 use App\Models\Rooms;
 use App\Models\Reservation;
+use App\Models\PoliceInquiry;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,9 +21,15 @@ class GuestHistoryController extends Controller
 
      public function index(Request $request)
      {
+
+        $pImodel = PoliceInquiry::with(['rooms' => function ($query) {
+            $query->where('hotel_id', Auth::id());
+        }])
+        ->orderBy('created_at', 'desc')
+        ->get();
          $keyword = $request->input('keyword');
          $model = Guest::with('rooms')->where(['hotel_id' => Auth::id()])->orderBy('created_at', 'desc')->get();
-         return view('backend.admin.guestHistory.index', compact('model', 'keyword'));
+         return view('backend.admin.guestHistory.index', compact('model', 'keyword','pImodel'));
      }
 
 
@@ -131,15 +138,13 @@ class GuestHistoryController extends Controller
         abort(404);
     }
 
-    $reservation = $model->reservations;
+    // $reservation = $model->reservations;
 
     // Check if $reservation is not null
-    if ($reservation) {
-        $roomId = $reservation->isNotEmpty() ? $reservation->first()->room->id : null;
-        $model->rooms = $roomId;
-    } else {
-        $model->rooms = null; // Set rooms to null when reservations are null
-    }
+    $reservations = Reservation::where('guest_id', $id)->get();
+    $roomId = $reservations->isNotEmpty() ? $reservations->first()->room->id : null;
+    $model->rooms = $roomId;
+
 
     return view('backend.admin.guestHistory.edit', compact('model'));
 }
@@ -262,5 +267,17 @@ class GuestHistoryController extends Controller
     }
 
  
+
+    public function view(Request $request, $id)
+    {
+ 
+        $policeinquiry = Policeinquiry::findOrFail($id);
+        $modeldata = Master::orderBy('created_at', 'asc')
+            ->where('type', '=', 'BookingSource')
+            ->get();
+    
+        return view('backend.admin.policeInquiry.view', compact('policeinquiry', 'modeldata', 'id'));
+    }
+
 
 }

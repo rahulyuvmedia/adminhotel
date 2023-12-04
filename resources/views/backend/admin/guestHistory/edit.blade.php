@@ -27,26 +27,31 @@
                                         style="max-width: 50%; margin-top: 50px;" />
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Status:</td>
-                                @isset($model->reservations)
-                                {{ $model->reservations->status }}
-                                @else
-                                No Reservation
-                                @endisset
-                            </tr>
+
                             <tr>
                                 <td>Name:</td>
-                                <td>{{ $model->name }}</td>
+                                <td>
+                                    @isset($model->name)
+                                    {{ $model->name }}
+                                    @else
+                                    N/A
+                                    @endisset</td>
                             </tr>
                             <tr>
                                 <td>Room Number:</td>
                                 <td>
                                     @isset($model->rooms)
+                                    @isset($model->rooms->roomNumber)
                                     {{ $model->rooms->roomNumber }}
                                     @else
                                     No Room Assigned
                                     @endisset
+                                    @else
+                                    No Room Assigned
+                                    @endisset
+
+
+
                                 </td>
                             </tr>
                             <tr>
@@ -56,33 +61,37 @@
                             <tr>
                                 <td>Check-in:</td>
                                 <td>
-                                @isset($model->rooms)
-                                {{ $model->reservations->check_in }}
-                                @else
+                                    @isset($model->rooms)
+                                    {{ $model->reservations->check_in }}
+                                    @else
                                     No Room Assigned
                                     @endisset</td>
                             </tr>
                             <tr>
                                 <td>Check-out:</td>
-                                <td>   @isset($model->rooms)
+                                <td> @isset($model->rooms)
                                     {{ $model->reservations->check_out }}
-                                @else
+                                    @else
                                     No Room Assigned
                                     @endisset
                                 </td>
                             </tr>
                             <tr>
                                 <td>Total Member:</td>
-                                <td>  
+                                <td> @isset($model->rooms)
                                     {{ $model->member }}
-                                 
+                                    @else
+                                    No Room Assigned
+                                    @endisset
                                 </td>
                             </tr>
                             <tr>
                                 <td>Total Child:</td>
-                                <td>   
+                                <td> @isset($model->rooms)
                                     {{ $model->child  }}
-                                 
+                                    @else
+                                    No Room Assigned
+                                    @endisset
                                 </td>
                             </tr>
                         </tbody>

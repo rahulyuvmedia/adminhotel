@@ -38,12 +38,12 @@
              </a>
          </li>
 
-         <li class="menu-item @if (request()->is('admin/policeInquiry')) active @endif">
+         <!-- <li class="menu-item @if (request()->is('admin/policeInquiry')) active @endif">
              <a href="{{ URL::to('/admin/policeInquiry') }}" class="menu-link">
                  <i class="menu-icon tf-icons ti ti-mail"></i>
                  <div data-i18n="Police Inquiry">Police Inquiry</div>
              </a>
-         </li>
+         </li> -->
          <li class="menu-header small text-uppercase">
              <span class="menu-header-text" data-i18n="Room Management">Room Management</span>
          </li>

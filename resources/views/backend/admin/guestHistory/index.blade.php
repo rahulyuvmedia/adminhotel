@@ -51,17 +51,26 @@
                                 <td>{{ $value->email }}</td>
                                 <td>{{ $value->mobile }}</td>
                                 <td>
-                                    @isset($model->value)
+                                   
                                     {{ optional($value->reservations)->status }}</td>
-                                @else
-                                No Room Assigned
-                                @endisset
+                                
                                 <td class="d-flex">
                                     <a href="{{ Route('admin.guestHistory.edit', $value->id) }}"
                                         class="btn btn-primary me-2" data-mdb-ripple-color="dark">
                                         <i class="bi bi-pencil-fill"></i> View
                                     </a>
+                                    @php
+                                    $policeInquiry = $pImodel->firstWhere('guest_id', $value->id);
+                                    @endphp
 
+                                    @if ($policeInquiry)
+                                    <a href="{{ route('admin.policeInquiry.edit', ['policeInquiry' => $policeInquiry->id]) }}"
+                                        class="btn btn-primary me-2" data-mdb-ripple-color="dark" style="margin-left: 9px;">
+                                        <i class="bi bi-pencil-fill"></i>View PV Form
+                                    </a>
+                                    @else
+                                    
+                                    @endif
 
                                 </td>
                             </tr>
