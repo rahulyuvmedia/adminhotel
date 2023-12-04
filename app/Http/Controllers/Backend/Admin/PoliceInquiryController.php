@@ -23,9 +23,17 @@ class PoliceInquiryController extends Controller
 
      public function index(Request $request)
      {
-         $keyword = $request->input('keyword');
-         $model = PoliceInquiry:: orderBy('created_at', 'desc')->get();
-         return view('backend.admin.policeInquiry.index', compact('model', 'keyword'));
+        $hotelId = Auth::id();
+         $model = PoliceInquiry::with(['rooms' => function ($query) use ($hotelId) {
+            $query->where('hotel_id', $hotelId);
+        }])
+        ->where('hotel_id', $hotelId)
+        ->orderBy('created_at', 'desc')
+        ->get();
+         
+
+        
+         return view('backend.admin.policeInquiry.index', compact('model'));
      }
 
   
@@ -129,6 +137,7 @@ public function create(Request $request)
                 'description' => $request->input('description'),
                 
             ]);
+            $policeinquiry->hotel_id = Auth::id();
 //    dd($policeinquiry);
           
             \Log::info('Data to be stored:', $request->all());

@@ -10,6 +10,7 @@ class Policeinquiry extends Model
     protected $table = 'policeinquiry';
 
     protected $fillable = [
+        'hotel_id',
         'guest_id',
         'address',
         'state',
