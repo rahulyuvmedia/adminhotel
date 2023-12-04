@@ -29,7 +29,11 @@
                             </tr>
                             <tr>
                                 <td>Status:</td>
-                                <td>{{ $model->reservations->status }}</td>
+                                @isset($model->reservations)
+                                {{ $model->reservations->status }}
+                                @else
+                                No Reservation
+                                @endisset
                             </tr>
                             <tr>
                                 <td>Name:</td>
@@ -51,19 +55,35 @@
                             </tr>
                             <tr>
                                 <td>Check-in:</td>
-                                <td>{{ $model->reservations->check_in }}</td>
+                                <td>
+                                @isset($model->rooms)
+                                {{ $model->reservations->check_in }}
+                                @else
+                                    No Room Assigned
+                                    @endisset</td>
                             </tr>
                             <tr>
                                 <td>Check-out:</td>
-                                <td>{{ $model->reservations->check_out }}</td>
+                                <td>   @isset($model->rooms)
+                                    {{ $model->reservations->check_out }}
+                                @else
+                                    No Room Assigned
+                                    @endisset
+                                </td>
                             </tr>
                             <tr>
                                 <td>Total Member:</td>
-                                <td>{{ $model->member }}</td>
+                                <td>  
+                                    {{ $model->member }}
+                                 
+                                </td>
                             </tr>
                             <tr>
                                 <td>Total Child:</td>
-                                <td>{{ $model->child  }}</td>
+                                <td>   
+                                    {{ $model->child  }}
+                                 
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -74,21 +94,21 @@
 </div>
 
 <!-- Include TableExport library -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tableexport@5.2.0/dist/js/tableexport.bundle.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tableexport@5.2.0/dist/js/tableexport.bundle.min.js">
+</script>
 
 <script>
-    $(document).ready(function() {
-        $('.datatable').DataTable({
-            dom: 'lBfrtip',
-            buttons: [
-            {
+$(document).ready(function() {
+    $('.datatable').DataTable({
+        dom: 'lBfrtip',
+        buttons: [{
                 extend: 'copy',
                 text: 'Copy',
                 className: 'btn btn-light', // Change to btn-light for a light background color
                 exportOptions: {
                     columns: ':visible'
                 },
-                customize: function (win) {
+                customize: function(win) {
                     $(win.document.body)
                         .find('button')
                         .removeClass('btn-secondary')
@@ -103,7 +123,7 @@
                 exportOptions: {
                     columns: ':visible'
                 },
-                customize: function (win) {
+                customize: function(win) {
                     $(win.document.body)
                         .find('button')
                         .removeClass('btn-secondary')
@@ -120,7 +140,7 @@
             {
                 extend: 'pdf',
                 text: 'PDF',
-                className: 'btn btn-light' ,
+                className: 'btn btn-light',
                 style: 'margin-right: 5px;'
             },
             {
@@ -130,13 +150,13 @@
                 style: 'margin-right: 5px;'
             }
         ],
-            lengthMenu: [
-                [10, 25, 50, -1],
-                [10, 25, 50, 'All']
-            ], // Length options and labels
-            pageLength: 10 // Set the initial number of rows displayed
-        });
+        lengthMenu: [
+            [10, 25, 50, -1],
+            [10, 25, 50, 'All']
+        ], // Length options and labels
+        pageLength: 10 // Set the initial number of rows displayed
     });
+});
 </script>
 
 @stop

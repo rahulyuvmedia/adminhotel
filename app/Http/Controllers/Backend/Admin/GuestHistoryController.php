@@ -121,8 +121,8 @@ class GuestHistoryController extends Controller
      * @param  \App\Models\Guest  $guest
      * @return \Illuminate\Http\Response
      */
- public function edit($id)
- {
+    public function edit($id)
+{
     $model = Guest::with(['reservations.room'])->find($id);
 
     // Check if $model is not null
@@ -131,12 +131,20 @@ class GuestHistoryController extends Controller
         abort(404);
     }
 
-    $reservation = Reservation::find($model->reservations->id);
-    $roomForReservation = $reservation->room;
-    $model->rooms = $roomForReservation;
+    $reservation = $model->reservations;
+
+    // Check if $reservation is not null
+    if ($reservation) {
+        $roomId = $reservation->isNotEmpty() ? $reservation->first()->room->id : null;
+        $model->rooms = $roomId;
+    } else {
+        $model->rooms = null; // Set rooms to null when reservations are null
+    }
 
     return view('backend.admin.guestHistory.edit', compact('model'));
 }
+
+    
 
     /**
      * Update the specified resource in storage.

@@ -140,7 +140,7 @@ class GuestController extends Controller
      */
  public function edit($id)
 {
-    $policeinquiry = Policeinquiry::findOrFail($id);
+   
     $model = Guest::with(['reservations.room'])->find($id);
     $modeldata = Master::orderBy('created_at', 'asc')
     ->where('type', '=', 'BookingSource')
@@ -150,12 +150,11 @@ class GuestController extends Controller
         // Handle the case where Guest with the given ID is not found
         abort(404);
     }
+ 
 
-    $reservation = Reservation::find($model->reservations->id);
-    $roomForReservation = $reservation->room;
-    $model->rooms = $roomForReservation;
 
-    return view('backend.admin.guest.edit', compact('model','modeldata','policeinquiry'));
+    
+    return view('backend.admin.guest.edit', compact('model','modeldata'));
 }
 
     /**

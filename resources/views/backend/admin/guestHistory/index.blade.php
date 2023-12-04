@@ -9,13 +9,13 @@
             </div>
             <div>Guests History</div>
         </div>
-        <br/>
+        <br />
         <!-- <div class="page-title-actions">
             <a href="{{ route('admin.guest.create') }}" class="btn btn-success">
                 <i class="bi bi-plus-lg"></i> Add Guest
             </a>
         </div> -->
-        <br/>
+        <br />
     </div>
 </div>
 
@@ -39,29 +39,33 @@
                                 <th>Number</th>
                                 <th>Status</th>
                                 <th>Action</th>
-                                
+
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($model as $value)
-                           
+
                             <tr>
                                 <td class="serial-number">{{ $loop->iteration }}</td>
                                 <td>{{ $value->name }}</td>
                                 <td>{{ $value->email }}</td>
                                 <td>{{ $value->mobile }}</td>
-                                <td> {{ optional($value->reservations)->status }}</td>
-
+                                <td>
+                                    @isset($model->value)
+                                    {{ optional($value->reservations)->status }}</td>
+                                @else
+                                No Room Assigned
+                                @endisset
                                 <td class="d-flex">
-                                    <a href="{{ Route('admin.guestHistory.edit', $value->id) }}" class="btn btn-primary me-2"
-                                        data-mdb-ripple-color="dark">
+                                    <a href="{{ Route('admin.guestHistory.edit', $value->id) }}"
+                                        class="btn btn-primary me-2" data-mdb-ripple-color="dark">
                                         <i class="bi bi-pencil-fill"></i> View
                                     </a>
 
-                                     
+
                                 </td>
                             </tr>
-                          
+
                             @endforeach
                         </tbody>
                     </table>
@@ -72,28 +76,27 @@
 </div>
 
 <script>
-    function confirmDelete(button) {
-        if (confirm("Are you sure you want to delete this item?")) {
-            var form = button.parentElement;
-            form.submit();
-        } else {
-            alert("Delete operation cancelled.");
-        }
+function confirmDelete(button) {
+    if (confirm("Are you sure you want to delete this item?")) {
+        var form = button.parentElement;
+        form.submit();
+    } else {
+        alert("Delete operation cancelled.");
     }
+}
 
-    $(document).ready(function() {
-        $('#guestsTable').DataTable({
-            "pagingType": "full_numbers", 
-            dom: 'lBfrtip',
-            buttons: [
-            {
+$(document).ready(function() {
+    $('#guestsTable').DataTable({
+        "pagingType": "full_numbers",
+        dom: 'lBfrtip',
+        buttons: [{
                 extend: 'copy',
                 text: 'Copy',
                 className: 'btn btn-light', // Change to btn-light for a light background color
                 exportOptions: {
                     columns: ':visible'
                 },
-                customize: function (win) {
+                customize: function(win) {
                     $(win.document.body)
                         .find('button')
                         .removeClass('btn-secondary')
@@ -108,7 +111,7 @@
                 exportOptions: {
                     columns: ':visible'
                 },
-                customize: function (win) {
+                customize: function(win) {
                     $(win.document.body)
                         .find('button')
                         .removeClass('btn-secondary')
@@ -125,7 +128,7 @@
             {
                 extend: 'pdf',
                 text: 'PDF',
-                className: 'btn btn-light' ,
+                className: 'btn btn-light',
                 style: 'margin-right: 5px;'
             },
             {
@@ -135,23 +138,23 @@
                 style: 'margin-right: 5px;'
             }
         ],
-            "lengthMenu": [15, 30, 45, 60], 
-            "language": {
-                "emptyTable": "No guests found",
-                "zeroRecords": "No matching guests found"
-            }
-        });
+        "lengthMenu": [15, 30, 45, 60],
+        "language": {
+            "emptyTable": "No guests found",
+            "zeroRecords": "No matching guests found"
+        }
     });
+});
 </script>
 <script>
-    function confirmInactive(guestId) {
-        var confirmed = confirm("Are you sure you want to set this guest as inactive?");
-        if (confirmed) {
-            
-            window.location.href = "{{ URL::to('admin/guest/inactive') }}/" + guestId;
-        } else {
-            
-        }
+function confirmInactive(guestId) {
+    var confirmed = confirm("Are you sure you want to set this guest as inactive?");
+    if (confirmed) {
+
+        window.location.href = "{{ URL::to('admin/guest/inactive') }}/" + guestId;
+    } else {
+
     }
+}
 </script>
 @stop
