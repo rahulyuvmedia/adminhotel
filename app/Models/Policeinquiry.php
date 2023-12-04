@@ -39,5 +39,10 @@ class Policeinquiry extends Model
         'description',
         // Add other fields here
     ];
+ 
+    public function rooms()
+    {
+        return $this->belongsTo(Rooms::class);
+    }
     use HasFactory;
 }

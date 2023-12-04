@@ -63,29 +63,7 @@
                                         class="btn btn-primary me-2" data-mdb-ripple-color="dark">
                                         <i class="bi bi-pencil-fill"></i> Edit
                                     </a>
-
-                                    <!-- <form action="{{ route('admin.guest.destroy', $value->id) }}" method="POST"
-                                        id="deleteForm" class='me-2'>
-                                        @method('DELETE')
-                                        @csrf
-                                        <button type="button" class="btn btn-danger" onclick="confirmDelete(this)">
-                                            <i class="bi bi-trash"></i> Delete
-                                        </button>
-                                    </form> -->
-
-                                    <!-- 
-                                    @if ($value->status == 1)
-                                    <a class="fw-bold  btn btn-success" onclick="confirmInactive({{ $value->id }})"
-                                        href="{{ URL::to('admin/guest/active', $value->id) }}">Active</a>
-
-
-                                    @elseif ($value->status == 0)
-                                    <a class="fw-bold btn btn-danger"
-                                        href="{{ URL::to('admin/guest/inactive', $value->id) }}">Inactive</a>
-                                    @else
-
-                                    Unknown -->
-                                    <!-- @endif -->
+ 
                                 </td>
                             </tr>
 

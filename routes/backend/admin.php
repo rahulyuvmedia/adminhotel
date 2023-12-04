@@ -77,7 +77,9 @@ Route::resource('policeInquiry', 'PoliceInquiryController');
 Route::post('admin/policeInquiry/store/{id}', 'PoliceInquiryController@store')->name('admin.policeInquiry.store');
 // Example route definition in web.php
 Route::get('admin/policeInquiry/create/{id?}', 'PoliceInquiryController@create')->name('admin.policeInquiry.create');
- 
+// Route::get('admin/policeInquiry/edit/{id?}', 'PoliceInquiryController@edit')->name('admin.policeInquiry.edit');
+Route::get('admin/policeInquiry/{policeInquiry}/edit', 'PoliceInquiryController@edit')->name('admin.policeInquiry.edit');
+
 
 Route::resource('rooms', 'RoomsController');
 Route::get('/rooms/active/{id}', 'RoomsController@active');

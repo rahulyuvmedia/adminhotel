@@ -235,7 +235,7 @@ public function create(Request $request)
         $model->description = $request->description;
         // dd($request->purposeOfvisit);
         $model->save(); 
-        return redirect()->route('admin.policeInquiry.index')->with('success', 'Guest updated successfully.');
+        return redirect()->route('admin.guest.index')->with('success', 'Guest updated successfully.');
         // return back()->with('success', 'Guest updated successfully.');
         // return redirect()->back()->with('success', 'Successfully Updated');
 

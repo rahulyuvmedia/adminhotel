@@ -24,7 +24,14 @@ class GuestController extends Controller
      {
          $keyword = $request->input('keyword');
          $model = Guest::with('rooms')->where(['hotel_id' => Auth::id()])->orderBy('created_at', 'desc')->get();
-         return view('backend.admin.guest.index', compact('model', 'keyword'));
+        //  $pImodel = PoliceInquiry:: with('rooms')->where(['hotel_id' => Auth::id()])->orderBy('created_at', 'desc')->get();
+         $pImodel = PoliceInquiry::with(['rooms' => function ($query) {
+            $query->where('hotel_id', Auth::id());
+        }])
+        ->orderBy('created_at', 'desc')
+        ->get();
+        
+         return view('backend.admin.guest.index', compact('model', 'keyword','pImodel'));
      }
 
 

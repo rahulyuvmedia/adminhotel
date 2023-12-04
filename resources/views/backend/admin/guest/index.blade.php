@@ -69,29 +69,23 @@
                                     Unknown
                                     @endif
 
-                                    @php
 
-                                    $formExists = \App\Models\PoliceInquiry::where('guest_id', $value->id)->exists();
+                                    @php
+                                    $policeInquiry = $pImodel->firstWhere('guest_id', $value->id);
                                     @endphp
 
-                                    @if($formExists)
-
-                                  
+                                    @if ($policeInquiry)
+                                    <a href="{{ route('admin.policeInquiry.edit', ['policeInquiry' => $policeInquiry->id]) }}"
+                                        class="btn btn-primary me-2" data-mdb-ripple-color="dark" style="margin-left: 9px;">
+                                        <i class="bi bi-pencil-fill"></i> Edit PV Form
+                                    </a>
                                     @else
-
                                     <a href="{{ route('admin.policeInquiry.create', ['id' => $value->id]) }}"
                                         class="fw-bold btn btn-primary btn-outline-primary me-2"
-                                        data-mdb-ripple-color="dark"style="margin-left: 8px;">
-                                        <i class="bi bi-pencil-fill"></i> C Form
+                                        data-mdb-ripple-color="dark" style="margin-left: 9px;">
+                                        <i class="bi bi-pencil-fill"></i>PV Form
                                     </a>
                                     @endif
-
-
-
-
-
-
-
 
                                 </td>
                             </tr>
@@ -119,15 +113,14 @@ $(document).ready(function() {
     $('#guestsTable').DataTable({
         "pagingType": "full_numbers",
         dom: 'lBfrtip',
-        buttons: [
-            {
+        buttons: [{
                 extend: 'copy',
                 text: 'Copy',
                 className: 'btn btn-light', // Change to btn-light for a light background color
                 exportOptions: {
                     columns: ':visible'
                 },
-                customize: function (win) {
+                customize: function(win) {
                     $(win.document.body)
                         .find('button')
                         .removeClass('btn-secondary')
@@ -142,7 +135,7 @@ $(document).ready(function() {
                 exportOptions: {
                     columns: ':visible'
                 },
-                customize: function (win) {
+                customize: function(win) {
                     $(win.document.body)
                         .find('button')
                         .removeClass('btn-secondary')
@@ -159,7 +152,7 @@ $(document).ready(function() {
             {
                 extend: 'pdf',
                 text: 'PDF',
-                className: 'btn btn-light' ,
+                className: 'btn btn-light',
                 style: 'margin-right: 5px;'
             },
             {
