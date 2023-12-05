@@ -53,10 +53,11 @@
                  <div data-i18n="Room">Room</div>
              </a>
          </li>
+        
+         @if (Auth::user()->role === 'SUPERADMIN')
          <li class="menu-header small text-uppercase">
              <span class="menu-header-text" data-i18n="Admin Setting">Admin Setting</span>
          </li>
-         @if (Auth::user()->role === 'SUPERADMIN')
          <li class="menu-item @if (request()->is('admin/master')) active @endif">
              <a href="{{ URL::to('/admin/master') }}" class="menu-link">
                  <i class="menu-icon tf-icons ti ti-messages"></i>

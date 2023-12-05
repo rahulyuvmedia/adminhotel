@@ -38,6 +38,42 @@
                                     @endisset</td>
                             </tr>
                             <tr>
+                                <td>Email:</td>
+                                <td>
+                                    @isset($model->email)
+                                    {{ $model->email }}
+                                    @else
+                                    N/A
+                                    @endisset</td>
+                            </tr>
+                            <tr>
+                                <td>Mobile:</td>
+                                <td>
+                                    @isset($model->mobile)
+                                    {{ $model->mobile }}
+                                    @else
+                                    N/A
+                                    @endisset</td>
+                            </tr>
+                            <tr>
+                                <td>Aadhar:</td>
+                                <td>
+                                    @isset($model->aadharNo)
+                                    {{ $model->aadharNo }}
+                                    @else
+                                    N/A
+                                    @endisset</td>
+                            </tr>
+                            <tr>
+                                <td>Booking Source:</td>
+                                <td>
+                                    @isset($model->bookingSource)
+                                    {{ $model->bookingSource }}
+                                    @else
+                                    N/A
+                                    @endisset</td>
+                            </tr>
+                            <tr>
                                 <td>Room Number:</td>
                                 <td>
                                     @isset($model->rooms)

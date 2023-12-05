@@ -7,7 +7,7 @@ use App\Models\Rooms;
 use App\Models\Reservation;
 use App\Models\Master;
 use App\Models\Policeinquiry;
-
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,6 +22,16 @@ class GuestController extends Controller
 
      public function index(Request $request)
      {
+
+        $upcomingReseration = DB::table('guest')
+        ->join('reservations', 'guest.id', '=', 'reservations.guest_id')
+        ->where('reservations.check_in', '>', now())
+        ->where('guest.hotel_id', '=', Auth()->user()->id)
+        ->select('guest.*', 'reservations.*')
+        ->where('guest.status','=','1')
+        ->get();
+
+
          $keyword = $request->input('keyword');
          $model = Guest::with('rooms')->where(['hotel_id' => Auth::id()])->orderBy('created_at', 'desc')->get();
         //  $pImodel = PoliceInquiry:: with('rooms')->where(['hotel_id' => Auth::id()])->orderBy('created_at', 'desc')->get();
@@ -31,7 +41,7 @@ class GuestController extends Controller
         ->orderBy('created_at', 'desc')
         ->get();
         
-         return view('backend.admin.guest.index', compact('model', 'keyword','pImodel'));
+         return view('backend.admin.guest.index', compact('model', 'keyword','pImodel','upcomingReseration'));
      }
 
 

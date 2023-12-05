@@ -31,7 +31,9 @@
 @endif
 
 <div class="row">
-    <div class="col-md-12 col-sm-12">
+
+
+<div class="col-lg-6 mb-6 col-sm-12">
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <div class="table-responsive">
@@ -76,7 +78,8 @@
 
                                     @if ($policeInquiry)
                                     <a href="{{ route('admin.policeInquiry.edit', ['policeInquiry' => $policeInquiry->id]) }}"
-                                        class="btn btn-primary me-2" data-mdb-ripple-color="dark" style="margin-left: 9px;">
+                                        class="btn btn-primary me-2" data-mdb-ripple-color="dark"
+                                        style="margin-left: 9px;">
                                         <i class="bi bi-pencil-fill"></i> Edit PV Form
                                     </a>
                                     @else
@@ -97,6 +100,86 @@
             </div>
         </div>
     </div>
+
+    <div class="col-lg-6 md-6 mb-4 col-sm-12">
+        <div class="card h-100">
+            <div class="card-header d-flex justify-content-between">
+                <h5 class="card-title m-0 me-2">Upcoming Booking</h5>
+                <div class="dropdown">
+                    <button class="btn p-0" type="button" id="teamMemberList" data-bs-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <i class="ti ti-dots-vertical ti-sm text-muted"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="teamMemberList">
+
+                        <a class="dropdown-item" href="javascript:void(0);" onclick="refreshPage()">Refresh</a>
+
+
+                        <a class="dropdown-item" href="javascript:void(0);" onclick="shareContent()">Share</a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+
+                @if($upcomingReseration->isEmpty())
+                <p class='text-center'> No result found </p>
+                @else
+                <table class="table table-borderless border-top">
+                    <thead class="border-bottom">
+                        <tr>
+                            <th>Customer Details</th>
+                            <th>Check In Date</th>
+                            <th>Room Number</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($upcomingReseration as $value)
+                        @if($value->status !== 'cancel')
+                        <tr>
+                            <td>
+                                <div class="d-flex justify-content-start align-items-center">
+                                    <div class="d-flex flex-column">
+                                        <p class="mb-0 fw-medium">{{ $value->name }}</p>
+                                        <small class="text-muted">{{ $value->mobile }}</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column">
+                                    <p class="mb-0 fw-medium">
+                                        {{ \Carbon\Carbon::parse($value->check_in)->formatLocalized('%A') }}
+                                    </p>
+                                    <small class="text-muted text-nowrap">
+                                        {{ \Carbon\Carbon::parse($value->check_in)->format('d/m/Y h:i:s A') }}
+                                    </small>
+                                </div>
+                            </td>
+                            <td><span class="badge bg-label-success">{{ $value->room_id }}</span></td>
+                            <td>
+                                <form method="post"
+                                    action="{{ route('cancelReservation', ['reservation' => $value->id]) }}"
+                                    onsubmit="return confirmCancel()">
+                                    @csrf
+                                    @method('post')
+                                    <button type="submit" class="btn btn-danger">Cancel</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endif
+                        @endforeach
+                    </tbody>
+
+                </table>
+                @endif
+            </div>
+        </div>
+    </div>
+    <br />
+
+
+    
 </div>
 
 <script>

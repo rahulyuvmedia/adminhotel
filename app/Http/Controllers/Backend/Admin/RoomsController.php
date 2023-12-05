@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Rooms;
 use App\Models\Master;
+use DB;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,24 +23,14 @@ class RoomsController extends Controller
          $keyword = $request->input('keyword');
          $model = Rooms::where(['hotel_id'=>Auth::id()])->orderBy('created_at', 'desc')->get();
      
- 
-         return view('backend.admin.rooms.index', compact('model', 'keyword'));
+        
+         $rooms = Rooms::where('hotel_id', Auth()->user()->id)->where('rooms.status','=','1')->get();
+         return view('backend.admin.rooms.index', compact('model', 'keyword','rooms'));
      }
+  
+ 
 
 
-    // public function index()
-    // {
-
-    //     $model = Rooms::orderby('created_at', 'desc')->get();
-
-    //     return view('backend.admin.rooms.index', compact('model'));
-    // }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
 
