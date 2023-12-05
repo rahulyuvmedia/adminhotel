@@ -33,7 +33,7 @@
 <div class="row">
 
 
-<div class="col-lg-6 mb-6 col-sm-12">
+    <div class="col-lg-6 md-6 mb-4 col-sm-12">
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <div class="table-responsive">
@@ -59,11 +59,14 @@
                                 <td class="d-flex">
                                     <a href="{{ Route('admin.guest.edit', $value->id) }}" class="btn btn-primary me-2"
                                         data-mdb-ripple-color="dark">
-                                        <i class="bi bi-pencil-fill"></i> Edit
+                                        <i class="fa fa-pencil"></i>
+
                                     </a>
                                     @if ($value->status == 1)
                                     <a class="fw-bold  btn btn-success" onclick="confirmInactive({{ $value->id }})"
-                                        href="{{ URL::to('admin/guest/active', $value->id) }}">Active</a>
+                                        href="{{ URL::to('admin/guest/active', $value->id) }}"><i
+                                            class="fas fa-check-circle"></i>
+                                    </a>
                                     @elseif ($value->status == 0)
                                     <a class="fw-bold btn btn-danger"
                                         href="{{ URL::to('admin/guest/inactive', $value->id) }}">Inactive</a>
@@ -79,14 +82,15 @@
                                     @if ($policeInquiry)
                                     <a href="{{ route('admin.policeInquiry.edit', ['policeInquiry' => $policeInquiry->id]) }}"
                                         class="btn btn-primary me-2" data-mdb-ripple-color="dark"
-                                        style="margin-left: 9px;">
-                                        <i class="bi bi-pencil-fill"></i> Edit PV Form
+                                        style="margin-left: 6px;">
+                                        <i class="fa fa-pencil "></i> <i class="fas fa-shield-alt"
+                                            style="margin-left: 3px;"></i>
                                     </a>
                                     @else
                                     <a href="{{ route('admin.policeInquiry.create', ['id' => $value->id]) }}"
                                         class="fw-bold btn btn-primary btn-outline-primary me-2"
-                                        data-mdb-ripple-color="dark" style="margin-left: 9px;">
-                                        <i class="bi bi-pencil-fill"></i>PV Form
+                                        data-mdb-ripple-color="dark" style="margin-left: 6px;">
+                                        <i class="fas fa-shield-alt"></i>
                                     </a>
                                     @endif
 
@@ -179,7 +183,7 @@
     <br />
 
 
-    
+
 </div>
 
 <script>
