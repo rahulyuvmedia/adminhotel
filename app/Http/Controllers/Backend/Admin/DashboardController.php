@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use App\Models\Rooms;
 use App\Models\Guest;
-
+use Carbon\Carbon;
 use View;
 use DB;
 use App\Models\Reservation;
@@ -25,8 +25,19 @@ class DashboardController extends Controller
     ->select('guest.*', 'reservations.*')
     ->where('guest.status','=','1')
     ->get();
+
+
+    $expiryReseration = DB::table('guest')
+    ->join('reservations', 'guest.id', '=', 'reservations.guest_id')
+    // ->where('reservations.check_out', '>', Carbon::now())
+    ->where('guest.hotel_id', '=', Auth()->user()->id)
+    ->select('guest.*', 'reservations.*')
+    ->where('guest.status','=','1')
+    ->get();
+    // dd($expiryReseration);
+    
     $rooms = Rooms::where('hotel_id', Auth()->user()->id)->where('rooms.status','=','1')->get();
-        return View::make('backend.admin.home',compact('upcomingReseration','rooms'));
+        return View::make('backend.admin.home',compact('upcomingReseration','rooms','expiryReseration'));
     }
 
 
