@@ -8,9 +8,14 @@
     Guest History </h5>
 <div class="row">
     <div class="col-md-12 col-sm-12">
-        <div class="main-card mb-3 card">
+        <div class="main-card mb-3 card" id="pdfContent">
             <div class="card-body">
                 <div class="table-responsive">
+
+                    <button onclick="downloadPDF()" class='download-button btn border mb-3 bg-dark'
+                        style="">
+                        PDF
+                    </button>
                     <table id="guestsTable" class="table table-striped table-bordered table-hover">
                         <thead class="table-dark">
                             <tr>
@@ -204,4 +209,15 @@ $(document).ready(function() {
 });
 </script>
 
+
+<script>
+function downloadPDF() {
+    var element = document.getElementById('pdfContent');
+
+    // Generate PDF
+    html2pdf(element);
+}
+</script>
+
+<script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
 @stop
