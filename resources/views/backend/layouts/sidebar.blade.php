@@ -13,7 +13,9 @@
          </a>
      </div>
      <div class="menu-inner-shadow"></div>
+     
      <ul class="menu-inner py-1">
+        
          <li class="menu-item @if (request()->is('admin/dashboard')) active @endif">
              <a href="{{ URL::to('/admin/dashboard') }}" class="menu-link">
                  <i class="menu-icon tf-icons ti ti-smart-home"></i>
@@ -21,9 +23,14 @@
              </a>
          </li>
 
+
+
          <li class="menu-header small text-uppercase">
              <span class="menu-header-text" data-i18n="Guest Management">Guest Management</span>
          </li>
+
+         
+
          <li class="menu-item @if (request()->is('admin/guest')) active @endif">
              <a href="{{ URL::to('/admin/guest') }}" class="menu-link">
                  <i class="menu-icon tf-icons ti ti-mail"></i>
@@ -44,8 +51,6 @@
                  <div data-i18n="Extended Stay">Extended Stay</div>
              </a>
          </li>
-
-
          
          <li class="menu-item @if (request()->is('admin/guestHistory')) active @endif">
              <a href="{{ URL::to('/admin/guestHistory') }}" class="menu-link">
@@ -68,6 +73,12 @@
              <a href="{{ URL::to('/admin/rooms') }}" class="menu-link">
                  <i class="menu-icon tf-icons ti ti-messages"></i>
                  <div data-i18n="Room">Room</div>
+             </a>
+         </li>
+         <li class="menu-item @if (request()->is('admin/availableRooms')) active @endif">
+             <a href="{{ URL::to('/admin/availableRooms') }}" class="menu-link">
+                 <i class="menu-icon tf-icons ti ti-messages"></i>
+                 <div data-i18n="Available Rooms">Available Rooms</div>
              </a>
          </li>
         
