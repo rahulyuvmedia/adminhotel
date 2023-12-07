@@ -27,7 +27,7 @@
                 <p class='text-center'> No result found </p>
                 @else
                 <table class="table table-borderless border-top">
-                    <thead class="border-bottom">
+                    <thead class="border-bottom text-center" >
                         <tr>
                             <th>Customer</th>
                             <th>Check In Date</th>
@@ -35,7 +35,7 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody  class="text-center">
                         @foreach ($upcomingReseration as $value)
                         @if($value->status !== 'cancel')
                         <tr>
@@ -126,15 +126,15 @@
                 @else
                 <table class="table table-borderless border-top">
                     <thead class="border-bottom">
-                        <tr>
+                        <tr  class="text-center">
                             <th>Customer</th>
                             <th>Check In Date</th>
                             <th>Room </th>
-                            <th>Remaining Time</th>
+                            <th>Extended Time</th>
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody  class="text-center">
                         @foreach ($expiryReseration as $value)
                         @if($value->status !== 'cancel' &&
                         \Carbon\Carbon::parse($value->check_in)->lte(\Carbon\Carbon::now()))

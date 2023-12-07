@@ -193,7 +193,7 @@ $user = Auth::user();
 
 
              <!-- Notification -->
-              <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
+              <!-- <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown"
                      data-bs-auto-close="outside" aria-expanded="false">
                      <i class="ti ti-bell ti-md"></i>
@@ -243,7 +243,7 @@ $user = Auth::user();
                          </a>
                      </li>
                  </ul>
-             </li>  
+             </li>   -->
              <!-- Notification -->
 
 
@@ -448,54 +448,54 @@ $user = Auth::user();
 </div>
 -->
 <script>
-    // Assuming $expiryReseration is available in the script
+   
 
-    // Function to format date for display
-    function formatDate(dateString) {
-        const date = new Date(dateString);
-        return date.toLocaleString(); // You can customize the format as needed
-    }
+   
+    // function formatDate(dateString) {
+    //     const date = new Date(dateString);
+    //     return date.toLocaleString();
+    // }
 
-    // Function to generate notification items
-    function generateNotificationItems(data) {
-        console.log(data);
-        let itemsHtml = '';
+   
+    // function generateNotificationItems(data) {
+    //     console.log(data);
+    //     let itemsHtml = '';
 
-        data.forEach(value => {
-            itemsHtml += `
-                <li class="list-group-item list-group-item-action dropdown-notifications-item">
-                    <div class="d-flex">
-                        <div class="flex-shrink-0 me-3">
-                            <div class="avatar">
-                                <img src="../../assets/img/avatars/1.png" alt class="h-auto rounded-circle" />
-                            </div>
-                        </div>
-                        <div class="flex-grow-1">
-                            <h6 class="mb-1">${value.name}</h6>
-                            <p class="mb-0">
-                                Check-in: ${formatDate(value.check_in)}<br>
-                                Check-out: ${formatDate(value.check_out)}
-                            </p>
-                            <small class="text-muted">${value.status}</small>
-                        </div>
-                        <div class="flex-shrink-0 dropdown-notifications-actions">
-                            <!-- Additional actions if needed -->
-                        </div>
-                    </div>
-                </li>`;
-        });
+    //     data.forEach(value => {
+    //         itemsHtml += `
+    //             <li class="list-group-item list-group-item-action dropdown-notifications-item">
+    //                 <div class="d-flex">
+    //                     <div class="flex-shrink-0 me-3">
+    //                         <div class="avatar">
+    //                             <img src="../../assets/img/avatars/1.png" alt class="h-auto rounded-circle" />
+    //                         </div>
+    //                     </div>
+    //                     <div class="flex-grow-1">
+    //                         <h6 class="mb-1">${value.name}</h6>
+    //                         <p class="mb-0">
+    //                             Check-in: ${formatDate(value.check_in)}<br>
+    //                             Check-out: ${formatDate(value.check_out)}
+    //                         </p>
+    //                         <small class="text-muted">${value.status}</small>
+    //                     </div>
+    //                     <div class="flex-shrink-0 dropdown-notifications-actions">
+    //                         <!-- Additional actions if needed -->
+    //                     </div>
+    //                 </div>
+    //             </li>`;
+    //     });
 
-        return itemsHtml;
-    }
+    //     return itemsHtml;
+    // }
 
-    // Assuming $expiryReseration is available in the script
-    const notificationData = @json($expiryReseration);
+   
+    // const notificationData = @ json($ expiryReseration);
 
-    // Update notification count
-    const notificationCount = notificationData.length;
-    document.querySelector('.badge-notifications').innerText = notificationCount;
+   
+    // const notificationCount = notificationData.length;
+    // document.querySelector('.badge-notifications').innerText = notificationCount;
 
-    // Generate notification items and append to the dropdown list
-    const notificationsList = document.querySelector('.dropdown-notifications-list ul');
-    notificationsList.innerHTML = generateNotificationItems(notificationData);
+   
+    // const notificationsList = document.querySelector('.dropdown-notifications-list ul');
+    // notificationsList.innerHTML = generateNotificationItems(notificationData);
 </script>

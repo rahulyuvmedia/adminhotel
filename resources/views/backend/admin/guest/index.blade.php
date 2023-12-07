@@ -64,8 +64,7 @@
                                     </a>
                                     @if ($value->status == 1)
                                     <a class="fw-bold  btn btn-success" onclick="confirmInactive({{ $value->id }})"
-                                        href="{{ URL::to('admin/guest/active', $value->id) }}"><i
-                                            class="fas fa-check-circle"></i>
+                                        href="{{ URL::to('admin/guest/active', $value->id) }}">Active
                                     </a>
                                     @elseif ($value->status == 0)
                                     <a class="fw-bold btn btn-danger"
@@ -126,9 +125,7 @@
             </div>
             <div class="table-responsive">
 
-                @if($upcomingReseration->isEmpty())
-                <p class='text-center'> No result found </p>
-                @else
+
                 <table class="table table-borderless border-top">
                     <thead class="border-bottom">
                         <tr>
@@ -139,6 +136,9 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if($upcomingReseration->isEmpty())
+                        <p class='text-center'> No result found </p>
+                        @else
                         @foreach ($upcomingReseration as $value)
                         @if($value->status !== 'cancel')
                         <tr>
@@ -173,10 +173,11 @@
                         </tr>
                         @endif
                         @endforeach
+                        @endif
                     </tbody>
 
                 </table>
-                @endif
+
             </div>
         </div>
     </div>
