@@ -78,7 +78,7 @@
                             <div class="col-lg-2 col-md-3 col-sm-12 ">
                                 <label class="form-label" for="member">Adult <span style="color:red">*</span></label>
                                 <select id="member" name="member" class="form-select">
-                                    <option value="">Number of Adults</option>
+                                    <option value=""> Adults</option>
                                     @for ($i = 1; $i <= 15; $i++) <option value="{{ $i }}">{{ $i }}</option>
                                         @endfor
                                 </select>
@@ -90,7 +90,7 @@
                             <div class="col-lg-2 col-md-3 col-sm-12 ">
                                 <label class="form-label" for="child">Child <span style="color:red">*</span></label>
                                 <select id="child" name="child" class="form-select">
-                                    <option value="">Number of Child</option>
+                                    <option value=""> Child</option>
                                     @for ($i = 1; $i <= 15; $i++) <option value="{{ $i }}">{{ $i }}</option>
                                         @endfor
                                 </select>
@@ -217,7 +217,7 @@
 
                             </div>
                         </div>
-                       
+
                         <div class="col-lg-12 col-md-12 col-sm-12   p-3">
                             <button type="submit" class="btn button-submit"
                                 style="background-color:#7367f0 ; color:white">
@@ -235,16 +235,24 @@
 
 
     <div class="col-lg-4" style="padding-left: 8px; padding-right: 8px;">
-        <div class="card">
+        <div class="d-flex card">
+            <h6 class='p-2'>Billing Summary</h6>
 
-            <div class="d-flex ">
-                <h6 class='p-2'>Billing Summary</h6>
+            <button onclick="downloadPDF()" class='download-button' style="backg;background: aliceblue;padding: 10px;">
+                PDF</button>
+        </div>
+        <div class="card" id="pdfContent">
 
-                <button onclick="downloadPDF()" class='download-button'> PDF</button>
-            </div>
+
             <hr>
-
+            <a href="" class="app-brand-link text-center" style="justify-content: center;">
+                <span class="app-brand-logo demo">
+                    <img src="{{ asset('/assets/img/icon.svg') }}" class="img-fluid" />
+                </span>
+                <span class="app-brand-text demo menu-text fw-bold">Yuvmedia</span>
+            </a>
             <div class="d-flex" style="text-align: center;">
+
 
                 <div class="col-lg-5" id="checkInDisplay">
                     <div class="card-body">
@@ -320,6 +328,29 @@
 </div>
 
 <script>
+// Old Runnig Code  
+// function updateRoomPrice() {
+//     var roomSelect = document.getElementById('roomNumber');
+//     var selectedOption = roomSelect.options[roomSelect.selectedIndex];
+
+//     var roomPricePerDay = parseFloat(selectedOption.getAttribute('data-price'));
+//     var checkInTime = new Date(document.getElementById('check_in').value);
+//     var checkOutTime = new Date(document.getElementById('check_out').value);
+
+//     // Calculate the duration of stay in hours
+//     var durationInHours = (checkOutTime - checkInTime) / (60 * 60 * 1000);
+
+//     // Calculate the total room charges
+//     var totalRoomCharges = roomPricePerDay * (durationInHours / 24);
+
+//     var priceDisplay = document.getElementById('roomPriceDisplay');
+
+//     if (priceDisplay) {
+//         // priceDisplay.textContent = totalRoomCharges.toFixed(2); 
+//         priceDisplay.textContent = roomPricePerDay.toFixed(2) + ' * ' + (durationInHours / 24).toFixed(2) + ' days = ' + totalRoomCharges.toFixed(2);
+//     }
+// }
+
 function updateRoomPrice() {
     var roomSelect = document.getElementById('roomNumber');
     var selectedOption = roomSelect.options[roomSelect.selectedIndex];
@@ -328,16 +359,18 @@ function updateRoomPrice() {
     var checkInTime = new Date(document.getElementById('check_in').value);
     var checkOutTime = new Date(document.getElementById('check_out').value);
 
-    // Calculate the duration of stay in hours
-    var durationInHours = (checkOutTime - checkInTime) / (60 * 60 * 1000);
+    // Calculate the duration of stay in days
+    var durationInDays = (checkOutTime - checkInTime) / (24 * 60 * 60 * 1000);
 
     // Calculate the total room charges
-    var totalRoomCharges = roomPricePerDay * (durationInHours / 24);
+    var totalRoomCharges = roomPricePerDay * durationInDays;
 
     var priceDisplay = document.getElementById('roomPriceDisplay');
 
     if (priceDisplay) {
-        priceDisplay.textContent = totalRoomCharges.toFixed(2); // Display with two decimal places
+        // Display with rupee symbol, two decimal places, and no decimal places for days
+        priceDisplay.textContent = '\u20B9' + roomPricePerDay.toFixed(0) + ' per day * ' + Math.floor(durationInDays) +
+            ' days = \u20B9' + totalRoomCharges.toFixed(2);
     }
 }
 </script>
@@ -444,8 +477,7 @@ function formatDate(date) {
 
 <script>
 function downloadPDF() {
-    // Target the entire HTML document
-    var element = document.documentElement;
+    var element = document.getElementById('pdfContent');
 
     // Generate PDF
     html2pdf(element);
