@@ -33,7 +33,7 @@
     {{ session('success') }}
 </div>
 @endif
-<div class="col-md-12 col-sm-12">
+<!-- <div class="col-md-12 col-sm-12">
 <div class="main-card mb-3 card">
     <div class="card-header d-flex justify-content-between">
         <h5 class="card-title m-0 me-2">Rooms Details</h5>
@@ -84,7 +84,7 @@
         </div>
     </div>
 </div>
-</div>
+</div> -->
 <div class="row">
     <div class="col-md-12 col-sm-12">
         <div class="main-card mb-3 card">

@@ -33,7 +33,7 @@
 <div class="row">
 
 
-    <div class="col-lg-6 md-6 mb-4 col-sm-12">
+    <div class="col-lg-12 md-12 mb-4 col-sm-12">
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <div class="table-responsive">
@@ -104,7 +104,7 @@
         </div>
     </div>
 
-    <div class="col-lg-6 md-6 mb-4 col-sm-12">
+    <!-- <div class="col-lg-6 md-6 mb-4 col-sm-12">
         <div class="card h-100">
             <div class="card-header d-flex justify-content-between">
                 <h5 class="card-title m-0 me-2">Upcoming Booking</h5>
@@ -180,7 +180,7 @@
 
             </div>
         </div>
-    </div>
+    </div> -->
     <br />
 
 

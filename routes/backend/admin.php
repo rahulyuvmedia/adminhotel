@@ -92,3 +92,5 @@ Route::resource('submaster', 'SubMasterController');
 
 Route::get('/user/active/{id}', 'UserController@active');
 Route::get('/user/inactive/{id}', 'UserController@inactive');
+
+Route::resource('upcomingBooking', 'UpcomingBookingController');

@@ -27,7 +27,7 @@
                 <p class='text-center'> No result found </p>
                 @else
                 <table class="table table-borderless border-top">
-                    <thead class="border-bottom text-center" >
+                    <thead class="border-bottom text-center">
                         <tr>
                             <th>Customer</th>
                             <th>Check In Date</th>
@@ -35,7 +35,7 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody  class="text-center">
+                    <tbody class="text-center">
                         @foreach ($upcomingReseration as $value)
                         @if($value->status !== 'cancel')
                         <tr>
@@ -75,19 +75,6 @@
                 </table>
                 @endif
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
         </div>
     </div>
 
@@ -97,9 +84,22 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="col-lg-6 mb-4 mb-lg-">
         <div class="card h-100">
-
             <div class="card-header d-flex justify-content-between">
                 <h5 class="card-title m-0 me-2">Extended Stay </h5>
                 <div class="dropdown">
@@ -108,37 +108,31 @@
                         <i class="ti ti-dots-vertical ti-sm text-muted"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="teamMemberList">
-
                         <a class="dropdown-item" href="javascript:void(0);" onclick="refreshPage()">Refresh</a>
-
-
                         <a class="dropdown-item" href="javascript:void(0);" onclick="shareContent()">Share</a>
-
                     </div>
                 </div>
             </div>
-
             <div class="table-responsive">
-
                 @if($expiryReseration->isEmpty() || $expiryReseration->first()->status === '0' ||
                 $expiryReseration->first()->status === 'cancel')
                 <p class='text-center'> No result found </p>
                 @else
                 <table class="table table-borderless border-top">
                     <thead class="border-bottom">
-                        <tr  class="text-center">
+                        <tr class="text-center">
                             <th>Customer</th>
                             <th>Check In Date</th>
                             <th>Room </th>
                             <th>Extended Time</th>
+                            <!-- <th>Extra Pay</th> -->
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody  class="text-center">
+                    <tbody class="text-center">
                         @foreach ($expiryReseration as $value)
                         @if($value->status !== 'cancel' &&
                         \Carbon\Carbon::parse($value->check_in)->lte(\Carbon\Carbon::now()))
-
                         <tr>
                             <td>
                                 <div class="d-flex justify-content-start align-items-center">
@@ -183,6 +177,10 @@
                                 @endphp
 
                             </td>
+                            <!-- <td>
+                                Extra pay 
+                            </td> -->
+
                             <td>
                                 <form method="post"
                                     action="{{ route('cancelReservation', ['reservation' => $value->id]) }}"
@@ -196,12 +194,21 @@
                         @endif
                         @endforeach
                     </tbody>
-
                 </table>
                 @endif
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -221,12 +228,8 @@
                         <i class="ti ti-dots-vertical ti-sm text-muted"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="teamMemberList">
-
                         <a class="dropdown-item" href="javascript:void(0);" onclick="refreshPage()">Refresh</a>
-
-
                         <a class="dropdown-item" href="javascript:void(0);" onclick="shareContent()">Share</a>
-
                     </div>
                 </div>
             </div>
@@ -258,7 +261,6 @@
                         </button>
                         @endforeach
                     </div>
-
                 </div>
             </div>
         </div>
@@ -272,43 +274,50 @@
 
 
 
-    <script>
-    function redirectToPage(id) {
-        window.location.href = "{{ URL::to('/admin/guest/create?room=') }}" + id;
-    }
 
-    function refreshPage() {
-        location.reload();
-    }
-    </script>
 
-    <script>
-    function shareContent() {
-        if (navigator.share) {
-            navigator.share({
-                    title: 'Your Share Title',
-                    text: 'Your Share Text',
-                    url: 'https://your-share-url.com'
-                })
-                .then(() => console.log('Shared successfully'))
-                .catch((error) => console.error('Error sharing:', error));
-        } else {
-            alert('Web Share API is not supported in this browser.');
-        }
-    }
-    </script>
 
-    <script>
-    function confirmCancel() {
-        var confirmed = confirm("Are you sure you want to cancel this reservation?");
-        if (confirmed) {
-            // User clicked "OK", form submission will proceed
-            return true;
-        } else {
-            // User clicked "Cancel", prevent form submission
-            alert("Reservation cancellation canceled.");
-            return false;
-        }
+
+</div>
+<!-- -----------------------------------scripts-----------------------------------  -->
+
+<script>
+function redirectToPage(id) {
+    window.location.href = "{{ URL::to('/admin/guest/create?room=') }}" + id;
+}
+
+function refreshPage() {
+    location.reload();
+}
+</script>
+
+<script>
+function shareContent() {
+    if (navigator.share) {
+        navigator.share({
+                title: 'Your Share Title',
+                text: 'Your Share Text',
+                url: 'https://your-share-url.com'
+            })
+            .then(() => console.log('Shared successfully'))
+            .catch((error) => console.error('Error sharing:', error));
+    } else {
+        alert('Web Share API is not supported in this browser.');
     }
-    </script>
-    @endsection
+}
+</script>
+
+<script>
+function confirmCancel() {
+    var confirmed = confirm("Are you sure you want to cancel this reservation?");
+    if (confirmed) {
+        // User clicked "OK", form submission will proceed
+        return true;
+    } else {
+        // User clicked "Cancel", prevent form submission
+        alert("Reservation cancellation canceled.");
+        return false;
+    }
+}
+</script>
+@endsection

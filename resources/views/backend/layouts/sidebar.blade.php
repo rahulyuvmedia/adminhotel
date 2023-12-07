@@ -31,12 +31,21 @@
              </a>
          </li>
 
+         <li class="menu-item @if (request()->is('admin/upcomingBooking')) active @endif">
+             <a href="{{ URL::to('/admin/upcomingBooking') }}" class="menu-link">
+                 <i class="menu-icon tf-icons ti ti-mail"></i>
+                 <div data-i18n="Upcoming Booking">Upcoming Booking</div>
+             </a>
+         </li>
+
+         
          <li class="menu-item @if (request()->is('admin/guestHistory')) active @endif">
              <a href="{{ URL::to('/admin/guestHistory') }}" class="menu-link">
                  <i class="menu-icon tf-icons ti ti-mail"></i>
                  <div data-i18n="Guest History">Guest History</div>
              </a>
          </li>
+
 
          <!-- <li class="menu-item @if (request()->is('admin/policeInquiry')) active @endif">
              <a href="{{ URL::to('/admin/policeInquiry') }}" class="menu-link">
