@@ -38,6 +38,14 @@
              </a>
          </li>
 
+         <li class="menu-item @if (request()->is('admin/extendedStay')) active @endif">
+             <a href="{{ URL::to('/admin/extendedStay') }}" class="menu-link">
+                 <i class="menu-icon tf-icons ti ti-mail"></i>
+                 <div data-i18n="Extended Stay">Extended Stay</div>
+             </a>
+         </li>
+
+
          
          <li class="menu-item @if (request()->is('admin/guestHistory')) active @endif">
              <a href="{{ URL::to('/admin/guestHistory') }}" class="menu-link">
