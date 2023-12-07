@@ -41,7 +41,7 @@
                                     $availableClass .= 'avail-grey';
                                 }
                             ?>
-                        <button type="button" class="{{ $availableClass }} col-md-3 m-4 "
+                        <button type="button" class="{{ $availableClass }} col-md-2"
                             style="border: .5px solid #ccc; border-radius: 8px; color: {{ $room->availability === 'available' ? '#28a745' : ($room->availability === 'booked' ? '#dc3545' : '#6c757d') }};
                                 background-color: {{ $room->availability === 'available' ? '#e6ffe6' : ($room->availability === 'booked' ? '#ffe6e6' : '#f8f9fa') }};"
                             onClick="redirectToPage({{ $room->id }})">

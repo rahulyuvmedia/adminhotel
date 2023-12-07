@@ -38,33 +38,35 @@
         </li>
 
         <nav class="sidebar py-2 mb-4">
-            <ul class="nav flex-column" id="nav_accordion">
+            <ul class=" nav flex-column " id="nav_accordion">
+
                 <li class="nav-item has-submenu">
                     <span class="menu-header text nav-link small text-uppercase" data-i18n="Guest Management">
                         Guest Management
                     </span>
                     <ul class="submenu collapse">
-                        <li>
-                            <a class="nav-link @if (request()->is('admin/guest')) active @endif"
+                        <li class="menu-item ">
+                            <a class="nav-link menu-link @if (request()->is('admin/guest')) active @endif"
                                 href="{{ URL::to('/admin/guest') }}">
-                                <i class="menu-icon tf-icons ti ti-user" style="font-size: 20px;"></i>Guest
+                                <i class="menu-icon tf-icons ti ti-user"></i>
+                                <div data-i18n="Guest">Guest</div>
                             </a>
                         </li>
-                        <li>
-                            <a class="nav-link @if (request()->is('admin/upcomingBooking')) active @endif"
+                        <li class="menu-item">
+                            <a class="nav-link menu-link @if (request()->is('admin/upcomingBooking')) active @endif"
                                 href="{{ URL::to('/admin/upcomingBooking') }}">
                                 <i class="menu-icon tf-icons ti ti-calendar" style="font-size: 20px;"></i>Upcoming
                                 Booking
                             </a>
                         </li>
-                        <li>
-                            <a class="nav-link @if (request()->is('admin/extendedStay')) active @endif"
+                        <li class="menu-item">
+                            <a class="nav-link menu-link @if (request()->is('admin/extendedStay')) active @endif"
                                 href="{{ URL::to('/admin/extendedStay') }}">
                                 <i class="menu-icon tf-icons ti ti-clock" style="font-size: 20px;"></i>Extended Stay
                             </a>
                         </li>
-                        <li>
-                            <a class="nav-link @if (request()->is('admin/guestHistory')) active @endif"
+                        <li class="menu-item">
+                            <a class="nav-link menu-link @if (request()->is('admin/guestHistory')) active @endif"
                                 href="{{ URL::to('/admin/guestHistory') }}">
                                 <i class="menu-icon tf-icons ti ti-archive" style="font-size: 20px;"></i>Guest History
                             </a>
@@ -76,14 +78,14 @@
                         Room Management
                     </span>
                     <ul class="submenu collapse">
-                        <li>
-                            <a class="nav-link @if (request()->is('admin/rooms')) active @endif"
+                        <li class="menu-item">
+                            <a class="nav-link  menu-link @if (request()->is('admin/rooms')) active @endif"
                                 href="{{ URL::to('/admin/rooms') }}">
                                 <i class="menu-icon tf-icons ti ti-home" style="font-size: 20px;"></i>Room
                             </a>
                         </li>
-                        <li>
-                            <a class="nav-link @if (request()->is('admin/availableRooms')) active @endif"
+                        <li class="menu-item">
+                            <a class="nav-link menu-link  @if (request()->is('admin/availableRooms')) active @endif"
                                 href="{{ URL::to('/admin/availableRooms') }}">
                                 <i class="menu-icon tf-icons ti ti-checkbox" style="font-size: 20px;"></i>Available
                                 Rooms
@@ -98,20 +100,20 @@
                         Admin Setting
                     </span>
                     <ul class="submenu collapse">
-                        <li>
-                            <a class="nav-link @if (request()->is('admin/master')) active @endif"
+                        <li class="menu-item">
+                            <a class="nav-link menu-link  @if (request()->is('admin/master')) active @endif"
                                 href="{{ URL::to('/admin/master') }}">
-                                <i class="menu-icon tf-icons ti ti-power" style="font-size: 20px;"></i>Master
+                                <i class="menu-icon tf-icons ti ti-key" style="font-size: 20px;"></i>Master
                             </a>
                         </li>
-                        <li>
-                            <a class="nav-link @if (request()->is('admin/submaster')) active @endif"
+                        <li class="menu-item">
+                            <a class="nav-link menu-link  @if (request()->is('admin/submaster')) active @endif"
                                 href="{{ URL::to('/admin/submaster') }}">
-                                <i class="menu-icon tf-icons ti ti-archive" style="font-size: 20px;"></i>Submaster
+                                <i class="menu-icon tf-icons ti ti-wand" style="font-size: 20px;"></i>Submaster
                             </a>
                         </li>
-                        <li>
-                            <a class="nav-link @if (request()->is('admin/users')) active @endif"
+                        <li class="menu-item">
+                            <a class="nav-link menu-link  @if (request()->is('admin/users')) active @endif"
                                 href="{{ URL::to('/admin/users') }}">
                                 <i class="menu-icon tf-icons ti ti-pencil" style="font-size: 20px;"></i>Create Admin
                             </a>
