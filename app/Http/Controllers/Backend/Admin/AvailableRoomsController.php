@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use App\Models\Rooms; 
+use App\Models\Guest; 
+
+use Illuminate\Support\Facades\Auth;
 use View;
 use DB;
 use App\Models\Reservation;
@@ -17,23 +20,24 @@ class AvailableRoomsController extends Controller
     public function index()
     {
      
-    
-    
+        $model = Guest::with(['reservations.room'])->where(['hotel_id' => Auth::id()])->orderBy('created_at', 'desc')->get();
+
+    // dd($model);
     $rooms = Rooms::where('hotel_id', Auth()->user()->id)->where('rooms.status','=','1')->get();
-        return View::make('backend.admin.availableRooms.index',compact('rooms'));
+        return View::make('backend.admin.availableRooms.index',compact('rooms','model'));
     }
 
-    public function edit(Request $request)
-    {
-        $id = $request->input('id');
-        $model = Guest::with(['reservations.room'])->find($id);
+    // public function edit(Request $request)
+    // {
+    //     $id = $request->input('id');
+    //     $model = Guest::with(['reservations.room'])->find($id);
     
-        if (!$model) {
-            abort(404);
-        }
+    //     if (!$model) {
+    //         abort(404);
+    //     }
     
-        return view('backend.admin.guestHistory.edit_partial', compact('model'));
-    }
+    //     return view('backend.admin.guestHistory.edit_partial', compact('model'));
+    // }
     // public function cancelReservation($reservationId)
     // {
     //     $reservation = Reservation::findOrFail($reservationId);
