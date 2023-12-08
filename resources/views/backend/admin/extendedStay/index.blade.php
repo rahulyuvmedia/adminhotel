@@ -38,6 +38,8 @@
                             <th>Member</th>
                             <th>Address</th>
                             <th>Check In Date</th>
+                            <th>Check Out Date</th>
+
                             <th>Room </th>
                             <th>Action</th>
 
@@ -99,6 +101,19 @@
                                     </p>
                                     <small class="text-muted text-nowrap">
                                         {{ \Carbon\Carbon::parse($value->check_in)->format('d/m/Y h:i:s A') }}
+                                    </small>
+                                </div>
+                            </td>
+
+
+
+                            <td>
+                                <div class="d-flex flex-column">
+                                    <p class="mb-0 fw-medium">
+                                        {{ \Carbon\Carbon::parse($value->check_out)->formatLocalized('%A') }}
+                                    </p>
+                                    <small class="text-muted text-nowrap">
+                                        {{ \Carbon\Carbon::parse($value->check_out)->format('d/m/Y h:i:s A') }}
                                     </small>
                                 </div>
                             </td>
