@@ -89,18 +89,25 @@
                 <h5 class="modal-title" id="guestDetailsModalLabel">Guest Details</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <button   onclick="downloadPDF()" class='btn btn-primary' style='background-color: #3498db; color: #ffffff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;'>
-                    Download PDF
-                </button>
-            <div class="modal-body m-3"  id="pdfContent" >
-                 
-                <div id="guestDetailsContent" class="">
-                   
+
+            <div class="modal-body m-3" id="pdfContent">
+                <div id="guestDetailsContent">
+                    <!-- Guest details content goes here -->
                 </div>
+            </div>
+
+            <div class="modal-footer">
+                <button onclick="downloadPDF()" class='btn btn-outline-primary'>
+                    Download <i class='fa fa-download'></i>
+                </button>
+                <button onclick="downloadPDF2()" class='btn btn-outline-primary'>
+                    Download <i class='fa fa-image'></i>
+                </button>
             </div>
         </div>
     </div>
 </div>
+
 
 
 
@@ -117,9 +124,10 @@
                  
         <div class='container'>
             <div class="d-flex flex-wrap">                 
-                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4" >
                     @if (!empty($guest->idproff))
-                        <img class="img-thumbnail img-fluid rounded mb-4" src="{{ URL::to('/uploads/' . $guest->idproff) }}" style="border-radius: 15px;" />
+                        <img  id="pdfContent2" class="img-thumbnail img-fluid rounded mb-4" src="{{ URL::to('/uploads/' . $guest->idproff) }}" style="border-radius: 15px;" />
+                        
                     @endif
                 </div>
                                 
@@ -213,6 +221,13 @@ function confirmCancel() {
 <script>
 function downloadPDF() {
     var element = document.getElementById('pdfContent');
+
+    // Generate PDF
+    html2pdf(element);
+}
+
+function downloadPDF2() {
+    var element = document.getElementById('pdfContent2');
 
     // Generate PDF
     html2pdf(element);
