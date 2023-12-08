@@ -20,18 +20,20 @@ class DashboardController extends Controller
     {
         $upcomingReseration = DB::table('guest')
     ->join('reservations', 'guest.id', '=', 'reservations.guest_id')
+    ->leftJoin('rooms', 'reservations.room_id', '=', 'rooms.id')
     ->where('reservations.check_in', '>', now())
     ->where('guest.hotel_id', '=', Auth()->user()->id)
-    ->select('guest.*', 'reservations.*')
+    ->select('guest.*', 'reservations.*', 'rooms.roomNumber')
     ->where('guest.status','=','1')
     ->get();
 
 
     $expiryReseration = DB::table('guest')
     ->join('reservations', 'guest.id', '=', 'reservations.guest_id')
+    ->leftJoin('rooms', 'reservations.room_id', '=', 'rooms.id')
     // ->where('reservations.check_out', '>', Carbon::now())
     ->where('guest.hotel_id', '=', Auth()->user()->id)
-    ->select('guest.*', 'reservations.*')
+    ->select('guest.*', 'reservations.*', 'rooms.roomNumber')
     ->where('guest.status','=','1')
     ->get();
     // dd($expiryReseration);

@@ -35,6 +35,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
+                                <th>Room No</th>
                                 <th>Email</th>
                                 <th>Number</th>
                                 <th>Status</th>
@@ -48,6 +49,7 @@
                             <tr>
                                 <td class="serial-number">{{ $loop->iteration }}</td>
                                 <td>{{ $value->name }}</td>
+                                <td>{{ $value->reservations->room->roomNumber }}</td>
                                 <td>{{ $value->email }}</td>
                                 <td>{{ $value->mobile }}</td>
                                 <td>

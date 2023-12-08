@@ -47,7 +47,7 @@
                 <div class="col-lg-2 col-md-3 col-sm-12 mb-4">
                     <label class="form-label" for="roomNumber">Room Number</label>
                     <input type="text" name='roomNumber' class='form-control'
-                        value='{{ isset($model->rooms->roomNumber) ? $model->rooms->roomNumber : 'No Room Assigned' }}' readonly />
+                        value="{{ isset($model->reservations->room->roomNumber) ? $model->reservations->room->roomNumber : 'No Room Assigned' }}" readonly />
                     @error('roomNumber')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror

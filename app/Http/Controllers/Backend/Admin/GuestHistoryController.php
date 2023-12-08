@@ -28,7 +28,7 @@ class GuestHistoryController extends Controller
         ->orderBy('created_at', 'desc')
         ->get();
          $keyword = $request->input('keyword');
-         $model = Guest::with('rooms')->where(['hotel_id' => Auth::id()])->orderBy('created_at', 'desc')->get();
+         $model = Guest::with(['reservations.room'])->where(['hotel_id' => Auth::id()])->orderBy('created_at', 'desc')->get();
          return view('backend.admin.guestHistory.index', compact('model', 'keyword','pImodel'));
      }
 
@@ -131,16 +131,11 @@ class GuestHistoryController extends Controller
     public function edit($id)
 {
     $model = Guest::with(['reservations.room'])->find($id);
-
-    // Check if $model is not null
+   
     if (!$model) {
-        // Handle the case where Guest with the given ID is not found
         abort(404);
     }
 
-    // $reservation = $model->reservations;
-
-    // Check if $reservation is not null
     $reservations = Reservation::where('guest_id', $id)->get();
     $roomId = $reservations->isNotEmpty() ? $reservations->first()->room->id : null;
     $model->rooms = $roomId;

@@ -12,8 +12,7 @@
             <div class="card-body">
                 <div class="table-responsive">
 
-                    <button onclick="downloadPDF()" class='download-button btn border mb-3 bg-dark'
-                        style="">
+                    <button onclick="downloadPDF()" class='download-button btn border mb-3 bg-dark' style="">
                         PDF
                     </button>
                     <table id="guestsTable" class="table table-striped table-bordered table-hover">
@@ -81,7 +80,7 @@
                             <tr>
                                 <td>Room Number:</td>
                                 <td>
-                                    @isset($model->rooms)
+                                    <!-- @isset($model->rooms)
                                     @isset($model->rooms->roomNumber)
                                     {{ $model->rooms->roomNumber }}
                                     @else
@@ -89,12 +88,12 @@
                                     @endisset
                                     @else
                                     No Room Assigned
-                                    @endisset
+                                    @endisset -->
 
-
-
+                                    {{ $model->reservations->room->roomNumber }}
                                 </td>
                             </tr>
+
                             <tr>
                                 <td>Address:</td>
                                 <td>{{ $model->address }}</td>

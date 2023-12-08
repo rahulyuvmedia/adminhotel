@@ -57,7 +57,7 @@
                                     </small>
                                 </div>
                             </td>
-                            <td><span class="badge bg-label-success">{{ $value->room_id }}</span></td>
+                            <td><span class="badge bg-label-success">{{ $value->roomNumber }}</span></td>
                             <td>
                                 <form method="post"
                                     action="{{ route('cancelReservation', ['reservation' => $value->id]) }}"
@@ -152,7 +152,7 @@
                                     </small>
                                 </div>
                             </td>
-                            <td><span class="badge bg-label-success">{{ $value->room_id }}</span></td>
+                            <td><span class="badge bg-label-success">{{ $value->roomNumber }}</span></td>
                             <td>
 
                                 @php
