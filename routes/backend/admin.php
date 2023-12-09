@@ -97,3 +97,6 @@ Route::resource('upcomingBooking', 'UpcomingBookingController');
 Route::resource('extendedStay', 'ExtendedStayController');
 Route::resource('availableRooms', 'AvailableRoomsController');
 
+Route::resource('invoice', 'InvoiceController');
+
+

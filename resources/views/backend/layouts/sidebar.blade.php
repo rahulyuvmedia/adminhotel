@@ -84,13 +84,13 @@
                 <li class="menu-item">
                     <a href="{{ URL::to('/admin/rooms') }}"
                         class="nav-link  menu-link @if (request()->is('admin/rooms')) active @endif">
-                        <div data-i18n="Guest">Rooms</div>
+                        <div data-i18n="Rooms">Rooms</div>
                     </a>
                 </li>
                 <li class="menu-item">
                     <a href="{{ URL::to('/admin/availableRooms') }}"
                         class="nav-link menu-link  @if (request()->is('admin/availableRooms')) active @endif">
-                        <div data-i18n="Upcoming Booking">Available Rooms</div>
+                        <div data-i18n="Available Rooms">Available Rooms</div>
                     </a>
                 </li>
 
@@ -99,6 +99,60 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <li class="menu-item active open">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon fas fa-bed" style="font-size: 15px;"></i>
+                <div data-i18n="Invoice">Invoice</div>
+
+
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ URL::to('admin/invoice') }}"
+                        class="nav-link  menu-link @if (request()->is('admin/invoice')) active @endif">
+                        <div data-i18n="List">List</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ URL::to('admin/invoice/create') }}"
+                        class="nav-link menu-link  @if (request()->is('admin/invoice/create')) active @endif">
+                        <div data-i18n="Add">Add</div>
+                    </a>
+                </li>
+
+                <li class="menu-item">
+                    <a href="{{ URL::to('admin/invoice/edit') }}"
+                        class="nav-link menu-link  @if (request()->is('admin/invoice/edit')) active @endif">
+                        <div data-i18n="Edit">Edit</div>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+
+
+
+        
+
+
+
+
+
+        
 
 
         @if (Auth::user()->role === 'SUPERADMIN')
@@ -112,7 +166,7 @@
                 <li class="menu-item">
                     <a href="{{ URL::to('/admin/master') }}"
                         class="nav-link  menu-link   @if (request()->is('admin/master')) active @endif">
-                        <div data-i18n="Rooms">Rooms</div>
+                        <div data-i18n="Master">Master</div>
                     </a>
                 </li>
                 <li class="menu-item">
@@ -131,22 +185,6 @@
             </ul>
         </li>
         @endif
-
-        <li class="menu-item active open">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class='menu-icon tf-icons ti ti-file-dollar'></i>
-                <div data-i18n="Invoice">Invoice</div>
-
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="app-invoice-list.html" class="menu-link">
-                        <div data-i18n="List">List</div>
-                    </a>
-                </li>
-               
-            </ul>
-        </li>
 
         <!-- <li class="nav-item has-submenu">
             <span class="menu-header text nav-link small text-uppercase" data-i18n="Guest Management">
@@ -327,7 +365,7 @@
 
 
 
-
+<!-- 
 
 
 <script>
@@ -371,4 +409,4 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
-</script>
+</script> -->
