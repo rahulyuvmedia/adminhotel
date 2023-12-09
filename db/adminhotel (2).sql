@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2023 at 01:49 PM
+-- Generation Time: Dec 09, 2023 at 01:34 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -140,6 +140,33 @@ CREATE TABLE `guest` (
 INSERT INTO `guest` (`id`, `hotel_id`, `name`, `email`, `mobile`, `aadharNo`, `address`, `member`, `child`, `bookingSource`, `idproff`, `status`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Rahul soni', 'rahulyuvmedia@gmail.com', '09588871256', '000123456789000', 'Ajmer', '3', '3', 'Corporate Travel Agency', '1701923687.webp', '1', '2023-12-07 10:34:47', '2023-12-07 13:07:43'),
 (2, 1, 'Testing', 'adstestyuv@gmail.com', '01267897067', '000123456789000', 'Ajmer', '2', '2', 'Booking.com', '1701923729.jpg', '1', '2023-12-07 10:35:29', '2023-12-07 13:07:49');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `invoice`
+--
+
+CREATE TABLE `invoice` (
+  `id` bigint(20) NOT NULL,
+  `guest_id` bigint(20) NOT NULL,
+  `room_id` bigint(20) NOT NULL,
+  `reservation_id` bigint(20) NOT NULL,
+  `total_amount` varchar(255) NOT NULL,
+  `due_amount` varchar(255) NOT NULL,
+  `total_paid_amount` varchar(255) NOT NULL,
+  `discount` varchar(255) NOT NULL,
+  `tax_amount` varchar(255) NOT NULL,
+  `additional_charges` varchar(255) NOT NULL,
+  `pay_method` enum('online','offline','','') NOT NULL,
+  `billing_date` varchar(255) NOT NULL,
+  `payment_confirmation_date` varchar(255) NOT NULL,
+  `currency` enum('indian','other','','') NOT NULL,
+  `notes` text NOT NULL,
+  `status` enum('pending','confirmed','','') NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -314,9 +341,11 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('54422fa09028a51c8f918698f2f0a3dde6b041b002b1ab36b114120cfa31a8eb9142a84901c9d51a', 1, 6, 'adminApiToken', '[]', 0, '2023-11-30 11:03:05', '2023-11-30 11:03:05', '2024-11-30 16:33:05'),
 ('56f10fb9645ee96bb2d3602468c24aaa1b31450d833fc25172e582e5c7b39981c1a927f759bce234', 14, 6, 'adminApiToken', '[]', 0, '2023-11-24 04:45:19', '2023-11-24 04:45:19', '2024-11-24 10:15:19'),
 ('58364735b5926fc1d0b174d039e90728a959a1562b2206150668d0ac3a3d8d272131de85f5af7e03', 1, 6, 'adminApiToken', '[]', 0, '2023-11-24 04:53:49', '2023-11-24 04:53:49', '2024-11-24 10:23:49'),
+('5d019e60da798a11d5367f997bfd5d5763879f425737aee77e162625eee8cbbb49c172906df5d73f', 1, 6, 'adminApiToken', '[]', 0, '2023-12-09 04:25:58', '2023-12-09 04:25:58', '2024-12-09 09:55:58'),
 ('5f6637cdd601b2b56fa0fece98e70a42864ae6565c1eae2ab9f548758611186c42526ffdea1f55e3', 1, 6, 'adminApiToken', '[]', 0, '2023-12-07 04:43:57', '2023-12-07 04:43:57', '2024-12-07 10:13:57'),
 ('624e8419acea572f2d5db33f2338f393500bb94c01cf4aca950319aa2fb0e13fa91c94496ceda546', 1, 6, 'adminApiToken', '[]', 0, '2023-11-29 08:36:06', '2023-11-29 08:36:06', '2024-11-29 14:06:06'),
 ('63064b28f6bdf7e61313c3a446411b366603c82adaa7b37fa20658978055c2bc192f348bf0dd81bd', 1, 6, 'adminApiToken', '[]', 0, '2023-11-17 14:49:22', '2023-11-17 14:49:22', '2024-11-17 20:19:22'),
+('63a5db557c58d62d1590a97e256c31271af02985d38d98900cde5a318ac9a82237ae5381bdf1c714', 1, 6, 'adminApiToken', '[]', 0, '2023-12-08 04:33:48', '2023-12-08 04:33:48', '2024-12-08 10:03:48'),
 ('653ce9fc6cdca134f1bdc586a4463b9f81a86f95983408cb5c7911fa598b1ed2055bd5862d8a12ba', 14, 6, 'adminApiToken', '[]', 0, '2023-11-23 17:01:42', '2023-11-23 17:01:42', '2024-11-23 22:31:42'),
 ('67cba7b98c79510c5fac62493938fa857b1cf00da731c40c852ec4949f04be06e0dd476a84d94f8f', 1, 4, 'adminApiToken', '[]', 0, '2020-09-27 10:50:50', '2020-09-27 10:50:50', '2021-09-27 16:20:50'),
 ('6dfafb5839e214eb59fe5775f174253a46328a71201390cbc664505144f4f932af4461806466c240', 1, 6, 'adminApiToken', '[]', 0, '2023-11-24 09:04:41', '2023-11-24 09:04:41', '2024-11-24 14:34:41'),
@@ -657,18 +686,18 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`id`, `roomNumber`, `roomType`, `occupancy`, `price`, `availability`, `facilities`, `floor`, `status`, `created_at`, `updated_at`, `hotel_id`) VALUES
-(28, 'F-2', 'single', '1', 1000, 'available', '\"A.C\"', '1', '1', '2023-11-24 10:34:12', '2023-12-06 11:44:29', 1),
-(29, 'F-3', 'single', '1', 2000, 'booked', '\"Refrigerator|Conference|Garden|Beach\"', NULL, '1', '2023-11-24 10:34:12', '2023-12-07 13:07:49', 1),
-(30, 'F-4', 'single', '1', 3000, 'available', '\"A.C|Refrigerator|Casino|Garden\"', NULL, '1', '2023-11-24 10:34:12', '2023-12-01 15:28:35', 1),
-(31, 'F-5', 'single', '1', 4000, 'booked', '\"A.C|Refrigerator|Casino|Garden\"', NULL, '1', '2023-11-24 10:34:12', '2023-12-07 13:07:43', 1),
-(32, 'F-6', 'single', '1', 5000, 'available', '\"A.C|Refrigerator|Casino|Garden\"', NULL, '1', '2023-11-24 10:34:12', '2023-12-04 10:27:37', 1),
-(33, 'F-7', 'single', '1', 6000, 'available', '\"A.C|Refrigerator|Garden|Casino|Garden\"', NULL, '1', '2023-11-24 10:34:12', '2023-11-28 12:44:01', 1),
-(34, 'F-8', 'single', '1', 7000, 'available', '\"A.C|Refrigerator|Garden|Casino|Garden\"', NULL, '1', '2023-11-24 10:34:12', '2023-11-28 12:29:52', 1),
-(35, 'F-1', 'double', '3', 8000, 'available', '\"Garden|Garden\"', '14', '1', '2023-11-28 13:24:30', '2023-12-04 10:27:37', 1),
-(36, 'F-9', 'single', '2', 9000, 'available', '\"Refrigerator\"', '2', '1', '2023-11-28 13:26:06', '2023-11-29 16:51:39', 1),
-(37, 'F-10', 'single', '2', 10000, 'available', '\"Garden|Garden\"', '2', '1', '2023-11-28 14:08:26', '2023-12-01 15:28:35', 1),
-(38, 'Ofc-room', 'single', '4', 11000, 'outofservice', '\"Car\"', '2', '1', '2023-11-29 10:33:17', '2023-12-07 10:29:17', 1),
-(39, 'Move', 'single', '3', 1000000, 'maintenance', '\"A.C|Refrigerator|Gym|Pool|Lounge|Bar|Conference|Shuttle|Garden|Beach|Parking|Studio|Sauna|Casino|Patio|Cinema|Spa|Car\"', '5', '1', '2023-11-30 17:09:23', '2023-12-07 10:29:28', 1),
+(28, 'F-2', 'single', '1', 1000, 'available', '\"A.C\"', '1', '1', '2023-11-24 10:34:12', '2023-12-09 16:17:14', 1),
+(29, 'F-3', 'single', '4', 2000, 'booked', '\"Refrigerator|Conference|Garden|Beach\"', '1', '1', '2023-11-24 10:34:12', '2023-12-09 16:17:14', 1),
+(30, 'F-4', 'single', '1', 3000, 'available', '\"A.C|Refrigerator|Casino|Garden\"', NULL, '1', '2023-11-24 10:34:12', '2023-12-09 16:17:14', 1),
+(31, 'F-5', 'single', '1', 4000, 'booked', '\"A.C|Refrigerator|Casino|Garden\"', NULL, '1', '2023-11-24 10:34:12', '2023-12-09 16:17:14', 1),
+(32, 'F-6', 'single', '1', 5000, 'available', '\"A.C|Refrigerator|Casino|Garden\"', NULL, '1', '2023-11-24 10:34:12', '2023-12-09 16:17:14', 1),
+(33, 'F-7', 'single', '1', 6000, 'available', '\"A.C|Refrigerator|Garden|Casino|Garden\"', NULL, '1', '2023-11-24 10:34:12', '2023-12-09 16:17:14', 1),
+(34, 'F-8', 'single', '1', 7000, 'available', '\"A.C|Refrigerator|Garden|Casino|Garden\"', NULL, '1', '2023-11-24 10:34:12', '2023-12-09 16:17:14', 1),
+(35, 'F-1', 'double', '3', 8000, 'booked', '\"Garden|Garden\"', '14', '1', '2023-11-28 13:24:30', '2023-12-09 16:51:32', 1),
+(36, 'F-9', 'single', '2', 9000, 'available', '\"Refrigerator\"', '2', '1', '2023-11-28 13:26:06', '2023-12-09 16:17:14', 1),
+(37, 'F-10', 'single', '2', 10000, 'available', '\"Garden|Garden\"', '2', '1', '2023-11-28 14:08:26', '2023-12-09 16:17:14', 1),
+(38, 'Ofc-room', 'single', '4', 11000, 'available', '\"Car\"', '2', '1', '2023-11-29 10:33:17', '2023-12-09 16:17:14', 1),
+(39, 'Move', 'single', '3', 1000000, 'available', '\"A.C|Refrigerator|Gym|Pool|Lounge|Bar|Conference|Shuttle|Garden|Beach|Parking|Studio|Sauna|Casino|Patio|Cinema|Spa|Car\"', '5', '1', '2023-11-30 17:09:23', '2023-12-09 16:17:14', 1),
 (40, '127', 'single', '2', 6000, 'available', '\"Gym\"', '1', '1', '2023-12-02 15:33:09', '2023-12-02 15:33:09', 2);
 
 -- --------------------------------------------------------
@@ -764,6 +793,12 @@ ALTER TABLE `failed_jobs`
 -- Indexes for table `guest`
 --
 ALTER TABLE `guest`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `invoice`
+--
+ALTER TABLE `invoice`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -909,7 +944,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `guest`
 --
 ALTER TABLE `guest`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- AUTO_INCREMENT for table `invoice`
+--
+ALTER TABLE `invoice`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `master`
@@ -951,7 +992,7 @@ ALTER TABLE `policeinquiry`
 -- AUTO_INCREMENT for table `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `roles`

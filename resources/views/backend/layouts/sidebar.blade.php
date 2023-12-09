@@ -115,8 +115,8 @@
 
         <li class="menu-item active open">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon fas fa-bed" style="font-size: 15px;"></i>
-                <div data-i18n="Invoice">Invoice</div>
+            <i class="menu-icon fas fa-file-invoice" style="font-size: 15px;"></i>
+<div data-i18n="Invoice">Invoice</div>
 
 
             </a>

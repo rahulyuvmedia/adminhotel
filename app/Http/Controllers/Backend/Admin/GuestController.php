@@ -118,19 +118,27 @@ class GuestController extends Controller
                 }
             }
                             
-                    if($model->save()){
-                        $reservation = new Reservation();
-                        $reservation->guest_id = $model->id;
-                        $reservation->room_id =$request->roomNumber;
-                        $reservation->check_in = $request->input('check_in');
-                        $reservation->check_out = $request->input('check_out');
-                        
-                        if($reservation->save()){
-                            Rooms::where('id', $request->roomNumber)->update(['availability' => 'booked']);
-                        }
+            if($model->save()){
+                $reservation = new Reservation();
+                $reservation->guest_id = $model->id;
+                $reservation->room_id =$request->roomNumber;
+                $reservation->check_in = $request->input('check_in');
+                $reservation->check_out = $request->input('check_out');
+                
+                if($reservation->save()){
+                    Rooms::where('id', $request->roomNumber)->update(['availability' => 'booked']);
+                }
 
-                    }
-            return redirect()->route('admin.guest.index')->with('success', 'Guest added successfully.');
+            }
+            $paymentChecked = $request->has('payment');
+
+            if ($paymentChecked) {
+                // If checkbox is checked, redirect to admin/invoice/create with the guest id
+                return redirect()->route('admin.invoice.create', ['id' => $model->id])->with('success', 'Guest added successfully.');
+            } else {
+                // If checkbox is not checked, redirect to admin.guest.index
+                return redirect()->route('admin.guest.index')->with('success', 'Guest added successfully.');
+            }
         } catch (\Exception $e) {
             print_r($e);
             die;
