@@ -29,6 +29,9 @@
     </div>
     <div class="menu-inner-shadow"></div>
 
+
+
+
     <ul class="menu-inner py-1">
         <li class="menu-item @if (request()->is('admin/dashboard')) active @endif">
             <a href="{{ URL::to('/admin/dashboard') }}" class="menu-link">
@@ -36,93 +39,201 @@
                 <div data-i18n="Dashboard">Dashboard</div>
             </a>
         </li>
-
-        <nav class="sidebar py-2 mb-4">
-            <ul class=" nav flex-column " id="nav_accordion">
-
-                <li class="nav-item has-submenu">
-                    <span class="menu-header text nav-link small text-uppercase" data-i18n="Guest Management">
-                        Guest Management
-                    </span>
-                    <ul class="submenu collapse">
-                        <li class="menu-item ">
-                            <a class="nav-link menu-link @if (request()->is('admin/guest')) active @endif"
-                                href="{{ URL::to('/admin/guest') }}">
-                                <i class="menu-icon tf-icons ti ti-user"></i>
-                                <div data-i18n="Guest">Guest</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a class="nav-link menu-link @if (request()->is('admin/upcomingBooking')) active @endif"
-                                href="{{ URL::to('/admin/upcomingBooking') }}">
-                                <i class="menu-icon tf-icons ti ti-calendar" style="font-size: 20px;"></i>Upcoming
-                                Booking
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a class="nav-link menu-link @if (request()->is('admin/extendedStay')) active @endif"
-                                href="{{ URL::to('/admin/extendedStay') }}">
-                                <i class="menu-icon tf-icons ti ti-clock" style="font-size: 20px;"></i>Extended Stay
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a class="nav-link menu-link @if (request()->is('admin/guestHistory')) active @endif"
-                                href="{{ URL::to('/admin/guestHistory') }}">
-                                <i class="menu-icon tf-icons ti ti-archive" style="font-size: 20px;"></i>Guest History
-                            </a>
-                        </li>
-                    </ul>
+        <li class="menu-item active open">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon fas fa-users" style="font-size: 15px;"></i>
+                <div data-i18n="Guest Management">Guest Management</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ URL::to('/admin/guest') }}"
+                        class=" nav-link menu-link @if (request()->is('admin/guest')) active @endif">
+                        <div data-i18n="Guest">Guest</div>
+                    </a>
                 </li>
-                <li class="nav-item has-submenu">
-                    <span class="menu-header text nav-link small text-uppercase" data-i18n="Room Management">
-                        Room Management
-                    </span>
-                    <ul class="submenu collapse">
-                        <li class="menu-item">
-                            <a class="nav-link  menu-link @if (request()->is('admin/rooms')) active @endif"
-                                href="{{ URL::to('/admin/rooms') }}">
-                                <i class="menu-icon tf-icons ti ti-home" style="font-size: 20px;"></i>Room
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a class="nav-link menu-link  @if (request()->is('admin/availableRooms')) active @endif"
-                                href="{{ URL::to('/admin/availableRooms') }}">
-                                <i class="menu-icon tf-icons ti ti-checkbox" style="font-size: 20px;"></i>Available
-                                Rooms
-                            </a>
-                        </li>
-                    </ul>
+                <li class="menu-item">
+                    <a href="{{ URL::to('/admin/upcomingBooking') }}"
+                        class=" nav-link menu-link  @if (request()->is('admin/upcomingBooking')) active @endif">
+                        <div data-i18n="Upcoming Booking">Upcoming Booking</div>
+                    </a>
                 </li>
-
-                @if (Auth::user()->role === 'SUPERADMIN')
-                <li class="nav-item has-submenu">
-                    <span class="menu-header text nav-link small text-uppercase" data-i18n="Admin Setting">
-                        Admin Setting
-                    </span>
-                    <ul class="submenu collapse">
-                        <li class="menu-item">
-                            <a class="nav-link menu-link  @if (request()->is('admin/master')) active @endif"
-                                href="{{ URL::to('/admin/master') }}">
-                                <i class="menu-icon tf-icons ti ti-key" style="font-size: 20px;"></i>Master
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a class="nav-link menu-link  @if (request()->is('admin/submaster')) active @endif"
-                                href="{{ URL::to('/admin/submaster') }}">
-                                <i class="menu-icon tf-icons ti ti-wand" style="font-size: 20px;"></i>Submaster
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a class="nav-link menu-link  @if (request()->is('admin/users')) active @endif"
-                                href="{{ URL::to('/admin/users') }}">
-                                <i class="menu-icon tf-icons ti ti-pencil" style="font-size: 20px;"></i>Create Admin
-                            </a>
-                        </li>
-                    </ul>
+                <li class="menu-item">
+                    <a href="{{ URL::to('/admin/extendedStay') }}"
+                        class="nav-link menu-link @if (request()->is('admin/extendedStay')) active @endif">
+                        <div data-i18n="Extended Stay">Extended Stay</div>
+                    </a>
                 </li>
-                @endif
+                <li class="menu-item">
+                    <a href="{{ URL::to('/admin/guestHistory') }}"
+                        class="nav-link menu-link @if (request()->is('admin/guestHistory')) active @endif">
+                        <div data-i18n="Guest History">Guest History</div>
+                    </a>
+                </li>
             </ul>
-        </nav>
+        </li>
+
+
+        <li class="menu-item active open">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon fas fa-bed" style="font-size: 15px;"></i>
+                <div data-i18n="Room Management">Room Management</div>
+
+
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ URL::to('/admin/rooms') }}"
+                        class="nav-link  menu-link @if (request()->is('admin/rooms')) active @endif">
+                        <div data-i18n="Guest">Rooms</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ URL::to('/admin/availableRooms') }}"
+                        class="nav-link menu-link  @if (request()->is('admin/availableRooms')) active @endif">
+                        <div data-i18n="Upcoming Booking">Available Rooms</div>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+
+
+
+
+
+        @if (Auth::user()->role === 'SUPERADMIN')
+        <li class="menu-item active open">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon fas fa-cog" style="font-size: 15px;"></i>
+                <div data-i18n="Admin Setting">Admin Setting</div>
+
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ URL::to('/admin/master') }}"
+                        class="nav-link  menu-link   @if (request()->is('admin/master')) active @endif">
+                        <div data-i18n="Rooms">Rooms</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ URL::to('/admin/submaster') }}"
+                        class="nav-link menu-link  @if (request()->is('admin/submaster')) active @endif">
+                        <div data-i18n="Submaster">Submaster</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ URL::to('/admin/users') }}"
+                        class="nav-link menu-link  @if (request()->is('admin/users')) active @endif">
+                        <div data-i18n="Create Admin">Create Admin</div>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+        @endif
+
+        <li class="menu-item active open">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class='menu-icon tf-icons ti ti-file-dollar'></i>
+                <div data-i18n="Invoice">Invoice</div>
+
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="app-invoice-list.html" class="menu-link">
+                        <div data-i18n="List">List</div>
+                    </a>
+                </li>
+               
+            </ul>
+        </li>
+
+        <!-- <li class="nav-item has-submenu">
+            <span class="menu-header text nav-link small text-uppercase" data-i18n="Guest Management">
+                Guest Management
+            </span>
+            <ul class="submenu collapse">
+                <li class="menu-item ">
+                    <a class="nav-link menu-link @if (request()->is('admin/guest')) active @endif"
+                        href="{{ URL::to('/admin/guest') }}">
+                        <i class="menu-icon tf-icons ti ti-user"></i>
+                        <div data-i18n="Guest">Guest</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="nav-link menu-link @if (request()->is('admin/upcomingBooking')) active @endif"
+                        href="{{ URL::to('/admin/upcomingBooking') }}">
+                        <i class="menu-icon tf-icons ti ti-calendar" style="font-size: 20px;"></i>Upcoming
+                        Booking
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="nav-link menu-link @if (request()->is('admin/extendedStay')) active @endif"
+                        href="{{ URL::to('/admin/extendedStay') }}">
+                        <i class="menu-icon tf-icons ti ti-clock" style="font-size: 20px;"></i>Extended Stay
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="nav-link menu-link @if (request()->is('admin/guestHistory')) active @endif"
+                        href="{{ URL::to('/admin/guestHistory') }}">
+                        <i class="menu-icon tf-icons ti ti-archive" style="font-size: 20px;"></i>Guest History
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item has-submenu">
+            <span class="menu-header text nav-link small text-uppercase" data-i18n="Room Management">
+                Room Management
+            </span>
+            <ul class="submenu collapse">
+                <li class="menu-item">
+                    <a class="nav-link  menu-link @if (request()->is('admin/rooms')) active @endif"
+                        href="{{ URL::to('/admin/rooms') }}">
+                        <i class="menu-icon tf-icons ti ti-home" style="font-size: 20px;"></i>Room
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="nav-link menu-link  @if (request()->is('admin/availableRooms')) active @endif"
+                        href="{{ URL::to('/admin/availableRooms') }}">
+                        <i class="menu-icon tf-icons ti ti-checkbox" style="font-size: 20px;"></i>Available
+                        Rooms
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        @if (Auth::user()->role === 'SUPERADMIN')
+        <li class="nav-item has-submenu">
+            <span class="menu-header text nav-link small text-uppercase" data-i18n="Admin Setting">
+                Admin Setting
+            </span>
+            <ul class="submenu collapse">
+                <li class="menu-item">
+                    <a class="nav-link menu-link  @if (request()->is('admin/master')) active @endif"
+                        href="{{ URL::to('/admin/master') }}">
+                        <i class="menu-icon tf-icons ti ti-key" style="font-size: 20px;"></i>Master
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="nav-link menu-link  @if (request()->is('admin/submaster')) active @endif"
+                        href="{{ URL::to('/admin/submaster') }}">
+                        <i class="menu-icon tf-icons ti ti-wand" style="font-size: 20px;"></i>Submaster
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="nav-link menu-link  @if (request()->is('admin/users')) active @endif"
+                        href="{{ URL::to('/admin/users') }}">
+                        <i class="menu-icon tf-icons ti ti-pencil" style="font-size: 20px;"></i>Create Admin
+                    </a>
+                </li>
+            </ul>
+        </li>
+        @endif -->
+
+
+
+
+
     </ul>
 </aside>
 

@@ -78,26 +78,6 @@
         </div>
     </div> -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- <div class="col-lg-6 mb-4 mb-lg-">
         <div class="card h-100">
             <div class="card-header d-flex justify-content-between">
@@ -198,26 +178,6 @@
         </div>
     </div> -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- <div class="col-lg-12 mb-4 mb-lg-">
         <div class="card h-100">
             <div class="card-header d-flex justify-content-between">
@@ -268,44 +228,15 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
+
+
+
+
+
+
+
 <!-- -----------------------------------scripts-----------------------------------  -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
