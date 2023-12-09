@@ -2,7 +2,7 @@
 @section('title', 'Dashboard')
 @section('content')
 <div class="row">
-    <div class="col-lg-6 mb-4 mb-lg-">
+    <!-- <div class="col-lg-6 mb-4 mb-lg-">
         <div class="card h-100">
             <div class="card-header d-flex justify-content-between">
                 <h5 class="card-title m-0 me-2">Upcoming Booking</h5>
@@ -76,7 +76,7 @@
                 @endif
             </div>
         </div>
-    </div>
+    </div> -->
 
 
 
@@ -98,7 +98,7 @@
 
 
 
-    <div class="col-lg-6 mb-4 mb-lg-">
+    <!-- <div class="col-lg-6 mb-4 mb-lg-">
         <div class="card h-100">
             <div class="card-header d-flex justify-content-between">
                 <h5 class="card-title m-0 me-2">Extended Stay </h5>
@@ -125,7 +125,7 @@
                             <th>Check In Date</th>
                             <th>Room </th>
                             <th>Extended Time</th>
-                            <!-- <th>Extra Pay</th> -->
+                         
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -177,9 +177,7 @@
                                 @endphp
 
                             </td>
-                            <!-- <td>
-                                Extra pay 
-                            </td> -->
+                         
 
                             <td>
                                 <form method="post"
@@ -198,7 +196,7 @@
                 @endif
             </div>
         </div>
-    </div>
+    </div> -->
 
 
 
@@ -218,7 +216,9 @@
 
 
 
-    <div class="col-lg-12 mb-4 mb-lg-">
+
+
+    <!-- <div class="col-lg-12 mb-4 mb-lg-">
         <div class="card h-100">
             <div class="card-header d-flex justify-content-between">
                 <h5 class="card-title m-0 me-2">Rooms Details</h5>
@@ -264,7 +264,15 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
+
+
+
+
+
+
+
+
 
 
 
@@ -280,6 +288,26 @@
 
 </div>
 <!-- -----------------------------------scripts-----------------------------------  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <script>
 function redirectToPage(id) {
