@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Backend\Admin;
 use Illuminate\Database\QueryException;
-
+use App\Models\Guest;
+use App\Models\Rooms;
+use App\Models\Reservation;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Exception;
@@ -18,9 +20,13 @@ class InvoiceController extends Controller
     }
 
 
-    public function create()
+    public function create(Request $request)
     { 
-        return view('backend.admin.invoice.create');
+        $guest = Guest::where('id',$request->id)->first();
+        
+
+        
+        return view('backend.admin.invoice.create',compact('guest'));
     }
     
 
