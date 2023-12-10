@@ -2,10 +2,13 @@
 @section('title', 'Invoice')
 @section('content')
 
-
+    <form action="{{ Route('admin.invoice.store') }}" enctype="multipart/form-data"
+                            method="post" accept-charset="utf-8" class="needs-validation">
+                            @csrf
+                            <input type="hidden" name="guest_id" value="{{$_GET['id']}}" /> 
     <div class="row invoice-add">
 
-        <div class="col-lg-9 col-12 mb-lg-0 mb-4">
+         <div class="col-lg-9 col-12 mb-lg-0 mb-4">
             <div class="card invoice-preview-card">
                 <div class="card-body">
                     <div class="row m-sm-4 m-0">
@@ -33,7 +36,9 @@
                                 <dd class="col-sm-6 d-flex justify-content-md-end pe-0 ps-0 ps-sm-2">
                                     <div class="input-group input-group-merge disabled w-px-150">
                                         <span class="input-group-text">#</span>
-                                        <input type="text" class="form-control" disabled placeholder="3905"
+                                        <input type="text" class="form-control"  disabled placeholder="3905"
+                                            value="{{ getInvoiceNumber($guest) }}" id="invoiceId" />
+                                              <input type="hidden" class="form-control"  name="invoice_number" placeholder="3905"
                                             value="{{ getInvoiceNumber($guest) }}" id="invoiceId" />
                                     </div>
                                 </dd>
@@ -97,7 +102,7 @@
 
                     <hr class="my-3 mx-n4" />
 
-                    <form class="source-item pt-4 px-0 px-sm-4">
+                    <div class="source-item pt-4 px-0 px-sm-4">
 
                         <div class="mb-3" data-repeater-list="group-a">
                             <div class="repeater-wrapper pt-0 pt-md-4" data-repeater-item>
@@ -235,7 +240,7 @@
                                 <button type="button" class="btn btn-primary" data-repeater-create>Add Item</button>
                             </div>
                         </div>
-                    </form>
+                    </div>
 
 
 
@@ -254,7 +259,7 @@
                                 class="ti ti-send ti-xs me-2"></i>Send Invoice</span>
                     </button>
                     <a href="app-invoice-preview.html" class="btn btn-label-secondary d-grid w-100 mb-2">Preview</a>
-                    <button type="button" class="btn btn-label-secondary d-grid w-100">Save</button>
+                    <button type="submit" class="btn btn-label-secondary d-grid w-100">Save</button>
                 </div>
             </div>
             <div>
@@ -301,8 +306,9 @@
             </div>
         </div>
         <!-- /Invoice Actions -->
+      
     </div>
- 
+ </form>
 <script>
     $(document).ready(function() {
         function updatePrice() {

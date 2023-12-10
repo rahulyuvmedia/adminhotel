@@ -27,10 +27,13 @@
 
  <!-- Core CSS -->
  <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/core.css') }}" class="template-customizer-core-css" />
- <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/core-dark.css') }}" class="template-customizer-core-dark-css" />
- <link rel="stylesheet" href="{{ URL::to('assets/vendor/css/rtl/theme-default.css') }}" class="template-customizer-theme-css" />
- <link rel="stylesheet" href="{{ URL::to('assets/vendor/css/rtl/theme-default-dark.css') }}" class="template-customizer-theme-css" />
- 
+ <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/core-dark.css') }}"
+     class="template-customizer-core-dark-css" />
+ <link rel="stylesheet" href="{{ URL::to('assets/vendor/css/rtl/theme-default.css') }}"
+     class="template-customizer-theme-css" />
+ <link rel="stylesheet" href="{{ URL::to('assets/vendor/css/rtl/theme-default-dark.css') }}"
+     class="template-customizer-theme-css" />
+
  <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
 
 
@@ -53,7 +56,7 @@
  <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
 
 
-  <script src="{{ asset('assets/vendor/js/template-customizer.js') }}"></script>
+ <script src="{{ asset('assets/vendor/js/template-customizer.js') }}"></script>
 
  <script src="{{ asset('assets/js/config.js') }}"></script>
 
@@ -63,12 +66,12 @@
  </script>
 
 
-<!-- Add this before the DataTables script -->
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+ <!-- Add this before the DataTables script -->
+ <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 
-<!-- DataTables example CSS -->
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+ <!-- DataTables example CSS -->
+ <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 
-<!-- DataTables JavaScript -->
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+ <!-- DataTables JavaScript -->
+ <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
