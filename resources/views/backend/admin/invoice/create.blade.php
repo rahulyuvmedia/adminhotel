@@ -317,7 +317,7 @@
             updatePrice();
         });
 
-        // updatePrice();
+        updatePrice();
     });
 </script>
 @stop
