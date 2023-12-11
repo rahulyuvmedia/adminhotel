@@ -1,80 +1,94 @@
 @extends('backend.layouts.master')
 @section('title', 'Addtools')
 @section('content')
-    <div class="app-page-title">
-        <div class="page-title-wrapper">
-            <div class="page-title-heading">
-                <div class="page-title-icon">
-                    <i class="bi bi-tags icon-gradient bg-mean-fruit"> </i>
-                </div>
-                <div>All master</div>
-                <div class="d-inline-block ml-3 pb-3">
-
-                    <a href="{{ URL::to('admin/master/create') }}"style="background-color:#7367f0 ; color:white" class="btn">
-                        <i class="bi bi-plus-lg"></i>
-                        Add Master
-                    </a>
-
-                </div>
-            </div>
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
         </div>
-    </div>
+    @endif
 
-    <div class="row">
-        <div class="col-md-12 col-sm-12">
-            <div class="main-card mb-3 card">
-                <div class="card-body">
-                    <div class="table-responsive">
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
 
-                        <table id="example" class="table table-striped table-bordered" style="width:100%">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>#</th>
+    <div class="container-xxl flex-grow-1 container-p-y card">
+        <div class="app-page-title">
+            <div class="page-title-wrapper">
+                <div class="page-title-heading">
+                    <div class="page-title-icon">
+                        <i class="bi bi-tags icon-gradient bg-mean-fruit"> </i>
+                    </div>
+                    <h5 class="py-3 mb-4">
+                        <span class="text-muted fw-light">Master /</span> List
+                    </h5>
 
-                                    <th class="text-nowrap">Master Name</th>
-                                    <th class="text-nowrap">Master Value</th>
+                    <div class="d-inline-block ml-3 pb-3">
 
-                                    <th>Action</th>
+                        <a href="{{ URL::to('admin/master/create') }}"style="background-color:#7367f0 ; color:white"
+                            class="btn">
+                            <i class="bi bi-plus-lg"></i>
+                            Add Master
+                        </a>
 
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                @foreach ($master as $value)
-                                    <tr>
-                                        <td class="serial-number">{{ $loop->iteration }}</td>
-
-                                        <td class=" text-nowrap ">{{ $value->title }}</td>
-                                        <td class="">{{ $value->value }}</td>
-                                        <td class="d-flex">
-                                            <a href="{{ Route('admin.master.edit', $value->id) }}"class="btn fw-bold btn-primary text-nowrap"
-                                                data-mdb-ripple-color="dark">
-                                                <i class="metismenu-icon bi bi-gear-wide-connected"></i>
-                                                Edit
-                                            </a>
-                                            {{-- delete --}}
-                                            <form action="{{ route('admin.master.destroy', $value->id) }}" method="POST"
-                                                id="deleteForm">
-                                                @method('DELETE')
-                                                @csrf
-                                                <button type="button" class="btn btn-danger ms-3 text-nowrap"
-                                                    onclick="confirmDelete(this)">
-
-                                                    <i class="bi bi-trash"></i> Delete
-                                                </button>
-                                            </form>
-
-                                            
-                                        </td>
-                                    </tr>
-                                @endforeach
-
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>
         </div>
+
+
+        <div class="">
+            <div class="card-datatable table-responsive">
+                <table class="invoice-list-table table border-top" id="invoiceTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+
+                            <th class="text-nowrap">Master Name</th>
+                            <th class="text-nowrap">Master Value</th>
+
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach ($master as $value)
+                            <tr>
+                                <td class="serial-number">{{ $loop->iteration }}</td>
+
+                                <td class=" text-nowrap ">{{ $value->title }}</td>
+                                <td class="">{{ $value->value }}</td>
+                                <td class="d-flex">
+                                    <a href="{{ Route('admin.master.edit', $value->id) }}"class="btn fw-bold btn-primary text-nowrap"
+                                        data-mdb-ripple-color="dark">
+                                        <i class="metismenu-icon bi bi-gear-wide-connected"></i>
+                                        Edit
+                                    </a>
+                                    {{-- delete --}}
+                                    <form action="{{ route('admin.master.destroy', $value->id) }}" method="POST"
+                                        id="deleteForm">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="button" class="btn btn-danger ms-3 text-nowrap"
+                                            onclick="confirmDelete(this)">
+
+                                            <i class="bi bi-trash"></i> Delete
+                                        </button>
+                                    </form>
+
+
+                                </td>
+                            </tr>
+                        @endforeach
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
     </div>
 
     <style>
@@ -100,66 +114,25 @@
     </script>
 
     <script>
-       $(document).ready(function() {
-    $('#example').DataTable({
-        dom: 'lBfrtip',
-        buttons: [
-            {
-                extend: 'copy',
-                text: 'Copy',
-                className: 'btn btn-light', // Change to btn-light for a light background color
-                exportOptions: {
-                    columns: ':visible'
+        $(document).ready(function() {
+            $('#invoiceTable').DataTable({
+                // Enable pagination
+                "paging": true,
+                // Enable searching
+                "searching": true,
+                // Set the default number of records per page
+                "lengthMenu": [10, 25, 50, 100],
+                // Customize the text for pagination buttons
+                "oLanguage": {
+                    "oPaginate": {
+                        "sNext": "&#8594;",
+                        "sPrevious": "&#8592;"
+                    }
                 },
-                customize: function (win) {
-                    $(win.document.body)
-                        .find('button')
-                        .removeClass('btn-secondary')
-                        .addClass('btn-light')
-                        .css('margin-right', '5px');
-                }
-            },
-            {
-                extend: 'csv',
-                text: 'CSV',
-                className: 'btn btn-light ', // Add btn-custom for common styling
-                exportOptions: {
-                    columns: ':visible'
-                },
-                customize: function (win) {
-                    $(win.document.body)
-                        .find('button')
-                        .removeClass('btn-secondary')
-                        .addClass('btn-custom')
-                        .css('margin-right', '5px');
-                }
-            },
-            {
-                extend: 'excel',
-                text: 'Excel',
-                className: 'btn btn-light',
-                style: 'margin-right: 5px;'
-            },
-            {
-                extend: 'pdf',
-                text: 'PDF',
-                className: 'btn btn-light' ,
-                style: 'margin-right: 5px;'
-            },
-            {
-                extend: 'print',
-                text: 'Print',
-                className: 'btn btn-light',
-                style: 'margin-right: 5px;'
-            }
-        ],
-        "lengthMenu": [
-            [10, 25, 50, -1],
-            [10, 25, 50, "All"]
-        ], // Length options and labels
-        "pageLength": 10 // Set the initial number of rows displayed
-    });
-});
+                // Add Bootstrap styling
+                "dom": '<"top"f>rt<"bottom"lip><"clear">'
+            });
+        });
     </script>
 
 @stop
