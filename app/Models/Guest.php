@@ -28,5 +28,16 @@ class Guest extends Model
     {
         return $this->hasOne(PoliceInquiry::class);
     }
-}
 
+
+        public function hasInvoice()
+    {
+        return $this->invoices()->exists();
+    }
+    
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class);
+    }
+    
+}

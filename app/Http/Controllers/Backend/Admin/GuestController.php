@@ -89,6 +89,7 @@ class GuestController extends Controller
             'mobile' => 'required',
             'check_out' => 'required',
             'check_in' => 'required',
+            'idproff' => 'required',
             'roomNumber' => 'required|exists:rooms,id',
         ]);
         try {
@@ -165,7 +166,7 @@ class GuestController extends Controller
      */
  public function edit($id)
 {
-   
+    $guest = Guest::with(['reservations.room'])->find($id);
     $model = Guest::with(['reservations.room'])->find($id);
     $modeldata = Master::orderBy('created_at', 'asc')
     ->where('type', '=', 'BookingSource')
@@ -179,7 +180,7 @@ class GuestController extends Controller
 
 
     
-    return view('backend.admin.guest.edit', compact('model','modeldata'));
+    return view('backend.admin.guest.edit', compact('model','modeldata','guest'));
 }
 
     /**
@@ -231,16 +232,50 @@ class GuestController extends Controller
                 }
             }
     
-            // Save the guest record
+        
             $model->save();
-            // Find the corresponding reservation record
+            
             $reservation = Reservation::where('guest_id', $id)->update(['check_in'=>$request->check_in,"check_out"=>$request->check_out]);
+
+
+
+
+            // $paymentChecked = $request->has('payment');
+
+            // if ($paymentChecked) {
+            //     // If checkbox is checked, redirect to admin/invoice/create with the guest id
+            //     return redirect()->route('admin.invoice.create', ['id' => $model->id])->with('success', 'Guest added successfully.');
+            // } else {
+            //     If checkbox is not checked, redirect to admin.guest.index
+            //     return redirect()->back()->with('success', 'Successfully Updated');
+            // }
             return redirect()->back()->with('success', 'Successfully Updated');
+
+
+           
         } catch (\Exception $e) {
             session()->flash('sticky_error', $e->getMessage());
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
     public function publish($id)
     {

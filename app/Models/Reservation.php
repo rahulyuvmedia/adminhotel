@@ -18,6 +18,10 @@ class Reservation extends Model
     {
         return $this->belongsTo(Rooms::class, 'room_id');
     }
-    
+    protected $casts = [
+        'check_in' => 'datetime:Y-m-d H:i:s',
+        'check_out' => 'datetime:Y-m-d H:i:s',
+
+    ];
 }
 
