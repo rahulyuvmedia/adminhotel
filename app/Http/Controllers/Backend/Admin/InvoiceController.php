@@ -46,7 +46,6 @@ public function create(Request $request)
     
 public function store(Request $request)
 { 
-//   dd($request);
     $request->validate([ 
         'billing_date' => 'required',
         'room_charge' => 'required',
@@ -79,7 +78,6 @@ public function store(Request $request)
         $invoice->discount = $request->discount;
         $invoice->tax_amount = $request->tax_amount;
         $invoice->notes = $request->notes;
-//  dd($invoice);
         $invoice->save();
 
         
@@ -89,6 +87,52 @@ public function store(Request $request)
         return back()->with('error', $e->getMessage()); // Set the error message in the session
     }
 }
+
+
+public function update(Request $request, $id)
+{ 
+    $request->validate([ 
+        'billing_date' => 'required',
+        'room_charge' => 'required',
+        'pay_method' => 'required',
+        'account_detail' => 'required',
+        'account_holder' => 'required',
+        'additional_charges' => 'nullable',
+        'due_amount' => 'nullable',
+        'total_paid_amount' => 'required',
+        'discount' => 'nullable',
+        'tax_amount' => 'nullable',
+        'notes' => 'nullable',
+    ]);
+
+    try {
+        $invoice = Invoice::findOrFail($id);
+
+        $invoice->hotel_id = Auth::id();
+        $invoice->guest_id = $request->guest_id;
+        $invoice->invoice_number = $request->invoice_number;
+        $invoice->room_charge = $request->room_charge;
+        $invoice->billing_date = $request->billing_date;
+        $invoice->pay_method = $request->pay_method;
+        $invoice->account_detail = $request->account_detail;
+        $invoice->account_holder = $request->account_holder;
+        $invoice->additional_charges = $request->additional_charges;
+        $invoice->due_amount = $request->due_amount;
+        $invoice->total_paid_amount = $request->total_paid_amount;
+        $invoice->discount = $request->discount;
+        $invoice->tax_amount = $request->tax_amount;
+        $invoice->notes = $request->notes;
+
+        $invoice->save();
+
+        return redirect()->route('admin.invoice.index')->with('success', 'Invoice updated successfully.');
+    } catch (\Exception $e) {
+        Log::error($e->getMessage());
+        return back()->with('error', $e->getMessage());  
+    }
+}
+
+
     public function show()
     {
         //

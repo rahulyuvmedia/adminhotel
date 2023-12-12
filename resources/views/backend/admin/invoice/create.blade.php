@@ -181,7 +181,7 @@
                                                         <label for="discountInput" class="form-label">Due Amount</label>
                                                         <input type="number" name='due_amount' id='due_amount'
                                                             class="form-control invoice-item-price mb-3  @error('due_amount') is-invalid @enderror"
-                                                            placeholder="00" min="0"  maxlength="6" />
+                                                            placeholder="00" min="0" maxlength="6" />
                                                     </div>
 
 
@@ -193,7 +193,8 @@
                                         <div class="dropdown">
                                             <i class="ti ti-settings ti-xs cursor-pointer more-options-dropdown"
                                                 role="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
-                                                data-bs-auto-close="outside" aria-expanded="false">
+                                                data-bs-auto-close="outside" aria-expanded="false"
+                                                style='color:#7367f0'>
                                             </i>
                                             <div class="dropdown-menu dropdown-menu-end w-px-300 p-3"
                                                 aria-labelledby="dropdownMenuButton">
@@ -337,7 +338,7 @@
                 <div class="form-group mb-4" id="account_detail " style="display: block;">
                     <label for="account_detail">Account detail/Number</label>
                     <input type="text" class="form-control @error('account_detail') is-invalid @enderror"
-                        id="account_detail" placeholder="ACXXXXXXXXXXX" name="account_detail"  maxlength="14">
+                        id="account_detail" placeholder="ACXXXXXXXXXXX" name="account_detail" maxlength="14">
                 </div>
 
 
@@ -502,7 +503,7 @@ $(document).ready(function() {
         // Update labels based on the selected payment method
         $('#account_holder_row td:eq(0)').text(labelMapping[paymentMethod]);
         $('#account_detail_row td:eq(0)').text(
-        'Account detail/Number:'); // Example, you can customize this label
+            'Account detail/Number:'); // Example, you can customize this label
     }
 
     function updateTableRows() {

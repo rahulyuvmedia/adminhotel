@@ -56,8 +56,10 @@
                                     <!-- Your action buttons here -->
                                     <!-- <button class="btn btn-sm btn-primary">View</button>
                                     <button class="btn btn-sm btn-danger">Delete</button> -->
-                                    <button class="btn btn-sm btn-primary">Processing..</button>
-                                 
+                                    <!-- <button class="btn btn-sm btn-primary">Processing..</button> -->
+                                    <a href="{{ Route('admin.invoice.edit', $model->id) }}" class="btn btn-primary me-2">
+                                        <i class="bi bi-pencil-fill"></i> Edit
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
