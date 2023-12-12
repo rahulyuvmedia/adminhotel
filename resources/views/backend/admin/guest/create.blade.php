@@ -252,10 +252,10 @@
 
             <div class="col-lg-4 col-md-8 col-sm-12" style="padding-left: 8px; padding-right: 8px;">
                 <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center">
+                    <!-- <div class="card-header d-flex justify-content-between align-items-center">
                         <h6 class="mb-0">Billing Summary</h6>
                         <button onclick="downloadPDF()" class="btn btn-primary">Download PDF</button>
-                    </div>
+                    </div> -->
                     <div class="card-body p-3" id="pdfContent">
 
                         <hr>

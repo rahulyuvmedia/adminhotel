@@ -115,8 +115,8 @@
 
         <li class="menu-item active open">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <i class="menu-icon fas fa-file-invoice" style="font-size: 15px;"></i>
-<div data-i18n="Invoice">Invoice</div>
+                <i class="menu-icon fas fa-file-invoice" style="font-size: 15px;"></i>
+                <div data-i18n="Invoice">Invoice</div>
 
 
             </a>
@@ -127,7 +127,7 @@
                         <div data-i18n="List">List</div>
                     </a>
                 </li>
-                <li class="menu-item">
+                <!-- <li class="menu-item">
                     <a href="{{ URL::to('admin/invoice/create') }}"
                         class="nav-link menu-link  @if (request()->is('admin/invoice/create')) active @endif">
                         <div data-i18n="Add">Add</div>
@@ -139,20 +139,20 @@
                         class="nav-link menu-link  @if (request()->is('admin/invoice/edit')) active @endif">
                         <div data-i18n="Edit">Edit</div>
                     </a>
-                </li>
+                </li> -->
 
             </ul>
         </li>
 
 
 
-        
 
 
 
 
 
-        
+
+
 
 
         @if (Auth::user()->role === 'SUPERADMIN')

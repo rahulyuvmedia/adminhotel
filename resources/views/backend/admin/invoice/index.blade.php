@@ -115,8 +115,10 @@
                                 <td>{{ $model->status }}</td>
                                 <td class="cell-fit">
                                     <!-- Your action buttons here -->
-                                    <button class="btn btn-sm btn-primary">View</button>
-                                    <button class="btn btn-sm btn-danger">Delete</button>
+                                    <!-- <button class="btn btn-sm btn-primary">View</button>
+                                    <button class="btn btn-sm btn-danger">Delete</button> -->
+                                    <button class="btn btn-sm btn-primary">Processing..</button>
+                                 
                                 </td>
                             </tr>
                         @endforeach

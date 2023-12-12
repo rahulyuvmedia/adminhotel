@@ -23,7 +23,8 @@
                     <div class="page-title-icon">
                         <i class="bi bi-tags icon-gradient bg-mean-fruit"> </i>
                     </div>
-                    <h5 class="py-3>
+                   
+                    <h5 class="py-3 ">
                         <span class="text-muted fw-light">Submaster /</span> List
                     </h5>
                     <div class="d-inline-block ml-3 pb-3">
