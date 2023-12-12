@@ -20,10 +20,10 @@
     <div class="container-xxl flex-grow-1 container-p-y card">
 
 
-        <h4 class="py-3 mb-4">
+        <h4 class="py-3">
             <span class="text-muted fw-light">Guest /</span> List
         </h4>
-        <div class="page-title-actions mb-2">
+        <div class="page-title-actions">
             <a href="{{ route('admin.guest.create') }}" class="btn" style='background-color:#7367f0;color:white'>
                 <i class="bi bi-plus-lg"></i> Add Guest
             </a>

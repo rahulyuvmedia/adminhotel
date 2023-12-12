@@ -27,14 +27,14 @@
                         <span class="text-muted fw-light">Rooms /</span> List
                     </h5>
                 </div>
-                <br />
+                 
                 <div class="page-title-actions">
                     <a href="{{ route('admin.rooms.create') }}" class="btn "
                         style="background-color:#7367f0 ; color:white">
                         <i class="bi bi-plus-lg"></i> Add Room
                     </a>
                 </div>
-                <br />
+               
             </div>
         </div>
 
